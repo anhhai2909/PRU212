@@ -1,26 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerCombatController : MonoBehaviour
 {
     [SerializeField]
-    private bool combatEnabled;
+    private bool combatEnabled = true;
     [SerializeField]
     private float inputTimer, attack1Radius, attack1Damage;
     [SerializeField]
     private Transform attack1HitBoxPos;
     [SerializeField]
     private LayerMask whatIsDamageable;
-    
-    private bool gotInput, isAttacking, isFirstAttack;
+
+    private int currentAttack;
+    private int numOfAttack = 3;
+    private bool gotInput;
+    private bool hasNext = false;
 
     private float lastInputTime = Mathf.NegativeInfinity;
 
     private Animator anim;
 
+    public bool isAttacking;
+
     private void Start()
     {
+        currentAttack = 0;
         anim = GetComponent<Animator>();
         anim.SetBool("canAttack", combatEnabled);
     }
@@ -33,11 +37,23 @@ public class PlayerCombatController : MonoBehaviour
 
     private void CheckCombatInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if (combatEnabled)
             {
-                //Attempt combat
+                if (isAttacking)
+                {
+                    if (Time.time <= (lastInputTime + inputTimer))
+                    {
+                        Debug.Log("Has next");
+                        currentAttack = (currentAttack + 1) % numOfAttack;
+                        hasNext = true;
+                    }
+                    else
+                    {
+                        hasNext = false;
+                    }
+                }
                 gotInput = true;
                 lastInputTime = Time.time;
             }
@@ -48,22 +64,25 @@ public class PlayerCombatController : MonoBehaviour
     {
         if (gotInput)
         {
-            //Perform Attack1
+            //Perform Attack
             if (!isAttacking)
             {
-                gotInput = false;
                 isAttacking = true;
-                isFirstAttack = !isFirstAttack;
-                anim.SetBool("attack1", true);
-                anim.SetBool("firstAttack", isFirstAttack);
+                anim.SetBool("attack_ground", true);
                 anim.SetBool("isAttacking", isAttacking);
             }
-        }
-
-        if(Time.time >= lastInputTime + inputTimer)
-        {
-            //Wait for new input
-            gotInput = false;
+            if (Time.time >= lastInputTime + inputTimer)
+            {
+                //Wait for new input
+                gotInput = false;
+                currentAttack = 0;
+                hasNext = false;
+            }
+            else
+            {
+                hasNext = true;
+            }
+            anim.SetInteger("currentAttack", currentAttack);
         }
     }
 
@@ -80,9 +99,13 @@ public class PlayerCombatController : MonoBehaviour
 
     private void FinishAttack1()
     {
-        isAttacking = false;
-        anim.SetBool("isAttacking", isAttacking);
-        anim.SetBool("attack1", false);
+        if (!hasNext)
+        {
+            gotInput = false;
+            isAttacking = false;
+            anim.SetBool("isAttacking", isAttacking);
+            anim.SetBool("attack_ground", false);
+        }
     }
 
     private void OnDrawGizmos()

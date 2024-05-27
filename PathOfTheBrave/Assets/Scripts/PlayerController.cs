@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         CheckIfCanJump();
         CheckIfWallSliding();
         CheckJump();
+        CheckIfAttacking();
         //CheckDash();
     }
 
@@ -97,6 +98,20 @@ public class PlayerController : MonoBehaviour
         else
         {
             isWallSliding = false;
+        }
+    }
+
+    private void CheckIfAttacking()
+    {
+        PlayerCombatController pc = rb.GetComponent<PlayerCombatController>();
+        if (pc.isAttacking && isGrounded)
+        {
+            rb.velocity = Vector2.zero;
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
         }
     }
 
