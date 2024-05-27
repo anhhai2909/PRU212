@@ -41,24 +41,3 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackgroundLayer1
-    uniqueID: 3326304279
-    locked: 0
-  - name: BackgroundLayer2
-    uniqueID: 2966371687
-    locked: 0
-  - name: BackgroundLayer3
-    uniqueID: 3113612947
-    locked: 0
-  - name: Decorations
-    uniqueID: 2978971517
-    locked: 0
-  - name: HigherDecorations
-    uniqueID: 1138787147
-    locked: 0
-  - name: Player
-    uniqueID: 3024206993
-    locked: 0
-  - name: ForegroundDecorations
-    uniqueID: 3045402139
-    locked: 0
