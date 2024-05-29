@@ -1,0 +1,64 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class MenuButtonScript : MonoBehaviour
+{
+    public GameObject menu;
+
+    public Button menuButton;
+
+    public Button quitButton;
+
+    public Button optionButton;
+
+    public Button resumeButton;
+    // Start is called before the first frame update
+    void Start()
+    {
+        try
+        {
+            resumeButton.onClick.AddListener(ResumeOnClick);
+            menuButton.onClick.AddListener(MenuOnClick);
+            quitButton.onClick.AddListener(QuitOnClick);
+            optionButton.onClick.AddListener(OptionOnClick);
+        } catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+        
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void QuitOnClick()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("StartScene");
+
+    }
+
+    void OptionOnClick()
+    {
+    }
+
+    void MenuOnClick()
+    {
+        Time.timeScale = 0;
+        menu.SetActive(true);
+    }
+
+    void ResumeOnClick()
+    {
+        Time.timeScale = 1;
+        menu.SetActive(false);
+    }
+}

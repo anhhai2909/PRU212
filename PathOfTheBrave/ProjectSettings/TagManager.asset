@@ -68,3 +68,6 @@ TagManager:
   - name: ForegroundDecorations
     uniqueID: 3045402139
     locked: 0
+  - name: Icon
+    uniqueID: 1314469027
+    locked: 0
