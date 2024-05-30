@@ -200,6 +200,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Purple Buttons Icons_1
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 288
+        width: 33
+        height: 32
+      alignment: 9
+      pivot: {x: 0.24242425, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9864bca4a9cb11647877bc487ff489bb
+      internalID: -15829725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -213,6 +234,7 @@ TextureImporter:
     nameFileIdTable:
       Purple Buttons Icons_0: 125737330
       Quit: 2005951270
+      Purple Buttons Icons_1: 2030860320
       Options: -71224983
       Resume: 1455187488
   spritePackingTag: 

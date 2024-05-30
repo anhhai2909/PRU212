@@ -11,9 +11,11 @@ public class MenuButtonScript : MonoBehaviour
 
     public Button menuButton;
 
-    public Button quitButton;
+    public Button homeButton;
 
     public Button optionButton;
+
+    public Button quitButton;
 
     public Button resumeButton;
     // Start is called before the first frame update
@@ -23,8 +25,10 @@ public class MenuButtonScript : MonoBehaviour
         {
             resumeButton.onClick.AddListener(ResumeOnClick);
             menuButton.onClick.AddListener(MenuOnClick);
-            quitButton.onClick.AddListener(QuitOnClick);
+            homeButton.onClick.AddListener(QuitOnClick);
+            quitButton.onClick.AddListener(ResumeOnClick);
             optionButton.onClick.AddListener(OptionOnClick);
+            
         } catch (Exception e)
         {
             Debug.Log(e);
