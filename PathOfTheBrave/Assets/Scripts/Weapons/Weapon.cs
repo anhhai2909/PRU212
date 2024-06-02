@@ -36,11 +36,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void ExitWeapon()
     {
-        Debug.Log("Counter++");
         attackAnimation.SetBool("attack", false);
-
         attackCounter++;
-        Debug.Log("Counter: " + attackCounter);
         gameObject.SetActive(false);
     }
 
