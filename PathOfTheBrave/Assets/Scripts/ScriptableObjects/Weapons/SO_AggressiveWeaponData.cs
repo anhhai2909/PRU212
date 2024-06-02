@@ -12,7 +12,6 @@ public class SO_AggressiveWeaponData : SO_WeaponData
     private void OnEnable()
     {
         amountOfAttacks = attackDetails.Length;
-
         movementSpeed = new float[amountOfAttacks];
 
         for (int i = 0; i < amountOfAttacks; i++)

@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wall_climb 1_0
+      name: wall_climb_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95f35ca5b0685ce4daf71e848b428304
-      internalID: -10797977
+      spriteID: d0f44fa6187b34647875ac98d93eaaa9
+      internalID: -380695074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wall_climb 1_1
+      name: wall_climb_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0a2d21e9e16ee84eb20303b416f26c5
-      internalID: -810635107
+      spriteID: 1044c5307600bf54cb857b7a6742b859
+      internalID: 1996594352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wall_climb 1_2
+      name: wall_climb_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98053fcbb4cc937439955a1a415d8834
-      internalID: 411484325
+      spriteID: 7ddf82b016e02b64c8dd10c904d4dab7
+      internalID: 1637456630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wall_climb 1_3
+      name: wall_climb_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1da5c8cd480cabe4abf96845b3334f1d
-      internalID: 1518484552
+      spriteID: a2ec809c985e2534288186a363dc4af8
+      internalID: 833386111
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      wall_climb 1_0: -10797977
-      wall_climb 1_1: -810635107
-      wall_climb 1_2: 411484325
-      wall_climb 1_3: 1518484552
+      wall_climb_0: -380695074
+      wall_climb_1: 1996594352
+      wall_climb_2: 1637456630
+      wall_climb_3: 833386111
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

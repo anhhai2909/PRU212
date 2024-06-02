@@ -14,9 +14,9 @@ public class Core : MonoBehaviour
         get => GenericNotImplementedError<CollisionSenses>.TryGet(collisionSenses, transform.parent.name);
         private set => collisionSenses = value;
     }
-    //public Combat Combat
+    //public combat combat
     //{
-    //    get => GenericNotImplementedError<Combat>.TryGet(combat, transform.parent.name);
+    //    get => genericnotimplementederror<combat>.tryget(combat, transform.parent.name);
     //    private set => combat = value;
     //}
 

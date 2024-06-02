@@ -12,6 +12,7 @@ public class PlayerState
     protected PlayerData playerData;
 
     protected bool isAnimationFinished;
+
     protected bool isExitingState;
 
     protected float startTime;

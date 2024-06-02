@@ -17,12 +17,12 @@ public class Player : MonoBehaviour
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallClimbState WallClimbState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
-    //public PlayerLedgeClimbState LedgeClimbState { get; private set; }
+    public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
-    public PlayerCrouchMoveState CrouchMoveState { get; private set; }
-    //public PlayerAttackState PrimaryAttackState { get; private set; }
-    //public PlayerAttackState SecondaryAttackState { get; private set; }
+    //public PlayerCrouchIdleState CrouchIdleState { get; private set; }
+    //public PlayerCrouchMoveState CrouchMoveState { get; private set; }
+    public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerAttackState SecondaryAttackState { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -58,12 +58,12 @@ public class Player : MonoBehaviour
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
         WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
         WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
-        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
-        //LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
-        DashState = new PlayerDashState(this, StateMachine, playerData, "inAir");
-        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
-        CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
-        //PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "wallJump");
+        LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
+        DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
+        //CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
+        //CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
+        PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
         //SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }
 
@@ -77,14 +77,14 @@ public class Player : MonoBehaviour
         MovementCollider = GetComponent<BoxCollider2D>();
         Inventory = GetComponent<PlayerInventory>();
 
-        //PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
-        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+        PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
+        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
         StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
-        Debug.Log(StateMachine.CurrentState.animBoolName);
+        //Debug.Log(StateMachine.CurrentState.animBoolName);
         Core.LogicUpdate();
         StateMachine.CurrentState.LogicUpdate();
     }

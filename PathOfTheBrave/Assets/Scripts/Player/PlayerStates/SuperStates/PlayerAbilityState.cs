@@ -22,7 +22,6 @@ public class PlayerAbilityState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        
         isAbilityDone = false;
     }
 
@@ -44,6 +43,13 @@ public class PlayerAbilityState : PlayerState
             else
             {
                 stateMachine.ChangeState(player.InAirState);
+            }
+        }
+        else if(isGrounded)
+        {
+            if(core.Movement.CurrentVelocity.x != 0)
+            {
+                core.Movement.SetVelocityX(0);
             }
         }
     }

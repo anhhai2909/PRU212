@@ -11,7 +11,7 @@ public class PlayerDashState : PlayerAbilityState
     private float lastDashTime;
 
     private Vector2 dashDirection;
-    private Vector2 dashDirectionInput;
+    //private Vector2 dashDirectionInput;
     private Vector2 lastAIPos;
 
     public PlayerDashState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
@@ -27,10 +27,10 @@ public class PlayerDashState : PlayerAbilityState
         isHolding = true;
         dashDirection = Vector2.right * core.Movement.FacingDirection;
 
-        Time.timeScale = playerData.holdTimeScale;
-        startTime = Time.unscaledTime;
+        //Time.timeScale = playerData.holdTimeScale;
+        //startTime = Time.unscaledTime;
 
-        player.DashDirectionIndicator.gameObject.SetActive(true);
+        //player.DashDirectionIndicator.gameObject.SetActive(true);
 
     }
 
@@ -42,6 +42,7 @@ public class PlayerDashState : PlayerAbilityState
         {
             core.Movement.SetVelocityY(core.Movement.CurrentVelocity.y * playerData.dashEndYMultiplier);
         }
+        ResetCanDash();
     }
 
     public override void LogicUpdate()
@@ -57,14 +58,14 @@ public class PlayerDashState : PlayerAbilityState
 
             if (isHolding)
             {
-                dashDirectionInput = player.InputHandler.DashDirectionInput;
+                //dashDirectionInput = player.InputHandler.DashDirectionInput;
                 dashInputStop = player.InputHandler.DashInputStop;
 
-                if(dashDirectionInput != Vector2.zero)
-                {
-                    dashDirection = dashDirectionInput;
-                    dashDirection.Normalize();
-                }
+                //if(dashDirectionInput != Vector2.zero)
+                //{
+                //    dashDirection = dashDirectionInput;
+                //    dashDirection.Normalize();
+                //}
 
                 float angle = Vector2.SignedAngle(Vector2.right, dashDirection);
                 player.DashDirectionIndicator.rotation = Quaternion.Euler(0f, 0f, angle - 45f);

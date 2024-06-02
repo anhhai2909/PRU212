@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -105,13 +105,13 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 354bd2656efa0024188315e2697b9500
+      spriteID: cab6d055c49384943bb001798babe641
       internalID: -1376847622
       vertices: []
       indices: 
@@ -126,13 +126,13 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27e6abf850ac16743a3c92e1eb1f883f
+      spriteID: 038569dbe5152b44c8c6808056563d9a
       internalID: 1169166238
       vertices: []
       indices: 
@@ -147,13 +147,13 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a16a743a0698add438ee7f91c9d1d699
+      spriteID: 229a80c46099ce149adbf2d0c940759b
       internalID: 1056726633
       vertices: []
       indices: 
@@ -168,14 +168,35 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca60b9d6eb082744a6e79e3f1cc77ed
+      internalID: 1012600303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Empty
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b2c901980201e14a80e88b1ccf89063
-      internalID: 1012600303
+      spriteID: 043ae086a97a35447b1d62b8225e246c
+      internalID: 1215939779
       vertices: []
       indices: 
       edges: []
@@ -191,6 +212,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Empty: 1215939779
       idle_0: -1376847622
       idle_1: 1169166238
       idle_2: 1056726633

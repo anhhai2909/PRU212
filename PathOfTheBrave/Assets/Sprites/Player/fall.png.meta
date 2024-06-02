@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -111,7 +111,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dff56f9cbed4ea41b8fa7598f49d8aa
+      spriteID: 92e340deef8b90340a242ba8a1079ab6
       internalID: -1877539941
       vertices: []
       indices: 
@@ -132,7 +132,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b7bd68e67c4ef445a19a0d927482da1
+      spriteID: b6cfdc118a98f534fa0ec511ef193dd9
       internalID: -934207141
       vertices: []
       indices: 

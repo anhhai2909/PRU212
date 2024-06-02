@@ -29,7 +29,6 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Exit()
     {
         base.Exit();
-
         weapon.ExitWeapon();
     }
 
@@ -74,8 +73,7 @@ public class PlayerAttackState : PlayerAbilityState
 
     public override void AnimationFinishTrigger()
     {
-        base.AnimationFinishTrigger();                
-
+        base.AnimationFinishTrigger();   
         isAbilityDone = true;
     }
 
