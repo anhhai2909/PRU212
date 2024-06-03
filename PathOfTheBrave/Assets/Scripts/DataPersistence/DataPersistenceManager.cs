@@ -133,7 +133,7 @@ public class DataPersistenceManager
         return false;
     }
 
-    public void SaveGame()
+    public void SaveGame(string sceneName)
     {
         Debug.Log(IsLoadGame());
         if(!IsLoadGame())
@@ -147,7 +147,7 @@ public class DataPersistenceManager
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
                 cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("scene", SceneManager.GetActiveScene().name);
+                cmd.Parameters.AddWithValue("scene", sceneName);
                 cmd.Parameters.AddWithValue("@xPosition", x);
                 cmd.Parameters.AddWithValue("@yPosition", y);
                 cmd.Parameters.AddWithValue("@coin", coin);
@@ -176,7 +176,7 @@ public class DataPersistenceManager
                 string query = "UPDATE GameData SET hp = @hp, scene = @scene, xPosition = @xPosition, yPosition = @yPosition, coin = @coin WHERE gamer_ip = @gamer_ip";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("scene", SceneManager.GetActiveScene().name);
+                cmd.Parameters.AddWithValue("scene", sceneName);
                 cmd.Parameters.AddWithValue("@xPosition", x);
                 cmd.Parameters.AddWithValue("@yPosition", y);
                 cmd.Parameters.AddWithValue("@coin", coin);

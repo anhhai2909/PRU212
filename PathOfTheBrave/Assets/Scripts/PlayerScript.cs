@@ -16,9 +16,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(xSpawn, ySpawn, 0);
-        DataPersistenceManager instance = new DataPersistenceManager(hp, xSpawn, ySpawn, coin);
-        instance.SaveGame();
     }
 
     // Update is called once per frame
@@ -31,9 +28,11 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.CompareTag("Portal"))
         {
-            hp++;
+            transform.position = new Vector3(xSpawn, ySpawn, 0);
+            DataPersistenceManager instance = new DataPersistenceManager(hp, xSpawn, ySpawn, coin);
+            instance.SaveGame(SceneManager.GetActiveScene().buildIndex + 1);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
-      
+            
         }
 
     }

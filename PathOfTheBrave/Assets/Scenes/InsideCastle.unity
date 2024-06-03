@@ -1765,7 +1765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1883607960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.56, y: -0.9, z: 0}
+  m_LocalPosition: {x: 24.99, y: -0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4022,7 +4022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956751415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.68, y: 0.09, z: -10}
+  m_LocalPosition: {x: 30.33, y: -0.1, z: -10}
   m_LocalScale: {x: 0.2625, y: 0.3625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5005,6 +5005,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1883607960}
+    - target: {fileID: 545152340, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 2575379309545452851}
     - target: {fileID: 2575379310079027296, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
       propertyPath: m_Name
       value: Portal
@@ -5055,3 +5059,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
+--- !u!198 &2575379309545452851 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2575379310079027325, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
+  m_PrefabInstance: {fileID: 2575379309545452847}
+  m_PrefabAsset: {fileID: 0}
