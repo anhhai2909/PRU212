@@ -58,7 +58,8 @@ public class MainMenuScript : MonoBehaviour
         if (option == 2)
         {
             canvas.active = false;
-            SceneManager.LoadScene("Jungle", LoadSceneMode.Single);
+            DataPersistenceManager data = new DataPersistenceManager();
+            data.LoadGame();
         }
         else
         {

@@ -5,20 +5,30 @@ using UnityEngine;
 [System.Serializable]
 public class GameData : MonoBehaviour
 {
-    public int hp;
+    private string _gamerIp { get; set; }
 
-    public float xPosition;
+    private float _hp { get;set; }
 
-    public float yPosition;
+    private string _scene { get; set; }
+
+    private float _xPosition { get; set; }
+
+    private float _yPosition { get; set; }
+
+    private float _coin { get; set; }
+
 
     public GameData()
     {
     }
 
-    public GameData(int hp, float xPosition, float yPosition)
+    public GameData(string gamerIp, float hp, string scene, float xPosition, float yPosition, float coin)
     {
-        this.hp = hp;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+        _gamerIp = gamerIp;
+        _hp = hp;
+        _scene = scene;
+        _xPosition = xPosition;
+        _yPosition = yPosition;
+        _coin = coin;
     }
 }
