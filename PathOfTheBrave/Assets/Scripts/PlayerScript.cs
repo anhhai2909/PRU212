@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour
         {
             transform.position = new Vector3(xSpawn, ySpawn, 0);
             DataPersistenceManager instance = new DataPersistenceManager(hp, xSpawn, ySpawn, coin);
-            instance.SaveGame(SceneManager.GetActiveScene().buildIndex + 1);
+            instance.SaveGame("");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
             
         }
