@@ -29,6 +29,7 @@ public class PlayerAttackState : PlayerAbilityState
     public override void Exit()
     {
         base.Exit();
+
         weapon.ExitWeapon();
     }
 
@@ -40,13 +41,13 @@ public class PlayerAttackState : PlayerAbilityState
 
         if (shouldCheckFlip)
         {
-            core.Movement.CheckIfShouldFlip(xInput);
+            Movement?.CheckIfShouldFlip(xInput);
         }
 
 
         if (setVelocity)
         {
-            core.Movement.SetVelocityX(velocityToSet * core.Movement.FacingDirection);
+            Movement?.SetVelocityX(velocityToSet * Movement.FacingDirection);
         }
     }
 
@@ -58,7 +59,7 @@ public class PlayerAttackState : PlayerAbilityState
 
     public void SetPlayerVelocity(float velocity)
     {
-        core.Movement.SetVelocityX(velocity * core.Movement.FacingDirection);
+        Movement.SetVelocityX(velocity * Movement.FacingDirection);
 
         velocityToSet = velocity;
         setVelocity = true;
@@ -73,7 +74,8 @@ public class PlayerAttackState : PlayerAbilityState
 
     public override void AnimationFinishTrigger()
     {
-        base.AnimationFinishTrigger();   
+        base.AnimationFinishTrigger();
+
         isAbilityDone = true;
     }
 

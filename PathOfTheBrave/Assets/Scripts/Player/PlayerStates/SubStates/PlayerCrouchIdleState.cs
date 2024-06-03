@@ -12,7 +12,7 @@ public class PlayerCrouchIdleState : PlayerGroundedState
     {
         base.Enter();
 
-        core.Movement.SetVelocityZero();
+        Movement?.SetVelocityZero();
         player.SetColliderHeight(playerData.crouchColliderHeight);
     }
 
@@ -28,11 +28,11 @@ public class PlayerCrouchIdleState : PlayerGroundedState
 
         if (!isExitingState)
         {
-            if(xInput != 0)
+            if (xInput != 0)
             {
                 //stateMachine.ChangeState(player.CrouchMoveState);
             }
-            else if(yInput != -1 && !isTouchingCeiling)
+            else if (yInput != -1 && !isTouchingCeiling)
             {
                 stateMachine.ChangeState(player.IdleState);
             }

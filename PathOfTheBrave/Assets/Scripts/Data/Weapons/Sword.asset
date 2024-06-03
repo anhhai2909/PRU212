@@ -16,15 +16,15 @@ MonoBehaviour:
   - attackName: Chem Duoi Len
     movementSpeed: 3
     damageAmount: 10
-    knockbackStrength: 10
+    knockbackStrength: 3
     knockbackAngle: {x: 1, y: 1}
   - attackName: Chem Tren Xuong
     movementSpeed: 4
     damageAmount: 15
-    knockbackStrength: 15
+    knockbackStrength: 4
     knockbackAngle: {x: 1, y: 1}
   - attackName: Chem Xoay
     movementSpeed: 2
     damageAmount: 20
-    knockbackStrength: 20
+    knockbackStrength: 5
     knockbackAngle: {x: 1, y: 2}

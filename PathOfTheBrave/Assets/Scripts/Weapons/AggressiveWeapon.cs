@@ -5,6 +5,11 @@ using System.Linq;
 
 public class AggressiveWeapon : Weapon
 {
+
+    private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+
+    private Movement movement;
+
     protected SO_AggressiveWeaponData aggressiveWeaponData;
 
     private List<IDamageable> detectedDamageables = new List<IDamageable>();
@@ -14,7 +19,7 @@ public class AggressiveWeapon : Weapon
     {
         base.Awake();
 
-        if(weaponData.GetType() == typeof(SO_AggressiveWeaponData))
+        if (weaponData.GetType() == typeof(SO_AggressiveWeaponData))
         {
             aggressiveWeaponData = (SO_AggressiveWeaponData)weaponData;
         }
@@ -42,7 +47,7 @@ public class AggressiveWeapon : Weapon
 
         foreach (IKnockbackable item in detectedKnockbackables.ToList())
         {
-            item.Knockback(details.knockbackAngle, details.knockbackStrength, core.Movement.FacingDirection);
+            item.Knockback(details.knockbackAngle, details.knockbackStrength, Movement.FacingDirection);
         }
     }
 
@@ -51,14 +56,14 @@ public class AggressiveWeapon : Weapon
 
         IDamageable damageable = collision.GetComponent<IDamageable>();
 
-        if(damageable != null)
+        if (damageable != null)
         {
             detectedDamageables.Add(damageable);
         }
 
         IKnockbackable knockbackable = collision.GetComponent<IKnockbackable>();
 
-        if(knockbackable != null)
+        if (knockbackable != null)
         {
             detectedKnockbackables.Add(knockbackable);
         }
@@ -80,5 +85,5 @@ public class AggressiveWeapon : Weapon
             detectedKnockbackables.Remove(knockbackable);
         }
     }
-   
+
 }

@@ -24,7 +24,7 @@ public class Movement : CoreComponent
         CanSetVelocity = true;
     }
 
-    public void LogicUpdate()
+    public override void LogicUpdate()
     {
         CurrentVelocity = RB.velocity;
     }
@@ -84,7 +84,6 @@ public class Movement : CoreComponent
         FacingDirection *= -1;
         RB.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
-
     public void WallHop(float wallHopForce, Vector2 wallHopDirection)
     {
         Vector2 forceToAdd = new Vector2(wallHopForce * wallHopDirection.x * -FacingDirection, wallHopForce * wallHopDirection.y);
