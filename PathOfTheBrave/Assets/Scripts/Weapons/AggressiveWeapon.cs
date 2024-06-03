@@ -12,6 +12,9 @@ public class AggressiveWeapon : Weapon
 
     protected SO_AggressiveWeaponData aggressiveWeaponData;
 
+    protected GameObject projectile;
+    protected Projectile projectileScript;
+
     private List<IDamageable> detectedDamageables = new List<IDamageable>();
     private List<IKnockbackable> detectedKnockbackables = new List<IKnockbackable>();
 
@@ -32,13 +35,13 @@ public class AggressiveWeapon : Weapon
     public override void AnimationActionTrigger()
     {
         base.AnimationActionTrigger();
-
         CheckMeleeAttack();
+        CheckRangeAttack();
     }
 
     private void CheckMeleeAttack()
     {
-        WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[attackCounter];
+        WeaponMeleeDetails details = aggressiveWeaponData.AttackDetails[attackCounter];
 
         foreach (IDamageable item in detectedDamageables.ToList())
         {
@@ -49,6 +52,11 @@ public class AggressiveWeapon : Weapon
         {
             item.Knockback(details.knockbackAngle, details.knockbackStrength, Movement.FacingDirection);
         }
+    }
+
+    private void CheckRangeAttack()
+    {
+
     }
 
     public void AddToDetected(Collider2D collision)
@@ -84,6 +92,16 @@ public class AggressiveWeapon : Weapon
         {
             detectedKnockbackables.Remove(knockbackable);
         }
+    }
+
+    public override void TriggerProjectile(Transform pos)
+    {
+        base.TriggerProjectile(pos);
+        WeaponMeleeDetails details = aggressiveWeaponData.AttackDetails[attackCounter];
+        projectile = GameObject.Instantiate(details.projectile, pos.position, transform.rotation);
+        //projectile.transform.SetParent(transform.parent, true);
+        projectileScript = projectile.GetComponent<Projectile>();
+        projectileScript.FireProjectile(projectileScript.projectileSpeed, projectileScript.projectileTravelDistance);
     }
 
 }

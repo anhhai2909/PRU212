@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         //CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
         //CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
         PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
-        //SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
+        SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack");
     }
 
     private void Start()
@@ -78,13 +78,12 @@ public class Player : MonoBehaviour
         Inventory = GetComponent<PlayerInventory>();
 
         PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.primary]);
-        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
+        SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.secondary]);
         StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
-        //Debug.Log(StateMachine.CurrentState.animBoolName);
         Core.LogicUpdate();
         StateMachine.CurrentState.LogicUpdate();
     }

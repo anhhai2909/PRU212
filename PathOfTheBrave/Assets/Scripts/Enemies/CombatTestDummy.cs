@@ -15,6 +15,7 @@ public class CombatTestDummy : MonoBehaviour, IDamageable
         Debug.Log(amount + " Damage taken");
 
         Instantiate(hitParticles, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+        if(stats == null) stats = core.GetCoreComponent(ref stats);
         stats.DecreaseHealth(amount);
         if (stats.isAlive())
         {

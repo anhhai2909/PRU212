@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a474042354828bf4d8c825e675460fb0, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  attackDetails:
+  - attackName: Normal
+    movementSpeed: 0
+    damageAmount: 10
+    knockbackStrength: 3
+    knockbackAngle: {x: 1, y: 1}
+    projectile: {fileID: 8239760275055795387, guid: a02d12ae7265f864b8d117c095169281, type: 3}
+  - attackName: Normal
+    movementSpeed: 0
+    damageAmount: 10
+    knockbackStrength: 3
+    knockbackAngle: {x: 1, y: 1}
+    projectile: {fileID: 8239760275055795387, guid: a02d12ae7265f864b8d117c095169281, type: 3}
+  - attackName: 'Normal '
+    movementSpeed: 0
+    damageAmount: 10
+    knockbackStrength: 3
+    knockbackAngle: {x: 1, y: 1}
+    projectile: {fileID: 8239760275055795387, guid: a02d12ae7265f864b8d117c095169281, type: 3}
+  - attackName: Strong Arrow
+    movementSpeed: -5
+    damageAmount: 30
+    knockbackStrength: 3
+    knockbackAngle: {x: 1, y: 2}
+    projectile: {fileID: 7483586794815890478, guid: 4d349a4aa66307949b0d6e29d1a4721f, type: 3}

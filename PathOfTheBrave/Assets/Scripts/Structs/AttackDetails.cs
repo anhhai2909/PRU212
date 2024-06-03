@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct WeaponAttackDetails
+public struct WeaponMeleeDetails
 {
     public string attackName;
     public float movementSpeed;
@@ -11,4 +11,7 @@ public struct WeaponAttackDetails
 
     public float knockbackStrength;
     public Vector2 knockbackAngle;
+    public GameObject projectile;
 }
+
+

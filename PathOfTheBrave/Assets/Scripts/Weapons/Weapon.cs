@@ -18,12 +18,12 @@ public class Weapon : MonoBehaviour
     {
         attackAnimation = transform.Find("Attack").GetComponent<Animator>();
 
-        gameObject.SetActive(false);
+        transform.Find("Attack").gameObject.SetActive(false);
     }
 
     public virtual void EnterWeapon()
     {
-        gameObject.SetActive(true);
+        transform.Find("Attack").gameObject.SetActive(true);
 
         if(attackCounter >= weaponData.amountOfAttacks)
         {
@@ -38,7 +38,7 @@ public class Weapon : MonoBehaviour
     {
         attackAnimation.SetBool("attack", false);
         attackCounter++;
-        gameObject.SetActive(false);
+        transform.Find("Attack").gameObject.SetActive(false);
     }
 
     #region Animation Triggers
@@ -77,5 +77,8 @@ public class Weapon : MonoBehaviour
         this.state = state;
         this.core = core;
     }
+    public virtual void TriggerProjectile(Transform pos)
+    {
 
+    }
 }

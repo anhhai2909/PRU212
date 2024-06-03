@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponHitboxToWeapon : MonoBehaviour
 {
@@ -13,11 +11,15 @@ public class WeaponHitboxToWeapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        weapon.AddToDetected(collision);
+        if (weapon != null)
+        {
+            weapon.AddToDetected(collision);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
-    {        
-        weapon.RemoveFromDetected(collision);
+    {
+        if (weapon != null)
+            weapon.RemoveFromDetected(collision);
     }
 }

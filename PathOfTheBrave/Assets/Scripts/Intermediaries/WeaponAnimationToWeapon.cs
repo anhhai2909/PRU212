@@ -6,6 +6,8 @@ public class WeaponAnimationToWeapon : MonoBehaviour
 {
     private Weapon weapon;
 
+    [SerializeField]
+    private Transform ProjectileSpawnPos;
     private void Start()
     {
         weapon = GetComponentInParent<Weapon>();
@@ -39,6 +41,11 @@ public class WeaponAnimationToWeapon : MonoBehaviour
     private void AnimationActionTrigger()
     {
         weapon.AnimationActionTrigger();
+    }
+
+    private void TriggerProjectile()
+    {
+        weapon.TriggerProjectile(ProjectileSpawnPos);
     }
 
 }
