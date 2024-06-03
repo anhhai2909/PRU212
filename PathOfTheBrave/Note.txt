@@ -1,0 +1,4 @@
+- Những đồ trang trí không yêu cầu tương tác với người chơi để sorting layer trong inspector là decoration
+- Những đồ trang trí tương tác với người chơi để sorting layer là platform
+- Người chơi hoặc quái để sorting layer là player
+- Cỏ để sorting layer là foreground decoration
