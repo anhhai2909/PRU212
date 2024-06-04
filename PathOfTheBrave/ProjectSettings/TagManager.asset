@@ -41,16 +41,16 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background3
+  - name: BackgroundLayer3
     uniqueID: 2660501507
     locked: 0
-  - name: Background2
+  - name: BackgroundLayer2
     uniqueID: 1043145413
     locked: 0
-  - name: Background1
+  - name: BackgroundLayer1
     uniqueID: 2060072571
     locked: 0
-  - name: Platforms
+  - name: Platform
     uniqueID: 3562792597
     locked: 0
   - name: Decorations
