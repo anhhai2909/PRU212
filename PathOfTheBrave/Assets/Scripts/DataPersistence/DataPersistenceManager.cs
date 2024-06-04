@@ -2,9 +2,9 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using TreeEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -35,7 +35,6 @@ public class DataPersistenceManager
 
     private string connectionString = "Server=localhost;port=3306;database=PRU212_Project;uid=root;pwd=haibang20042003;encrypt=false";
 
-//    private string connectionString = "server=localhost;user=root;database=car_rental;port=3306;password=haibang20042003";
     public static DataPersistenceManager instance { get; private set; }
 
     private void Start()
@@ -75,10 +74,11 @@ public class DataPersistenceManager
     {
         this.gameData = new GameData();
     }
-
-    public void LoadGame()
+    
+    public GameData LoadGame()
     {
         MySqlConnection conn = new MySqlConnection(connectionString);
+        GameData gameData = new GameData();
         try
         {
             conn.Open();
@@ -89,11 +89,14 @@ public class DataPersistenceManager
 
             using (MySqlDataReader rdr = cmd.ExecuteReader())
             {
-                GameData gameData = new GameData();
-
                 while (rdr.Read())
                 {
-                     
+                    gameData._hp = rdr.GetFloat(1);
+                    gameData._sceneIndex = rdr.GetInt32(2);
+                    gameData._sceneName = rdr.GetString(3);
+                    gameData._xPosition = rdr.GetFloat(4);
+                    gameData._yPosition = rdr.GetFloat(5);
+                    gameData._coin = rdr.GetFloat(6);
                 }
             }
             
@@ -103,6 +106,7 @@ public class DataPersistenceManager
         {
             Debug.Log(ex.Message);
         }
+        return gameData;
     }
 
     public bool IsLoadGame()
@@ -133,21 +137,24 @@ public class DataPersistenceManager
         return false;
     }
 
-    public void SaveGame(string sceneName)
+    public void SaveGame(int sceneIndex)
     {
-        Debug.Log(IsLoadGame());
-        if(!IsLoadGame())
+        string path = SceneUtility.GetScenePathByBuildIndex(sceneIndex);
+        string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+
+        if (!IsLoadGame())
         {
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
                 conn.Open();
                 string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-                string query = "INSERT INTO GameData (gamer_ip, hp, scene, xPosition, yPosition, coin) VALUES (@gamer_ip, @hp, @scene, @xPosition, @yPosition, @coin)";
+                string query = "INSERT INTO GameData (gamer_ip, hp, scene_index, scene_name, x_position, y_position, coin) VALUES (@gamer_ip, @hp, @sceneIndex, @sceneName, @xPosition, @yPosition, @coin)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
                 cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("scene", sceneName);
+                cmd.Parameters.AddWithValue("@sceneIndex", sceneIndex);
+                cmd.Parameters.AddWithValue("@sceneName", sceneName);
                 cmd.Parameters.AddWithValue("@xPosition", x);
                 cmd.Parameters.AddWithValue("@yPosition", y);
                 cmd.Parameters.AddWithValue("@coin", coin);
@@ -173,10 +180,11 @@ public class DataPersistenceManager
             {
                 conn.Open();
                 string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-                string query = "UPDATE GameData SET hp = @hp, scene = @scene, xPosition = @xPosition, yPosition = @yPosition, coin = @coin WHERE gamer_ip = @gamer_ip";
+                string query = "UPDATE GameData SET hp = @hp, scene_index = @sceneIndex, scene_name = @sceneName, x_position = @xPosition, y_position = @yPosition, coin = @coin WHERE gamer_ip = @gamer_ip";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("scene", sceneName);
+                cmd.Parameters.AddWithValue("@sceneIndex", sceneIndex);
+                cmd.Parameters.AddWithValue("@sceneName", sceneName);
                 cmd.Parameters.AddWithValue("@xPosition", x);
                 cmd.Parameters.AddWithValue("@yPosition", y);
                 cmd.Parameters.AddWithValue("@coin", coin);

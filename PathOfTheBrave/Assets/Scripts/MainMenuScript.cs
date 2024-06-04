@@ -32,19 +32,30 @@ public class MainMenuScript : MonoBehaviour
 
     public GameObject canvas;
 
+    public PlayerScript playerScript;
+
+    public PortalScript portalScript;
+
+
+    [System.Obsolete]
     void Start()
     {
+        playerScript.gameObject.SetActive(false);
+        portalScript.gameObject.SetActive(false);
         newBtn.onClick.AddListener(NewClick);
         loadBtn.onClick.AddListener(LoadClick);
         settingBtn.onClick.AddListener(SettingClick);
     }
 
+    [System.Obsolete]
     void NewClick()
     {
         if (option == 1)
         {
+            playerScript.gameObject.SetActive(true);
+            portalScript.gameObject.SetActive(true);
             canvas.active = false;
-            SceneManager.LoadScene("InsideCastle", LoadSceneMode.Single);
+            playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
@@ -53,13 +64,19 @@ public class MainMenuScript : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     void LoadClick()
     {
         if (option == 2)
         {
+            playerScript.gameObject.SetActive(true);
+            portalScript.gameObject.SetActive(true);
             canvas.active = false;
             DataPersistenceManager data = new DataPersistenceManager();
-            data.LoadGame();
+            GameData gameData = data.LoadGame();
+            playerScript.LoadScene(gameData._sceneIndex);
+            playerScript.hp = gameData._hp;
+            playerScript.coin = gameData._coin;
         }
         else
         {
@@ -75,6 +92,7 @@ public class MainMenuScript : MonoBehaviour
     }
 
     // Update is called once per frame
+    [System.Obsolete]
     void Update()
     {
         if (Time.realtimeSinceStartup - begin > 0.2)
@@ -91,11 +109,15 @@ public class MainMenuScript : MonoBehaviour
         {
             if(option == 1)
             {
+                playerScript.gameObject.SetActive(true);
+                portalScript.gameObject.SetActive(true);
                 canvas.active = false;
-                SceneManager.LoadScene("InsideCastle", LoadSceneMode.Single);
+                playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             else if(option == 2)
             {
+                playerScript.gameObject.SetActive(true);
+                portalScript.gameObject.SetActive(true);
                 canvas.active = false;
                 SceneManager.LoadScene("Jungle", LoadSceneMode.Single);
             }
