@@ -11,21 +11,11 @@ public class PortalScript : MonoBehaviour
     public ParticleSystem portal;
     public static PortalScript portalScript;
     
+    
     [Obsolete]
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-
-        if (portalScript == null)
-        {
-            portalScript = this;
-        }
-        else
-        {
-            Destroy(portal);
-
-        }
-
+  
         portal.loop = true;
         portal.playOnAwake = false;
         portal.enableEmission = false;
@@ -35,7 +25,8 @@ public class PortalScript : MonoBehaviour
 
     void Start()
     {
-      
+        GameObject ball = GameObject.Find("Ball");
+        player = ball;
     }
 
     // Update is called once per frame
@@ -44,15 +35,19 @@ public class PortalScript : MonoBehaviour
     {
         if(!portal.enableEmission)
         {
-            if (portal.gameObject.transform.position.x - player.transform.position.x <= 10)
+            if (portal != null && portal.gameObject != null)
             {
-                portal.Play();
-                portal.enableEmission = true;
+                if (portal.gameObject.transform.position.x - player.transform.position.x <= 10)
+                {
+                    portal.Play();
+                    portal.enableEmission = true;
 
+                }
             }
 
         }
         
     
     }
+    
 }

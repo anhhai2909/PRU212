@@ -19,15 +19,18 @@ public class PlayerScript : MonoBehaviour
     public float xDirection;
 
     public static PlayerScript instance;
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
-    public GameObject portal;
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SpawnPlayer(scene.buildIndex);
 
+    }
 
     private void Awake()
-    {
-        
-    }
-    void Start()
     {
         DontDestroyOnLoad(this);
 
@@ -38,10 +41,17 @@ public class PlayerScript : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            SpawnPlayer(SceneManager.GetActiveScene().buildIndex);
 
         }
-        
+
+
+    }
+    void Start()
+    {
         moveSpeed = 10;
+
+
 
     }
 
@@ -56,105 +66,54 @@ public class PlayerScript : MonoBehaviour
         transform.position = transform.position + new Vector3(moveStep, 0, 0);
     }
 
-    [System.Obsolete]
-    void OnSceneLoaded(int sceneIndex)
-    {
-        float x = 0, y = 0;
-        switch (sceneIndex)
-        {
-            case 0:
-                {
-                    portal.active = false;
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-            case 1:
-                {
-                    portal.active = true;
-                    x = 31.28f;
-                    y = 0.73f;
-                    break;
-                }
-            case 2:
-                {
-                    portal.active = true;
-                    x = 76.55f;
-                    y = 0.34f;
-                    break;
-                }
-            case 3:
-                {
-                    portal.active = true;
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-            case 4:
-                {
-                    portal.active = true;
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-        }
-        portal.transform.position = new Vector3(x, y, 0);
-    }
 
 
     void SpawnPlayer(int sceneIndex)
     {
-        float x = 0, y = 0;
-        switch(sceneIndex)
+        if (sceneIndex != 0)
         {
-            case 0:
-                {
-                    this.gameObject.hideFlags = HideFlags.HideInInspector;
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-            case 1:
-                {
-                    this.gameObject.hideFlags = HideFlags.None;
-                    x = -6.51f;
-                    y = 1.58f;
-                    break;
-                }
-            case 2:
-                {
-                    this.gameObject.hideFlags = HideFlags.None;
-                    x = -10.78072f;
-                    y = -0.3826588f;
-                    break;
-                }
-            case 3:
-                {
-                    this.gameObject.hideFlags = HideFlags.None;
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-            case 4:
-                {
-                    this.gameObject.hideFlags = HideFlags.None;
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-        }
-        this.gameObject.transform.position = new Vector3(x, y, 0);
-        DataPersistenceManager instance = new DataPersistenceManager(hp, x, y, coin);
-        instance.SaveGame(sceneIndex);
 
+
+            float x = 0, y = 0;
+            switch (sceneIndex)
+            {
+
+                case 1:
+                    {
+                        x = -6.51f;
+                        y = 1.58f;
+                        break;
+                    }
+                case 2:
+                    {
+                        x = -10.78072f;
+                        y = -0.3826588f;
+                        break;
+                    }
+                case 3:
+                    {
+                        x = -8.7f;
+                        y = -2.394825f;
+                        break;
+                    }
+                case 4:
+                    {
+                        x = -6.661118f;
+                        y = 2.613495f;
+                        break;
+                    }
+            }
+            this.gameObject.transform.position = new Vector3(x, y, 0);
+            DataPersistenceManager instance = new DataPersistenceManager(hp, x, y, coin);
+            instance.SaveGame(sceneIndex);
+        }
     }
+
 
     public void LoadScene(int sceneIndex)
     {
-        Debug.Log("2");
         hp++;
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
-        SpawnPlayer(sceneIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -162,7 +121,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.CompareTag("Portal"))
         {
                 LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            
+ 
         }
 
     }

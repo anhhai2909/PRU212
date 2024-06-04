@@ -34,14 +34,15 @@ public class MainMenuScript : MonoBehaviour
 
     public PlayerScript playerScript;
 
-    public PortalScript portalScript;
+    public GameObject player;
+
 
 
     [System.Obsolete]
     void Start()
     {
+        player.active = false;
         playerScript.gameObject.SetActive(false);
-        portalScript.gameObject.SetActive(false);
 
         newBtn.onClick.AddListener(NewClick);
         loadBtn.onClick.AddListener(LoadClick);
@@ -53,8 +54,8 @@ public class MainMenuScript : MonoBehaviour
     {
         if (option == 1)
         {
+            player.active = true;
             playerScript.gameObject.SetActive(true);
-            portalScript.gameObject.SetActive(true);
             canvas.active = false;
             playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -70,14 +71,15 @@ public class MainMenuScript : MonoBehaviour
     {
         if (option == 2)
         {
+            player.active = true;
             playerScript.gameObject.SetActive(true);
-            portalScript.gameObject.SetActive(true);
             canvas.active = false;
             DataPersistenceManager data = new DataPersistenceManager();
             GameData gameData = data.LoadGame();
-            playerScript.LoadScene(gameData._sceneIndex);
             playerScript.hp = gameData._hp;
             playerScript.coin = gameData._coin;
+            playerScript.LoadScene(gameData._sceneIndex);
+            
         }
         else
         {
@@ -110,17 +112,21 @@ public class MainMenuScript : MonoBehaviour
         {
             if (option == 1)
             {
+                player.active = true;
                 playerScript.gameObject.SetActive(true);
-                portalScript.gameObject.SetActive(true);
                 canvas.active = false;
                 playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             else if (option == 2)
             {
+                player.active = true;
                 playerScript.gameObject.SetActive(true);
-                portalScript.gameObject.SetActive(true);
                 canvas.active = false;
-                SceneManager.LoadScene("Jungle", LoadSceneMode.Single);
+                DataPersistenceManager data = new DataPersistenceManager();
+                GameData gameData = data.LoadGame();
+                playerScript.LoadScene(gameData._sceneIndex);
+                playerScript.hp = gameData._hp;
+                playerScript.coin = gameData._coin;
             }
             else
             {
