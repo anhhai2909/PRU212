@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -41,18 +42,35 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackgroundLayer3
-    uniqueID: 2660501507
+
+  - name: BackgroundLayer1
+    uniqueID: 3326304279
     locked: 0
   - name: BackgroundLayer2
-    uniqueID: 1043145413
+    uniqueID: 2966371687
     locked: 0
-  - name: BackgroundLayer1
-    uniqueID: 2060072571
+  - name: BackgroundLayer3
+    uniqueID: 3113612947
+    locked: 0
+  - name: House
+    uniqueID: 2198349347
     locked: 0
   - name: Platform
-    uniqueID: 3562792597
+    uniqueID: 3713294161
     locked: 0
   - name: Decorations
-    uniqueID: 3174903107
+    uniqueID: 2978971517
+    locked: 0
+  - name: HigherDecorations
+    uniqueID: 1138787147
+    locked: 0
+  - name: Player
+    uniqueID: 3024206993
+    locked: 0
+  - name: ForegroundDecorations
+    uniqueID: 3045402139
+    locked: 0
+  - name: Icon
+    uniqueID: 1314469027
+
     locked: 0
