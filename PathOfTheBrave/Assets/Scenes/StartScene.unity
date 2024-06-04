@@ -1403,6 +1403,7 @@ MonoBehaviour:
   ySpawn: 0
   moveSpeed: 10
   xDirection: 0
+  portal: {fileID: 2575379310079027296, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
 --- !u!61 &984379885
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1877,10 +1878,6 @@ PrefabInstance:
     - target: {fileID: 2575379310079027296, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
       propertyPath: m_Name
       value: Portal
-      objectReference: {fileID: 0}
-    - target: {fileID: 2575379310079027296, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2575379310079027327, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
       propertyPath: m_RootOrder

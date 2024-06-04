@@ -9,32 +9,33 @@ public class PortalScript : MonoBehaviour
     // Start is called before the first frame update
     public GameObject player;
     public ParticleSystem portal;
-
-    public static PortalScript instance;
-
-
-
+    public static PortalScript portalScript;
+    
     [Obsolete]
     private void Awake()
     {
-        portal.loop = true;
-        portal.playOnAwake = false;
-        portal.enableEmission = false;
-        if (instance == null)
+        DontDestroyOnLoad(this);
+
+        if (portalScript == null)
         {
-            instance = this;
-            DontDestroyOnLoad(portal);
+            portalScript = this;
         }
         else
         {
-            //Destroy(this.gameObject);
+            Destroy(portal);
+
         }
-        
+
+        portal.loop = true;
+        portal.playOnAwake = false;
+        portal.enableEmission = false;
+    
+
     }
 
     void Start()
     {
-
+      
     }
 
     // Update is called once per frame
@@ -54,54 +55,4 @@ public class PortalScript : MonoBehaviour
         
     
     }
-
-    void OnEnable()
-    {
-        // Đăng ký sự kiện sceneLoaded
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        float x = 0, y = 0;
-        switch (scene.buildIndex)
-        {
-            case 0:
-                {
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-            case 1:
-                {
-                    x = 31.28f;
-                    y = 0.73f;
-                    break;
-                }
-            case 2:
-                {
-                    x = 76.55f;
-                    y = 0.34f;
-                    break;
-                }
-            case 3:
-                {
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-            case 4:
-                {
-                    x = 0;
-                    y = 0;
-                    break;
-                }
-        }
-        portal.transform.position = new Vector3(x, y, 0);
-        portal.enableEmission = false;
-    }
-
-
-
-
 }

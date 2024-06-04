@@ -20,22 +20,27 @@ public class PlayerScript : MonoBehaviour
 
     public static PlayerScript instance;
 
+    public GameObject portal;
+
 
     private void Awake()
     {
         
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this);
-        }
     }
     void Start()
     {
+        DontDestroyOnLoad(this);
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+
+        }
+        
         moveSpeed = 10;
 
     }
@@ -50,6 +55,52 @@ public class PlayerScript : MonoBehaviour
         float y = transform.position.y;
         transform.position = transform.position + new Vector3(moveStep, 0, 0);
     }
+
+    [System.Obsolete]
+    void OnSceneLoaded(int sceneIndex)
+    {
+        float x = 0, y = 0;
+        switch (sceneIndex)
+        {
+            case 0:
+                {
+                    portal.active = false;
+                    x = 0;
+                    y = 0;
+                    break;
+                }
+            case 1:
+                {
+                    portal.active = true;
+                    x = 31.28f;
+                    y = 0.73f;
+                    break;
+                }
+            case 2:
+                {
+                    portal.active = true;
+                    x = 76.55f;
+                    y = 0.34f;
+                    break;
+                }
+            case 3:
+                {
+                    portal.active = true;
+                    x = 0;
+                    y = 0;
+                    break;
+                }
+            case 4:
+                {
+                    portal.active = true;
+                    x = 0;
+                    y = 0;
+                    break;
+                }
+        }
+        portal.transform.position = new Vector3(x, y, 0);
+    }
+
 
     void SpawnPlayer(int sceneIndex)
     {
@@ -100,10 +151,10 @@ public class PlayerScript : MonoBehaviour
 
     public void LoadScene(int sceneIndex)
     {
-        Debug.Log(sceneIndex);
+        Debug.Log("2");
+        hp++;
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
         SpawnPlayer(sceneIndex);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

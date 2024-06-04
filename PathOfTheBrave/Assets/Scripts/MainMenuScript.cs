@@ -42,6 +42,7 @@ public class MainMenuScript : MonoBehaviour
     {
         playerScript.gameObject.SetActive(false);
         portalScript.gameObject.SetActive(false);
+
         newBtn.onClick.AddListener(NewClick);
         loadBtn.onClick.AddListener(LoadClick);
         settingBtn.onClick.AddListener(SettingClick);
@@ -107,14 +108,14 @@ public class MainMenuScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if(option == 1)
+            if (option == 1)
             {
                 playerScript.gameObject.SetActive(true);
                 portalScript.gameObject.SetActive(true);
                 canvas.active = false;
                 playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-            else if(option == 2)
+            else if (option == 2)
             {
                 playerScript.gameObject.SetActive(true);
                 portalScript.gameObject.SetActive(true);
