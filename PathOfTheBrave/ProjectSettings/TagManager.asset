@@ -42,6 +42,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+
   - name: BackgroundLayer1
     uniqueID: 3326304279
     locked: 0
@@ -71,4 +72,5 @@ TagManager:
     locked: 0
   - name: Icon
     uniqueID: 1314469027
+
     locked: 0
