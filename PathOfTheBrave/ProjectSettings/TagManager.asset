@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Ground
+  - FireballRespawnPosition
   layers:
   - Default
   - TransparentFX
@@ -20,6 +22,10 @@ TagManager:
   - Dead
   - Player
   - Weapon
+  - Coin
+  - Fireball
+  - Enemy
+  - HealthPotion
   - 
   - 
   - 
