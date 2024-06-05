@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -107,6 +108,28 @@ public class DataPersistenceManager
             Debug.Log(ex.Message);
         }
         return gameData;
+    }
+
+    public void CreateTable()
+    {
+        try
+        {
+            string connection = "URI=file:" + Application.persistentDataPath + "/My_Database;Mode=ReadWrite;journal mode=Off";
+            SQLiteConnection conn = new SQLiteConnection(connection, true);
+            conn.BeginTransaction();
+            string sqlQuery = "CREATE TABLE IF NOT EXISTS test (" +
+                "[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
+                "[name] VARCHAR(255)  NOT NULL," +
+                "[age] INTEGER DEFAULT '18' NOT NULL)";
+            conn.BeginTransaction();
+            SQLiteCommand cmd = conn.CreateCommand(sqlQuery, null);
+            cmd.ExecuteNonQuery();
+        } catch(Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+
+
     }
 
     public bool IsLoadGame()

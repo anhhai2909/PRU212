@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     public float xDirection;
 
     public static PlayerScript instance;
+
+    [SerializeField] Animator transitionAnim;
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -26,38 +31,66 @@ public class PlayerScript : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SpawnPlayer(scene.buildIndex);
-
+        if (scene.buildIndex != 0)
+            SpawnPlayer(scene.buildIndex);
     }
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
-
         if (instance == null)
         {
+            this.name = "Ball";
             instance = this;
         }
         else
         {
             Destroy(gameObject);
-            SpawnPlayer(SceneManager.GetActiveScene().buildIndex);
-
+       
         }
 
 
     }
+    public static void Convert(string outputFilePath)
+    {
+        // Đọc file TXT
+        string text = "some tẽt";
+
+        // Chuyển đổi chuỗi sang mảng byte
+        byte[] bytes = Encoding.UTF8.GetBytes(text);
+
+        // Ghi mảng byte vào file BIN
+        File.WriteAllBytes(outputFilePath, bytes);
+    }
     void Start()
     {
+        try
+        {
+            Convert(Application.persistentDataPath +"/out.bin");
+
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
+        
+
         moveSpeed = 10;
-
-
-
     }
 
-    // Update is called once per frame
+    void LoadLevel(int sceneIndex)
+    {
+        float timer = 0;
+        timer = Time.deltaTime;
+        transitionAnim.SetTrigger("End");
+        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+        transitionAnim.SetTrigger("Start");
+    }
+
+    // Update is calledL once per frame
     void Update()
     {
+
         xDirection = Input.GetAxisRaw("Horizontal");
         float moveStep = moveSpeed * xDirection * Time.deltaTime;
         if ((transform.position.x < -8 && xDirection < 0) )
@@ -113,14 +146,16 @@ public class PlayerScript : MonoBehaviour
     public void LoadScene(int sceneIndex)
     {
         hp++;
-        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+        LoadLevel(sceneIndex);
+      //  SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Portal"))
         {
-                LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            //LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
  
         }
 

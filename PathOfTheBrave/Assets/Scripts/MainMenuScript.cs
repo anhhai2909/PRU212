@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -41,6 +42,22 @@ public class MainMenuScript : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
+        List<GameObject> objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Ball").ToList();
+        if(objects.Count > 1 )
+        {
+            for (int i = 0; i < objects.Count; i++)
+            {
+                if (!objects[i].active)
+                {
+                    Destroy(objects[i]);
+                }
+                else
+                {
+                    this.player = objects[i];
+                    this.playerScript = objects[i].GetComponent<PlayerScript>();
+                }
+            }
+        }
         player.active = false;
         playerScript.gameObject.SetActive(false);
 
