@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Ground
   - FireballRespawnPosition
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -62,4 +63,33 @@ TagManager:
     locked: 0
   - name: Foreground Decoration
     uniqueID: 4050010293
+  - name: BackgroundLayer1
+    uniqueID: 3326304279
+    locked: 0
+  - name: BackgroundLayer2
+    uniqueID: 2966371687
+    locked: 0
+  - name: BackgroundLayer3
+    uniqueID: 3113612947
+    locked: 0
+  - name: House
+    uniqueID: 2198349347
+    locked: 0
+  - name: Platform
+    uniqueID: 3713294161
+    locked: 0
+  - name: Decorations
+    uniqueID: 2978971517
+    locked: 0
+  - name: HigherDecorations
+    uniqueID: 1138787147
+    locked: 0
+  - name: Player
+    uniqueID: 3024206993
+    locked: 0
+  - name: ForegroundDecorations
+    uniqueID: 3045402139
+    locked: 0
+  - name: Icon
+    uniqueID: 1314469027
     locked: 0
