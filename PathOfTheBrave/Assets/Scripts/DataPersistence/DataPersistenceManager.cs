@@ -87,6 +87,36 @@ public class DataPersistenceManager
         MySqlConnection conn = new MySqlConnection(connectionString);
         GameData gameData = ReadFromFile();
      
+        /*
+        try
+        {
+            conn.Open();
+            string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
+
+            string query = "SELECT * FROM GameData WHERE gamer_ip = @gamer_ip";
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
+
+            using (MySqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    gameData._hp = rdr.GetFloat(1);
+                    gameData._sceneIndex = rdr.GetInt32(2);
+                    gameData._sceneName = rdr.GetString(3);
+                    gameData._xPosition = rdr.GetFloat(4);
+                    gameData._yPosition = rdr.GetFloat(5);
+                    gameData._coin = rdr.GetFloat(6);
+                }
+            }
+            
+
+        }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
+        */
         return gameData;
     }
 
@@ -187,12 +217,13 @@ public class DataPersistenceManager
             {
                 string readText = DecryptFromFile(filePath);
                 GameData gameData = JsonConvert.DeserializeObject<GameData>(readText);
+                return gameData;
             }
         } catch (Exception e)
         {
-            gameData = null; 
+            Debug.Log(e.Message);
         }
-        return gameData;
+        return null;
     }
 
     public void SaveGame(int sceneIndex)

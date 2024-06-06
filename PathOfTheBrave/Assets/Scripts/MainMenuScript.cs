@@ -17,6 +17,7 @@ public class MainMenuScript : MonoBehaviour
 
     public bool check = false;
 
+
     public float begin = -1;
 
     public Button newBtn;

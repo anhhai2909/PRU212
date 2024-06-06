@@ -1012,6 +1012,7 @@ MonoBehaviour:
   optionButton: {fileID: 1386082453949334271}
   quitButton: {fileID: 1627571172}
   resumeButton: {fileID: 1386082453384235562}
+  transitionAnim: {fileID: 0}
 --- !u!1 &1386082453768291657
 GameObject:
   m_ObjectHideFlags: 0

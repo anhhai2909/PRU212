@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuantumTek.EncryptedSave;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -134,21 +135,14 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.CompareTag("Portal"))
         {
-            if (Application.levelCount <= SceneManager.GetActiveScene().buildIndex + 1)
-            {
-                LoadLevel(0);
-            }
-            else
-            {
-                LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
-
-                //LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
-            }
-
+            LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            //LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+ 
         }
 
-
     }
+
+    
+
 
 }
