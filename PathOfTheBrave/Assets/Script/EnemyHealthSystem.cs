@@ -49,22 +49,15 @@ public class EnemyHealthSystem : MonoBehaviour
     }
     public void GetDamage(int damage)
     {
-        if (isDeath==false)
-        {
-            currentHealth -= damage;
-            anim.SetTrigger("IsHit");
-            if (currentHealth <= 0)
-            {
-                anim.SetTrigger("Die");
-                isDeath = true;
-            }
-        }     
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
-        }
+        //if (isDeath==false)
+        //{
+        //    currentHealth -= damage;
+        //    anim.SetTrigger("IsHit");
+        //    if (currentHealth <= 0)
+        //    {
+        //        anim.SetTrigger("Die");
+        //        isDeath = true;
+        //    }
+        //}     
     }
 }

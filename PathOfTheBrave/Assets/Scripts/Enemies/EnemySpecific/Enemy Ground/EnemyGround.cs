@@ -1,19 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UIElements;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyGround : Entity
 {
     public Rigidbody2D rb;
     public LayerMask groundLayer;
-    public Animator anim;
-    
+
     public GameObject hitbox;
     public GameObject fallingCheck;
 
@@ -41,7 +34,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
         Core = GetComponentInChildren<Core>();
     }
 
@@ -69,7 +61,7 @@ public class EnemyMovement : MonoBehaviour
                     if (gameObject.GetComponent<EnemyAttack>().canMove)
                     {
                         ChasePlayer();
-                    }                  
+                    }
                 }
                 else
                 {
@@ -78,11 +70,11 @@ public class EnemyMovement : MonoBehaviour
                 }
 
             }
-        }    
+        }
     }
     void checkFalling()
     {
-        if(Physics2D.OverlapCircle(fallingCheck.transform.position, groundCheckRadius, groundLayer))
+        if (Physics2D.OverlapCircle(fallingCheck.transform.position, groundCheckRadius, groundLayer))
         {
             isFalling = false;
         }
@@ -127,10 +119,10 @@ public class EnemyMovement : MonoBehaviour
     void DetectPlayer()
     {
         float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
-        
+
         if (range <= detectRange)
         {
-            
+
             if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
                 (player.transform.position.x < transform.position.x && isFacingRight))
             {

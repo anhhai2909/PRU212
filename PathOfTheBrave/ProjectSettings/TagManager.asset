@@ -41,10 +41,6 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -58,11 +54,9 @@ TagManager:
   - name: Platforms
     uniqueID: 2153748749
     locked: 0
-  - name: Player
-    uniqueID: 273729393
-    locked: 0
   - name: Foreground Decoration
     uniqueID: 4050010293
+    locked: 0
   - name: BackgroundLayer1
     uniqueID: 3326304279
     locked: 0

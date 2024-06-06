@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -9,9 +10,8 @@ public class EnemyAttack : MonoBehaviour
     private float attackTimer = Mathf.Infinity;
     public bool canAttack = true;
     public bool canMove = true;
-
     public Rigidbody2D rb;
-    public GameObject player;
+    
     public Animator anim;
     public LayerMask playerLayer;
     public GameObject hitbox;
@@ -19,6 +19,8 @@ public class EnemyAttack : MonoBehaviour
     public float attackDelay = 1f;
     private float attackDelayTimer = 0;
     private bool startDelayTimer;
+
+    private GameObject player;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -56,7 +58,7 @@ public class EnemyAttack : MonoBehaviour
             attackDelayTimer += Time.deltaTime;
             if (attackDelayTimer >= attackDelay)
             {
-                Attack();
+                //Attack();
                 attackDelayTimer = 0;
                 startDelayTimer = false;
             }
@@ -77,14 +79,18 @@ public class EnemyAttack : MonoBehaviour
         canMove = false;
     }
 
-    void Attack()
-    {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitbox.transform.position, attackRange, playerLayer);
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<PlayerHealthSystem>().TakeDamage(damage);
-        }
-    }
+    //void Attack()
+    //{
+    //    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitbox.transform.position, attackRange, playerLayer);
+    //    foreach (Collider2D enemy in hitEnemies)
+    //    {
+    //        IDamageable damageable = enemy.GetComponent<IDamageable>();
+    //        if (damageable != null)
+    //        {
+    //            damageable.Damage(damage);
+    //        }
+    //    }
+    //}
 
     void OnDrawGizmosSelected()
     {
