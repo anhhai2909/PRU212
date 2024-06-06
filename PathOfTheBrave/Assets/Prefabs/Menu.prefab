@@ -360,7 +360,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1386082452615895118
 MonoBehaviour:
@@ -1012,7 +1012,6 @@ MonoBehaviour:
   optionButton: {fileID: 1386082453949334271}
   quitButton: {fileID: 1627571172}
   resumeButton: {fileID: 1386082453384235562}
-  transitionAnim: {fileID: 0}
 --- !u!1 &1386082453768291657
 GameObject:
   m_ObjectHideFlags: 0
