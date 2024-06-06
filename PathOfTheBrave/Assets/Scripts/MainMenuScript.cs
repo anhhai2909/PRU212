@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -32,19 +33,48 @@ public class MainMenuScript : MonoBehaviour
 
     public GameObject canvas;
 
+    public PlayerScript playerScript;
+
+    public GameObject player;
+
+
+
+    [System.Obsolete]
     void Start()
     {
+        List<GameObject> objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Ball").ToList();
+        if(objects.Count > 1 )
+        {
+            for (int i = 0; i < objects.Count; i++)
+            {
+                if (!objects[i].active)
+                {
+                    Destroy(objects[i]);
+                }
+                else
+                {
+                    this.player = objects[i];
+                    this.playerScript = objects[i].GetComponent<PlayerScript>();
+                }
+            }
+        }
+        player.active = false;
+        playerScript.gameObject.SetActive(false);
+
         newBtn.onClick.AddListener(NewClick);
         loadBtn.onClick.AddListener(LoadClick);
         settingBtn.onClick.AddListener(SettingClick);
     }
 
+    [System.Obsolete]
     void NewClick()
     {
         if (option == 1)
         {
+            player.active = true;
+            playerScript.gameObject.SetActive(true);
             canvas.active = false;
-            SceneManager.LoadScene("InsideCastle", LoadSceneMode.Single);
+            playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
@@ -53,13 +83,29 @@ public class MainMenuScript : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     void LoadClick()
     {
         if (option == 2)
         {
+            player.active = true;
+            playerScript.gameObject.SetActive(true);
             canvas.active = false;
             DataPersistenceManager data = new DataPersistenceManager();
-            data.LoadGame();
+            GameData gameData = data.LoadGame();
+            if(gameData == null)
+            {
+                playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            }
+            else
+            {
+                playerScript.hp = gameData._hp;
+                playerScript.coin = gameData._coin;
+                playerScript.LoadScene(gameData._sceneIndex);
+            }
+            
+            
         }
         else
         {
@@ -75,6 +121,7 @@ public class MainMenuScript : MonoBehaviour
     }
 
     // Update is called once per frame
+    [System.Obsolete]
     void Update()
     {
         if (Time.realtimeSinceStartup - begin > 0.2)
@@ -89,15 +136,31 @@ public class MainMenuScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if(option == 1)
+            if (option == 1)
             {
+                player.active = true;
+                playerScript.gameObject.SetActive(true);
                 canvas.active = false;
-                SceneManager.LoadScene("InsideCastle", LoadSceneMode.Single);
+                playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-            else if(option == 2)
+            else if (option == 2)
             {
+                player.active = true;
+                playerScript.gameObject.SetActive(true);
                 canvas.active = false;
-                SceneManager.LoadScene("Jungle", LoadSceneMode.Single);
+                DataPersistenceManager data = new DataPersistenceManager();
+                GameData gameData = data.LoadGame();
+                if (gameData == null)
+                {
+                    playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+                }
+                else
+                {
+                    playerScript.hp = gameData._hp;
+                    playerScript.coin = gameData._coin;
+                    playerScript.LoadScene(gameData._sceneIndex);
+                }
             }
             else
             {

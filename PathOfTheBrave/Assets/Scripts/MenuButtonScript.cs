@@ -18,6 +18,11 @@ public class MenuButtonScript : MonoBehaviour
     public Button quitButton;
 
     public Button resumeButton;
+
+    [SerializeField] Animator transitionAnim;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +51,17 @@ public class MenuButtonScript : MonoBehaviour
     void QuitOnClick()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("StartScene");
+        LoadLevel(0);
 
+    }
+
+    void LoadLevel(int sceneIndex)
+    {
+        float timer = 0;
+        timer = Time.deltaTime;
+        transitionAnim.SetTrigger("End");
+        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+        transitionAnim.SetTrigger("Start");
     }
 
     void OptionOnClick()
