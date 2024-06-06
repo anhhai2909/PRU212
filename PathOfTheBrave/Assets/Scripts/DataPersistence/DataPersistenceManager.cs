@@ -1,10 +1,13 @@
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Security.Cryptography;
+using System.Text;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +24,9 @@ public class DataPersistenceManager
     public float y;
 
     public float coin;
+
+    private readonly byte[] key = Encoding.UTF8.GetBytes("12345678901234567890123456789012"); 
+    private readonly byte[] iv = Encoding.UTF8.GetBytes("1234567890123456");
 
     public DataPersistenceManager(float hp, float x, float y, float coin)
     {
@@ -79,11 +85,14 @@ public class DataPersistenceManager
     public GameData LoadGame()
     {
         MySqlConnection conn = new MySqlConnection(connectionString);
-        GameData gameData = new GameData();
+        GameData gameData = ReadFromFile();
+     
+        /*
         try
         {
             conn.Open();
             string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
+
             string query = "SELECT * FROM GameData WHERE gamer_ip = @gamer_ip";
             MySqlCommand cmd = new MySqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
@@ -107,30 +116,11 @@ public class DataPersistenceManager
         {
             Debug.Log(ex.Message);
         }
+        */
         return gameData;
     }
 
-    public void CreateTable()
-    {
-        try
-        {
-            string connection = "URI=file:" + Application.persistentDataPath + "/My_Database;Mode=ReadWrite;journal mode=Off";
-            SQLiteConnection conn = new SQLiteConnection(connection, true);
-            conn.BeginTransaction();
-            string sqlQuery = "CREATE TABLE IF NOT EXISTS test (" +
-                "[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                "[name] VARCHAR(255)  NOT NULL," +
-                "[age] INTEGER DEFAULT '18' NOT NULL)";
-            conn.BeginTransaction();
-            SQLiteCommand cmd = conn.CreateCommand(sqlQuery, null);
-            cmd.ExecuteNonQuery();
-        } catch(Exception e)
-        {
-            Debug.Log(e.Message);
-        }
 
-
-    }
 
     public bool IsLoadGame()
     {
@@ -160,18 +150,97 @@ public class DataPersistenceManager
         return false;
     }
 
+    public void SaveToFile(GameData gameData)
+    {
+        
+        try
+        {
+            string filePath = Application.persistentDataPath + "/gameData.txt";
+            string json = JsonConvert.SerializeObject(gameData);
+            EncryptToFile(filePath, json);
+        } catch(Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
+
+    public void EncryptToFile(string filePath, string plainText)
+    {
+        using (Aes aesAlg = Aes.Create())
+        {
+            aesAlg.Key = key;
+            aesAlg.IV = iv;
+
+            ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                using (CryptoStream cryptoStream = new CryptoStream(fileStream, encryptor, CryptoStreamMode.Write))
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(cryptoStream))
+                    {
+                        streamWriter.Write(plainText);
+                    }
+                }
+            }
+        }
+    }
+
+    public string DecryptFromFile(string filePath)
+    {
+        using (Aes aesAlg = Aes.Create())
+        {
+            aesAlg.Key = key;
+            aesAlg.IV = iv;
+
+            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                using (CryptoStream cryptoStream = new CryptoStream(fileStream, decryptor, CryptoStreamMode.Read))
+                {
+                    using (StreamReader streamReader = new StreamReader(cryptoStream))
+                    {
+                        return streamReader.ReadToEnd();
+                    }
+                }
+            }
+        }
+    }
+
+    public GameData ReadFromFile()
+    {
+        try
+        {
+            string filePath = Application.persistentDataPath + "/gameData.txt";
+            if (File.Exists(filePath))
+            {
+                string readText = DecryptFromFile(filePath);
+                GameData gameData = JsonConvert.DeserializeObject<GameData>(readText);
+                return gameData;
+            }
+        } catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        return null;
+    }
+
     public void SaveGame(int sceneIndex)
     {
         string path = SceneUtility.GetScenePathByBuildIndex(sceneIndex);
         string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+        string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
+        GameData gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin);
+        SaveToFile(gameData);
 
+        /*
         if (!IsLoadGame())
         {
             MySqlConnection conn = new MySqlConnection(connectionString);
             try
             {
                 conn.Open();
-                string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
                 string query = "INSERT INTO GameData (gamer_ip, hp, scene_index, scene_name, x_position, y_position, coin) VALUES (@gamer_ip, @hp, @sceneIndex, @sceneName, @xPosition, @yPosition, @coin)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
@@ -181,7 +250,8 @@ public class DataPersistenceManager
                 cmd.Parameters.AddWithValue("@xPosition", x);
                 cmd.Parameters.AddWithValue("@yPosition", y);
                 cmd.Parameters.AddWithValue("@coin", coin);
-
+                
+                ReadFromFile();
                 object result = cmd.ExecuteScalar();
                 if (result != null)
                 {
@@ -212,6 +282,9 @@ public class DataPersistenceManager
                 cmd.Parameters.AddWithValue("@yPosition", y);
                 cmd.Parameters.AddWithValue("@coin", coin);
                 cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
+                GameData gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin);
+                SaveToFile(gameData);
+                ReadFromFile();
 
                 object result = cmd.ExecuteScalar();
                 if (result != null)
@@ -227,6 +300,7 @@ public class DataPersistenceManager
 
             conn.Close();
         }
+        */
         
     }
 }

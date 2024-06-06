@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuantumTek.EncryptedSave;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -51,30 +52,10 @@ public class PlayerScript : MonoBehaviour
 
 
     }
-    public static void Convert(string outputFilePath)
-    {
-        // Đọc file TXT
-        string text = "some tẽt";
 
-        // Chuyển đổi chuỗi sang mảng byte
-        byte[] bytes = Encoding.UTF8.GetBytes(text);
-
-        // Ghi mảng byte vào file BIN
-        File.WriteAllBytes(outputFilePath, bytes);
-    }
     void Start()
     {
-        try
-        {
-            Convert(Application.persistentDataPath +"/out.bin");
-
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.Message);
-        }
         
-
         moveSpeed = 10;
     }
 

@@ -37,6 +37,6 @@ public class GameData
 
     public override string ToString()
     {
-        return this._gamerIp;
+        return this._gamerIp + " " + this._hp + " " + this._sceneIndex + " " + this._sceneName + " " + this._xPosition + " " + this._yPosition + " " + this._coin;
     }
 }
