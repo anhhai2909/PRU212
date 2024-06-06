@@ -19,7 +19,6 @@ public class MenuButtonScript : MonoBehaviour
 
     public Button resumeButton;
 
-    [SerializeField] Animator transitionAnim;
 
 
 
@@ -59,9 +58,7 @@ public class MenuButtonScript : MonoBehaviour
     {
         float timer = 0;
         timer = Time.deltaTime;
-        transitionAnim.SetTrigger("End");
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
-        transitionAnim.SetTrigger("Start");
     }
 
     void OptionOnClick()
