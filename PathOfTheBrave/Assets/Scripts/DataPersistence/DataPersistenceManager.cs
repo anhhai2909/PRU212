@@ -87,36 +87,6 @@ public class DataPersistenceManager
         MySqlConnection conn = new MySqlConnection(connectionString);
         GameData gameData = ReadFromFile();
      
-        /*
-        try
-        {
-            conn.Open();
-            string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-
-            string query = "SELECT * FROM GameData WHERE gamer_ip = @gamer_ip";
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
-
-            using (MySqlDataReader rdr = cmd.ExecuteReader())
-            {
-                while (rdr.Read())
-                {
-                    gameData._hp = rdr.GetFloat(1);
-                    gameData._sceneIndex = rdr.GetInt32(2);
-                    gameData._sceneName = rdr.GetString(3);
-                    gameData._xPosition = rdr.GetFloat(4);
-                    gameData._yPosition = rdr.GetFloat(5);
-                    gameData._coin = rdr.GetFloat(6);
-                }
-            }
-            
-
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.Message);
-        }
-        */
         return gameData;
     }
 
@@ -234,73 +204,6 @@ public class DataPersistenceManager
         GameData gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin);
         SaveToFile(gameData);
 
-        /*
-        if (!IsLoadGame())
-        {
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                conn.Open();
-                string query = "INSERT INTO GameData (gamer_ip, hp, scene_index, scene_name, x_position, y_position, coin) VALUES (@gamer_ip, @hp, @sceneIndex, @sceneName, @xPosition, @yPosition, @coin)";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
-                cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("@sceneIndex", sceneIndex);
-                cmd.Parameters.AddWithValue("@sceneName", sceneName);
-                cmd.Parameters.AddWithValue("@xPosition", x);
-                cmd.Parameters.AddWithValue("@yPosition", y);
-                cmd.Parameters.AddWithValue("@coin", coin);
-                
-                ReadFromFile();
-                object result = cmd.ExecuteScalar();
-                if (result != null)
-                {
-                    int r = Convert.ToInt32(result);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Debug.Log(ex.ToString());
-            }
-
-            conn.Close();
-        }
-        else
-        {
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                conn.Open();
-                string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-                string query = "UPDATE GameData SET hp = @hp, scene_index = @sceneIndex, scene_name = @sceneName, x_position = @xPosition, y_position = @yPosition, coin = @coin WHERE gamer_ip = @gamer_ip";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("@sceneIndex", sceneIndex);
-                cmd.Parameters.AddWithValue("@sceneName", sceneName);
-                cmd.Parameters.AddWithValue("@xPosition", x);
-                cmd.Parameters.AddWithValue("@yPosition", y);
-                cmd.Parameters.AddWithValue("@coin", coin);
-                cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
-                GameData gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin);
-                SaveToFile(gameData);
-                ReadFromFile();
-
-                object result = cmd.ExecuteScalar();
-                if (result != null)
-                {
-                    int r = Convert.ToInt32(result);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Debug.Log(ex.Message);
-            }
-
-            conn.Close();
-        }
-        */
         
     }
 }

@@ -135,9 +135,16 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.CompareTag("Portal"))
         {
-            LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
-            //LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
- 
+            if(SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
+            {
+                LoadLevel(0);
+            }
+            else
+            {
+                LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+
+            }
+
         }
 
     }
