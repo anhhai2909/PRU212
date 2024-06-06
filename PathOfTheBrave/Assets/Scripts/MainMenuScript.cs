@@ -93,9 +93,18 @@ public class MainMenuScript : MonoBehaviour
             canvas.active = false;
             DataPersistenceManager data = new DataPersistenceManager();
             GameData gameData = data.LoadGame();
-            playerScript.hp = gameData._hp;
-            playerScript.coin = gameData._coin;
-            playerScript.LoadScene(gameData._sceneIndex);
+            if(gameData == null)
+            {
+                playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            }
+            else
+            {
+                playerScript.hp = gameData._hp;
+                playerScript.coin = gameData._coin;
+                playerScript.LoadScene(gameData._sceneIndex);
+            }
+            
             
         }
         else
@@ -141,9 +150,17 @@ public class MainMenuScript : MonoBehaviour
                 canvas.active = false;
                 DataPersistenceManager data = new DataPersistenceManager();
                 GameData gameData = data.LoadGame();
-                playerScript.LoadScene(gameData._sceneIndex);
-                playerScript.hp = gameData._hp;
-                playerScript.coin = gameData._coin;
+                if (gameData == null)
+                {
+                    playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+                }
+                else
+                {
+                    playerScript.hp = gameData._hp;
+                    playerScript.coin = gameData._coin;
+                    playerScript.LoadScene(gameData._sceneIndex);
+                }
             }
             else
             {
