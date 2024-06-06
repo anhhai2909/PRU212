@@ -1,3 +1,4 @@
+using Assets.Scripts.DataPersistence.Data;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;
@@ -39,8 +40,6 @@ public class DataPersistenceManager
     public DataPersistenceManager()
     {
     }
-
-    private string connectionString = "Server=localhost;port=3306;database=PRU212_Project;uid=root;pwd=haibang20042003;encrypt=false";
 
     public static DataPersistenceManager instance { get; private set; }
 
@@ -84,42 +83,10 @@ public class DataPersistenceManager
     
     public GameData LoadGame()
     {
-        MySqlConnection conn = new MySqlConnection(connectionString);
         GameData gameData = ReadFromFile();
-     
+        Debug.Log(gameData.ToString());
         return gameData;
     }
-
-
-
-    public bool IsLoadGame()
-    {
-        MySqlConnection conn = new MySqlConnection(connectionString);
-        try
-        {
-            conn.Open();
-            string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-            string query = "SELECT * FROM GameData WHERE gamer_ip = @gamer_ip";
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
-   
-
-            object result = cmd.ExecuteScalar();
-            if (result != null)
-            {
-          
-                return true;
-                
-            }
-
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.Message);
-        }
-        return false;
-    }
-
     public void SaveToFile(GameData gameData)
     {
         
@@ -196,14 +163,29 @@ public class DataPersistenceManager
         return null;
     }
 
-    public void SaveGame(int sceneIndex)
+    public void SaveGame(int sceneIndex, List<SceneInfor> scenes)
     {
-        string path = SceneUtility.GetScenePathByBuildIndex(sceneIndex);
-        string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
-        string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-        GameData gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin);
-        SaveToFile(gameData);
-
+        try
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(sceneIndex);
+            string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+            string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
+            if (ReadFromFile() == null)
+            {
+                gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin, scenes);
+            }
+            else
+            {
+                gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin, scenes);
+            }
+            
+            SaveToFile(gameData);
+            ReadFromFile();
+        } catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        
         
     }
 }
