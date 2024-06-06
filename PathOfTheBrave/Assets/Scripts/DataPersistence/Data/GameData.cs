@@ -3,40 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GameData 
+public class GameData : MonoBehaviour
 {
-    public string _gamerIp { get; set; }
+    private string _gamerIp { get; set; }
 
-    public float _hp { get;set; }
+    private float _hp { get;set; }
 
-    public int _sceneIndex { get; set; }
+    private string _scene { get; set; }
 
-    public string _sceneName { get; set; }
+    private float _xPosition { get; set; }
 
-    public float _xPosition { get; set; }
+    private float _yPosition { get; set; }
 
-    public float _yPosition { get; set; }
-
-    public float _coin { get; set; }
+    private float _coin { get; set; }
 
 
     public GameData()
     {
     }
 
-    public GameData(string gamerIp, float hp, int sceneIndex, string sceneName, float xPosition, float yPosition, float coin)
+    public GameData(string gamerIp, float hp, string scene, float xPosition, float yPosition, float coin)
     {
         _gamerIp = gamerIp;
         _hp = hp;
-        _sceneIndex = sceneIndex;   
-        _sceneName = sceneName;
+        _scene = scene;
         _xPosition = xPosition;
         _yPosition = yPosition;
         _coin = coin;
-    }
-
-    public override string ToString()
-    {
-        return this._gamerIp + " " + this._hp + " " + this._sceneIndex + " " + this._sceneName + " " + this._xPosition + " " + this._yPosition + " " + this._coin;
     }
 }
