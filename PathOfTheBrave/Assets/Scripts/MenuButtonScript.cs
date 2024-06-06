@@ -18,6 +18,9 @@ public class MenuButtonScript : MonoBehaviour
     public Button quitButton;
 
     public Button resumeButton;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +49,15 @@ public class MenuButtonScript : MonoBehaviour
     void QuitOnClick()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("StartScene");
+        LoadLevel(0);
 
+    }
+
+    void LoadLevel(int sceneIndex)
+    {
+        float timer = 0;
+        timer = Time.deltaTime;
+        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 
     void OptionOnClick()
