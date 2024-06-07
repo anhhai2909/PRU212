@@ -67,14 +67,7 @@ public class DataPersistenceManager
         return output;
     }
 
-    private void Awake()
-    {
-        if(instance != null)
-        {
-            Debug.Log("There are more than 1 data persistence manager in the scene");
-        }
-        instance = this;
-    }
+  
 
     public void NewGame()
     {
@@ -84,7 +77,6 @@ public class DataPersistenceManager
     public GameData LoadGame()
     {
         GameData gameData = ReadFromFile();
-        Debug.Log(gameData.ToString());
         return gameData;
     }
     public void SaveToFile(GameData gameData)
