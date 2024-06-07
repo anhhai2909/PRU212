@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7287852459903888062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9f64bba2966e7a4eaca8473ef885f41, type: 3}
+  m_Script: {fileID: 11500000, guid: e0cf05fd5ff6988488f739c11f6c5af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   afterImagePrefab: {fileID: 4642220677598575236, guid: b4ed14e967e1fbe4f9b60a5391adc865, type: 3}

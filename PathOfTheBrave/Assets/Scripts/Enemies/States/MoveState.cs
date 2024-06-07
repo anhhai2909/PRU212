@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CoreSystem;
 using UnityEngine;
 
 public class MoveState : State {
@@ -22,7 +23,7 @@ public class MoveState : State {
 	public override void DoChecks() {
 		base.DoChecks();
 
-		//isDetectingLedge = CollisionSenses.LedgeVertical;
+		isDetectingLedge = CollisionSenses.LedgeVertical;
 		isDetectingWall = CollisionSenses.WallFront;
 		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 	}

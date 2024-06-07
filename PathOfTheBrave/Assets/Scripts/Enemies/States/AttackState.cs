@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CoreSystem;
 using UnityEngine;
 
 public class AttackState : State {
 
-	private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
 	private Movement movement;
+	private ParryReceiver parryReceiver;
 
 	protected Transform attackPosition;
 
@@ -14,6 +15,9 @@ public class AttackState : State {
 
 	public AttackState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition) : base(etity, stateMachine, animBoolName) {
 		this.attackPosition = attackPosition;
+
+		movement = core.GetCoreComponent<Movement>();
+		parryReceiver = core.GetCoreComponent<ParryReceiver>();
 	}
 
 	public override void DoChecks() {
@@ -27,7 +31,7 @@ public class AttackState : State {
 
 		entity.atsm.attackState = this;
 		isAnimationFinished = false;
-		Movement?.SetVelocityX(0f);
+		movement?.SetVelocityX(0f);
 	}
 
 	public override void Exit() {
@@ -36,7 +40,7 @@ public class AttackState : State {
 
 	public override void LogicUpdate() {
 		base.LogicUpdate();
-		Movement?.SetVelocityX(0f);
+		movement?.SetVelocityX(0f);
 	}
 
 	public override void PhysicsUpdate() {
@@ -50,4 +54,6 @@ public class AttackState : State {
 	public virtual void FinishAttack() {
 		isAnimationFinished = true;
 	}
+
+	public void SetParryWindowActive(bool value) => parryReceiver.SetParryColliderActive(value);
 }

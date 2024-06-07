@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public event Action<bool> OnInteractInputChanged; 
+
     private PlayerInput playerInput;
     private Camera cam;
 
@@ -44,6 +46,20 @@ public class PlayerInputHandler : MonoBehaviour
         CheckDashInputHoldTime();
     }
 
+    public void OnInteractInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnInteractInputChanged?.Invoke(true);
+            return;
+        }
+
+        if (context.canceled)
+        {
+            OnInteractInputChanged?.Invoke(false);
+        }
+    }
+
     public void OnPrimaryAttackInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -75,8 +91,8 @@ public class PlayerInputHandler : MonoBehaviour
         RawMovementInput = context.ReadValue<Vector2>();
 
         NormInputX = Mathf.RoundToInt(RawMovementInput.x);
-        NormInputY = Mathf.RoundToInt(RawMovementInput.y);
-        Debug.Log("Move move move");
+        NormInputY = Mathf.RoundToInt(RawMovementInput.y);       
+        
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
@@ -136,6 +152,11 @@ public class PlayerInputHandler : MonoBehaviour
     public void UseJumpInput() => JumpInput = false;
 
     public void UseDashInput() => DashInput = false;
+
+    /// <summary>
+    /// Used to set the specific attack input back to false. Usually passed through the player attack state from an animation event.
+    /// </summary>
+    public void UseAttackInput(int i) => AttackInputs[i] = false;
 
     private void CheckJumpInputHoldTime()
     {

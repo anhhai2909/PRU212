@@ -16,8 +16,6 @@ public class PlayerData : ScriptableObject
     public float wallJumpVelocity = 20;
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
-    public Vector2 wallHopDirection = new Vector2(1, 2);
-    public float wallHopForce = 0;
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
@@ -47,4 +45,7 @@ public class PlayerData : ScriptableObject
     public float crouchMovementVelocity = 5f;
     public float crouchColliderHeight = 0.8f;
     public float standColliderHeight = 1.6f;
+    
+    [Header("Stun State")] 
+    public float stunTime = 2f;
 }

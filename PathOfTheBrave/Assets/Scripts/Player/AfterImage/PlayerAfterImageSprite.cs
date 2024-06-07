@@ -15,12 +15,8 @@ public class PlayerAfterImageSprite : MonoBehaviour
 
     private Transform player;
 
-    [SerializeField]
-    private Sprite Sprite;
-
     private SpriteRenderer SR;
-   
-    //private SpriteRenderer playerSR;
+    private SpriteRenderer playerSR;
 
     private Color color;
 
@@ -28,10 +24,9 @@ public class PlayerAfterImageSprite : MonoBehaviour
     {
         SR = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        //playerSR = player.GetComponent<SpriteRenderer>();
+        playerSR = player.GetComponent<SpriteRenderer>();
 
         alpha = alphaSet;
-        SR.sprite = Sprite;
         transform.position = player.position;
         transform.rotation = player.rotation;
         timeActivated = Time.time;

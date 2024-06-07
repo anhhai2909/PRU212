@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CoreSystem;
 using UnityEngine;
 
 public class PlayerDetectedState : State {
@@ -26,7 +27,7 @@ public class PlayerDetectedState : State {
 
 		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 		isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
-		//isDetectingLedge = CollisionSenses.LedgeVertical;
+		isDetectingLedge = CollisionSenses.LedgeVertical;
 		performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
 	}
 
