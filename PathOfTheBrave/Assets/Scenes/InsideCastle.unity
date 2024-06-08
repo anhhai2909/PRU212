@@ -765,8 +765,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!68 &51758623
-EdgeCollider2D:
+--- !u!19719996 &51758623
+TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -779,18 +779,8 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -11.054501, y: -0.96763873}
-  - {x: -2.3059325, y: -1.0076879}
-  - {x: -0.85997534, y: -2.9469788}
-  - {x: 28.00411, y: -2.9342637}
-  - {x: 29.487782, y: -0.96088994}
-  - {x: 33.054504, y: -0.9676386}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
 --- !u!1 &478171080
 GameObject:
   m_ObjectHideFlags: 0
