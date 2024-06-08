@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:PathOfTheBrave/Assets/Plugins/CodeAssist/Editor/ExternalReferences/SystemBinariesForDotNetStandard20.unitypackage.meta
+guid: 20767508f29e55545a371834cfb78dc2
+========
 guid: 2d721c913615a47428173ff9f66ef722
 folderAsset: yes
+>>>>>>>> a784c337a00abf4b6db262ae9c6f0058c723ce0a:PathOfTheBrave/Assets/ModelAssest.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
