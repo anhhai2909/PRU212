@@ -38,6 +38,7 @@ public class MainMenuScript : MonoBehaviour
 
     public GameObject player;
 
+    [System.Obsolete]
     private void Awake()
     {
         DataPersistenceManager data = new DataPersistenceManager();
@@ -72,7 +73,9 @@ public class MainMenuScript : MonoBehaviour
                 }
             }
         }
-        
+
+
+
         //0C0C0C
 
         player.active = false;
