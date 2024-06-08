@@ -91,7 +91,11 @@ namespace CoreSystem
 
             return transform.position + (Vector3)offset;
         }
-
+        public void WallHop(float wallHopForce, Vector2 wallHopDirection)
+        {
+            Vector2 forceToAdd = new Vector2(wallHopForce * wallHopDirection.x * -FacingDirection, wallHopForce * wallHopDirection.y);
+            RB.AddForce(forceToAdd, ForceMode2D.Impulse);
+        }
         #endregion
     }
 }

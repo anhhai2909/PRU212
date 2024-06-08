@@ -22,10 +22,10 @@ namespace CoreSystem
 			get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckHorizontal, core.transform.parent.name);
 			private set => ledgeCheckHorizontal = value;
 		}
-		public Transform LedgeCheckVertical {
-			get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, core.transform.parent.name);
-			private set => ledgeCheckVertical = value;
-		}
+		//public Transform LedgeCheckVertical {
+		//	get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, core.transform.parent.name);
+		//	private set => ledgeCheckVertical = value;
+		//}
 		public Transform CeilingCheck {
 			get => GenericNotImplementedError<Transform>.TryGet(ceilingCheck, core.transform.parent.name);
 			private set => ceilingCheck = value;
@@ -38,7 +38,7 @@ namespace CoreSystem
 		[SerializeField] private Transform groundCheck;
 		[SerializeField] private Transform wallCheck;
 		[SerializeField] private Transform ledgeCheckHorizontal;
-		[SerializeField] private Transform ledgeCheckVertical;
+		//[SerializeField] private Transform ledgeCheckVertical;
 		[SerializeField] private Transform ceilingCheck;
 
 		[SerializeField] private float groundCheckRadius;
@@ -64,9 +64,9 @@ namespace CoreSystem
 			get => Physics2D.Raycast(LedgeCheckHorizontal.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
 		}
 
-		public bool LedgeVertical {
-			get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
-		}
+		//public bool LedgeVertical {
+		//	get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
+		//}
 
 		public bool WallBack {
 			get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);

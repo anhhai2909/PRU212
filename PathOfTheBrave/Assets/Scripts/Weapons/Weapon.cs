@@ -71,7 +71,7 @@ namespace Weapons
 
         public void Enter()
         {
-            // Debug.Break();
+            //Debug.Break();
             print($"{transform.name} enter");
 
             AttackStartTime = Time.time;
@@ -146,14 +146,14 @@ namespace Weapons
 
         private void OnEnable()
         {
-            //EventHandler.OnUseInput += HandleUseInput;
-            //attackCounterResetTimeNotifier.OnNotify += ResetAttackCounter;
+            EventHandler.OnUseInput += HandleUseInput;
+            attackCounterResetTimeNotifier.OnNotify += ResetAttackCounter;
         }
 
         private void OnDisable()
         {
-            //EventHandler.OnUseInput -= HandleUseInput;
-            //attackCounterResetTimeNotifier.OnNotify -= ResetAttackCounter;
+            EventHandler.OnUseInput -= HandleUseInput;
+            attackCounterResetTimeNotifier.OnNotify -= ResetAttackCounter;
         }
 
         /// <summary>

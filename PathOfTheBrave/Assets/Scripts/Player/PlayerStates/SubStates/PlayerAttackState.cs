@@ -31,9 +31,9 @@ public class PlayerAttackState : PlayerAbilityState
 
         weapon.OnUseInput += HandleUseInput;
 
-        //weapon.EventHandler.OnEnableInterrupt += HandleEnableInterrupt;
-        //weapon.EventHandler.OnFinish += HandleFinish;
-        //weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
+        weapon.EventHandler.OnEnableInterrupt += HandleEnableInterrupt;
+        weapon.EventHandler.OnFinish += HandleFinish;
+        weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
     }
 
     private void HandleFlipSetActive(bool value)

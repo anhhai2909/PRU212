@@ -34,11 +34,11 @@ public class E2_MoveState : MoveState
         {
             stateMachine.ChangeState(enemy.playerDetectedState);
         }
-        else if(isDetectingWall || !isDetectingLedge)
-        {
-            enemy.idleState.SetFlipAfterIdle(true);
-            stateMachine.ChangeState(enemy.idleState);
-        }
+        //else if(isDetectingWall || !isDetectingLedge)
+        //{
+        //    enemy.idleState.SetFlipAfterIdle(true);
+        //    stateMachine.ChangeState(enemy.idleState);
+        //}
     }
 
     public override void PhysicsUpdate()
