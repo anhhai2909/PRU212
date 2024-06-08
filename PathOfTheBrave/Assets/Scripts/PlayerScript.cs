@@ -1,4 +1,5 @@
-﻿using QuantumTek.EncryptedSave;
+﻿using Assets.Scripts.DataPersistence.Data;
+using QuantumTek.EncryptedSave;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -119,31 +120,52 @@ public class PlayerScript : MonoBehaviour
             }
             this.gameObject.transform.position = new Vector3(x, y, 0);
             DataPersistenceManager instance = new DataPersistenceManager(hp, x, y, coin);
-            instance.SaveGame(sceneIndex);
+            instance.SaveGame(sceneIndex, GetAllScenes());
         }
     }
+
+    List<SceneInfor> GetAllScenes()
+    {
+        List<SceneInfor> scenes = new List<SceneInfor>();
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            bool isCompleted = false;
+            if(i <= SceneManager.GetActiveScene().buildIndex - 1)
+            {
+                isCompleted = true;
+            }
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            SceneInfor scene = new SceneInfor(i, path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1), isCompleted);
+            scenes.Add(scene);
+        }
+        return scenes;
+    }
+
 
 
     public void LoadScene(int sceneIndex)
     {
         hp++;
         LoadLevel(sceneIndex);
-      //  SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Portal"))
         {
-            if(SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
+            if(collision.gameObject.GetComponent<PortalScript>().isEnabled)
             {
-                LoadLevel(0);
-            }
-            else
-            {
-                LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+                if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
+                {
+                    LoadLevel(0);
+                }
+                else
+                {
+                    LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
 
+                }
             }
+            
 
         }
 

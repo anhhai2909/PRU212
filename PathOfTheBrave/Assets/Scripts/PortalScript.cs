@@ -10,6 +10,9 @@ public class PortalScript : MonoBehaviour
     public GameObject player;
     public ParticleSystem portal;
     public static PortalScript portalScript;
+    public bool isEnabled;
+
+    public bool isBossDead;
     
     
     [Obsolete]
@@ -19,12 +22,12 @@ public class PortalScript : MonoBehaviour
         portal.loop = true;
         portal.playOnAwake = false;
         portal.enableEmission = false;
-    
-
     }
 
     void Start()
     {
+        isBossDead = true;
+        isEnabled = false;
         GameObject ball = GameObject.Find("Ball");
         player = ball;
     }
@@ -37,8 +40,9 @@ public class PortalScript : MonoBehaviour
         {
             if (portal != null && portal.gameObject != null)
             {
-                if (portal.gameObject.transform.position.x - player.transform.position.x <= 10)
+                if (portal.gameObject.transform.position.x - player.transform.position.x <= 10 && isBossDead)
                 {
+                    isEnabled = true;
                     portal.Play();
                     portal.enableEmission = true;
 
