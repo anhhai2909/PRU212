@@ -4449,7 +4449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1386082452615895119, guid: ae240480e6d4be84da2ca9dd9c7d026f, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1386082453639118767, guid: ae240480e6d4be84da2ca9dd9c7d026f, type: 3}
       propertyPath: transitionAnim

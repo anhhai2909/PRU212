@@ -73,7 +73,9 @@ public class MainMenuScript : MonoBehaviour
                 }
             }
         }
-        
+
+
+
         //0C0C0C
 
         player.active = false;
