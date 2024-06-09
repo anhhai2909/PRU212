@@ -47090,7 +47090,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <weaponData>k__BackingField:
   - {fileID: 11400000, guid: 4a936cdbbada63143b9a868912282179, type: 2}
-  - {fileID: 11400000, guid: 34a22b2e4f061dd4e833ca5b0b73ddc6, type: 2}
 --- !u!1001 &1863708938
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -42,13 +43,28 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackgroundLayer1
+    uniqueID: 3565036283
+    locked: 0
+  - name: BackgroundLayer2
+    uniqueID: 1939929321
+    locked: 0
+  - name: BackgroundLayer3
+    uniqueID: 2632518537
+    locked: 0
   - name: Background
     uniqueID: 2739343719
     locked: 0
-  - name: Decoration
+  - name: House
+    uniqueID: 661252463
+    locked: 0
+  - name: Decorations
     uniqueID: 2221171907
     locked: 0
-  - name: Platforms
+  - name: HigherDecorations
+    uniqueID: 2970568953
+    locked: 0
+  - name: Platform
     uniqueID: 2153748749
     locked: 0
   - name: Player
@@ -57,6 +73,9 @@ TagManager:
   - name: Enemy
     uniqueID: 2647297321
     locked: 0
-  - name: Foreground Decoration
+  - name: ForegroundDecorations
     uniqueID: 4050010293
+    locked: 0
+  - name: Icon
+    uniqueID: 444350981
     locked: 0
