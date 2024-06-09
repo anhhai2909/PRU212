@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9c0a9fced54a76d4b834f098b8db87cf
+guid: 014aa48818f37bb4596faed8f34aa8ff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -81,6 +81,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -106,135 +119,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Purple Buttons Icons_0
+      name: coin_fresh_0
       rect:
         serializedVersion: 2
-        x: 287
-        y: 224
-        width: 34
-        height: 32
-      alignment: 9
-      pivot: {x: 0.23529412, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e192aa16ec101784fb6128129dfe8727
-      internalID: 125737330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Resume
-      rect:
-        serializedVersion: 2
-        x: 97
-        y: 194
-        width: 30
-        height: 30
-      alignment: 9
-      pivot: {x: 0.26666668, y: 0.26666668}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e752f54a1bc41254eac118481a0c411f
-      internalID: 1455187488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Quit
-      rect:
-        serializedVersion: 2
-        x: 193
-        y: 194
-        width: 29
-        height: 29
-      alignment: 9
-      pivot: {x: 0.27586207, y: 0.27586207}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6eb843dde16865e43b9498a31cce3463
-      internalID: 2005951270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Options
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 258
-        width: 28
-        height: 29
-      alignment: 9
-      pivot: {x: 0.2857143, y: 0.27586207}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05c57c56256fafa41913a2036a28f0bb
-      internalID: -71224983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Buttons Icons_1
-      rect:
-        serializedVersion: 2
-        x: 287
-        y: 288
-        width: 33
-        height: 32
-      alignment: 9
-      pivot: {x: 0.24242425, y: 0.25}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9864bca4a9cb11647877bc487ff489bb
-      internalID: -15829725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Buttons Icons_2
-      rect:
-        serializedVersion: 2
-        x: 193
-        y: 34
-        width: 30
-        height: 29
+        x: 123
+        y: 207
+        width: 702
+        height: 649
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1830e2a89be1246439b34614e61d3f28
-      internalID: 1224339365
+      spriteID: 58f266836f6143c4b84521e31f08fb08
+      internalID: 372522417
       vertices: []
       indices: 
       edges: []
@@ -259,12 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Options: -71224983
-      Purple Buttons Icons_0: 125737330
-      Purple Buttons Icons_1: 2030860320
-      Purple Buttons Icons_2: 1224339365
-      Quit: 2005951270
-      Resume: 1455187488
+      coin_fresh_0: 372522417
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
