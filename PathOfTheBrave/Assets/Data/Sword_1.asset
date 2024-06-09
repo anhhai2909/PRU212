@@ -74,7 +74,7 @@ MonoBehaviour:
             height: 1.31
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 1024
     - rid: 6757589857112162307
       type: {class: DamageOnHitBoxActionData, ns: Weapons.Components, asm: Assembly-CSharp}
       data:
