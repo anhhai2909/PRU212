@@ -38,18 +38,21 @@ public class MainMenuScript : MonoBehaviour
 
     public GameObject player;
 
+    private bool isNew;
+
     [System.Obsolete]
     private void Awake()
     {
         DataPersistenceManager data = new DataPersistenceManager();
         if (data.ReadFromFile() == null)
         {
-            Debug.Log(data.ReadFromFile());
+            isNew = true;
             loadText.overrideColorTags = true;
             loadText.color = Color.gray;
         }
         else
         {
+            isNew = false;
             loadBtn.onClick.AddListener(LoadClick);
 
         }
@@ -195,7 +198,22 @@ public class MainMenuScript : MonoBehaviour
     {
         if (dir == -1)
         {
-            option++;
+            if(isNew)
+            {
+                if(option == 1)
+                {
+                    option = 3;
+                }
+                else
+                {
+                    option++;
+
+                }
+            }
+            else
+            {
+                option++;
+            }
             if (option > 3)
             {
                 option = 1;
@@ -203,7 +221,22 @@ public class MainMenuScript : MonoBehaviour
         }
         else
         {
-            option--;
+            if (isNew)
+            {
+                if (option == 3)
+                {
+                    option = 1;
+                }
+                else
+                {
+                    option--;
+
+                }
+            }
+            else
+            {
+                option--;
+            }
             if (option < 1)
             {
                 option = 3;
@@ -224,7 +257,7 @@ public class MainMenuScript : MonoBehaviour
                     newText.fontStyle = FontStyles.Bold;
 
                     loadBtn.image.enabled = false;
-                    loadText.color = Color.white;
+                    loadText.color = !isNew ? Color.white : Color.gray;
                     loadText.fontStyle = FontStyles.Normal;
 
                     settingBtn.image.enabled = false;
@@ -239,7 +272,7 @@ public class MainMenuScript : MonoBehaviour
                     newText.fontStyle = FontStyles.Normal;
 
                     loadBtn.image.enabled = true;
-                    loadText.color = Color.black;
+                    loadText.color = !isNew ? Color.black : Color.gray;
                     loadText.fontStyle = FontStyles.Bold;
 
                     settingBtn.image.enabled = false;
@@ -254,7 +287,7 @@ public class MainMenuScript : MonoBehaviour
                     newText.fontStyle = FontStyles.Normal;
 
                     loadBtn.image.enabled = false;
-                    loadText.color = Color.white;
+                    loadText.color = !isNew ? Color.white : Color.gray;
                     loadText.fontStyle = FontStyles.Normal;
 
                     settingBtn.image.enabled = true;
