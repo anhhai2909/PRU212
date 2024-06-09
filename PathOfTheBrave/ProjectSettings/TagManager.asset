@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - FireballRespawnPosition
+  - GRAttackStuffResPosition
+  - GroundRangeAttackStuffRespawnPosition
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Fireball
   - Enemy
   - HealthPotion
-  - 
+  - BoDSpell
   - 
   - 
   - 
