@@ -24,7 +24,6 @@ namespace Weapons.Components
         private void HandleEnterAttackPhase(AttackPhases phase)
         {
             currentWeaponSpriteIndex = 0;
-
             currentPhaseSprites = currentAttackData.PhaseSprites.FirstOrDefault(data => data.Phase == phase).Sprites;
         }
 
@@ -53,7 +52,7 @@ namespace Weapons.Components
 
             baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
             weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
-            
+
             data = weapon.Data.GetData<WeaponSpriteData>();
             
             baseSpriteRenderer.RegisterSpriteChangeCallback(HandleBaseSpriteChange);
