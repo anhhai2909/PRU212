@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Enemy
   - Portal
   layers:
   - Default
@@ -15,14 +16,14 @@ TagManager:
   - 
   - 
   - 
+  - Ground
+  - Damageable
+  - Dead
+  - Player
+  - Weapon
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -43,32 +44,38 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: BackgroundLayer1
-    uniqueID: 1217920665
+    uniqueID: 3565036283
     locked: 0
   - name: BackgroundLayer2
-    uniqueID: 1851431551
+    uniqueID: 1939929321
     locked: 0
   - name: BackgroundLayer3
-    uniqueID: 1397996717
+    uniqueID: 2632518537
+    locked: 0
+  - name: Background
+    uniqueID: 2739343719
     locked: 0
   - name: House
-    uniqueID: 3130792757
-    locked: 0
-  - name: Platform
-    uniqueID: 1423643027
+    uniqueID: 661252463
     locked: 0
   - name: Decorations
-    uniqueID: 1123747763
+    uniqueID: 2221171907
     locked: 0
   - name: HigherDecorations
-    uniqueID: 2283679735
+    uniqueID: 2970568953
+    locked: 0
+  - name: Platform
+    uniqueID: 2153748749
     locked: 0
   - name: Player
-    uniqueID: 1044811599
+    uniqueID: 273729393
+    locked: 0
+  - name: Enemy
+    uniqueID: 2647297321
     locked: 0
   - name: ForegroundDecorations
-    uniqueID: 1397947357
+    uniqueID: 4050010293
     locked: 0
   - name: Icon
-    uniqueID: 2963355287
+    uniqueID: 444350981
     locked: 0
