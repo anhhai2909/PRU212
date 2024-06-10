@@ -12,11 +12,14 @@ namespace ProjectileSystem.Components
         [field: SerializeField] public bool ApplyContinuously { get; private set; }
         [field: SerializeField] public float Speed { get; private set; }
 
+        [field: SerializeField] public float MaxTimeExist { get; private set; }
+
+        private float m_Time;
         // On Init, set projectile velocity once
         protected override void Init()
         {
             base.Init();
-
+            m_Time = MaxTimeExist;
             SetVelocity();
         }
 
@@ -30,6 +33,17 @@ namespace ProjectileSystem.Components
                 return;
             
             SetVelocity();
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            m_Time -= Time.deltaTime;
+            if(m_Time <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

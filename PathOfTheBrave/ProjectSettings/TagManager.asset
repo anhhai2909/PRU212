@@ -73,6 +73,9 @@ TagManager:
   - name: Enemy
     uniqueID: 2647297321
     locked: 0
+  - name: ActiveProjectile
+    uniqueID: 1711295435
+    locked: 0
   - name: ForegroundDecorations
     uniqueID: 4050010293
     locked: 0

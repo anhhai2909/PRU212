@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7482534299343585941, guid: 9e21411cfb109484eaa48a332f4407fb, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7488948252398300521, guid: 9e21411cfb109484eaa48a332f4407fb, type: 3}
       propertyPath: m_LocalPosition.x
