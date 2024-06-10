@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7884168547906531325}
   - component: {fileID: 5443500296696978131}
   - component: {fileID: 2219639890640999504}
+  - component: {fileID: 4157070770693463275}
   m_Layer: 0
   m_Name: StrongArrow
   m_TagString: Untagged
@@ -214,6 +215,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff15bbb6f5d94da2963e50a8bd5de344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4157070770693463275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483586794815890478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920b12f0e6084a48b20c2e2a1f2d2c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setStuck:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2976403690347864115}
+        m_TargetAssemblyTypeName: ObjectPoolSystem.ObjectPoolItem, Assembly-CSharp
+        m_MethodName: ReturnItem
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  setUnstuck:
+    m_PersistentCalls:
+      m_Calls: []
+  <LayerMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
+  <InactiveSortingLayerName>k__BackingField: 
+  <CheckDistance>k__BackingField: 0
 --- !u!1 &8541587736952583217
 GameObject:
   m_ObjectHideFlags: 0

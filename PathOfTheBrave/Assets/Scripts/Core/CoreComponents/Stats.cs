@@ -13,8 +13,7 @@ namespace CoreSystem
         
         protected override void Awake()
         {
-            base.Awake();
-            
+            base.Awake();           
             Health.Init();
             Poise.Init();
         }

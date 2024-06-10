@@ -28,7 +28,10 @@ namespace ProjectileSystem.Components
                 _transform.rotation.eulerAngles.z, _transform.right, checkDistance, LayerMask);
 
             if (hits.Length <= 0) return;
-
+            //foreach (RaycastHit2D hit in hits)
+            //{
+            //    Debug.Log("Touch " + hit.collider.gameObject.name);
+            //}
             OnRaycastHit2D?.Invoke(hits);
         }
 

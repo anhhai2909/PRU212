@@ -17,7 +17,7 @@ public class PlayerDashState : PlayerAbilityState {
 	}
 	public override void Enter() {
 		base.Enter();
-
+		core.setDash(true);
 		CanDash = false;
 		player.InputHandler.UseDashInput();
 
@@ -33,8 +33,8 @@ public class PlayerDashState : PlayerAbilityState {
 
 	public override void Exit() {
 		base.Exit();
-
-		if (Movement?.CurrentVelocity.y > 0) {
+        core.setDash(false);
+        if (Movement?.CurrentVelocity.y > 0) {
 			Movement?.SetVelocityY(Movement.CurrentVelocity.y * playerData.dashEndYMultiplier);
 		}
 	}

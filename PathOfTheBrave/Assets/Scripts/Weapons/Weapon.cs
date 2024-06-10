@@ -72,7 +72,7 @@ namespace Weapons
         public void Enter()
         {
             //Debug.Break();
-            print($"{transform.name} enter");
+            //print($"{transform.name} enter");
 
             AttackStartTime = Time.time;
 
@@ -140,7 +140,7 @@ namespace Weapons
 
         private void ResetAttackCounter()
         {
-            print("Reset Attack Counter");
+            //print("Reset Attack Counter");
             CurrentAttackCounter = 0;
         }
 

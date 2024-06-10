@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using Combat.Damage;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatTestDummy : MonoBehaviour, IDamageable
+public class ObjectStat : MonoBehaviour, IDamageable
 {
     [SerializeField] private GameObject hitParticles;
     [SerializeField] private float maxHealth;
     private float health;
     private Animator anim;
-
 
     public void Damage(DamageData data)
     {
@@ -17,7 +16,7 @@ public class CombatTestDummy : MonoBehaviour, IDamageable
         health -= data.Amount;
         Instantiate(hitParticles, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
         anim.SetTrigger("damage");
-        if(health <= 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
