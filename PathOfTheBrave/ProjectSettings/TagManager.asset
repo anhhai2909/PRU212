@@ -54,11 +54,11 @@ TagManager:
   - name: House
     uniqueID: 3130792757
     locked: 0
-  - name: Platform
-    uniqueID: 1423643027
-    locked: 0
   - name: Decorations
     uniqueID: 1123747763
+    locked: 0
+  - name: Platform
+    uniqueID: 1423643027
     locked: 0
   - name: HigherDecorations
     uniqueID: 2283679735
