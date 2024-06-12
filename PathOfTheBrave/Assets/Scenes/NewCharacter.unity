@@ -193,6 +193,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3327065612783239577, guid: 25d08e47830f96f48b7b89397f3683a1, type: 3}
   m_PrefabInstance: {fileID: 7266288500899769564}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &829956176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 829956177}
+  m_Layer: 0
+  m_Name: Particles
+  m_TagString: ParticleContainer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &829956177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829956176}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 60.55126, y: 30.078152, z: -3.3086936}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1113459927
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46616,6 +46647,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1722004316}
+    - target: {fileID: 1083783542283501968, guid: 25d08e47830f96f48b7b89397f3683a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1090378968321838929, guid: 25d08e47830f96f48b7b89397f3683a1, type: 3}
       propertyPath: damageParticles
       value: 
@@ -46697,6 +46732,7 @@ SceneRoots:
   - {fileID: 3903513793390792665}
   - {fileID: 1386023342}
   - {fileID: 7266288500899769564}
+  - {fileID: 829956177}
   - {fileID: 1863708938}
   - {fileID: 1722004317}
   - {fileID: 51287710}

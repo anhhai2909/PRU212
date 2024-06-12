@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3898874846619170237}
   - component: {fileID: 8905959022665763265}
   - component: {fileID: 4302691874418495580}
+  - component: {fileID: -6423538967201422107}
   - component: {fileID: 3503540567242194874}
   - component: {fileID: 7993616302565117936}
   - component: {fileID: 2646402950516745995}
@@ -81,6 +82,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d9d1e9a5534836af705566aa7382b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6423538967201422107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483586794815890478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f28307e7a55624ca75daa81719476e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whenGetDistance:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2976403690347864115}
+        m_TargetAssemblyTypeName: ObjectPoolSystem.ObjectPoolItem, Assembly-CSharp
+        m_MethodName: ReturnItem
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <Distance>k__BackingField: 25
+  distanceMultiplier: 1
 --- !u!114 &3503540567242194874
 MonoBehaviour:
   m_ObjectHideFlags: 0

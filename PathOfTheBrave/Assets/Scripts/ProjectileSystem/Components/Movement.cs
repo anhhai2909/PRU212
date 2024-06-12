@@ -42,7 +42,7 @@ namespace ProjectileSystem.Components
             m_Time -= Time.deltaTime;
             if(m_Time <= 0)
             {
-                Destroy(gameObject);
+                
             }
         }
     }
