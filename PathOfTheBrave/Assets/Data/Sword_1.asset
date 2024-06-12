@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a5a6cd738645369231540dd8f9631f, type: 3}
   m_Name: Sword_1
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 1876003589, guid: 20356bbb7900e1e458e615b5b281ecbd, type: 3}
+  <Icon>k__BackingField: {fileID: -961974939, guid: 0464bf6ae3eba8949b5329d15a4ec017, type: 3}
   <Name>k__BackingField: Bardent's Sword
   <Description>k__BackingField: It looks sick af
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: db94853973589ff42a43ca1c08b22bdc, type: 2}

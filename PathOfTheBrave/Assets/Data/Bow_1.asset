@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a5a6cd738645369231540dd8f9631f, type: 3}
   m_Name: Bow_1
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 1819778140, guid: 7698f902a8e73cb4b88c4738f7fb0ff5, type: 3}
+  <Icon>k__BackingField: {fileID: 1808728530, guid: 0464bf6ae3eba8949b5329d15a4ec017, type: 3}
   <Name>k__BackingField: Wooden Bow
   <Description>k__BackingField: A basic wooden bow that fires iron tipped wooden
     arrows

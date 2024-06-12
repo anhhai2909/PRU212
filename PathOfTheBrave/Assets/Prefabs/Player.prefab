@@ -659,6 +659,7 @@ Transform:
   - {fileID: 6956894555738427401}
   - {fileID: 8103689347927095878}
   - {fileID: 9136814249381072215}
+  - {fileID: 345007879455929876}
   m_Father: {fileID: 3327065612783239577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5995871237312649982
@@ -877,7 +878,6 @@ MonoBehaviour:
   groundCheck: {fileID: 4440938832856368015}
   wallCheck: {fileID: 2267959219510765759}
   ledgeCheckHorizontal: {fileID: 6502487472631821246}
-  ceilingCheck: {fileID: 2323468726465327493}
   groundCheckRadius: 0.24
   wallCheckDistance: 0.4
   whatIsGround:
@@ -1374,6 +1374,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cbd18f63918404c95511f101e4c8aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7246022056199508423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 345007879455929876}
+  - component: {fileID: 4605188558332682315}
+  m_Layer: 12
+  m_Name: WeaponSwap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &345007879455929876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246022056199508423}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4006095801739065729}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4605188558332682315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7246022056199508423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b45612cac3943cc8563e78fb023d261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7399042614194570816
