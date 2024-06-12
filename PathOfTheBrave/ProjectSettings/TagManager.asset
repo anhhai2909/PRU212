@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - Portal
   - ParticleContainer
+  - Ground
+  - FireballRespawnPosition
+  - GRAttackStuffResPosition
+  - GroundRangeAttackStuffRespawnPosition
   layers:
   - Default
   - TransparentFX
@@ -26,6 +30,16 @@ TagManager:
   - 
   - Interactable
   - WorldItem
+  - Coin
+  - Fireball
+  - Enemy
+  - HealthPotion
+  - BoDSpell
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
