@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a5a6cd738645369231540dd8f9631f, type: 3}
+  m_Name: UnArm
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 1835944828, guid: 0464bf6ae3eba8949b5329d15a4ec017, type: 3}
+  <Name>k__BackingField: Arm Attack
+  <Description>k__BackingField: Pool Hero
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 6ee806da7ee3f9e4ea244f35a7bfbd89, type: 2}
+  <NumberOfAttacks>k__BackingField: 5
+  <ComponentData>k__BackingField:
+  - rid: 6757589986470789120
+  - rid: 6757589986470789126
+  - rid: 6757589986470789122
+  - rid: 6757589986470789123
+  - rid: 6757589986470789124
+  references:
+    version: 2
+    RefIds:
+    - rid: 6757589986470789120
+      type: {class: MovementData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 2
+        - name: Attack 2
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 2
+        - name: Attack 3
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 2
+        - name: Attack 5
+          <Direction>k__BackingField: {x: 0, y: 0}
+          <Velocity>k__BackingField: 2
+        - name: Attack 6
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 2
+    - rid: 6757589986470789122
+      type: {class: DamageOnHitBoxActionData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageOnHitBoxActionData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amount>k__BackingField: 10
+        - name: Attack 2
+          <Amount>k__BackingField: 10
+        - name: Attack 3
+          <Amount>k__BackingField: 10
+        - name: Attack 5
+          <Amount>k__BackingField: 10
+        - name: Attack 6
+          <Amount>k__BackingField: 10
+    - rid: 6757589986470789123
+      type: {class: KnockBackData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: KnockBackData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Angle>k__BackingField: {x: 0, y: 0}
+          <Strength>k__BackingField: 0
+        - name: Attack 2
+          <Angle>k__BackingField: {x: 0, y: 0}
+          <Strength>k__BackingField: 0
+        - name: Attack 3
+          <Angle>k__BackingField: {x: 0, y: 0}
+          <Strength>k__BackingField: 0
+        - name: Attack 5
+          <Angle>k__BackingField: {x: 0, y: 0}
+          <Strength>k__BackingField: 0
+        - name: Attack 6
+          <Angle>k__BackingField: {x: 0, y: 0}
+          <Strength>k__BackingField: 0
+    - rid: 6757589986470789124
+      type: {class: PoiseDamageData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: PoiseDamageData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amount>k__BackingField: 0
+        - name: Attack 2
+          <Amount>k__BackingField: 0
+        - name: Attack 3
+          <Amount>k__BackingField: 0
+        - name: Attack 5
+          <Amount>k__BackingField: 0
+        - name: Attack 6
+          <Amount>k__BackingField: 0
+    - rid: 6757589986470789126
+      type: {class: ActionHitBoxData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: -0.3
+            y: -1.36
+            width: 1.51
+            height: 0.54
+        - name: Attack 2
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: -0.01
+            y: -1.23
+            width: 1.3
+            height: 0.62
+        - name: Attack 3
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0
+            y: -1.51
+            width: 1.06
+            height: 1.07
+        - name: Attack 4
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0.06
+            y: -1.56
+            width: 1
+            height: 1.05
+        - name: Attack 5
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: -0.09
+            y: -1.79
+            width: 1.27
+            height: 0.94
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 1024

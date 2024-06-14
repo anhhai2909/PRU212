@@ -517,7 +517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &66083234878884725
 Transform:
   m_ObjectHideFlags: 0
@@ -721,8 +721,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <weaponData>k__BackingField:
-  - {fileID: 11400000, guid: 4a936cdbbada63143b9a868912282179, type: 2}
-  - {fileID: 11400000, guid: 34a22b2e4f061dd4e833ca5b0b73ddc6, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &299177163848938307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089807799f36484e954d3fa4a2f3b727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WeaponData>k__BackingField: {fileID: 11400000, guid: 4a936cdbbada63143b9a868912282179, type: 2}
+  <WeaponData>k__BackingField: {fileID: 0}
   <CombatInput>k__BackingField: 0
 --- !u!1 &3024272010566557486
 GameObject:
@@ -799,7 +799,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.06581116, y: -0.83909893}
@@ -860,7 +860,6 @@ Transform:
   - {fileID: 4440938832856368015}
   - {fileID: 2267959219510765759}
   - {fileID: 1070985227105513751}
-  - {fileID: 2323468726465327493}
   m_Father: {fileID: 4006095801739065729}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1567511190171647746
@@ -883,37 +882,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 512
---- !u!1 &4133948626629902310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2323468726465327493}
-  m_Layer: 12
-  m_Name: CeilingCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2323468726465327493
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4133948626629902310}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11, y: -0.91, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8019526453316316000}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4737963442045894926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,7 +1094,7 @@ Animator:
   m_GameObject: {fileID: 6479003247591861073}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8fd860ad5064f5b469c3d3d306a7ee52, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1194,7 +1162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
-    <MaxValue>k__BackingField: 0
+    <MaxValue>k__BackingField: 100
   <Poise>k__BackingField:
     <MaxValue>k__BackingField: 0
   poiseRecoveryRate: 25
@@ -1363,7 +1331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173fa08f56eb4fe5a356baad3d1c7298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticles: {fileID: 0}
+  damageParticles: {fileID: 6240072112886026631, guid: e0e56a695e60c4a46a6184d207312115, type: 3}
 --- !u!114 &7484601153178851413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,7 +1609,7 @@ Animator:
   m_GameObject: {fileID: 8726275529988952378}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: db94853973589ff42a43ca1c08b22bdc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6ee806da7ee3f9e4ea244f35a7bfbd89, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
