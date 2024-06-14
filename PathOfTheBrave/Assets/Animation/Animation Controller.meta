@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: eccb1faec438b1645ba78293bb75a248
+
+PathOfTheBrave/Assets/Animation/Animations.meta
+guid: 23cfedc7462aaf94a9d83415e5ff73e9
+
+PathOfTheBrave/Assets/Animation/Animation Controller.meta
+
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
