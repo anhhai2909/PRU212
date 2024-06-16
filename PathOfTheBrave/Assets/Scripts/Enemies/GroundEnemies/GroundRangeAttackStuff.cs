@@ -50,4 +50,14 @@ public class GroundRangeAttackStuff : MonoBehaviour
         Destroy(gameObject);
         anim.SetTrigger("Explore");
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            Debug.Log("Hit");
+        }
+        Destroy(gameObject);
+        anim.SetTrigger("Explore");
+    }
 }

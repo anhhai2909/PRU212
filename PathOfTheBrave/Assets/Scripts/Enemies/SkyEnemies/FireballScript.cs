@@ -28,12 +28,12 @@ public class FireballScript : MonoBehaviour
             destroyTimer = 0;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerHealthSystem>().TakeDamage(enemy.GetComponent<FlyingEnemyAttack>().damage);
+            Debug.Log("Hit");
         }
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

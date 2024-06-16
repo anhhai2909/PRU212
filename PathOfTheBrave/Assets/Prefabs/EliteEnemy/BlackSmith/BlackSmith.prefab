@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7702401350460885482}
   - component: {fileID: 7702401350460885485}
+  - component: {fileID: 1508548679751612485}
   m_Layer: 10
   m_Name: HeavyAttackHitbox
   m_TagString: Untagged
@@ -42,12 +43,24 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.042006947, y: 0.0520935}
   m_Size: {x: 0.16992457, y: 0.4661482}
   m_Direction: 0
+--- !u!114 &1508548679751612485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702401350460885483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf971e93f72226647a9496b359165dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7702401350693478135
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7702401350693478134}
   - component: {fileID: 7702401350693477897}
+  - component: {fileID: 4010970016772871106}
   m_Layer: 10
   m_Name: LightAttackHitbox
   m_TagString: Untagged
@@ -90,7 +104,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.021834321, y: -0.1730534}
@@ -106,6 +120,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.058892474, y: 0.40111038}
   m_EdgeRadius: 0
+--- !u!114 &4010970016772871106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702401350693478135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf971e93f72226647a9496b359165dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7702401350713700261
 GameObject:
   m_ObjectHideFlags: 0
