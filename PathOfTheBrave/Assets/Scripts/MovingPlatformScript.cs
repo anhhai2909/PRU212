@@ -31,10 +31,13 @@ public class MovingPlatformScript : MonoBehaviour
 
     public PlayerScript playerScript;
 
+    private float distanceTurn;
+
     void Start()
     {
+        distanceTurn = 0.1f;
         isMoving = false;
-        speed = 1.25f;
+        speed = 1.35f;
         playerTransform = GameObject.Find("Player").transform;
     }
 
@@ -59,7 +62,7 @@ public class MovingPlatformScript : MonoBehaviour
         {
             if(isMoving)
             {
-                platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
+                platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime );
 
             }
         }
@@ -67,7 +70,7 @@ public class MovingPlatformScript : MonoBehaviour
         {
             if(firstPlatform.isMoving)
             {
-                platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
+                platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime );
 
             }
         }
@@ -76,7 +79,7 @@ public class MovingPlatformScript : MonoBehaviour
         //playerTransform.position = Vector2.Lerp(playerTransform.position, target, speed * Time.deltaTime);
 
         float distance = (target - (Vector2)platform.position).magnitude;
-        if(distance <= 0.1f)
+        if(distance <= distanceTurn)
         {
             direction *= -1;
         }

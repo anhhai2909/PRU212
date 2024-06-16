@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,11 +28,26 @@ public class LeverScript : MonoBehaviour
 
     private float holdTime;
 
+    public bool isBossDoor;
+
     public ReducingScript reducingScript;
+
+    private Animator animator;
+
+    public AnimationClip animationClip;
+
+    private BossDoorScript bossDoor;
+
+    public TMP_Text bossDoorText;
 
     void Start()
     {
-        holdTime = 0.002f;
+        if (isBossDoor)
+        {
+            bossDoor = GameObject.Find("BossKey").GetComponent<BossDoorScript>();
+
+        }
+        holdTime = 0.004f;
         playerTransform = GameObject.Find("Player").transform;
         renderers = this.gameObject.GetComponent<SpriteRenderer>();
         isActivated = false;
@@ -40,10 +56,52 @@ public class LeverScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer < delay)
+        if (bossDoor != null)
         {
-            if (slider != null)
+            if (bossDoor.isKeyTaken && bossDoorText.enabled)
+            {
+                bossDoorText.enabled = false;
+            }
+            else if (!bossDoor.isKeyTaken)
+            {
+                sliderObject.SetActive(false);
+                bossDoorText.enabled = true;
+            }
+        }
+
+        if (slider != null)
+        {
+            if (isBossDoor)
+            {
+                if (Math.Abs(playerTransform.position.x - transform.position.x) <= 2f && Math.Abs(playerTransform.position.y - transform.position.y) <= 3f)
+                {
+                    sliderObject.SetActive(true);
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        slider.value += holdTime;
+                        if (slider.value == 1)
+                        {
+                            slider.value = 0;
+                            
+                            animator = GameObject.Find("BossDoor").GetComponent<Animator>();
+                            animator.enabled = true;
+                            
+                        }
+                    }
+                    else
+                    {
+                        slider.value = 0;
+
+                    }
+                }
+                else
+                {
+                    slider.value = 0;
+                    sliderObject.SetActive(false);
+                }
+
+            }
+            else
             {
                 if (Math.Abs(playerTransform.position.x - transform.position.x) <= 2f && Math.Abs(playerTransform.position.y - transform.position.y) <= 3f)
                 {
@@ -81,10 +139,8 @@ public class LeverScript : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            timer = 0;
-        }
- 
+
+
     }
 }
+
