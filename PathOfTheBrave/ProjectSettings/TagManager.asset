@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Portal
+  - MovingPlatform
+  - Spike
   layers:
   - Default
   - TransparentFX
