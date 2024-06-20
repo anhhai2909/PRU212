@@ -9,15 +9,15 @@ public class GroundRangeAttack : MonoBehaviour
     public float attackCoolDown = 2f;
 
     private float attackTimer = Mathf.Infinity;
-    public bool canAttack = false;
+    public bool canAttack = true;
     public float verticalGap;
 
     public Rigidbody2D rb;
     public GameObject player;
     public Animator anim;
     public LayerMask playerLayer;
-    public GameObject fireball;
-    public Transform fireballPosition;
+    public GameObject weapon;
+    public Transform weaponPosition;
 
     public bool canMove = true;
     public float attackDelay = 1f;
@@ -85,6 +85,6 @@ public class GroundRangeAttack : MonoBehaviour
     }
     void Attack()
     {
-        Instantiate(fireball, fireballPosition.position, Quaternion.identity);
+        Instantiate(weapon, weaponPosition.position, Quaternion.identity);
     }
 }
