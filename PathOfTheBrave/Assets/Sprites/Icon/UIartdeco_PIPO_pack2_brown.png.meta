@@ -194,7 +194,7 @@ TextureImporter:
         width: 230
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,6 +202,27 @@ TextureImporter:
       bones: []
       spriteID: bb6a9593d8d56544e84fc461e39cdbde
       internalID: -640879030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIartdeco_PIPO_pack2_brown_4
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 790
+        width: 121
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac9098964977602419b8c0608cc2dc2e
+      internalID: 287585611
       vertices: []
       indices: 
       edges: []
@@ -221,6 +242,7 @@ TextureImporter:
       UIartdeco_PIPO_pack2_brown_1: 73415457
       UIartdeco_PIPO_pack2_brown_2: 1847230177
       UIartdeco_PIPO_pack2_brown_3: -640879030
+      UIartdeco_PIPO_pack2_brown_4: 287585611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

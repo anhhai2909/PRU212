@@ -1,0 +1,82 @@
+[
+  {
+    "Id": 1,
+    "SpriteName": "health",
+    "Description": "Restores 30% health",
+    "IsUsedInInventory": true,
+    "IsForever": true,
+    "IsEffectByTime": false,
+    "EffectTime": 0,
+    "Coin": 75
+  },
+  {
+    "Id": 2,
+    "SpriteName": "mana",
+    "Description": "Restores 30% mana",
+    "IsUsedInInventory": true,
+    "IsForever": true,
+    "IsEffectByTime": false,
+    "EffectTime": 0,
+    "Coin": 75
+  },
+  {
+    "Id": 3,
+    "SpriteName": "damage",
+    "Description": "Increase 60% damage",
+    "IsUsedInInventory": true,
+    "IsForever": false,
+    "IsEffectByTime": true,
+    "EffectTime": 15,
+    "Coin": 200
+  },
+  {
+    "Id": 4,
+    "SpriteName": "speed",
+    "Description": "Increase 45% speed",
+    "IsUsedInInventory": true,
+    "IsForever": false,
+    "IsEffectByTime": true,
+    "EffectTime": 15,
+    "Coin": 150
+  },
+  {
+    "Id": 5,
+    "SpriteName": "burn",
+    "Description": "Increase 20% poison damage",
+    "IsUsedInInventory": true,
+    "IsForever": false,
+    "IsEffectByTime": true,
+    "EffectTime": 15,
+    "Coin": 120
+  },
+  {
+    "Id": 6,
+    "SpriteName": "defense",
+    "Description": "Reduces enemy damage by 35%",
+    "IsUsedInInventory": true,
+    "IsForever": false,
+    "IsEffectByTime": true,
+    "EffectTime": 15,
+    "Coin": 150
+  },
+  {
+    "Id": 7,
+    "SpriteName": "reborn",
+    "Description": "Resurrected one more time",
+    "IsUsedInInventory": true,
+    "IsForever": false,
+    "IsEffectByTime": false,
+    "EffectTime": 0,
+    "Coin": 200
+  },
+  {
+    "Id": 8,
+    "SpriteName": "coin_percentage",
+    "Description": "Increase gold drop rate to 50%",
+    "IsUsedInInventory": true,
+    "IsForever": false,
+    "IsEffectByTime": false,
+    "EffectTime": 0,
+    "Coin": 250
+  }
+]

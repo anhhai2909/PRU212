@@ -61,10 +61,13 @@ public class MainMenuScript : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        List<GameObject> objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Ball").ToList();
-        if(objects.Count > 1 )
+
+        List<GameObject> objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Player").ToList();
+
+        for (int i = 0; i < objects.Count; i++)
         {
-            for (int i = 0; i < objects.Count; i++)
+            Debug.Log(objects[i]);
+            if (objects[i] != null)
             {
                 if (!objects[i].active)
                 {
@@ -73,11 +76,10 @@ public class MainMenuScript : MonoBehaviour
                 {
                     this.player = objects[i];
                     this.playerScript = objects[i].GetComponent<PlayerScript>();
+                    break;
                 }
             }
         }
-
-
 
         //0C0C0C
 
@@ -115,7 +117,7 @@ public class MainMenuScript : MonoBehaviour
             canvas.active = false;
             DataPersistenceManager data = new DataPersistenceManager();
             GameData gameData = data.LoadGame();
-            if(gameData == null)
+            if (gameData == null)
             {
                 playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -126,8 +128,8 @@ public class MainMenuScript : MonoBehaviour
                 playerScript.coin = gameData._coin;
                 playerScript.LoadScene(gameData._sceneIndex);
             }
-            
-            
+
+
         }
         else
         {
@@ -198,9 +200,9 @@ public class MainMenuScript : MonoBehaviour
     {
         if (dir == -1)
         {
-            if(isNew)
+            if (isNew)
             {
-                if(option == 1)
+                if (option == 1)
                 {
                     option = 3;
                 }

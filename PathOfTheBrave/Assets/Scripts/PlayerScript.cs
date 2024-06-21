@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.DataPersistence.Data;
+using Cinemachine;
 using QuantumTek.EncryptedSave;
 using System;
 using System.Collections;
@@ -19,11 +20,12 @@ public class PlayerScript : MonoBehaviour
 
     public float ySpawn = 0;
 
-    public float moveSpeed;
 
     public float xDirection;
 
     public static PlayerScript instance;
+
+    public PlayerAfterImagePool afterImagePool;
 
     [SerializeField] Animator transitionAnim;
     private void OnEnable()
@@ -33,6 +35,9 @@ public class PlayerScript : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        GameObject playerCamera = GameObject.Find("Player Camera");
+        if (playerCamera != null && playerCamera.GetComponent<CinemachineVirtualCamera>() != null)
+            playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
         if (scene.buildIndex != 0)
             SpawnPlayer(scene.buildIndex);
     }
@@ -42,7 +47,7 @@ public class PlayerScript : MonoBehaviour
         DontDestroyOnLoad(this);
         if (instance == null)
         {
-            this.name = "Ball";
+            this.name = "Player";
             instance = this;
         }
         else
@@ -56,8 +61,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-        
-        moveSpeed = 10;
+
     }
 
     void LoadLevel(int sceneIndex)
@@ -73,12 +77,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
 
-        xDirection = Input.GetAxisRaw("Horizontal");
-        float moveStep = moveSpeed * xDirection * Time.deltaTime;
-        if ((transform.position.x < -8 && xDirection < 0) )
-            return;
-        float y = transform.position.y;
-        transform.position = transform.position + new Vector3(moveStep, 0, 0);
+       
     }
 
 
@@ -95,8 +94,8 @@ public class PlayerScript : MonoBehaviour
 
                 case 1:
                     {
-                        x = -6.51f;
-                        y = 1.58f;
+                        x = -6.91f;
+                        y = -0.1f;
                         break;
                     }
                 case 2:
