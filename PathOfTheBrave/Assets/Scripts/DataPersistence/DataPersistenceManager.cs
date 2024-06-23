@@ -169,7 +169,16 @@ public class DataPersistenceManager
             else
             {
                 gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin, scenes);
+                GameData oldData = LoadGame();
+                gameData._healthLevel = oldData._healthLevel;
+                gameData._manaLevel = oldData._manaLevel;
+                gameData._sdLevel = oldData._sdLevel;
+                gameData._bdLevel = oldData._bdLevel;
+                gameData._mdLevel = oldData._mdLevel;
+                gameData._items = oldData._items;
+                gameData._activatedItems = oldData._activatedItems;
             }
+            
             
             SaveToFile(gameData);
             ReadFromFile();
