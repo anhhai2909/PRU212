@@ -36,63 +36,65 @@ public class BoDeathAttack : MonoBehaviour
     }
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
-        if (attackCount >= spellCooldown && canAttack)
+        if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
-            StopMovement();
-            castSpell();
-            isCastingSpell=true;
-        }
-        else
-        {
-            if (!isCastingSpell)
+            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+            if (attackCount >= spellCooldown && canAttack)
             {
-                if (distanceToPlayer < attackRange && canAttack)
+                StopMovement();
+                castSpell();
+                isCastingSpell = true;
+            }
+            else
+            {
+                if (!isCastingSpell)
                 {
-                    StopMovement();
-                    AttackAnim();
-                    attackCount++;
+                    if (distanceToPlayer < attackRange && canAttack)
+                    {
+                        StopMovement();
+                        AttackAnim();
+                        attackCount++;
+                    }
+                    else if (distanceToPlayer < attackRange)
+                    {
+                        StopMovement();
+                    }
                 }
-                else if (distanceToPlayer < attackRange)
+            }
+            if (!canAttack)
+            {
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackCoolDown)
                 {
-                    StopMovement();
+                    attackTimer = 0;
+                    canAttack = true;
                 }
-            }       
-        }
-        if (!canAttack)
-        {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackCoolDown)
-            {
-                attackTimer = 0;
-                canAttack = true;
+                if (attackTimer >= 1.5f)
+                {
+                    canMove = true;
+                }
             }
-            if (attackTimer >= 1.5f)
-            {
-                canMove = true;
-            }
-        }
 
-        if (startDelayTimer)
-        {
-            attackDelayTimer += Time.deltaTime;
-            if (attackDelayTimer >= attackDelay)
+            if (startDelayTimer)
             {
-                Attack();
-                attackDelayTimer = 0;
-                startDelayTimer = false;
+                attackDelayTimer += Time.deltaTime;
+                if (attackDelayTimer >= attackDelay)
+                {
+                    Attack();
+                    attackDelayTimer = 0;
+                    startDelayTimer = false;
+                }
             }
-        }
-        if (isCastingSpell)
-        {
-            castSpellTimer += Time.deltaTime;
-            if(castSpellTimer >= castSpellTime)
+            if (isCastingSpell)
             {
-                castSpellTimer = 0;
-                isCastingSpell = false;
+                castSpellTimer += Time.deltaTime;
+                if (castSpellTimer >= castSpellTime)
+                {
+                    castSpellTimer = 0;
+                    isCastingSpell = false;
+                }
             }
-        }
-
+        }       
     }
 
     void StopMovement()

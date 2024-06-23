@@ -46,9 +46,10 @@ GameObject:
   - component: {fileID: 3515168750048848084}
   - component: {fileID: 3515168750048848085}
   - component: {fileID: 8253827373074210679}
+  - component: {fileID: 1360934568859061626}
   m_Layer: 10
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,6 +207,7 @@ MonoBehaviour:
   exploreTimer: 0
   disapearTime: 1
   disapearTimer: 0
+  isExplore: 0
 --- !u!61 &3515168750048848085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -251,7 +253,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3463109, y: 0.22005567}
   m_EdgeRadius: 0
---- !u!114 &8253827373074210679
+--- !u!114 &1360934568859061626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,11 +262,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3515168750048848682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 529c210543e83e74e8f08db225da9a64, type: 3}
+  m_Script: {fileID: 11500000, guid: ac6af85e175b45c418180e7b8c0f02fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitParticles: {fileID: 0}
-  maxHealth: 100
+  anim: {fileID: 3515168750048848086}
+  canMove: 1
+  canAttack: 1
+  maxHealth: 0
+  coinSpawnPosition: {fileID: 0}
+  coin: {fileID: 0}
+  potion: {fileID: 0}
+  disapearCooldown: 2
+  disapearTimer: 0
 --- !u!1 &3515168750297521783
 GameObject:
   m_ObjectHideFlags: 0

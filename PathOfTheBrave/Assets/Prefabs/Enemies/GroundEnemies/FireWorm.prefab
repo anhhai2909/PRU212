@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 886699419678482183}
   m_Layer: 10
   m_Name: FireWorm
-  m_TagString: Untagged
+  m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,6 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 886699419678482198}
+  canMove: 1
+  canAttack: 1
   maxHealth: 100
   coinSpawnPosition: {fileID: 7370160253404192584}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
@@ -238,6 +240,7 @@ MonoBehaviour:
   detectRange: 16
   chaseSpeed: 6
   damage: 10
+  isFacingRight: 1
 --- !u!114 &886699419678482183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,10 +264,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  fireball: {fileID: 0}
-  fireballPosition: {fileID: 886699419963126402}
+  weapon: {fileID: 5935205506458234946, guid: b19ce8c4e4bf19c408ece34f88c3a889, type: 3}
+  weaponPosition: {fileID: 886699419963126403}
   canMove: 1
-  attackDelay: 2
+  attackDelay: 1
 --- !u!1 &886699419963126403
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +279,7 @@ GameObject:
   - component: {fileID: 886699419963126402}
   m_Layer: 10
   m_Name: FireBallSpawnPosition
-  m_TagString: Untagged
+  m_TagString: GRAttackStuffResPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

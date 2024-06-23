@@ -147,9 +147,10 @@ GameObject:
   - component: {fileID: 7702401350713700263}
   - component: {fileID: 7702401350713700260}
   - component: {fileID: 7702401350713700282}
+  - component: {fileID: -6641441928657063400}
   m_Layer: 10
   m_Name: BlackSmith
-  m_TagString: Untagged
+  m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -347,6 +348,27 @@ MonoBehaviour:
   LightAttackHitbox: {fileID: 7702401350693478135}
   HeavyAttackHitbox: {fileID: 0}
   countLightAttack: 1
+--- !u!114 &-6641441928657063400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702401350713700261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6af85e175b45c418180e7b8c0f02fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 7702401350713700281}
+  canMove: 1
+  canAttack: 1
+  maxHealth: 100
+  coinSpawnPosition: {fileID: 7702401350898540146}
+  coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
+  potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
+  disapearCooldown: 4
+  disapearTimer: 0
 --- !u!1 &7702401350898540146
 GameObject:
   m_ObjectHideFlags: 0

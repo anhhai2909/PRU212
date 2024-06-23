@@ -169,10 +169,10 @@ GameObject:
   - component: {fileID: 7704309169470658342}
   - component: {fileID: 7704309169470658359}
   - component: {fileID: 7704309169470658356}
-  - component: {fileID: 7704309169470658313}
+  - component: {fileID: 7684002161594596584}
   m_Layer: 10
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   chaseSpeed: 8
   damage: 10
   isFacingRight: 1
---- !u!114 &7704309169470658313
+--- !u!114 &7684002161594596584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,10 +383,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7704309169470658344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce1df9f566abff409c4110f18bec5c9, type: 3}
+  m_Script: {fileID: 11500000, guid: ac6af85e175b45c418180e7b8c0f02fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 7704309169470658342}
+  canMove: 1
+  canAttack: 1
   maxHealth: 100
   coinSpawnPosition: {fileID: 66733217229723512}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}

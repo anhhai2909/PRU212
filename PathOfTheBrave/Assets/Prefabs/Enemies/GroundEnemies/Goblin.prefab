@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 7194607329800910625}
   m_Layer: 10
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -356,6 +356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 7194607329800910044}
+  canMove: 1
+  canAttack: 1
   maxHealth: 100
   coinSpawnPosition: {fileID: 711077123373365104}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}

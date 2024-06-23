@@ -26,43 +26,45 @@ public class EnemyAttack : MonoBehaviour
     }
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+        if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
+        {
+            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
 
-        if (distanceToPlayer < attackRange && canAttack)
-        {
-            StopMovement();
-            AttackAnim();
-        }
-        else if (distanceToPlayer < attackRange)
-        {
-            StopMovement();
-        }
-
-        if (!canAttack)
-        {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackCoolDown)
+            if (distanceToPlayer < attackRange && canAttack)
             {
-                attackTimer = 0;
-                canAttack = true;
+                StopMovement();
+                AttackAnim();
             }
-            if (attackTimer >= 1.5f)
+            else if (distanceToPlayer < attackRange)
             {
-                canMove = true;
+                StopMovement();
             }
-        }
 
-        if (startDelayTimer)
-        {
-            attackDelayTimer += Time.deltaTime;
-            if (attackDelayTimer >= attackDelay)
+            if (!canAttack)
             {
-                Attack();
-                attackDelayTimer = 0;
-                startDelayTimer = false;
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackCoolDown)
+                {
+                    attackTimer = 0;
+                    canAttack = true;
+                }
+                if (attackTimer >= 1.5f)
+                {
+                    canMove = true;
+                }
             }
-        }
 
+            if (startDelayTimer)
+            {
+                attackDelayTimer += Time.deltaTime;
+                if (attackDelayTimer >= attackDelay)
+                {
+                    Attack();
+                    attackDelayTimer = 0;
+                    startDelayTimer = false;
+                }
+            }
+        }      
     }
 
     void StopMovement()

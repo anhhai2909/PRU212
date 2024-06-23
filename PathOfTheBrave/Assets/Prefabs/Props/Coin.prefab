@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   coinPrefab: {fileID: 4969080199750674727}
-  pushForce: 20
+  pushForce: 5
   disapearCooldown: 15
   disapearTimer: 0
   spawnPercent: 30

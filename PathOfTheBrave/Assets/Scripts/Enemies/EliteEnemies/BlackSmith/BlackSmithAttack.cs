@@ -29,42 +29,45 @@ public class BlackSmithAttack : MonoBehaviour
     }
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
-
-        if (distanceToPlayer <= attackRange && canAttack)
+        if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
-            if(attackCount >= countLightAttack)
+            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+
+            if (distanceToPlayer <= attackRange && canAttack)
+            {
+                if (attackCount >= countLightAttack)
+                {
+                    StopMovement();
+                    HeavyAttackAnim();
+                    attackCount = 0;
+                }
+                else
+                {
+                    StopMovement();
+                    LightAttackAnim();
+                    attackCount++;
+                }
+
+            }
+            else if (distanceToPlayer <= attackRange)
             {
                 StopMovement();
-                HeavyAttackAnim();
-                attackCount = 0;
             }
-            else
-            {
-                StopMovement();
-                LightAttackAnim();
-                attackCount++;
-            }
-            
-        }
-        else if (distanceToPlayer <= attackRange)
-        {
-            StopMovement();
-        }
 
-        if (!canAttack)
-        {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= attackCoolDown)
+            if (!canAttack)
             {
-                attackTimer = 0;
-                canAttack = true;
+                attackTimer += Time.deltaTime;
+                if (attackTimer >= attackCoolDown)
+                {
+                    attackTimer = 0;
+                    canAttack = true;
+                }
+                if (attackTimer >= 1.5f)
+                {
+                    canMove = true;
+                }
             }
-            if (attackTimer >= 1.5f)
-            {
-                canMove = true;
-            }
-        }
+        } 
     }
 
     void StopMovement()

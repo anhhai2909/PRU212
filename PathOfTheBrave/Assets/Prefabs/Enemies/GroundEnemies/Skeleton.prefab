@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 8273563080497093338}
   m_Layer: 10
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,6 +307,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   hitbox: {fileID: 8273563080749332297}
+  hitboxRadius: 0
   attackDelay: 0.6
 --- !u!114 &8273563080497093338
 MonoBehaviour:
@@ -321,6 +322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 8273563080497093340}
+  canMove: 1
+  canAttack: 1
   maxHealth: 100
   coinSpawnPosition: {fileID: 1790101783318092418}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
