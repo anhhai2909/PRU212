@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ArcherAttack : MonoBehaviour
@@ -15,11 +13,11 @@ public class ArcherAttack : MonoBehaviour
     public GameObject weapon;
     public Transform weaponPosition;
 
-    private float rangeAttackTimer = Mathf.Infinity;
+    private float rangeAttackTimer = 0;
     public bool canRangeAttack = true;
 
-    private float attackTimer = Mathf.Infinity;
-    private float meleeAttackTimer = Mathf.Infinity;
+    private float attackTimer = 0;
+    private float meleeAttackTimer = 0;
     public bool canMeleeAttack = true;
 
     public float attackRange = 8f;
@@ -32,7 +30,7 @@ public class ArcherAttack : MonoBehaviour
 
     public float rangeAttackDelay = 0.7f;
 
-    private float rangeAttackDelayTimer = Mathf.Infinity;
+    private float rangeAttackDelayTimer = 0;
 
     private bool startRangeAttackDelayTimer;
 
@@ -97,7 +95,7 @@ public class ArcherAttack : MonoBehaviour
                     }
                 }
             }
-        }   
+        }
     }
 
     void StopMovement()
@@ -121,6 +119,8 @@ public class ArcherAttack : MonoBehaviour
     }
     void Attack()
     {
+        Debug.Log(weapon);
+        Debug.Log(weaponPosition.position);
         Instantiate(weapon, weaponPosition.position, Quaternion.identity);
     }
     private void OnDrawGizmosSelected()

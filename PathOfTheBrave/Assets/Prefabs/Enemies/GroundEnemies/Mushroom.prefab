@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3154389066603951306}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154389066603951307}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.333, y: -0.044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3154389067192857768}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3154389067141562879
 GameObject:
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3154389067141562878}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,13 +54,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154389067141562879}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.167, y: -0.264, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3154389067192857768}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3154389067192857762
 GameObject:
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 3154389067192857773}
   - component: {fileID: 3154389067192857771}
   - component: {fileID: 3154389067192857770}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: Mushroom
   m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
@@ -92,9 +92,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154389067192857762}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.66, y: -0.87, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3.2407}
+  m_LocalPosition: {x: 57.89, y: 34.04, z: 0}
+  m_LocalScale: {x: 3.5598, y: 3.5598, z: 3.8454146}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3154389067141562878}
@@ -103,7 +104,6 @@ Transform:
   - {fileID: 4486706240510561403}
   - {fileID: 7236729378564253611}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3154389067192857769
 SpriteRenderer:
@@ -167,6 +167,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -200,6 +219,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: b9ddd0ccfaf9b17439fb6113074618e0, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
@@ -224,6 +249,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3154389067192857773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +267,7 @@ MonoBehaviour:
   wallCheck: {fileID: 3154389066603951307}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   anim: {fileID: 3154389067192857772}
   player: {fileID: 0}
   hitbox: {fileID: 3154389067444951353}
@@ -265,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  attackRange: 1.5
+  attackRange: 1.08
   attackCoolDown: 2
   canAttack: 1
   canMove: 1
@@ -274,9 +300,9 @@ MonoBehaviour:
   anim: {fileID: 3154389067192857772}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   hitbox: {fileID: 3154389067444951353}
-  hitboxRadius: 0.5
+  hitboxRadius: 0.43
   attackDelay: 0.6
 --- !u!114 &3154389067192857770
 MonoBehaviour:
@@ -308,7 +334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3154389067444951352}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,13 +348,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3154389067444951353}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.233, y: -0.091, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3154389067192857768}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4737934124914898162
 GameObject:
@@ -339,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7236729378564253611}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: CoinSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,13 +379,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4737934124914898162}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.017, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3154389067192857768}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6987778348384348821
 GameObject:
@@ -370,7 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4486706240510561403}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: FallingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,11 +410,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6987778348384348821}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.089, y: -0.272, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3154389067192857768}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

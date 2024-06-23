@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1056651924568992373}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,9 +45,8 @@ GameObject:
   - component: {fileID: 3515168750048848086}
   - component: {fileID: 3515168750048848084}
   - component: {fileID: 3515168750048848085}
-  - component: {fileID: 8253827373074210679}
   - component: {fileID: 1360934568859061626}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: Slime
   m_TagString: Slime
   m_Icon: {fileID: 0}
@@ -63,8 +62,8 @@ Transform:
   m_GameObject: {fileID: 3515168750048848682}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8355, y: -1.93, z: 0}
-  m_LocalScale: {x: 5.8219004, y: 5.8219, z: 6.064761}
+  m_LocalPosition: {x: 54.27, y: 34.13, z: 0}
+  m_LocalScale: {x: 3.4720974, y: 3.4720974, z: 3.6169364}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3515168750297521782}
@@ -251,7 +250,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3463109, y: 0.22005567}
+  m_Size: {x: 0.3463109, y: 0.2200557}
   m_EdgeRadius: 0
 --- !u!114 &1360934568859061626
 MonoBehaviour:
@@ -283,7 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3515168750297521782}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3515168750835673922}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2687871569744221171}
-  m_Layer: 10
+  m_Layer: 20
   m_Name: FallingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

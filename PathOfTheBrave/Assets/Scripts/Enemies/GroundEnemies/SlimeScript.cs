@@ -1,3 +1,4 @@
+using Combat.Damage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,7 +63,7 @@ public class SlimeScript : MonoBehaviour
         if (isExplore)
         {
 
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.velocity = Vector2.zero;
             disapearTimer += Time.deltaTime;
             Explore();
             if (disapearTimer >= disapearTime)
@@ -87,7 +88,12 @@ public class SlimeScript : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitbox.transform.position, hitboxRadius, playerLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("hit");
+            Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
+            if (enemy.TryGetComponent(out IDamageable damageable))
+            {
+                //damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+            }
         }
     }
     void ChasePlayer()

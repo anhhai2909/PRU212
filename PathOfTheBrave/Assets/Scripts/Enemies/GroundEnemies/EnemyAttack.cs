@@ -1,5 +1,9 @@
+using Combat.Damage;
+using CoreSystem;
 using UnityEditor.UIElements;
 using UnityEngine;
+using Weapons;
+using static UnityEditor.Progress;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -86,7 +90,12 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitbox.transform.position, hitboxRadius, playerLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("hit");
+            Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
+            if (enemy.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+                //Core.GetCoreComponent<DamageReceiver>().Damage(new Combat.Damage.DamageData(currentAttackData.Amount, item.gameObject));
+            }
         }
     }
 

@@ -1,8 +1,9 @@
+using Combat.Damage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthSystem : MonoBehaviour
+public class EnemyHealthSystem : MonoBehaviour, IDamageable
 {
     public Animator anim;
     public bool canMove = true;
@@ -148,5 +149,10 @@ public class EnemyHealthSystem : MonoBehaviour
                 gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
             }
         }
+    }
+
+    public void Damage(DamageData data)
+    {
+        throw new System.NotImplementedException();
     }
 }

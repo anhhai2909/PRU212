@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class BoDeathMovement : MonoBehaviour
@@ -33,36 +30,38 @@ public class BoDeathMovement : MonoBehaviour
     }
     void Update()
     {
-        
-        checkFalling();
-        if (!isFalling)
+        if (gameObject.GetComponent<BoDeathAttack>().canAttack)
         {
-            if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
+            checkFalling();
+            if (!isFalling)
             {
-                DetectPlayer();
-                if (!gameObject.GetComponent<BoDeathAttack>().isCastingSpell)
+                if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
                 {
-                    if (isChasing != true)
+                    DetectPlayer();
+                    if (!gameObject.GetComponent<BoDeathAttack>().isCastingSpell)
                     {
-                        Walk();
-                    }
-                    else
-                    {
-                        if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f >= gameObject.GetComponent<BoDeathAttack>().attackRange - 0.1f)
+                        if (isChasing != true)
                         {
-                            if (gameObject.GetComponent<BoDeathAttack>().canMove)
-                            {
-                                ChasePlayer();
-                            }
+                            Walk();
                         }
                         else
                         {
-                            rb.velocity = new Vector2(0, rb.velocity.y);
-                            anim.SetBool("IsWalking", false);
+                            if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f >= gameObject.GetComponent<BoDeathAttack>().attackRange - 0.1f)
+                            {
+                                if (gameObject.GetComponent<BoDeathAttack>().canMove)
+                                {
+                                    ChasePlayer();
+                                }
+                            }
+                            else
+                            {
+                                rb.velocity = new Vector2(0, rb.velocity.y);
+                                anim.SetBool("IsWalking", false);
+                            }
                         }
                     }
                 }
-            }                      
+            }
         }
     }
     void checkFalling()
