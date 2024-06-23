@@ -13,13 +13,14 @@ public class CombatTestDummy : MonoBehaviour, IDamageable
 
     public void Damage(DamageData data)
     {
-        //Debug.Log(data.Amount + " Damage taken");
+        Debug.Log(data.Amount + " Damage taken");
         health -= data.Amount;
         Instantiate(hitParticles, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
         anim.SetTrigger("damage");
         if(health <= 0)
         {
-            Destroy(gameObject);
+            health = maxHealth;
+            //Destroy(gameObject);
         }
     }
 

@@ -8,7 +8,7 @@ namespace Weapons.Components
     public class DamageOnHitBoxAction : WeaponComponent<DamageOnHitBoxActionData, AttackDamage>
     {
         private ActionHitBox hitBox;
-        
+
         private void HandleDetectCollider2D(Collider2D[] colliders)
         {
             // Notice that this is equal to (1), the logic has just been offloaded to a static helper class. Notice the using statement (2) is static, allowing as to call the Damage function directly instead of saying
@@ -20,7 +20,7 @@ namespace Weapons.Components
             {
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.Damage(new Combat.Damage.DamageData(currentAttackData.Amount, Core.Root));
+                    damageable.Damage(new Combat.Damage.DamageData(currentAttackData.Amount + weapon.GetAddDamage(), Core.Root));
                     //Core.GetCoreComponent<DamageReceiver>().Damage(new Combat.Damage.DamageData(currentAttackData.Amount, item.gameObject));
                 }
             }
@@ -33,6 +33,15 @@ namespace Weapons.Components
             hitBox = GetComponent<ActionHitBox>();
             
             hitBox.OnDetectedCollider2D += HandleDetectCollider2D;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                
+                Debug.Log("Update");
+            }
         }
 
         protected override void OnDestroy()

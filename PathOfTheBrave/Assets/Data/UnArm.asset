@@ -33,18 +33,23 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
+          addDamage: 0
           <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 2
         - name: Attack 2
+          addDamage: 0
           <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 2
         - name: Attack 3
+          addDamage: 0
           <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 2
         - name: Attack 5
+          addDamage: 0
           <Direction>k__BackingField: {x: 0, y: 0}
           <Velocity>k__BackingField: 2
         - name: Attack 6
+          addDamage: 0
           <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 2
     - rid: 6757589986470789122
@@ -54,14 +59,19 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
+          addDamage: 0
           <Amount>k__BackingField: 10
         - name: Attack 2
+          addDamage: 0
           <Amount>k__BackingField: 10
         - name: Attack 3
+          addDamage: 0
           <Amount>k__BackingField: 10
         - name: Attack 5
+          addDamage: 0
           <Amount>k__BackingField: 10
         - name: Attack 6
+          addDamage: 0
           <Amount>k__BackingField: 10
     - rid: 6757589986470789123
       type: {class: KnockBackData, ns: Weapons.Components, asm: Assembly-CSharp}
@@ -70,18 +80,23 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
+          addDamage: 0
           <Angle>k__BackingField: {x: 0, y: 0}
           <Strength>k__BackingField: 0
         - name: Attack 2
+          addDamage: 0
           <Angle>k__BackingField: {x: 0, y: 0}
           <Strength>k__BackingField: 0
         - name: Attack 3
+          addDamage: 0
           <Angle>k__BackingField: {x: 0, y: 0}
           <Strength>k__BackingField: 0
         - name: Attack 5
+          addDamage: 0
           <Angle>k__BackingField: {x: 0, y: 0}
           <Strength>k__BackingField: 0
         - name: Attack 6
+          addDamage: 0
           <Angle>k__BackingField: {x: 0, y: 0}
           <Strength>k__BackingField: 0
     - rid: 6757589986470789124
@@ -91,14 +106,19 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
+          addDamage: 0
           <Amount>k__BackingField: 0
         - name: Attack 2
+          addDamage: 0
           <Amount>k__BackingField: 0
         - name: Attack 3
+          addDamage: 0
           <Amount>k__BackingField: 0
         - name: Attack 5
+          addDamage: 0
           <Amount>k__BackingField: 0
         - name: Attack 6
+          addDamage: 0
           <Amount>k__BackingField: 0
     - rid: 6757589986470789126
       type: {class: ActionHitBoxData, ns: Weapons.Components, asm: Assembly-CSharp}
@@ -107,6 +127,7 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
+          addDamage: 0
           Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
@@ -115,6 +136,7 @@ MonoBehaviour:
             width: 1.51
             height: 0.54
         - name: Attack 2
+          addDamage: 0
           Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
@@ -123,6 +145,7 @@ MonoBehaviour:
             width: 1.3
             height: 0.62
         - name: Attack 3
+          addDamage: 0
           Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
@@ -131,6 +154,7 @@ MonoBehaviour:
             width: 1.06
             height: 1.07
         - name: Attack 4
+          addDamage: 0
           Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
@@ -139,6 +163,7 @@ MonoBehaviour:
             width: 1
             height: 1.05
         - name: Attack 5
+          addDamage: 0
           Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2

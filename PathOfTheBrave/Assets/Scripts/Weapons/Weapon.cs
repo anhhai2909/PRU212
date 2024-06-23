@@ -14,6 +14,9 @@ namespace Weapons
         public event Action OnUseInput;
 
         [SerializeField] private float attackCounterResetCooldown;
+        public float GetAddDamage() => Data.GetAddDamage();
+        public void SetAddDamage(float Amount) => Data.SetAddDamage(Amount);
+        public void AddAddDamage(float Amount) => Data.AddAddDamage(Amount);
 
         public bool CanEnterAttack { get; private set; }
         

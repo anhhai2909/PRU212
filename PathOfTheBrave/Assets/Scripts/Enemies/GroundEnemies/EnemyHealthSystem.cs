@@ -1,34 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+using Combat.Damage;
+using CoreSystem;
 using UnityEngine;
 
-public class EnemyHealthSystem : MonoBehaviour
+public class EnemyHealthSystem : MonoBehaviour, IDamageable
 {
-    public Animator anim;
+    private Animator anim;
 
-    public int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private GameObject hitParticles;
+    [SerializeField] private float maxHealth = 100;
+
+    private float currentHealth;
     public GameObject coinSpawnPosition;
     public GameObject coin;
     public GameObject potion;
     private bool isDeath = false;
     public float disapearCooldown = 2f;
     public float disapearTimer = Mathf.Infinity;
-    void Start()
+    private void Awake()
     {
+        anim = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
 
     void Update()
     {
-        if (isDeath==true)
+        if (isDeath == true)
         {
             DeactiveEnemy();
             disapearTimer += Time.deltaTime;
-            if (disapearTimer >= disapearCooldown) {
+            if (disapearTimer >= disapearCooldown)
+            {
                 potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
                 coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
-                gameObject.SetActive(false);
+                Destroy(gameObject);
+                //gameObject.SetActive(false);
             }
         }
     }
@@ -47,18 +52,19 @@ public class EnemyHealthSystem : MonoBehaviour
         gameObject.GetComponent<EnemyMovement>().enabled = false;
         gameObject.GetComponent<EnemyAttack>().enabled = false;
     }
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
-        if (isDeath==false)
+        if (isDeath == false)
         {
             currentHealth -= damage;
-            anim.SetTrigger("IsHit");
+            Instantiate(hitParticles, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+            anim.SetTrigger("damage");
             if (currentHealth <= 0)
             {
                 anim.SetTrigger("Die");
                 isDeath = true;
             }
-        }     
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -66,5 +72,11 @@ public class EnemyHealthSystem : MonoBehaviour
         {
             gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
         }
+    }
+
+    public void Damage(DamageData data)
+    {
+        Debug.Log(data.Amount + " Damage taken");
+        GetDamage(data.Amount);
     }
 }
