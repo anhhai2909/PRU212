@@ -17,6 +17,11 @@ namespace Weapons
 
         [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
 
+        private float AddDamage = 0;
+        public float GetAddDamage() => AddDamage;
+        public void SetAddDamage(float Amount) => AddDamage = Amount;
+        public void AddAddDamage(float Amount) => AddDamage += Amount;
+
         public T GetData<T>()
         {
             return ComponentData.OfType<T>().FirstOrDefault();

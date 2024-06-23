@@ -14,6 +14,9 @@ namespace Weapons
         public event Action OnUseInput;
 
         [SerializeField] private float attackCounterResetCooldown;
+        public float GetAddDamage() => Data.GetAddDamage();
+        public void SetAddDamage(float Amount) => Data.SetAddDamage(Amount);
+        public void AddAddDamage(float Amount) => Data.AddAddDamage(Amount);
 
         public bool CanEnterAttack { get; private set; }
         
@@ -72,7 +75,7 @@ namespace Weapons
         public void Enter()
         {
             //Debug.Break();
-            print($"{transform.name} enter");
+            //print($"{transform.name} enter");
 
             AttackStartTime = Time.time;
 
@@ -140,7 +143,7 @@ namespace Weapons
 
         private void ResetAttackCounter()
         {
-            print("Reset Attack Counter");
+            //print("Reset Attack Counter");
             CurrentAttackCounter = 0;
         }
 

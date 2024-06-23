@@ -147,7 +147,7 @@ MonoBehaviour:
     height: 0.25
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512
 --- !u!114 &1775009464070235436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
         m_CallState: 2
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   <InactiveSortingLayerName>k__BackingField: InactiveProjectile
   <CheckDistance>k__BackingField: 2
 --- !u!114 &1775009464070235437

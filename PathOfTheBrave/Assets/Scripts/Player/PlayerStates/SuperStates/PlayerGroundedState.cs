@@ -45,7 +45,8 @@ public class PlayerGroundedState : PlayerState
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
             isTouchingLedge = CollisionSenses.LedgeHorizontal;
-            isTouchingCeiling = CollisionSenses.Ceiling;
+            //isTouchingCeiling = CollisionSenses.Ceiling;
+            isTouchingCeiling = false;
         }
     }
 

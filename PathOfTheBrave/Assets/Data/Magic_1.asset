@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a5a6cd738645369231540dd8f9631f, type: 3}
+  m_Name: Magic_1
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: -774591118, guid: 0464bf6ae3eba8949b5329d15a4ec017, type: 3}
+  <Name>k__BackingField: Magic
+  <Description>k__BackingField: Bum bum chiu chiu
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 7010ad7849df6124c82723a8093c8108, type: 2}
+  <NumberOfAttacks>k__BackingField: 1
+  <ComponentData>k__BackingField:
+  - rid: 6757590011093975040
+  - rid: 6757590011093975042
+  - rid: 6757590011093975043
+  - rid: 6757590011093975044
+  - rid: 6757590077311549440
+  references:
+    version: 2
+    RefIds:
+    - rid: 6757590011093975040
+      type: {class: InputHoldData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: InputHoldData
+    - rid: 6757590011093975042
+      type: {class: ProjectileSpawnerData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ProjectileSpawnerData
+        repeatData: 1
+        attackData:
+        - name: Attack 1
+          <SpawnInfos>k__BackingField:
+          - <Offset>k__BackingField: {x: 0.6, y: -1.03}
+            <Direction>k__BackingField: {x: 1, y: 0}
+            <ProjectilePrefab>k__BackingField: {fileID: 1775009464070235410, guid: eabfd73ed5bcc914aa78ed45e0f9f4c3, type: 3}
+            <DamageData>k__BackingField:
+              <Amount>k__BackingField: 20
+            <KnockBackData>k__BackingField:
+              Strength: 0
+              Angle: {x: 0, y: 0}
+            <PoiseDamageData>k__BackingField:
+              <Amount>k__BackingField: 0
+            <SpriteDataPackage>k__BackingField:
+              <Sprite>k__BackingField: {fileID: -670908278, guid: ca07f0e090b6d2646a6453c5e4f14163, type: 3}
+    - rid: 6757590011093975043
+      type: {class: ChargeData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <ChargeTime>k__BackingField: 0.8
+          <InitialChargeAmount>k__BackingField: 1
+          <NumberOfCharges>k__BackingField: 5
+          <ChargeIncreaseIndicatorParticlePrefab>k__BackingField: {fileID: 6762676686280720063, guid: 19758c9f67bb0264e8437296ed15d9ee, type: 3}
+          <FullyChargedIndicatorParticlePrefab>k__BackingField: {fileID: 6762676686280720063, guid: 19758c9f67bb0264e8437296ed15d9ee, type: 3}
+          <ParticlesOffset>k__BackingField: {x: 0, y: -1.2}
+    - rid: 6757590011093975044
+      type: {class: ChargeToProjectileSpawnerData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ChargeToProjectileSpawnerData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <AngleVariation>k__BackingField: 10
+    - rid: 6757590077311549440
+      type: {class: MovementData, ns: Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: -2

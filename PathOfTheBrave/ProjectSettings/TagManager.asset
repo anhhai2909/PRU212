@@ -6,10 +6,18 @@ TagManager:
   tags:
   - Enemy
   - Portal
-  - FireBall
-  - FireBallPos
-  - SpawnSkeleton
-  - Meteor
+  - ParticleContainer
+  - Ground
+  - FireballRespawnPosition
+  - GRAttackStuffResPosition
+  - FlyEnemy
+  - GroundEnemy
+  - Slime
+  - MovingPlatform
+  - Spike
+  - Item
+  - Inventory
+  - GroundRangeAttackStuffRespawnPosition
   layers:
   - Default
   - TransparentFX
@@ -28,15 +36,16 @@ TagManager:
   - 
   - 
   - Interactable
+  - WorldItem
+  - Coin
+  - Fireball
+  - Enemy
+  - HealthPotion
+  - BoDSpell
   - 
+  - NotInteractable
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Trap
   - 
   - 
   - 
@@ -76,6 +85,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 2647297321
+    locked: 0
+  - name: ActiveProjectile
+    uniqueID: 1711295435
     locked: 0
   - name: ForegroundDecorations
     uniqueID: 4050010293

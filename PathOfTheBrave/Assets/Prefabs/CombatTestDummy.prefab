@@ -74,11 +74,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -679396035
-  m_SortingLayer: 5
+  m_SortingLayerID: -1647669975
+  m_SortingLayer: 10
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7640968582719819219, guid: 9b0b81f6e617cc54196c202600c28272,
-    type: 3}
+  m_Sprite: {fileID: 1774164188, guid: d886eb6b7dbd08c4485a51315ad7c8a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -171,7 +170,7 @@ Animator:
   m_GameObject: {fileID: 9085075387678271604}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3d3d7456884137248a91ee37ae9925b7, type: 2}
+  m_Controller: {fileID: 9100000, guid: a475aaf0b5b214e4e9d59c43c5d498fc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -194,5 +193,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529c210543e83e74e8f08db225da9a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitParticles: {fileID: 6240072112886026631, guid: 25aeb624df7917e4aa9cbe2204b85ed6,
-    type: 3}
+  hitParticles: {fileID: 3678927049769436520, guid: e43da1e5950095a4c937622f8a18e8fa, type: 3}

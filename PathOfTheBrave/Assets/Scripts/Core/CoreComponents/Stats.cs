@@ -1,4 +1,5 @@
 ﻿using System;
+using Combat.Damage;
 using CoreSystem.StatsSystem;
 using UnityEngine;
 
@@ -13,8 +14,7 @@ namespace CoreSystem
         
         protected override void Awake()
         {
-            base.Awake();
-            
+            base.Awake();           
             Health.Init();
             Poise.Init();
         }
