@@ -12,13 +12,11 @@ GameObject:
   - component: {fileID: 6154935388099564828}
   - component: {fileID: 1233275515988781337}
   - component: {fileID: 3499778043460655533}
+  - component: {fileID: 8864422300600718597}
   - component: {fileID: 7159446174880037354}
   - component: {fileID: 5121120087774222604}
   - component: {fileID: 8878607742347317142}
-  - component: {fileID: 7251965832971351285}
-  - component: {fileID: 1639943278356091334}
-  - component: {fileID: 771172033909801967}
-  - component: {fileID: 5423048019212694009}
+  - component: {fileID: 3423159835676279678}
   m_Layer: 0
   m_Name: Necromancer
   m_TagString: Untagged
@@ -160,6 +158,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8864422300600718597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018746711553106288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28cbf810c6dac14da52928690a72f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireball: {fileID: 0}
+  fireballPos: {fileID: 8189407459145234056}
 --- !u!50 &7159446174880037354
 Rigidbody2D:
   serializedVersion: 4
@@ -214,49 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbf7dbf3d4f64e4581d29a4526abffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7251965832971351285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018746711553106288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411dc85c62b9ffa4d95d3ef98bb58b8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
-  attackDamage: 0
-  attackRange: 0
-  skills: []
-  healthBarImage: {fileID: 0}
-  animator: {fileID: 0}
-  moveSpeed: 5
-  jumpForce: 10
-  groundCheck: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  player: {fileID: 0}
---- !u!114 &1639943278356091334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018746711553106288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c28cbf810c6dac14da52928690a72f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 0
-  fireballPrefab: {fileID: 3763999175239569576, guid: 62ff61da2a8b68141903424d7784121b, type: 3}
-  fireballPos: {fileID: 8189407459145234056}
---- !u!114 &771172033909801967
+--- !u!114 &3423159835676279678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,30 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9fd474b45ddb4d4a8ce356ad97e8e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 0
   player: {fileID: 0}
-  skeletonPrefab: {fileID: 6296756595974732866, guid: e467cf8fb39bee34f91edb3e596488a7, type: 3}
-  spawnRadius: 10
---- !u!114 &5423048019212694009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018746711553106288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac3d1815b0fda14d8ea0b3b75f00bfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  cooldown: 0
-  meteorPrefab: {fileID: 4244283179249365528, guid: 1a2c0dee85d6af14eb36373e1d2e628f, type: 3}
-  spawnHeight: 10
-  fallDelay: 0.3
-  fallSpeed: 5
-  fallDirection: {x: -1, y: -1}
+  spawnRadius: 3
 --- !u!1 &2026097187721134338
 GameObject:
   m_ObjectHideFlags: 0

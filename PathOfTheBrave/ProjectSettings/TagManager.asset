@@ -6,10 +6,6 @@ TagManager:
   tags:
   - Enemy
   - Portal
-  - FireBall
-  - FireBallPos
-  - SpawnSkeleton
-  - Meteor
   layers:
   - Default
   - TransparentFX
