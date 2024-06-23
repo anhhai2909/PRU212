@@ -17,6 +17,7 @@ TagManager:
   - Spike
   - Item
   - Inventory
+  - GroundRangeAttackStuffRespawnPosition
   layers:
   - Default
   - TransparentFX
@@ -43,17 +44,7 @@ TagManager:
   - BoDSpell
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Trap
   - 
   - 
   - 
