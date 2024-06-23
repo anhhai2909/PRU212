@@ -17,7 +17,7 @@ public class DontDestroyScript : MonoBehaviour
         else
         {
             Destroy(gameObject);
-
+            //gameObject.SetActive(false);
         }
     }
 

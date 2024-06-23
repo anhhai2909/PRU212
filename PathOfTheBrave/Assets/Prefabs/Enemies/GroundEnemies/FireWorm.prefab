@@ -257,7 +257,7 @@ MonoBehaviour:
   wallCheck: {fileID: 886699421135347569}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   anim: {fileID: 886699419678482198}
   player: {fileID: 0}
   fallingCheck: {fileID: 5147903729613242671}
@@ -283,17 +283,17 @@ MonoBehaviour:
   attackRange: 8
   attackCoolDown: 2
   canAttack: 1
-  verticalGap: 0.6
+  verticalGap: 2
   rb: {fileID: 886699419678482197}
   player: {fileID: 0}
   anim: {fileID: 886699419678482198}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   weapon: {fileID: 5935205506458234946, guid: b19ce8c4e4bf19c408ece34f88c3a889, type: 3}
   weaponPosition: {fileID: 886699419963126403}
   canMove: 1
-  attackDelay: 1
+  attackDelay: 0.8
 --- !u!1 &886699419963126403
 GameObject:
   m_ObjectHideFlags: 0

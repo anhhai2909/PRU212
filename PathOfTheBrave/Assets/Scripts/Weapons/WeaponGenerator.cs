@@ -100,7 +100,7 @@ namespace Weapons
 
         private void OnDestroy()
         {
-            weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
+            //weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
         }
 
         #endregion

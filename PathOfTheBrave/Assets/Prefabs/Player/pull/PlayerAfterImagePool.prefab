@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2994850603394123084}
   - component: {fileID: 6542028308987143976}
+  - component: {fileID: 7115160844431363698}
   m_Layer: 0
   m_Name: PlayerAfterImagePool
   m_TagString: Untagged
@@ -45,3 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterImagePrefab: {fileID: 4642220677598575236, guid: b4ed14e967e1fbe4f9b60a5391adc865, type: 3}
+--- !u!114 &7115160844431363698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7287852459903888062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e9256ccf1a84a47a979e2fe063f9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
