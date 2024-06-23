@@ -13,6 +13,10 @@ TagManager:
   - FlyEnemy
   - GroundEnemy
   - Slime
+  - MovingPlatform
+  - Spike
+  - Item
+  - Inventory
   layers:
   - Default
   - TransparentFX
