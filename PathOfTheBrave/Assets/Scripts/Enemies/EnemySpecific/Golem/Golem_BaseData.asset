@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8616551fadf786b468748b4b85698cb9, type: 3}
-  m_Name: E1_BaseData
+  m_Name: Golem_BaseData
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  damageHopSpeed: 10
+  maxHealth: 30
+  damageHopSpeed: 3
   wallCheckDistance: 0.2
-  ledgeCheckDistance: 1
+  ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
-  minAgroDistance: 7
-  maxAgroDistance: 8
+  minAgroDistance: 3
+  maxAgroDistance: 4
   stunResistance: 3
   stunRecoveryTime: 2
-  closeRangeActionDistance: 1.75
-  hitParticle: {fileID: 6240072112886026631, guid: d3ad3f1375e0d114ca19695641fceb61, type: 3}
+  closeRangeActionDistance: 1
+  hitParticle: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 0
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 0
