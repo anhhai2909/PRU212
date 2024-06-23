@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -34,9 +35,12 @@ public class InprogressActivatedItem : MonoBehaviour
 
     public List<GameItem> inProgressItem;
 
+    public AudioClip useItemSound;
 
+    private SoundEffectScript sounds;
     void Start()
     {
+        sounds = gameObject.GetComponent<SoundEffectScript>();
         keyINP = new Dictionary<string, int>();
         inProgressItem = new List<GameItem>();
         activeSlot = 1;
@@ -89,6 +93,8 @@ public class InprogressActivatedItem : MonoBehaviour
             {
                 if (item.Key == activeItem.Id)
                 {
+                    sounds.gameObject.GetComponent<AudioSource>().clip = useItemSound;
+                    sounds.Play();
                     SetTimerBar(activeItem);
                     
                     if (item.Value - 1 > 0)
