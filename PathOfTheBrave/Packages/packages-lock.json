@@ -1,5 +1,6 @@
 {
   "dependencies": {
+
     "com.unity.2d.animation": {
 
       "version": "9.0.4",
@@ -115,6 +116,7 @@
       },
       "url": "https://packages.unity.com"
     },
+
     "com.unity.cinemachine": {
       "version": "2.10.0",
       "depth": 0,
@@ -132,6 +134,7 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+
     "com.unity.collections": {
       "version": "1.2.4",
       "depth": 2,
@@ -142,6 +145,7 @@
       },
       "url": "https://packages.unity.com"
     },
+
 
     "com.unity.ext.nunit": {
       "version": "1.0.6",
@@ -195,13 +199,6 @@
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"
       },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.mathematics": {
-      "version": "1.2.6",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.newtonsoft-json": {
