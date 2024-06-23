@@ -1,5 +1,6 @@
 using Assets.Scripts.DataPersistence.Data;
 using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,9 +28,17 @@ public class InprogressActivatedItem : MonoBehaviour
 
     private float coin;
 
+    public List<string> inprogressObject;
+
+    public Dictionary<string, int> keyINP;
+
+    public List<GameItem> inProgressItem;
+
+
     void Start()
     {
-
+        keyINP = new Dictionary<string, int>();
+        inProgressItem = new List<GameItem>();
         activeSlot = 1;
         canPressKey = true;
         LoadAllItem();
@@ -65,7 +74,6 @@ public class InprogressActivatedItem : MonoBehaviour
                     b += (item.Key + ":" + item.Value + " ");
                 }
             }
-            Debug.Log(b);
             LoadToGame(MinItem());
             oldActivatedItems = activatedItems;
         }
@@ -75,12 +83,14 @@ public class InprogressActivatedItem : MonoBehaviour
 
     public void UseItem()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) && canPressKey)
+        if (Input.GetKeyDown(KeyCode.V) && canPressKey)
         {
             foreach (var item in playerItems)
             {
                 if (item.Key == activeItem.Id)
                 {
+                    SetTimerBar(activeItem);
+                    /*
                     if (item.Value - 1 > 0)
                     {
                         playerItems[item.Key] = item.Value - 1;
@@ -96,7 +106,7 @@ public class InprogressActivatedItem : MonoBehaviour
                         LoadDataScript.SaveActivatedItems(activatedItems);
                         LoadToGame(MinItem());
                     }
-
+                    */
 
                     break;
                 }
@@ -104,6 +114,82 @@ public class InprogressActivatedItem : MonoBehaviour
             StartCoroutine(DelayCoroutine());
         }
     }
+
+    void SetTimerBar(GameItem item)
+    {
+        float timer = 15;
+
+        if (inProgressItem.Contains(item))
+        {
+            Debug.Log("1sa");
+            for(int i = 0; i < inProgressItem.Count; i++)
+            {
+                if(item.Id == inProgressItem[i].Id)
+                {
+                    GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().CancelLeanTween(keyINP[inprogressObject[i]]);
+                    GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().bar = GameObject.Find(inprogressObject[i]).transform.GetChild(0).GetChild(0).gameObject;
+                    GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().time = 10;
+                    GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().bar.transform.localScale = new Vector3(1.802f, GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().bar.transform.localScale.y, GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().bar.transform.localScale.z);
+                    int id = GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().AnimateBar(inprogressObject[i], item, GameObject.Find(inprogressObject[i]));
+                    if (keyINP.ContainsKey(inprogressObject[i]))
+                    {
+                        keyINP[inprogressObject[i]] = id;
+                    }
+                    else
+                    {
+                        keyINP.Add(inprogressObject[i], id);
+                    }
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (inProgressItem.Count == 4)
+            {
+                return;
+            }
+            else
+            {
+                
+                GameObject itemINP;
+                int index = 0;
+                while(inprogressObject.Contains("ActivatedInprogress" + (index != 0 ? (index) : (""))) && index <= 3)
+                {
+                    index++;
+                }
+                
+                inprogressObject.Add("ActivatedInprogress" + (index != 0 ? (index) : ("")));
+                itemINP = GameObject.Find("ActivatedInprogress" + (index != 0 ? (index) : ("")));
+                itemINP.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.SpriteName);
+                itemINP.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                itemINP.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
+                
+                if(itemINP.GetComponent<TimerBar>() == null)
+                    itemINP.AddComponent<TimerBar>();
+                itemINP.GetComponent<TimerBar>().bar = itemINP.transform.GetChild(0).GetChild(0).gameObject;
+                itemINP.GetComponent<TimerBar>().time = 10;
+                int id = itemINP.GetComponent<TimerBar>().AnimateBar("ActivatedInprogress" + (index != 0 ? (index) : ("")), item, itemINP);
+                if (keyINP.ContainsKey("ActivatedInprogress" + (index != 0 ? (index) : (""))))
+                {
+                    keyINP["ActivatedInprogress" + (index != 0 ? (index) : (""))] = id;
+                }
+                else
+                {
+                    keyINP.Add("ActivatedInprogress" + (index != 0 ? (index) : ("")), id);
+                }
+            }
+            inProgressItem.Add(item);
+
+        }
+        string str = "";
+        for (int i = 0; i < inprogressObject.Count; i++)
+        {
+            str += inprogressObject[i].ToString() + " ";
+        }
+        Debug.Log(str);
+    }
+
 
     public void SwapMainItem()
     {

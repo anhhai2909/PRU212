@@ -52,6 +52,8 @@ public class ItemScript : MonoBehaviour
 
     public AudioClip coinSounds;
 
+    public int[] leenTweenId;
+
     void Start()
     {
         LoadDataScript.LoadPlayerData();
