@@ -133,7 +133,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
+                //gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
             }
         }
         else if (gameObject.CompareTag("FlyEnemy") == true)
@@ -146,7 +146,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
             }
             if (collision.gameObject.CompareTag("Player"))
             {
-                gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
+                //gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
             }
         }
     }

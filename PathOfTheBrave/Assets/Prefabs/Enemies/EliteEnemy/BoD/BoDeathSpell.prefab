@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8303897020921084548}
   - component: {fileID: 8303897020921084551}
   - component: {fileID: 1933424603217230815}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8303897022012046813}
   - component: {fileID: 8303897022012046802}
   - component: {fileID: 8303897022012046815}
-  m_Layer: 12
+  m_Layer: 20
   m_Name: BoDeathSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,8 +153,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1647669975
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -1663384262, guid: 195a7e1feb04a6d47bbf0b0b63266b89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

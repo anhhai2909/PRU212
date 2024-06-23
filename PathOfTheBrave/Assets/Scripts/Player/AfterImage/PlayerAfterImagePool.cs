@@ -36,6 +36,8 @@ public class PlayerAfterImagePool : MonoBehaviour
 
     public GameObject GetFromPool()
     {
+        Debug.Log(availableObjects.Count);
+
         if(availableObjects.Count == 0)
         {
             GrowPool();
