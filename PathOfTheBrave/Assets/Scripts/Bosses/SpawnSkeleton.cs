@@ -39,8 +39,8 @@ public class SpawnSkeleton : Skill
     private Vector2 GetRandomPositionAroundPlayer()
     {
         Vector2 playerPosition = player.transform.position;
-        float randomX = Random.Range(playerPosition.x - spawnRadius, playerPosition.x);
-        Vector2 randomPosition = new Vector2(randomX, -2.5f);
+        //float randomX = Random.Range(playerPosition.x - spawnRadius, playerPosition.x);
+        Vector2 randomPosition = new Vector2(player.transform.position.x, -2.5f);
 
         return randomPosition;
     }

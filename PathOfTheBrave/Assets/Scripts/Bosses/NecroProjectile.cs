@@ -30,7 +30,7 @@ public class NecroProjectile : Skill
                 timer = 0f; // Reset the timer
             }
         }
-        Debug.Log(timer);
+        //Debug.Log(timer);
     }
 
     public void Shoot()

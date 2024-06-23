@@ -15,11 +15,19 @@ public class SpawnMeteor : Skill
     void Start()
     {
         animator = GetComponent<Animator>(); // Initialize animator here
+        SpawnMeteors(10);
     }
 
     void Update()
     {
         // Any continuous behavior or checks can be added here if needed
+    }
+    private void SpawnMeteors(int numberOfMeteors)
+    {
+        for (int i = 0; i < numberOfMeteors; i++)
+        {
+            Spawn();
+        }
     }
 
     private void Spawn()
