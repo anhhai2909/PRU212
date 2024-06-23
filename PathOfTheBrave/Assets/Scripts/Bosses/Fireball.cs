@@ -11,6 +11,7 @@ public class Fireball : MonoBehaviour
     Vector3 direction;
     public float speed = 2f;
     public float distanceLimit = 0f;
+    public float destroyTime = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class Fireball : MonoBehaviour
         float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // Cập nhật góc quay của đối tượng
-        this.transform.rotation = Quaternion.Euler(0, 0, rot+90);
+        this.transform.rotation = Quaternion.Euler(0, 0, rot+97);
 
         // Gọi phương thức Follow để đối tượng di chuyển theo người chơi
         this.Follow();
@@ -46,6 +47,14 @@ public class Fireball : MonoBehaviour
         // Di chuyển đối tượng đến điểm đích với tốc độ nhất định
         gameObject.transform.position =
             Vector3.MoveTowards(gameObject.transform.position, targetPoint, this.speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            GameObject.Destroy(gameObject);
+        }
     }
 
 }
