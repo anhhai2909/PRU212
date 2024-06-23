@@ -37,28 +37,28 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2892062441945380559}
-    m_Position: {x: 200, y: 0, z: 0}
+    m_Position: {x: 280, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8734222046191001448}
-    m_Position: {x: 235, y: 65, z: 0}
+    m_Position: {x: -140, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8618810189800646911}
-    m_Position: {x: 270, y: 130, z: 0}
+    m_Position: {x: 710, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4437286304310927924}
-    m_Position: {x: 305, y: 195, z: 0}
+    m_Position: {x: 490, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -900927438728250799}
-    m_Position: {x: 340, y: 260, z: 0}
+    m_Position: {x: 70, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2110935234872655497}
-    m_Position: {x: 375, y: 325, z: 0}
+    m_Position: {x: 280, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1800145129374063767}
-    m_Position: {x: 410, y: 390, z: 0}
+    m_Position: {x: 530, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1017872343416546871}
-    m_Position: {x: 445, y: 455, z: 0}
+    m_Position: {x: 540, y: 200, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -129,7 +129,19 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Golem
   serializedVersion: 5
-  m_AnimatorParameters: []
+  m_AnimatorParameters:
+  - m_Name: idle
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: move
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
