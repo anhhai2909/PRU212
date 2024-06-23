@@ -43,6 +43,7 @@ TagManager:
   - HealthPotion
   - BoDSpell
   - 
+  - NotInteractable
   - 
   - Trap
   - 
