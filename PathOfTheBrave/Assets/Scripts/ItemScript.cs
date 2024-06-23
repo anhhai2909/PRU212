@@ -179,6 +179,7 @@ public class ItemScript : MonoBehaviour
             }
             LoadDataScript.SavePlayerItemData(coin, playerItems);
             GameObject inprogressActivatedItem = GameObject.Find("ActivatedItemInGame");
+            inprogressActivatedItem.GetComponent<InprogressActivatedItem>().LoadAllItem();
             inprogressActivatedItem.GetComponent<InprogressActivatedItem>().LoadData();
             inprogressActivatedItem.GetComponent<InprogressActivatedItem>().LoadToGame(inprogressActivatedItem.GetComponent<InprogressActivatedItem>().MinItem());
         }

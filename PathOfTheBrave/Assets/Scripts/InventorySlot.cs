@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
@@ -15,6 +16,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         GameObject oldParent = draggableItem.parentAfterDrag.gameObject;
         if (transform.childCount > 0)
         {
+            Debug.Log("123d");
             GameObject old = transform.GetChild(0).gameObject;
             transform.GetChild(0).SetParent(oldParent.transform);
             draggableItem.parentAfterDrag = transform;
@@ -48,12 +50,27 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         int id = Convert.ToInt32(newObject.name);
         if (gameObject.name.Contains("Item") && !gameObject.name.Contains("Activated"))
         {
-            foreach (var item in activatedItems)
-            {
-                if (item.Value == id)
+            Debug.Log(oldObject);
+            if (oldObject.name.Contains("Item"))
+            { 
+                foreach (var item in activatedItems)
                 {
-                    activatedItems.Remove(item.Key);
-                    break;
+                    if (item.Value == id)
+                    {
+                        activatedItems.Remove(item.Key);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in activatedItems)
+                {
+                    if (item.Value == id)
+                    {
+                        activatedItems[item.Key] = Convert.ToInt32(oldObject.name);
+                        break;
+                    }
                 }
             }
         }

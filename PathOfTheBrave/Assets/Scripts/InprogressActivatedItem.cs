@@ -59,7 +59,7 @@ public class InprogressActivatedItem : MonoBehaviour
         activatedItems = LoadDataScript.activatedItems;
     }
 
-    private void LoadAllItem()
+    public void LoadAllItem()
     {
         TextAsset jsonData = Resources.Load<TextAsset>("JSON\\Item");
         items = JsonConvert.DeserializeObject<List<GameItem>>(jsonData.text);
@@ -93,8 +93,7 @@ public class InprogressActivatedItem : MonoBehaviour
             {
                 if (item.Key == activeItem.Id)
                 {
-                    sounds.gameObject.GetComponent<AudioSource>().clip = useItemSound;
-                    sounds.Play();
+                    
                     SetTimerBar(activeItem);
                     
                     if (item.Value - 1 > 0)
@@ -127,8 +126,9 @@ public class InprogressActivatedItem : MonoBehaviour
 
         if (inProgressItem.Contains(item))
         {
-            Debug.Log("1sa");
-            for(int i = 0; i < inProgressItem.Count; i++)
+            sounds.gameObject.GetComponent<AudioSource>().clip = useItemSound;
+            sounds.Play();
+            for (int i = 0; i < inProgressItem.Count; i++)
             {
                 if(item.Id == inProgressItem[i].Id)
                 {
@@ -157,7 +157,9 @@ public class InprogressActivatedItem : MonoBehaviour
             }
             else
             {
-                
+                sounds.gameObject.GetComponent<AudioSource>().clip = useItemSound;
+                sounds.Play();
+
                 GameObject itemINP;
                 int index = 0;
                 while(inprogressObject.Contains("ActivatedInprogress" + (index != 0 ? (index) : (""))) && index <= 3)
@@ -261,7 +263,6 @@ public class InprogressActivatedItem : MonoBehaviour
         GameObject activatedInGame = GameObject.Find("ActivatedItemInGame");
         if (index == 100)
         {
-            Debug.Log("100");
             activatedInGame.GetComponent<Image>().color = new Color(255, 255, 255, 0);
 
             GameObject activatedInGameImage = GameObject.Find("ActivatedItemInGameImage");

@@ -38,6 +38,7 @@ public class TimerBar : MonoBehaviour
             {
                 gameObject.GetComponent<InprogressActivatedItem>().inProgressItem.Remove(gameItem);
             }
+            gameObject.GetComponent<InprogressActivatedItem>().LoadData();
             gameItemINP.GetComponent<Image>().sprite = Resources.Load<Sprite>("");
             gameItemINP.GetComponent<Image>().color = new Color(255, 255, 255, 0);
             gameItemINP.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(255, 255, 255, 0);
