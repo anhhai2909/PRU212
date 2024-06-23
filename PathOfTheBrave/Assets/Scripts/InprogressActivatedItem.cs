@@ -90,7 +90,7 @@ public class InprogressActivatedItem : MonoBehaviour
                 if (item.Key == activeItem.Id)
                 {
                     SetTimerBar(activeItem);
-                    /*
+                    
                     if (item.Value - 1 > 0)
                     {
                         playerItems[item.Key] = item.Value - 1;
@@ -106,7 +106,7 @@ public class InprogressActivatedItem : MonoBehaviour
                         LoadDataScript.SaveActivatedItems(activatedItems);
                         LoadToGame(MinItem());
                     }
-                    */
+                    
 
                     break;
                 }
@@ -255,6 +255,7 @@ public class InprogressActivatedItem : MonoBehaviour
         GameObject activatedInGame = GameObject.Find("ActivatedItemInGame");
         if (index == 100)
         {
+            Debug.Log("100");
             activatedInGame.GetComponent<Image>().color = new Color(255, 255, 255, 0);
 
             GameObject activatedInGameImage = GameObject.Find("ActivatedItemInGameImage");
