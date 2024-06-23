@@ -66,7 +66,6 @@ public class MainMenuScript : MonoBehaviour
 
         for (int i = 0; i < objects.Count; i++)
         {
-            Debug.Log(objects[i]);
             if (objects[i] != null)
             {
                 if (!objects[i].active)
@@ -97,6 +96,8 @@ public class MainMenuScript : MonoBehaviour
         {
             player.active = true;
             playerScript.gameObject.SetActive(true);
+            DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
+            dataPersistenceManager.SaveToFile(null);
             canvas.active = false;
             playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

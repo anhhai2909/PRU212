@@ -22,7 +22,7 @@
   {
     "Id": 3,
     "SpriteName": "damage",
-    "Description": "Increase 60% damage",
+    "Description": "Increase 60% damage in 15 seconds",
     "IsUsedInInventory": true,
     "IsForever": false,
     "IsEffectByTime": true,
@@ -32,7 +32,7 @@
   {
     "Id": 4,
     "SpriteName": "speed",
-    "Description": "Increase 45% speed",
+    "Description": "Increase 45% speed in 15 seconds",
     "IsUsedInInventory": true,
     "IsForever": false,
     "IsEffectByTime": true,
@@ -42,7 +42,7 @@
   {
     "Id": 5,
     "SpriteName": "burn",
-    "Description": "Increase 20% poison damage",
+    "Description": "Increase 20% poison damage in 15 seconds",
     "IsUsedInInventory": true,
     "IsForever": false,
     "IsEffectByTime": true,
@@ -52,7 +52,7 @@
   {
     "Id": 6,
     "SpriteName": "defense",
-    "Description": "Reduces enemy damage by 35%",
+    "Description": "Reduces enemy damage by 35% in 15 seconds",
     "IsUsedInInventory": true,
     "IsForever": false,
     "IsEffectByTime": true,
@@ -62,7 +62,7 @@
   {
     "Id": 7,
     "SpriteName": "reborn",
-    "Description": "Resurrected one more time",
+    "Description": "Resurrected one more time in next map",
     "IsUsedInInventory": true,
     "IsForever": false,
     "IsEffectByTime": false,
@@ -72,7 +72,7 @@
   {
     "Id": 8,
     "SpriteName": "coin_percentage",
-    "Description": "Increase gold drop rate to 50%",
+    "Description": "Increase gold drop rate to 50% in next map",
     "IsUsedInInventory": true,
     "IsForever": false,
     "IsEffectByTime": false,

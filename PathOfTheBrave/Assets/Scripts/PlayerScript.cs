@@ -12,9 +12,9 @@ using UnityEngine.SceneManagement;
 public class PlayerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float hp = 10;
+    public float hp ;
 
-    public float coin = 10;
+    public float coin;
 
     public float xSpawn = 0;
 
@@ -44,6 +44,8 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
+        hp = 10;
+        coin = 2000;
         DontDestroyOnLoad(this);
         if (instance == null)
         {
@@ -61,7 +63,6 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
-
     }
 
     void LoadLevel(int sceneIndex)
@@ -94,14 +95,15 @@ public class PlayerScript : MonoBehaviour
 
                 case 1:
                     {
-                        x = -6.91f;
-                        y = -0.1f;
+                        x = -7.025761f;
+                        y = 0.8889478f;
+                        
                         break;
                     }
                 case 2:
                     {
-                        x = -10.78072f;
-                        y = -0.3826588f;
+                        x = -6.91f;
+                        y = -0.1f;
                         break;
                     }
                 case 3:

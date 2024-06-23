@@ -48,9 +48,13 @@ public class ItemScript : MonoBehaviour
 
     private SoundEffectScript sounds;
 
+    public AudioClip errorSounds;
+
+    public AudioClip coinSounds;
 
     void Start()
     {
+        LoadDataScript.LoadPlayerData();
         sounds = gameObject.GetComponent<SoundEffectScript>();
         tooltips = new List<string>();
 
@@ -148,8 +152,39 @@ public class ItemScript : MonoBehaviour
         int id = Convert.ToInt32(id_raw) - 1;
         if (coin - items[id].Coin >= 0)
         {
+            LoadDataScript.LoadPlayerData();
             ChangeCoin(items[id].Coin);
+            sounds.gameObject.GetComponent<AudioSource>().clip = coinSounds;
             sounds.Play();
+            Dictionary<int, int> playerItems;
+            if (LoadDataScript.items == null)
+            {
+                playerItems = new Dictionary<int, int>();
+                playerItems.Add(id + 1, 1);
+
+            }
+            else
+            {
+                playerItems = LoadDataScript.items;
+                if (playerItems.ContainsKey(id + 1)) {
+                    playerItems[id + 1]++;
+                }
+                else
+                {
+                    playerItems.Add(id + 1, 1);
+                }
+
+            }
+            LoadDataScript.SavePlayerItemData(coin, playerItems);
+            GameObject inprogressActivatedItem = GameObject.Find("ActivatedItemInGame");
+            inprogressActivatedItem.GetComponent<InprogressActivatedItem>().LoadData();
+            inprogressActivatedItem.GetComponent<InprogressActivatedItem>().LoadToGame(inprogressActivatedItem.GetComponent<InprogressActivatedItem>().MinItem());
+        }
+        else
+        {
+            sounds.gameObject.GetComponent<AudioSource>().clip = errorSounds;
+            sounds.Play();
+
         }
     }
 
@@ -160,7 +195,6 @@ public class ItemScript : MonoBehaviour
             if (i < items.Count)
             {
                 string a = list[i].name;
-                Debug.Log(a);
                 if (coin < items[Convert.ToInt32(a) - 1].Coin)
                 {
                     list[i].transform.Find("ItemCost").GetComponent<TMP_Text>().color = Color.red;

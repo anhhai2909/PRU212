@@ -1596,7 +1596,6 @@ MonoBehaviour:
   coin: 10
   xSpawn: 0
   ySpawn: 0
-  moveSpeed: 0
   xDirection: 0
   afterImagePool: {fileID: 0}
   transitionAnim: {fileID: 1389051358}
@@ -5679,6 +5678,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 874036690}
     m_Modifications:
+    - target: {fileID: 4537216046539836584, guid: c6605259b8f3822489888efcc4e33859, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537216046539836584, guid: c6605259b8f3822489888efcc4e33859, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4537216047615563646, guid: c6605259b8f3822489888efcc4e33859, type: 3}
       propertyPath: m_Name
       value: SceneTransition
@@ -5725,6 +5732,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4537216047615563647, guid: c6605259b8f3822489888efcc4e33859, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537216047626905796, guid: c6605259b8f3822489888efcc4e33859, type: 3}
+      propertyPath: m_Name
+      value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537216047626905802, guid: c6605259b8f3822489888efcc4e33859, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537216047626905802, guid: c6605259b8f3822489888efcc4e33859, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

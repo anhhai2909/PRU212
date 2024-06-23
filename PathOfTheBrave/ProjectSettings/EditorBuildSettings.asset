@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: d78e41198bf6d8f47a6822cf95a6a5fb
   - enabled: 1
-    path: Assets/Scenes/Jungle_3.unity
-    guid: f025300ca28a3a647804af66be97ea04
-  - enabled: 1
     path: Assets/Scenes/InsideCastle.unity
     guid: c89629189aaa7b54ebf691b6b483bcba
+  - enabled: 1
+    path: Assets/Scenes/Jungle_3.unity
+    guid: f025300ca28a3a647804af66be97ea04
   - enabled: 1
     path: Assets/Scenes/Jungle.unity
     guid: 2cda990e2423bbf4892e6590ba056729

@@ -28,15 +28,15 @@ public class UpgradeScript : MonoBehaviour
 
     public Image imgMD;
 
-    public float levelHealth;
+    public int levelHealth;
 
-    public float levelMana;
+    public int levelMana;
 
-    public float levelSD;
+    public int levelSD;
 
-    public float levelBD;
+    public int levelBD;
 
-    public float levelMD;
+    public int levelMD;
 
     public float coin;
 
@@ -62,15 +62,65 @@ public class UpgradeScript : MonoBehaviour
 
     public TMP_Text maximumMD;
 
+    public AudioClip coinSound;
+
+    public AudioClip errorSound;
+
+    private SoundEffectScript sounds;
+
 
     void Start()
     {
-        LoadCoin();   
+        sounds = gameObject.GetComponent<SoundEffectScript>();
+        LoadCoin();
+        LoadDataScript.LoadPlayerData();
+        levelHealth = LoadDataScript.playerHealthLevel;
+        levelMana = LoadDataScript.playerManaLevel;
+        levelSD = LoadDataScript.playerSdLevel;
+        levelBD = LoadDataScript.playerBdLevel;
+        levelMD = LoadDataScript.playerMdLevel;
+
+        if (levelHealth == 4)
+        {
+            btnHealth.gameObject.SetActive(false);
+            maximumHealth.gameObject.SetActive(true);
+        }
+
+        if (levelMana == 4)
+        {
+            btnMana.gameObject.SetActive(false);
+            maximumMana.gameObject.SetActive(true);
+        }
+
+        if (levelBD == 4)
+        {
+            btnBD.gameObject.SetActive(false);
+            maximumBD.gameObject.SetActive(true);
+        }
+
+        if (levelSD == 4)
+        {
+            btnSD.gameObject.SetActive(false);
+            maximumSD.gameObject.SetActive(true);
+        }
+
+        if (levelMD == 4)
+        {
+            btnMD.gameObject.SetActive(false);
+            maximumMD.gameObject.SetActive(true);
+        }
+
         imgHealth.sprite = Resources.Load<Sprite>(BarStatus(levelHealth));
         imgMana.sprite = Resources.Load<Sprite>(BarStatus(levelMana));
         imgSD.sprite = Resources.Load<Sprite>(BarStatus(levelSD));
         imgBD.sprite = Resources.Load<Sprite>(BarStatus(levelBD));
         imgMD.sprite = Resources.Load<Sprite>(BarStatus(levelMD));
+
+        healthCoinText.text = CoinStatus(levelHealth).ToString();
+        manaCoinText.text = CoinStatus(levelMana).ToString();
+        sdCoinText.text = CoinStatus(levelSD).ToString();
+        bdCoinText.text = CoinStatus(levelBD).ToString();
+        mdCoinText.text = CoinStatus(levelMD).ToString();
 
         if (levelHealth < 4)
             btnHealth.onClick.AddListener(HealthClick);
@@ -185,15 +235,24 @@ public class UpgradeScript : MonoBehaviour
         if (coin - Convert.ToInt32(healthCoinText.text) >= 0)
         {
             levelHealth++;
+            IncreaseHealthBasedOnLevel();
             imgHealth.sprite = Resources.Load<Sprite>(BarStatus(levelHealth));
             ChangeCoin(Convert.ToInt32(healthCoinText.text));
+            LoadDataScript.SavePlayerLevelData(coin, levelHealth, levelMana, levelSD, levelBD, levelMD);
             healthCoinText.text = CoinStatus(levelHealth).ToString();
-            if(levelHealth == 4)
+            sounds.gameObject.GetComponent<AudioSource>().clip = coinSound;
+            sounds.Play();
+            if (levelHealth == 4)
             {
                 btnHealth.gameObject.SetActive(false);
                 maximumHealth.gameObject.SetActive(true);
             }
            
+        }
+        else
+        {
+            sounds.gameObject.GetComponent<AudioSource>().clip = errorSound;
+            sounds.Play();
         }
     }
 
@@ -202,14 +261,23 @@ public class UpgradeScript : MonoBehaviour
         if (coin - Convert.ToInt32(manaCoinText.text) >= 0)
         {
             levelMana++;
+            IncreaseManaBasedOnLevel();
             imgMana.sprite = Resources.Load<Sprite>(BarStatus(levelMana));
             ChangeCoin(Convert.ToInt32(manaCoinText.text));
+            LoadDataScript.SavePlayerLevelData(coin, levelHealth, levelMana, levelSD, levelBD, levelMD);
             manaCoinText.text = CoinStatus(levelMana).ToString();
+            sounds.gameObject.GetComponent<AudioSource>().clip = coinSound;
+            sounds.Play();
             if (levelMana == 4)
             {
                 btnMana.gameObject.SetActive(false);
                 maximumMana.gameObject.SetActive(true);
             }
+        }
+        else
+        {
+            sounds.gameObject.GetComponent<AudioSource>().clip = errorSound;
+            sounds.Play();
         }
     }
 
@@ -218,14 +286,23 @@ public class UpgradeScript : MonoBehaviour
         if (coin - Convert.ToInt32(sdCoinText.text) >= 0)
         {
             levelSD++;
+            IncreaseSDBasedOnLevel();
             imgSD.sprite = Resources.Load<Sprite>(BarStatus(levelSD));
             ChangeCoin(Convert.ToInt32(sdCoinText.text));
+            LoadDataScript.SavePlayerLevelData(coin, levelHealth, levelMana, levelSD, levelBD, levelMD);
             sdCoinText.text = CoinStatus(levelSD).ToString();
+            sounds.gameObject.GetComponent<AudioSource>().clip = coinSound;
+            sounds.Play();
             if (levelSD == 4)
             {
                 btnSD.gameObject.SetActive(false);
                 maximumSD.gameObject.SetActive(true);
             }
+        }
+        else
+        {
+            sounds.gameObject.GetComponent<AudioSource>().clip = errorSound;
+            sounds.Play();
         }
     }
 
@@ -234,14 +311,23 @@ public class UpgradeScript : MonoBehaviour
         if (coin - Convert.ToInt32(bdCoinText.text) >= 0)
         {
             levelBD++;
+            IncreaseBDBasedOnLevel();
             imgBD.sprite = Resources.Load<Sprite>(BarStatus(levelBD));
             ChangeCoin(Convert.ToInt32(bdCoinText.text));
+            LoadDataScript.SavePlayerLevelData(coin, levelHealth, levelMana, levelSD, levelBD, levelMD);
             bdCoinText.text = CoinStatus(levelBD).ToString();
+            sounds.gameObject.GetComponent<AudioSource>().clip = coinSound;
+            sounds.Play();
             if (levelBD == 4)
             {
                 btnBD.gameObject.SetActive(false);
                 maximumBD.gameObject.SetActive(true);
             }
+        }
+        else
+        {
+            sounds.gameObject.GetComponent<AudioSource>().clip = errorSound;
+            sounds.Play();
         }
     }
 
@@ -250,14 +336,23 @@ public class UpgradeScript : MonoBehaviour
         if (coin - Convert.ToInt32(mdCoinText.text) >= 0)
         {
             levelMD++;
+            IncreaseMDBasedOnLevel();
             imgMD.sprite = Resources.Load<Sprite>(BarStatus(levelMD));
             ChangeCoin(Convert.ToInt32(mdCoinText.text));
+            LoadDataScript.SavePlayerLevelData(coin, levelHealth, levelMana, levelSD, levelBD, levelMD);
             mdCoinText.text = CoinStatus(levelMD).ToString();
+            sounds.gameObject.GetComponent<AudioSource>().clip = coinSound;
+            sounds.Play();
             if (levelMD == 4)
             {
                 btnMD.gameObject.SetActive(false);
                 maximumMD.gameObject.SetActive(true);
             }
+        }
+        else
+        {
+            sounds.gameObject.GetComponent<AudioSource>().clip = errorSound;
+            sounds.Play();
         }
     }
 
@@ -306,6 +401,121 @@ public class UpgradeScript : MonoBehaviour
         else
         {
             mdCoinText.color = Color.white;
+        }
+    }
+
+    void IncreaseHealthBasedOnLevel()
+    {
+        switch(levelHealth)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+        }
+    }
+
+    void IncreaseManaBasedOnLevel()
+    {
+        switch (levelMana)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+        }
+    }
+
+    void IncreaseSDBasedOnLevel()
+    {
+        switch (levelSD)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+        }
+    }
+
+    void IncreaseBDBasedOnLevel()
+    {
+        switch (levelBD)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
+        }
+    }
+
+    void IncreaseMDBasedOnLevel()
+    {
+        switch (levelMD)
+        {
+            case 1:
+                {
+                    break;
+                }
+            case 2:
+                {
+                    break;
+                }
+            case 3:
+                {
+                    break;
+                }
+            case 4:
+                {
+                    break;
+                }
         }
     }
 }
