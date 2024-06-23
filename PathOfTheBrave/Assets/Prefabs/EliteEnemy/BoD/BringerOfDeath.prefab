@@ -77,10 +77,10 @@ GameObject:
   - component: {fileID: 3183631865353288046}
   - component: {fileID: 3183631865353288051}
   - component: {fileID: 3183631865353288050}
-  - component: {fileID: 3183631865353288049}
+  - component: {fileID: 6646398897412434643}
   m_Layer: 10
   m_Name: BringerOfDeath
-  m_TagString: Untagged
+  m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   detectRange: 8
   chaseSpeed: 6
   damage: 10
---- !u!114 &3183631865353288049
+--- !u!114 &6646398897412434643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,15 +291,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3183631865353288032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb091925de563ff4ab65ee3ae1d828f2, type: 3}
+  m_Script: {fileID: 11500000, guid: ac6af85e175b45c418180e7b8c0f02fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3183631865353288046}
+  canMove: 1
+  canAttack: 1
   maxHealth: 100
   coinSpawnPosition: {fileID: 5055477014985193776}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
-  disapearCooldown: 1
+  disapearCooldown: 1.7
   disapearTimer: 0
 --- !u!1 &3183631865604363515
 GameObject:

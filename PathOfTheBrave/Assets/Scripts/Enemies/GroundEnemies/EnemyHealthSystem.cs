@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyHealthSystem : MonoBehaviour
 {
     public Animator anim;
-
+    public bool canMove = true;
+    public bool canAttack = true;
     public int maxHealth = 100;
     private int currentHealth;
     public GameObject coinSpawnPosition;
@@ -14,6 +15,7 @@ public class EnemyHealthSystem : MonoBehaviour
     private bool isDeath = false;
     public float disapearCooldown = 2f;
     public float disapearTimer = Mathf.Infinity;
+    private bool onGround = false;
     void Start()
     {
         currentHealth = maxHealth;
@@ -21,50 +23,130 @@ public class EnemyHealthSystem : MonoBehaviour
 
     void Update()
     {
-        if (isDeath==true)
+        if (gameObject.CompareTag("GroundEnemy") == true)
         {
-            DeactiveEnemy();
-            disapearTimer += Time.deltaTime;
-            if (disapearTimer >= disapearCooldown) {
-                potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
-                coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
-                gameObject.SetActive(false);
+            if (isDeath == true)
+            {
+                DeactiveEnemy();
+                disapearTimer += Time.deltaTime;
+                if (disapearTimer >= disapearCooldown)
+                {
+                    potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
+                    coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
+                    gameObject.SetActive(false);
+                }
             }
         }
+        else if (gameObject.CompareTag("FlyEnemy") == true)
+        {
+            if (isDeath == true)
+            {
+                DeactiveEnemy();
+                if (onGround == false)
+                {
+                    gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -10);
+                }
+                else
+                {
+                    gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                }
+
+                disapearTimer += Time.deltaTime;
+                if (disapearTimer >= disapearCooldown)
+                {
+                    coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
+                    potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+
+
     }
     void DeactiveEnemy()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        if (gameObject.GetComponent<BoxCollider2D>() != null)
+        if (gameObject.CompareTag("GroundEnemy") == true)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            if (gameObject.GetComponent<BoxCollider2D>() != null)
+            {
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            if (gameObject.GetComponent<CircleCollider2D>() != null)
+            {
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            canMove = false;
+            canAttack = false;
         }
-        if (gameObject.GetComponent<CircleCollider2D>() != null)
+        else if (gameObject.CompareTag("FlyEnemy") == true)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            canMove = false;
+            canAttack = false;           
         }
-        gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-        gameObject.GetComponent<EnemyMovement>().enabled = false;
-        gameObject.GetComponent<EnemyAttack>().enabled = false;
     }
     public void GetDamage(int damage)
     {
-        if (isDeath==false)
+        if (gameObject.CompareTag("Slime") == true)
         {
-            currentHealth -= damage;
-            anim.SetTrigger("IsHit");
-            if (currentHealth <= 0)
+            gameObject.GetComponent<SlimeScript>().isExplore = true;
+        }
+        else
+        {
+            if (gameObject.CompareTag("GroundEnemy") == true)
             {
-                anim.SetTrigger("Die");
-                isDeath = true;
+                if (isDeath == false)
+                {
+                    currentHealth -= damage;
+                    anim.SetTrigger("IsHit");
+                    if (currentHealth <= 0)
+                    {
+                        anim.SetTrigger("Die");
+                        isDeath = true;
+                    }
+                }
             }
-        }     
+            else if (gameObject.CompareTag("FlyEnemy") == true)
+            {
+                if (isDeath == false)
+                {
+                    currentHealth -= damage;
+                    anim.SetTrigger("GetHit");
+                    if (currentHealth <= 0)
+                    {
+                        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                        anim.SetTrigger("Die");
+                        isDeath = true;
+                    }
+                }
+            }
+        }
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("GroundEnemy") == true)
         {
-            gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
+            }
+        }
+        else if (gameObject.CompareTag("FlyEnemy") == true)
+        {
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                onGround = true;
+                gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            }
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                gameObject.GetComponent<EnemyHealthSystem>().GetDamage(20);
+            }
         }
     }
 }

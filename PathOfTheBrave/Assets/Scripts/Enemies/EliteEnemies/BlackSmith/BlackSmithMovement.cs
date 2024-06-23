@@ -35,27 +35,30 @@ public class BlackSmithMovement : MonoBehaviour
         checkFalling();
         if (!isFalling)
         {
-            DetectPlayer();
-            if (isChasing != true)
+            if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
             {
-                Walk();
-            }
-            else
-            {
-                if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) > gameObject.GetComponent<BlackSmithAttack>().attackRange-0.2f)
+                DetectPlayer();
+                if (isChasing != true)
                 {
-                    if (gameObject.GetComponent<BlackSmithAttack>().canMove)
-                    {
-                        ChasePlayer();
-                    }
+                    Walk();
                 }
                 else
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
-                    anim.SetBool("IsWalking", false);
-                }
+                    if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) > gameObject.GetComponent<BlackSmithAttack>().attackRange - 0.2f)
+                    {
+                        if (gameObject.GetComponent<BlackSmithAttack>().canMove)
+                        {
+                            ChasePlayer();
+                        }
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                        anim.SetBool("IsWalking", false);
+                    }
 
-            }
+                }
+            }       
         }
     }
     void checkFalling()

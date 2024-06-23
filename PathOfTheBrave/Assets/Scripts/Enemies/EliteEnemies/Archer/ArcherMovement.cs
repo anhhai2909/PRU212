@@ -34,27 +34,30 @@ public class ArcherMovement : MonoBehaviour
         checkFalling();
         if (!isFalling)
         {
-            DetectPlayer();
-            if (isChasing != true)
+            if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
             {
-                Walk();
-            }
-            else
-            {
-                if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.1f > gameObject.GetComponent<ArcherAttack>().attackRange)
+                DetectPlayer();
+                if (isChasing != true)
                 {
-                    if (gameObject.GetComponent<ArcherAttack>().canMove)
-                    {
-                        ChasePlayer();
-                    }
+                    Walk();
                 }
                 else
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
-                    anim.SetBool("IsWalking", false);
-                }
+                    if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.1f > gameObject.GetComponent<ArcherAttack>().attackRange)
+                    {
+                        if (gameObject.GetComponent<ArcherAttack>().canMove)
+                        {
+                            ChasePlayer();
+                        }
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                        anim.SetBool("IsWalking", false);
+                    }
 
-            }
+                }
+            }      
         }
     }
     void checkFalling()

@@ -45,12 +45,12 @@ GameObject:
   - component: {fileID: 8567988594528234852}
   - component: {fileID: 8697321030246686669}
   - component: {fileID: 1630369369030833992}
-  - component: {fileID: 1630369369030833995}
   - component: {fileID: 8697321030246686668}
   - component: {fileID: 8697321030246686661}
+  - component: {fileID: 6523438252441406680}
   m_Layer: 10
   m_Name: FlyingEye
-  m_TagString: Untagged
+  m_TagString: FlyEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,25 +216,6 @@ MonoBehaviour:
   fireballPosition: {fileID: 2561151992988807598}
   canMove: 1
   attackDelay: 0.6
---- !u!114 &1630369369030833995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401117001677550489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d954d0461327efc4a8a56cb9fc331035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 8697321030246686669}
-  maxHealth: 100
-  coinSpawnPosition: {fileID: 9059469968862471635}
-  disapearCooldown: 2
-  disapearTimer: 0
-  coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
-  potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
 --- !u!70 &8697321030246686668
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -277,6 +258,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.04939968, y: 0.11486021}
   m_EdgeRadius: 0
+--- !u!114 &6523438252441406680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401117001677550489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6af85e175b45c418180e7b8c0f02fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 8697321030246686669}
+  canMove: 1
+  canAttack: 1
+  maxHealth: 100
+  coinSpawnPosition: {fileID: 9059469968862471635}
+  coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
+  potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
+  disapearCooldown: 2
+  disapearTimer: 0
 --- !u!1 &5570234645804231386
 GameObject:
   m_ObjectHideFlags: 0

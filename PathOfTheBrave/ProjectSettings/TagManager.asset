@@ -7,7 +7,9 @@ TagManager:
   - Ground
   - FireballRespawnPosition
   - GRAttackStuffResPosition
-  - GroundRangeAttackStuffRespawnPosition
+  - FlyEnemy
+  - GroundEnemy
+  - Slime
   layers:
   - Default
   - TransparentFX

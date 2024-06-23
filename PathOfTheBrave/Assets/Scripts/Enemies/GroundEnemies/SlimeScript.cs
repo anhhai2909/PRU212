@@ -30,7 +30,7 @@ public class SlimeScript : MonoBehaviour
     public float disapearTime = 0.45f;
     public float disapearTimer = 0;
 
-    private bool isExplore = false;
+    public bool isExplore = false;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

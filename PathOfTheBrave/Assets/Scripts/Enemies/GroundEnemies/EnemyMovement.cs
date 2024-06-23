@@ -39,27 +39,30 @@ public class EnemyMovement : MonoBehaviour
         checkFalling();
         if (!isFalling)
         {
-            DetectPlayer();
-            if (isChasing != true)
+            if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
             {
-                Walk();
-            }
-            else
-            {
-                if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x)+0.2f > gameObject.GetComponent<EnemyAttack>().attackRange-0.1f)
+                DetectPlayer();
+                if (isChasing != true)
                 {
-                    if (gameObject.GetComponent<EnemyAttack>().canMove)
-                    {
-                        ChasePlayer();
-                    }                  
+                    Walk();
                 }
                 else
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
-                    anim.SetBool("IsWalking", false);
-                }
+                    if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f > gameObject.GetComponent<EnemyAttack>().attackRange - 0.1f)
+                    {
+                        if (gameObject.GetComponent<EnemyAttack>().canMove)
+                        {
+                            ChasePlayer();
+                        }
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                        anim.SetBool("IsWalking", false);
+                    }
 
-            }
+                }
+            }           
         }
     }
     void checkFalling()

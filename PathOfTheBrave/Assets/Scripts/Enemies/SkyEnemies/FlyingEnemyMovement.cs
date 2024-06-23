@@ -25,21 +25,22 @@ public class FlyingEnemyMovement : MonoBehaviour
     }
     void Update()
     {
-        DetectPlayer();
-        if((Mathf.Abs((player.transform.position.x - this.gameObject.transform.position.x)) > this.gameObject.GetComponent<FlyingEnemyAttack>().attackRange-1)&& isChasing)
+        if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
         {
-            if (gameObject.GetComponent<FlyingEnemyAttack>().canMove==true)
+            DetectPlayer();
+            if ((Mathf.Abs((player.transform.position.x - this.gameObject.transform.position.x)) > this.gameObject.GetComponent<FlyingEnemyAttack>().attackRange - 1) && isChasing)
             {
-                ChasePlayer();
+                if (gameObject.GetComponent<FlyingEnemyAttack>().canMove == true)
+                {
+                    ChasePlayer();
+                }
             }
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            anim.SetBool("IsChasing", false);
-        }
-
-
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                anim.SetBool("IsChasing", false);
+            }
+        }      
     }
     void ChasePlayer()
     {

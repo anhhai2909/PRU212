@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class ArcherHealthSystem : MonoBehaviour
 {
     public Animator anim;
+
+    public bool canMove = true;
+    public bool canAttack = true;
 
     public int maxHealth = 100;
     private int currentHealth;
@@ -45,9 +49,10 @@ public class ArcherHealthSystem : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
         gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-        gameObject.GetComponent<ArcherMovement>().enabled = false;
-        gameObject.GetComponent<ArcherAttack>().enabled = false;
-    }
+        canMove = false;
+        canAttack = false;
+
+}
     public void GetDamage(int damage)
     {
         if (isDeath == false)
@@ -61,11 +66,11 @@ public class ArcherHealthSystem : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            gameObject.GetComponent<ArcherHealthSystem>().GetDamage(20);
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        gameObject.GetComponent<ArcherHealthSystem>().GetDamage(20);
+    //    }
+    //}
 }

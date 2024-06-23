@@ -42,59 +42,62 @@ public class ArcherAttack : MonoBehaviour
     }
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
-        if (player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
+        if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
-            if (distanceToPlayer <= attackRange && canRangeAttack && distanceToPlayer >= meleeAttackRange)
+            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+            if (player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
             {
-                StopMovement();
-                RangeAttackAnim();
-            }
-            else if (distanceToPlayer <= attackRange && distanceToPlayer > meleeAttackRange)
-            {
-                StopMovement();
-            }
-            else if (distanceToPlayer <= meleeAttackRange && canMeleeAttack)
-            {
-                StopMovement();
-                MeleeAttackAnim();
-            }
-
-            if (!canRangeAttack)
-            {
-                if (startRangeAttackDelayTimer)
+                if (distanceToPlayer <= attackRange && canRangeAttack && distanceToPlayer >= meleeAttackRange)
                 {
-                    rangeAttackDelayTimer += Time.deltaTime;
-                    if (rangeAttackDelayTimer > rangeAttackDelay)
+                    StopMovement();
+                    RangeAttackAnim();
+                }
+                else if (distanceToPlayer <= attackRange && distanceToPlayer > meleeAttackRange)
+                {
+                    StopMovement();
+                }
+                else if (distanceToPlayer <= meleeAttackRange && canMeleeAttack)
+                {
+                    StopMovement();
+                    MeleeAttackAnim();
+                }
+
+                if (!canRangeAttack)
+                {
+                    if (startRangeAttackDelayTimer)
                     {
-                        Attack();
-                        rangeAttackDelayTimer = 0;
-                        startRangeAttackDelayTimer = false;
+                        rangeAttackDelayTimer += Time.deltaTime;
+                        if (rangeAttackDelayTimer > rangeAttackDelay)
+                        {
+                            Attack();
+                            rangeAttackDelayTimer = 0;
+                            startRangeAttackDelayTimer = false;
+                        }
+                    }
+
+                    rangeAttackTimer += Time.deltaTime;
+                    if (rangeAttackTimer >= (rangeAttackCooldown + rangeAttackDelay))
+                    {
+                        rangeAttackTimer = 0;
+                        canRangeAttack = true;
+                    }
+                    if (rangeAttackTimer >= (1.5f + rangeAttackDelay))
+                    {
+                        canMove = true;
                     }
                 }
-
-                rangeAttackTimer += Time.deltaTime;
-                if (rangeAttackTimer >= (rangeAttackCooldown + rangeAttackDelay))
+                if (!canMeleeAttack)
                 {
-                    rangeAttackTimer = 0;
-                    canRangeAttack = true;
-                }
-                if (rangeAttackTimer >= (1.5f + rangeAttackDelay))
-                {
-                    canMove = true;
-                }
-            }
-            if (!canMeleeAttack)
-            {
-                meleeAttackTimer += Time.deltaTime;
-                if (meleeAttackTimer >= meleeAttackCooldown)
-                {
-                    meleeAttackTimer = 0;
-                    canMeleeAttack = true;
-                    canMove = true;
+                    meleeAttackTimer += Time.deltaTime;
+                    if (meleeAttackTimer >= meleeAttackCooldown)
+                    {
+                        meleeAttackTimer = 0;
+                        canMeleeAttack = true;
+                        canMove = true;
+                    }
                 }
             }
-        }
+        }   
     }
 
     void StopMovement()

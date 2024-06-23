@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 30
   potionPrefab: {fileID: 934934471238362659}
-  pushForce: 20
+  pushForce: 5
   disapearCooldown: 20
   disapearTimer: 0
   spawnPercent: 10
