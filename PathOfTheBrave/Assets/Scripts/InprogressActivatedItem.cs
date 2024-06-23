@@ -78,6 +78,7 @@ public class InprogressActivatedItem : MonoBehaviour
                     b += (item.Key + ":" + item.Value + " ");
                 }
             }
+            Debug.Log("Diff");
             LoadToGame(MinItem());
             oldActivatedItems = activatedItems;
         }
@@ -101,6 +102,8 @@ public class InprogressActivatedItem : MonoBehaviour
                         playerItems[item.Key] = item.Value - 1;
                         LoadDataScript.SavePlayerItemData(coin, playerItems);
                         LoadDataScript.SaveActivatedItems(activatedItems);
+                        Debug.Log("Min");
+
                         LoadToGame(activeSlot);
                     }
                     else
@@ -252,9 +255,11 @@ public class InprogressActivatedItem : MonoBehaviour
                 if (min > item.Key)
                 {
                     min = item.Key;
+                    
                 }
             }
         }
+        activeSlot = min;
         return min;
     }
 
@@ -275,6 +280,7 @@ public class InprogressActivatedItem : MonoBehaviour
         }
         else
         {
+            Debug.Log(index);
             foreach (var item in items)
             {
                 if (item.Id == activatedItems[index])
