@@ -273,7 +273,7 @@ MonoBehaviour:
   hitbox: {fileID: 3154389067444951353}
   fallingCheck: {fileID: 6987778348384348821}
   moveSpeed: 5
-  hitboxRadius: 0.7
+  hitboxRadius: 0.9
   groundCheckRadius: 0.1
   detectRange: 8
   chaseSpeed: 6
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  attackRange: 1.08
+  attackRange: 2
   attackCoolDown: 2
   canAttack: 1
   canMove: 1

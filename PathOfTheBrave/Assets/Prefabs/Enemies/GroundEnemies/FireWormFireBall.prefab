@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3672728961560393766}
   - component: {fileID: 982950350804594552}
   - component: {fileID: 6173634573218899727}
-  m_Layer: 20
+  m_Layer: 19
   m_Name: FireWormFireBall
   m_TagString: GroundRangeAttackStuffRespawnPosition
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   RespawnPosition: {fileID: 0}
   player: {fileID: 0}
   rb: {fileID: 5935205506458234945}
-  speed: 6
+  speed: 10
   enemy: {fileID: 886699419678482200, guid: fd5767456b124c54ea9f2da4ad507cf2, type: 3}
   anim: {fileID: 3672728961560393766}
   destroyTimer: 0

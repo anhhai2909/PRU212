@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 7704309169470658359}
   - component: {fileID: 7704309169470658356}
   - component: {fileID: 7684002161594596584}
+  - component: {fileID: 7142422071050773631}
   m_Layer: 20
   m_Name: Archer
   m_TagString: GroundEnemy
@@ -440,6 +441,19 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+--- !u!114 &7142422071050773631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704309169470658344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdcf774b81a8945932f2c667443c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
 --- !u!1 &7704309169522467445
 GameObject:
   m_ObjectHideFlags: 0

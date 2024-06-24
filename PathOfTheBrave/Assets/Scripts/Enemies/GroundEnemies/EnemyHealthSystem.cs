@@ -8,8 +8,8 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
     public Animator anim;
     public bool canMove = true;
     public bool canAttack = true;
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100;
+    private float currentHealth;
     public GameObject coinSpawnPosition;
     public GameObject coin;
     public GameObject potion;
@@ -89,7 +89,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
             canAttack = false;           
         }
     }
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
         if (gameObject.CompareTag("Slime") == true)
         {
@@ -153,6 +153,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
 
     public void Damage(DamageData data)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Enemy take damage " + data.Amount);
+        GetDamage(data.Amount);
     }
 }

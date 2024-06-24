@@ -43,6 +43,11 @@ namespace CoreSystem
             var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
             return StartParticles(prefab, FindRelativePoint(offset), randomRotation);
         }
+        public GameObject StartWithRandomRotation(GameObject prefab, GameObject position)
+        {
+            var randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+            return StartParticles(prefab, position.transform.position, randomRotation);
+        }
 
         // Spawns particles relative to transform based on offset (input parameter) and FacingDirection
         public GameObject StartParticlesRelative(GameObject particlePrefab, Vector2 offset, Quaternion rotation)

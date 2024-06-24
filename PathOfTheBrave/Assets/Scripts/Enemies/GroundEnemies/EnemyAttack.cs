@@ -2,6 +2,7 @@ using Combat.Damage;
 using CoreSystem;
 using UnityEditor.UIElements;
 using UnityEngine;
+using Utilities;
 using Weapons;
 using static UnityEditor.Progress;
 
@@ -91,7 +92,7 @@ public class EnemyAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
-            if (enemy.TryGetComponent(out IDamageable damageable))
+            if (enemy.TryGetComponentInChildren(out IDamageable damageable))
             {
                 damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
                 //Core.GetCoreComponent<DamageReceiver>().Damage(new Combat.Damage.DamageData(currentAttackData.Amount, item.gameObject));
