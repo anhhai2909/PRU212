@@ -19,6 +19,10 @@ namespace Utilities
             {
                 damageable.Damage(damageData);
                 return true;
+            }else if (gameObject.TryGetComponent(out damageable))
+            {
+                damageable.Damage(damageData);
+                return true;
             }
 
             return false;

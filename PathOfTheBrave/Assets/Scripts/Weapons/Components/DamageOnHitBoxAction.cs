@@ -35,15 +35,6 @@ namespace Weapons.Components
             hitBox.OnDetectedCollider2D += HandleDetectCollider2D;
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.O))
-            {
-                
-                Debug.Log("Update");
-            }
-        }
-
         protected override void OnDestroy()
         {
             base.OnDestroy();

@@ -153,7 +153,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
 
     public void Damage(DamageData data)
     {
-        Debug.Log("Enemy take damage " + data.Amount);
+        //Debug.Log("Enemy take damage " + data.Amount);
         GetDamage(data.Amount);
     }
 }
