@@ -51,7 +51,6 @@ TagManager:
   - 
   - 
   - 
-  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -68,17 +67,20 @@ TagManager:
   - name: Background
     uniqueID: 2739343719
     locked: 0
+  - name: BackgroundLayer5
+    uniqueID: 3059417751
+    locked: 0
   - name: House
     uniqueID: 661252463
+    locked: 0
+  - name: Platform
+    uniqueID: 2153748749
     locked: 0
   - name: Decorations
     uniqueID: 2221171907
     locked: 0
   - name: HigherDecorations
     uniqueID: 2970568953
-    locked: 0
-  - name: Platform
-    uniqueID: 2153748749
     locked: 0
   - name: Player
     uniqueID: 273729393
