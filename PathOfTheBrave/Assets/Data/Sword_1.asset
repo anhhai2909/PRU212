@@ -95,10 +95,10 @@ MonoBehaviour:
         attackData:
         - name: Attack 1
           <Angle>k__BackingField: {x: 1, y: 0.5}
-          <Strength>k__BackingField: 5
+          <Strength>k__BackingField: 4
         - name: Attack 2
           <Angle>k__BackingField: {x: 1, y: 0.2}
-          <Strength>k__BackingField: 5
+          <Strength>k__BackingField: 3
         - name: Attack 3
           <Angle>k__BackingField: {x: 1, y: 0}
           <Strength>k__BackingField: 5

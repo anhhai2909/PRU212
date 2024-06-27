@@ -71,19 +71,19 @@ MonoBehaviour:
         attackData:
         - name: Attack 1
           <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 5
+          <Strength>k__BackingField: 2
         - name: Attack 2
           <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 5
+          <Strength>k__BackingField: 2
         - name: Attack 3
           <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 5
+          <Strength>k__BackingField: 2
         - name: Attack 5
           <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 5
+          <Strength>k__BackingField: 2
         - name: Attack 6
           <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 5
+          <Strength>k__BackingField: 2
     - rid: 6757589986470789124
       type: {class: PoiseDamageData, ns: Weapons.Components, asm: Assembly-CSharp}
       data:
