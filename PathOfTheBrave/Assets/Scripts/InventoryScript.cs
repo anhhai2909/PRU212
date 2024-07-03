@@ -57,6 +57,7 @@ public class InventoryScript : MonoBehaviour
         CheckForActivatedItem();
     }
 
+
     private void LoadAllItem()
     {
         TextAsset jsonData = Resources.Load<TextAsset>("JSON\\Item");

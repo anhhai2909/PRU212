@@ -70,6 +70,9 @@ TagManager:
   - name: BackgroundLayer5
     uniqueID: 3059417751
     locked: 0
+  - name: Lightning
+    uniqueID: 650920753
+    locked: 0
   - name: House
     uniqueID: 661252463
     locked: 0
