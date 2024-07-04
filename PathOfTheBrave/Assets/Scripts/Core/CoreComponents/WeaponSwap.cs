@@ -1,6 +1,6 @@
-﻿using System;
-using Interaction;
+﻿using Interaction;
 using Interaction.Interactables;
+using System;
 using Weapons;
 
 namespace CoreSystem
@@ -33,28 +33,36 @@ namespace CoreSystem
                 newWeaponData = null;
                 return;
             }
+            else
+            {
+                weaponInventory.AddEmptyPosition();
+                weaponInventory.TrySetWeapon(newWeaponData, weaponInventory.weaponData.Length-1, out _);
+                interactable.Interact();
+                newWeaponData = null;
+                return;
+            }
 
-            OnChoiceRequested?.Invoke(new WeaponSwapChoiceRequest(
-                HandleWeaponSwapChoice,
-                weaponInventory.GetWeaponSwapChoices(),
-                newWeaponData
-            ));
+            //OnChoiceRequested?.Invoke(new WeaponSwapChoiceRequest(
+            //    HandleWeaponSwapChoice,
+            //    weaponInventory.GetWeaponSwapChoices(),
+            //    newWeaponData
+            //));
         }
 
         private void HandleWeaponSwapChoice(WeaponSwapChoice choice)
         {
-            if (!weaponInventory.TrySetWeapon(newWeaponData, choice.Index, out var oldData)) 
+            if (!weaponInventory.TrySetWeapon(newWeaponData, choice.Index, out var oldData))
                 return;
-            
+
             newWeaponData = null;
 
             OnWeaponDiscarded?.Invoke(oldData);
-                
+
             if (weaponPickup is null)
                 return;
 
             weaponPickup.Interact();
-            
+
         }
 
         protected override void Awake()

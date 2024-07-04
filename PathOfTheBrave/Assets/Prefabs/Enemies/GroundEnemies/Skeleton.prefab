@@ -126,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 8273563080497093330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.48, y: 33.88, z: 0}
+  m_LocalPosition: {x: 52.10384, y: 30.56403, z: 0}
   m_LocalScale: {x: 4.498768, y: 4.498768, z: 4.85972}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -313,7 +313,6 @@ MonoBehaviour:
   maxKnockBackTime: 0.2
   isFacingRight: 1
   canMove: 0
-  battu: 0
 --- !u!114 &8273563080497093339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,10 +337,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   hitbox: {fileID: 8273563080749332297}
-  hitboxRadius: 1.45
+  hitboxRadius: 1.2
   attackDelay: 0.6
-  knockbackAngle: {x: 0, y: 0}
-  knockbackStrength: 0
+  knockbackAngle: {x: 1, y: 1}
+  knockbackStrength: 8
 --- !u!114 &8273563080497093338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +394,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.042565875, y: 0.003482096}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -406,7 +405,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 0.1420889, y: 0.42904884}
   m_EdgeRadius: 0
 --- !u!1 &8273563080515809167
 GameObject:

@@ -30,6 +30,8 @@ namespace Weapons.Components
         {
             foreach (var projectileSpawnInfo in currentAttackData.SpawnInfos)
             {
+                Debug.Log("Damage Add: " + projectileSpawnInfo.ProjectilePrefab.GetAddDamage());
+                projectileSpawnInfo.ProjectilePrefab.AddAddDamage(100);
                 // Spawn projectile based on the current strategy
                 projectileSpawnerStrategy.ExecuteSpawnStrategy(projectileSpawnInfo, transform.position,
                     movement.FacingDirection, objectPools, OnSpawnProjectile);
