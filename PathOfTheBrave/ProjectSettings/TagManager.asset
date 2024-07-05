@@ -18,6 +18,7 @@ TagManager:
   - Item
   - Inventory
   - GroundRangeAttackStuffRespawnPosition
+  - Thorn
   layers:
   - Default
   - TransparentFX
@@ -46,7 +47,7 @@ TagManager:
   - NotInteractable
   - 
   - Trap
-  - 
+  - Fog
   - 
   - 
   - 

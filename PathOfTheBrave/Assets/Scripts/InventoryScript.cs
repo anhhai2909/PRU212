@@ -120,21 +120,24 @@ public class InventoryScript : MonoBehaviour
 
     private void LoadPlayerItem2()
     {
-        foreach (var item in playerItems)
+        if (playerItems != null)
         {
-            GameObject playerItem = GameObject.Find(item.Key.ToString());
-            if (playerItem != null)
+            foreach (var item in playerItems)
             {
-                playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                GameObject playerItem = GameObject.Find(item.Key.ToString());
+                if (playerItem != null)
+                {
+                    playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
 
-                playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
-                playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                    playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
+                    playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
-                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
-                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
+                    playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
+                    playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
 
 
+                }
             }
         }
     }
