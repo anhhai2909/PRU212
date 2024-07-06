@@ -30,8 +30,7 @@ namespace Weapons.Components
         {
             foreach (var projectileSpawnInfo in currentAttackData.SpawnInfos)
             {
-                Debug.Log("Damage Add: " + projectileSpawnInfo.ProjectilePrefab.GetAddDamage());
-                projectileSpawnInfo.ProjectilePrefab.AddAddDamage(100);
+                projectileSpawnInfo.DamageData.SetAddAmount(weapon.GetAddDamage());
                 // Spawn projectile based on the current strategy
                 projectileSpawnerStrategy.ExecuteSpawnStrategy(projectileSpawnInfo, transform.position,
                     movement.FacingDirection, objectPools, OnSpawnProjectile);
@@ -66,7 +65,6 @@ namespace Weapons.Components
             base.Start();
 
             movement = Core.GetCoreComponent<CoreSystem.Movement>();
-
             AnimationEventHandler.OnAttackAction += HandleAttackAction;
         }
 

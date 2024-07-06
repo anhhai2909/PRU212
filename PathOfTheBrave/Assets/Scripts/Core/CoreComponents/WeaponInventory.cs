@@ -33,6 +33,11 @@ namespace CoreSystem
                 data = null;
                 return false;
             }
+            if (weaponData[index] is null)
+            {
+                data = null;
+                return false;
+            }
 
             data = weaponData[index];
             return true;
