@@ -794,7 +794,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06581116, y: -0.83909893}
+  m_Offset: {x: -0.06581116, y: -0.8390989}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -805,7 +805,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2247696, y: 2.6781979}
+  m_Size: {x: 4.22477, y: 2.678198}
   m_EdgeRadius: 0
 --- !u!114 &6074364205566372196
 MonoBehaviour:
@@ -1386,6 +1386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 100
+  <Mana>k__BackingField:
+    <MaxValue>k__BackingField: 100
   <Poise>k__BackingField:
     <MaxValue>k__BackingField: 0
   poiseRecoveryRate: 25
@@ -1543,7 +1545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxKnockBackTime: 0.5
-  invulnerabilityDuration: 2
+  invulnerabilityDuration: 1.5
 --- !u!114 &1090378968321838929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,7 +1560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticles: {fileID: 6240072112886026631, guid: e0e56a695e60c4a46a6184d207312115, type: 3}
   posParticles: {fileID: 8001955554847433615}
-  invulnerabilityDuration: 2
+  invulnerabilityDuration: 1.5
 --- !u!114 &7484601153178851413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,7 +1720,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7532533854007163314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6b8fe98a94ada4199d6c008f271580, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ada55b8f4a18654f84f361b0e9f0a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8001955554847433615
@@ -1911,7 +1913,7 @@ Animator:
   m_GameObject: {fileID: 8726275529988952378}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7010ad7849df6124c82723a8093c8108, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8fd860ad5064f5b469c3d3d306a7ee52, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

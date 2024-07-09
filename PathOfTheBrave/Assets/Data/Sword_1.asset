@@ -17,6 +17,7 @@ MonoBehaviour:
   <Description>k__BackingField: It looks sick af
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: db94853973589ff42a43ca1c08b22bdc, type: 2}
   <NumberOfAttacks>k__BackingField: 3
+  <AttackCooldown>k__BackingField: 0
   <ComponentData>k__BackingField:
   - rid: 6757589857112162305
   - rid: 6757589857112162306

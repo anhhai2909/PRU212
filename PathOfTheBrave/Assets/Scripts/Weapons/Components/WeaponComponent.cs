@@ -7,7 +7,6 @@ namespace Weapons.Components
     public abstract class WeaponComponent : MonoBehaviour
     {
         protected Weapon weapon;
-
         protected AnimationEventHandler AnimationEventHandler => weapon.EventHandler;
         protected Core Core => weapon.Core;
         protected float attackStartTime => weapon.AttackStartTime;
@@ -15,8 +14,7 @@ namespace Weapons.Components
         protected bool isAttackActive;
 
         public virtual void Init()
-        {
-            
+        { 
         }
         
         protected virtual void Awake()
@@ -40,6 +38,10 @@ namespace Weapons.Components
             isAttackActive = false;
         }
 
+        protected virtual void ChangeStats()
+        {
+        }
+
         protected virtual void OnDestroy()
         {
             weapon.OnEnter -= HandleEnter;
@@ -55,7 +57,7 @@ namespace Weapons.Components
         protected override void HandleEnter()
         {
             base.HandleEnter();
-
+            Debug.Log(data + ": " + weapon.CurrentAttackCounter);
             currentAttackData = data.GetAttackData(weapon.CurrentAttackCounter);
         }
 

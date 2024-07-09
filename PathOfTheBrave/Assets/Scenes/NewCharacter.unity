@@ -46518,6 +46518,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponPickup (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7002959372488733404, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5257006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002959372488733404, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5257006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002959372488733404, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5257006
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46795,10 +46807,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1090378968321838929, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: invulnerabilityDuration
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3327065612783239577, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 48.05
@@ -46842,34 +46850,14 @@ PrefabInstance:
     - target: {fileID: 4494764926578305203, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 8fd860ad5064f5b469c3d3d306a7ee52, type: 2}
-    - target: {fileID: 5404236558137823834, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: m_Size.x
-      value: 4.22477
-      objectReference: {fileID: 0}
-    - target: {fileID: 5404236558137823834, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: m_Size.y
-      value: 2.678198
-      objectReference: {fileID: 0}
-    - target: {fileID: 5404236558137823834, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.8390989
-      objectReference: {fileID: 0}
-    - target: {fileID: 5609399124918278191, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: <weaponData>k__BackingField.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5609399124918278191, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: <weaponData>k__BackingField.Array.data[1]
-      value: 
+      objectReference: {fileID: 9100000, guid: 7010ad7849df6124c82723a8093c8108, type: 2}
+    - target: {fileID: 8431596758776135154, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      propertyPath: attackCounterResetCooldown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8928403947593327385, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: <Health>k__BackingField.<MaxValue>k__BackingField
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8945239426203961529, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: invulnerabilityDuration
-      value: 1.5
+      propertyPath: <Mana>k__BackingField.<MaxValue>k__BackingField
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
