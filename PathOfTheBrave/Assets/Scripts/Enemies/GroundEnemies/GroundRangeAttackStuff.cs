@@ -44,7 +44,7 @@ public class GroundRangeAttackStuff : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 180, 0));
         speed = -speed;
-    }
+    } 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
