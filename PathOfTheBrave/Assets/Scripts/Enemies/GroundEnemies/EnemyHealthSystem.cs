@@ -16,6 +16,10 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
     private bool isDeath = false;
     public float disapearCooldown = 2f;
     public float disapearTimer = Mathf.Infinity;
+
+    public float isHitCooldown = 0.8f;
+    public float isHitTimer = 0;
+    public bool isHit = false;
     private bool onGround = false;
     void Start()
     {
@@ -35,6 +39,18 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                     potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
                     coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
                     gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (isHit)
+                {
+                    isHitTimer += Time.deltaTime;
+                    if(isHitTimer >= disapearCooldown)
+                    {
+                        isHitTimer = 0;
+                        isHit = false;
+                    }
                 }
             }
         }
@@ -58,6 +74,17 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                     coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
                     potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
                     gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (isHit)
+                {
+                    isHitTimer += Time.deltaTime;
+                    if (isHitTimer >= disapearCooldown)
+                    {
+                        isHit = false;
+                    }
                 }
             }
         }
@@ -124,6 +151,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                     }
                 }
             }
+            isHit = true;
         }
         
     }

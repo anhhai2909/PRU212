@@ -1,5 +1,5 @@
-using System;
 using CoreSystem;
+using System;
 using UnityEngine;
 using Utilities;
 
@@ -38,7 +38,7 @@ namespace Weapons
                 if (currentInput != value)
                 {
                     if (!CanEnterAttack) { Debug.Log("Attack in Cooldown"); return; }
-                    if(!CanAttack) { Debug.Log("Not enough resource to perform attack"); return; }
+                    if (!CanAttack) { Debug.Log("Not enough resource to perform attack"); return; }
                     currentInput = value;
                     OnCurrentInputChange?.Invoke(currentInput);
                 }
@@ -81,16 +81,20 @@ namespace Weapons
         {
             //Debug.Break();
             //print($"{transform.name} enter");
+            if (CanAttack)
+            {
+                AttackStartTime = Time.time;
 
-            AttackStartTime = Time.time;
+                attackCounterResetTimeNotifier.Disable();
+                delayAttackTimeNotifier.Disable();
 
-            attackCounterResetTimeNotifier.Disable();
-            delayAttackTimeNotifier.Disable();
+                Anim.SetBool("active", true);
+                Anim.SetInteger("counter", currentAttackCounter);
 
-            Anim.SetBool("active", true);
-            Anim.SetInteger("counter", currentAttackCounter);
-
-            OnEnter?.Invoke();
+                OnEnter?.Invoke();
+            }
+            else
+                Exit();
         }
 
         public void SetCanAttack(bool b) => CanAttack = b;
@@ -103,8 +107,8 @@ namespace Weapons
         public void SetData(WeaponDataSO data)
         {
             Data = data;
-            
-            if(Data is null)
+
+            if (Data is null)
                 return;
 
             delayAttackCooldown = data.AttackCooldown;
