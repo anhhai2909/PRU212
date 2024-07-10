@@ -10,6 +10,8 @@ public class Boss : MonoBehaviour, IDamageable
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
 
+    [SerializeField] private ParticleSystem damageParticles;
+
     private Vector2 velocityWorkspace;
 
     public Transform player;
@@ -20,10 +22,19 @@ public class Boss : MonoBehaviour, IDamageable
 
     public PortalScript portal;
 
+    private ParticleSystem damageParticleInstance;
+
     [SerializeField]
     private Transform playerCheck;
 
     public float currentHealth;
+    private void Awake()
+    {
+        portal.isEnabled = false;
+        portal.isBossDead = false;
+
+        Debug.Log("Portal closed");
+    }
 
     public virtual void Start()
     {
@@ -36,9 +47,11 @@ public class Boss : MonoBehaviour, IDamageable
     public virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
+        
         if (currentHealth <= 0)
         {
             animator.SetBool("dead", true);
+            portal.isEnabled = true;
             portal.isBossDead = true;
         }
     }
@@ -71,12 +84,14 @@ public class Boss : MonoBehaviour, IDamageable
 
     public void Damage(DamageData data)
     {
+        
         currentHealth -= data.Amount;
-        animator.SetTrigger("hurt");
+        //animator.SetTrigger("hurt");
+        SpawnDamageParticles();
     }
 
-    //public virtual bool CheckPlayerInCloseRangeAction()
-    //{
-    //    return Physics2D.Raycast(playerCheck)
-    //}
+    public void SpawnDamageParticles()
+    {
+        damageParticleInstance = Instantiate(damageParticles,transform.position,Quaternion.identity);
+    }
 }

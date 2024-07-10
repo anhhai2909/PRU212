@@ -1,11 +1,15 @@
+using Combat.Damage;
+using ProjectileSystem.Components;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class MeteorBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
+    public int damage = 20;
     public float destroyTime = 5f;
     public LayerMask whatDestroyMeteor;
     [SerializeField]
@@ -36,8 +40,17 @@ public class MeteorBehaviour : MonoBehaviour
         }
         if (collision.CompareTag("Player"))
         {
-            SpawnCollisionEffect(playerHitParticle);
             GameObject.Destroy(gameObject);
+
+            if (collision.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+            }
+
+            //if (collision.TryGetComponentInChildren(out IKnockBackable knockBackable))
+            //{
+            //    knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(knockbackAngle,knockbackStrength, gameObject.GetComponent<EnemyMovement>().isFacingRight ? 1 : -1, gameObject));
+            //}
         }
     }
 

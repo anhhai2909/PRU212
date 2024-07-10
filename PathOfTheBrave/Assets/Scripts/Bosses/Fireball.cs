@@ -16,9 +16,6 @@ public class Fireball : MonoBehaviour
     public float speed = 2f;
     public float distanceLimit = 0f;
     public float destroyTime = 8f;
-    public Vector2 knockbackAngle;
-    public float knockbackStrength;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -71,11 +68,6 @@ public class Fireball : MonoBehaviour
             if (collision.TryGetComponentInChildren(out IDamageable damageable))
             {
                 damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
-            }
-
-            if (collision.TryGetComponentInChildren(out IKnockBackable knockBackable))
-            {
-                knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(knockbackAngle,knockbackStrength, gameObject.GetComponent<EnemyMovement>().isFacingRight ? 1 : -1, gameObject));
             }
         }
     }

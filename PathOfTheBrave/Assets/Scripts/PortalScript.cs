@@ -25,8 +25,6 @@ public class PortalScript : MonoBehaviour
 
     void Start()
     {
-        isBossDead = false;
-        isEnabled = false;
         GameObject ball = GameObject.Find("Player");
         player = ball;
     }
