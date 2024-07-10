@@ -367,8 +367,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1711295435
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 1866865045, guid: 13b2c61bd29d73a4c90641bc1f5cb09b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -413,6 +413,14 @@ PrefabInstance:
     - target: {fileID: 2268897439260401120, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
       propertyPath: m_Name
       value: FireballParticleTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268897439260401121, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268897439260401121, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1711295435
       objectReference: {fileID: 0}
     - target: {fileID: 2268897439260401123, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
       propertyPath: m_LocalScale.x
