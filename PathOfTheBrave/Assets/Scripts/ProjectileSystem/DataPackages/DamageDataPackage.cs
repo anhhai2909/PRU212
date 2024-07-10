@@ -10,6 +10,10 @@ namespace ProjectileSystem.DataPackages
     [Serializable]
     public class DamageDataPackage : ProjectileDataPackage
     {
-        [field: SerializeField] public float Amount { get; private set; } 
+        [field: SerializeField] public float Amount { get; private set; }
+        public float AddAmount { get; private set; }
+        public void SetAddAmount(float damage) => AddAmount = damage;
+
+        public void AddAddAmount(float damage) => AddAmount += damage;
     }
 }

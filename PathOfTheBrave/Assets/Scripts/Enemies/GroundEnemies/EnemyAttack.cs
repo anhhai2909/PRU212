@@ -2,6 +2,7 @@ using Combat.Damage;
 using CoreSystem;
 using UnityEditor.UIElements;
 using UnityEngine;
+using Utilities;
 using Weapons;
 using static UnityEditor.Progress;
 
@@ -24,12 +25,21 @@ public class EnemyAttack : MonoBehaviour
     public float attackDelay = 1f;
     private float attackDelayTimer = 0;
     private bool startDelayTimer;
+
+    public Vector2 knockbackAngle;
+    public float knockbackStrength;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
     {
+        if (!gameObject.GetComponent<EnemyMovement>().canMove)
+        {
+            return;
+        }
+
         if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
             float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
@@ -38,6 +48,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 StopMovement();
                 AttackAnim();
+
             }
             else if (distanceToPlayer < attackRange)
             {
@@ -91,10 +102,16 @@ public class EnemyAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             //Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
-            if (enemy.TryGetComponent(out IDamageable damageable))
+            if (enemy.TryGetComponentInChildren(out IDamageable damageable))
             {
                 damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
                 //Core.GetCoreComponent<DamageReceiver>().Damage(new Combat.Damage.DamageData(currentAttackData.Amount, item.gameObject));
+            }
+
+            if (enemy.TryGetComponentInChildren(out IKnockBackable knockBackable))
+            {
+                knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(knockbackAngle,
+                    knockbackStrength, gameObject.GetComponent<EnemyMovement>().isFacingRight ? 1 : -1, gameObject));
             }
         }
     }

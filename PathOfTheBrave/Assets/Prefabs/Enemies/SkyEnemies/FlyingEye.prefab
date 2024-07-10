@@ -170,7 +170,7 @@ MonoBehaviour:
   wallCheck: {fileID: 2298241028088342502}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   detectRange: 10
   chaseSpeed: 6
   damage: 10
@@ -218,7 +218,7 @@ MonoBehaviour:
   anim: {fileID: 8697321030246686669}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   fireball: {fileID: 2515427725552223979, guid: 3680b4b77d9a7154885a9e67994a632a, type: 3}
   fireballPosition: {fileID: 2561151992988807598}
   canMove: 1

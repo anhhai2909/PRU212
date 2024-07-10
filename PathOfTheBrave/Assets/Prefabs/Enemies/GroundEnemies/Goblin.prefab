@@ -365,7 +365,7 @@ MonoBehaviour:
   anim: {fileID: 7194607329800910044}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   hitbox: {fileID: 7194607329516264123}
   hitboxRadius: 1.08
   attackDelay: 0.4
@@ -407,7 +407,7 @@ MonoBehaviour:
   wallCheck: {fileID: 7194607327937197897}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   anim: {fileID: 7194607329800910044}
   player: {fileID: 0}
   hitbox: {fileID: 7194607329516264123}
