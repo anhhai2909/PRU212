@@ -39,46 +39,53 @@ public class EnemyAttack : MonoBehaviour
         {
             return;
         }
-
-        if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
+        if (!gameObject.GetComponent<EnemyHealthSystem>().isHit)
         {
-            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
-
-            if (distanceToPlayer < attackRange && canAttack)
+            if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
             {
-                StopMovement();
-                AttackAnim();
+                float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
 
-            }
-            else if (distanceToPlayer < attackRange)
-            {
-                StopMovement();
-            }
-
-            if (!canAttack)
-            {
-                attackTimer += Time.deltaTime;
-                if (attackTimer >= attackCoolDown)
+                if (distanceToPlayer < attackRange && canAttack)
                 {
-                    attackTimer = 0;
-                    canAttack = true;
-                }
-                if (attackTimer >= 1.5f)
-                {
-                    canMove = true;
-                }
-            }
+                    StopMovement();
+                    AttackAnim();
 
-            if (startDelayTimer)
-            {
-                attackDelayTimer += Time.deltaTime;
-                if (attackDelayTimer >= attackDelay)
+                }
+                else if (distanceToPlayer < attackRange)
                 {
-                    Attack();
-                    attackDelayTimer = 0;
-                    startDelayTimer = false;
+                    StopMovement();
+                }
+
+                if (!canAttack)
+                {
+                    attackTimer += Time.deltaTime;
+                    if (attackTimer >= attackCoolDown)
+                    {
+                        attackTimer = 0;
+                        canAttack = true;
+                    }
+                    if (attackTimer >= 1.5f)
+                    {
+                        canMove = true;
+                    }
+                }
+                if (startDelayTimer)
+                {
+                    attackDelayTimer += Time.deltaTime;
+                    if (attackDelayTimer >= attackDelay)
+                    {
+                        Attack();
+                        attackDelayTimer = 0;
+                        startDelayTimer = false;
+                    }
                 }
             }
+        }
+        else
+        {
+            attackDelayTimer = 0;
+            attackTimer = 0;
+            startDelayTimer = false;
         }      
     }
 

@@ -46847,18 +46847,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4494764926578305203, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7010ad7849df6124c82723a8093c8108, type: 2}
-    - target: {fileID: 8431596758776135154, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: attackCounterResetCooldown
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8928403947593327385, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: <Mana>k__BackingField.<MaxValue>k__BackingField
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,5 +1,4 @@
-﻿using System;
-using CoreSystem;
+﻿using CoreSystem;
 using UnityEngine;
 
 namespace Weapons.Components
@@ -14,9 +13,9 @@ namespace Weapons.Components
         protected bool isAttackActive;
 
         public virtual void Init()
-        { 
+        {
         }
-        
+
         protected virtual void Awake()
         {
             weapon = GetComponent<Weapon>();
@@ -41,6 +40,10 @@ namespace Weapons.Components
         protected virtual void ChangeStats()
         {
         }
+        protected virtual bool CheckCanAttack()
+        {
+            return true;
+        }
 
         protected virtual void OnDestroy()
         {
@@ -64,7 +67,10 @@ namespace Weapons.Components
         public override void Init()
         {
             base.Init();
-
+            if(data is CostAttackData)
+            {
+                currentAttackData = data.GetAttackData(weapon.CurrentAttackCounter);
+            }
             data = weapon.Data.GetData<T1>();
         }
     }

@@ -16,16 +16,6 @@ namespace Weapons.Components
         protected override void HandleEnter()
         {
             base.HandleEnter();
-            if (CheckCanAttack())
-            {
-                ChangeStats();
-                weapon.SetCanAttack(true);
-            }
-            else
-            {
-                weapon.SetCanAttack(false);
-            }
-            Debug.Log(weapon.CanAttack);
         }
 
         protected override void Start()
@@ -33,7 +23,7 @@ namespace Weapons.Components
             base.Start();
         }
 
-        protected bool CheckCanAttack()
+        protected override bool CheckCanAttack()
         {
             if (stats != null)
             {
