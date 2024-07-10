@@ -28,7 +28,6 @@ public class B1_IdleState : BossIdleState
         base.LogicUpdate();
         if (isIdleTimeOver && (necromancer.currentHealth >= 200 || necromancer.currentHealth <= 100))
         {
-            Debug.Log("Phase1");
             switch (randSkill)
             {
                 case 0:
@@ -44,10 +43,8 @@ public class B1_IdleState : BossIdleState
         }
         else if (isIdleTimeOver && necromancer.currentHealth < 200 && necromancer.currentHealth > 100 )
         {
-            Debug.Log("Phase2");
             stateMachine.ChangeState(necromancer.spawnSpikeState);
         }
-        
     }
 
     public override void PhysicsUpdate()

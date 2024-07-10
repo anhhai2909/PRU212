@@ -40,7 +40,7 @@ public class SpawnMeteor : MonoBehaviour
     private void MeteorSpawn()
     {
         // Spawn meteor at a random X position and specific Y position
-        Vector2 spawnPosition = new Vector2(player.position.x + Random.Range(-20,20), spawnHeight);
+        Vector2 spawnPosition = new Vector2( Random.Range(-15,30), spawnHeight + Random.Range(-5, 20));
         GameObject meteor = Instantiate(meteorPrefab, spawnPosition, Quaternion.identity);
 
         // Add delay before the meteor starts falling

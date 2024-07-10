@@ -18,6 +18,8 @@ public class Boss : MonoBehaviour, IDamageable
 
     public D_Boss bossData;
 
+    public PortalScript portal;
+
     [SerializeField]
     private Transform playerCheck;
 
@@ -37,6 +39,7 @@ public class Boss : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             animator.SetBool("dead", true);
+            portal.isBossDead = true;
         }
     }
     public virtual void FixedUpdate()
@@ -69,6 +72,7 @@ public class Boss : MonoBehaviour, IDamageable
     public void Damage(DamageData data)
     {
         currentHealth -= data.Amount;
+        animator.SetTrigger("hurt");
     }
 
     //public virtual bool CheckPlayerInCloseRangeAction()

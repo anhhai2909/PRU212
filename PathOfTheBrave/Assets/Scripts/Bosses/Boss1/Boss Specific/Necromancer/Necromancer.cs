@@ -14,6 +14,8 @@ public class Necromancer : Boss
 
     public BossHealthBar healthBar;
 
+    public PortalScript portal;
+
     [SerializeField]
     private D_BossIdleState idleStateData;
     [SerializeField]
@@ -35,7 +37,13 @@ public class Necromancer : Boss
     public override void Update()
     {
         base.Update();
+        if (currentHealth <= 0)
+        {
+            portal.isEnabled = true;
+            portal.isBossDead = true;
+        }
         healthBar.setHealth(currentHealth);
+        
     }
     
 }

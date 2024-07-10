@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Combat.Damage;
+using ProjectileSystem.Components;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class Fireball : MonoBehaviour
 {
+    public int damage = 20;
     public GameObject player;
     private Rigidbody2D rb;
     public float force;
@@ -12,6 +16,8 @@ public class Fireball : MonoBehaviour
     public float speed = 2f;
     public float distanceLimit = 0f;
     public float destroyTime = 8f;
+    public Vector2 knockbackAngle;
+    public float knockbackStrength;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +67,16 @@ public class Fireball : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameObject.Destroy(gameObject);
+
+            if (collision.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+            }
+
+            if (collision.TryGetComponentInChildren(out IKnockBackable knockBackable))
+            {
+                knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(knockbackAngle,knockbackStrength, gameObject.GetComponent<EnemyMovement>().isFacingRight ? 1 : -1, gameObject));
+            }
         }
     }
 }
