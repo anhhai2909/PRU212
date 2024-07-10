@@ -57,7 +57,6 @@ public class InventoryScript : MonoBehaviour
         CheckForActivatedItem();
     }
 
-
     private void LoadAllItem()
     {
         TextAsset jsonData = Resources.Load<TextAsset>("JSON\\Item");
@@ -120,24 +119,21 @@ public class InventoryScript : MonoBehaviour
 
     private void LoadPlayerItem2()
     {
-        if (playerItems != null)
+        foreach (var item in playerItems)
         {
-            foreach (var item in playerItems)
+            GameObject playerItem = GameObject.Find(item.Key.ToString());
+            if (playerItem != null)
             {
-                GameObject playerItem = GameObject.Find(item.Key.ToString());
-                if (playerItem != null)
-                {
-                    playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
 
-                    playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
-                    playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
+                playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
-                    playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
-                    playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
+                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
+                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
 
 
-                }
             }
         }
     }
