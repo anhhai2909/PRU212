@@ -149,7 +149,7 @@ MonoBehaviour:
     height: 0.8
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 1050112
 --- !u!114 &2646402950516745995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
       m_Calls: []
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1049600
   <SetInactiveAfterDamage>k__BackingField: 0
   <Cooldown>k__BackingField: 3
 --- !u!114 &2976403690347864115
@@ -214,7 +214,7 @@ MonoBehaviour:
       m_Calls: []
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1049600
 --- !u!114 &5443500296696978131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
       m_Calls: []
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1049600
 --- !u!114 &2219639890640999504
 MonoBehaviour:
   m_ObjectHideFlags: 0
