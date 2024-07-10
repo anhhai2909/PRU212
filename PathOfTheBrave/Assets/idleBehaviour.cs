@@ -5,12 +5,12 @@ using UnityEngine;
 public class idleBehaviour : StateMachineBehaviour
 {
     public float timer;
-    public int count=0;
+    public int count = 0;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        SetRandomTrigger(animator);
+        //SetRandomTrigger(animator);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -18,16 +18,21 @@ public class idleBehaviour : StateMachineBehaviour
     {
         // Check current health
         int currentHealth = animator.GetComponent<NecromancerController>().currentHealth;
-        Debug.Log(currentHealth);
-        if (currentHealth < 200 && count==0)
-        {
-            count++;
-            //animator.SetTrigger("spikeSpawn");
-            animator.SetBool("isLowHealth", true);
-        }
+        //Debug.Log(currentHealth);
+        
         if (timer <= 0)
         {
-            SetRandomTrigger(animator);
+            if ((currentHealth < 200 && count == 0))
+            {
+                count++;
+                //animator.SetTrigger("spikeSpawn");
+                animator.SetBool("isLowHealth", true);
+                Debug.Log("Low Health");
+            }
+            else
+            {
+                SetRandomTrigger(animator);
+            }
         }
         else
         {
@@ -38,20 +43,24 @@ public class idleBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("skeleton");
-        animator.ResetTrigger("shoot");
+        //animator.ResetTrigger("skeleton");
+        //animator.ResetTrigger("shoot");
+        SetRandomTrigger(animator);
     }
 
     private void SetRandomTrigger(Animator animator)
     {
         int rand = Random.Range(0, 3);
+        Debug.Log(rand);
         if (rand == 0)
         {
-            animator.SetTrigger("skeleton");
+            animator.SetBool("skeleton",true);
+            animator.SetBool("idle", false);
         }
         else
         {
-            animator.SetTrigger("shoot");
+            animator.SetBool("shoot",true);
+            animator.SetBool("idle", false);
         }
     }
 }

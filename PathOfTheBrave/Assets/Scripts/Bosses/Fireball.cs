@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
@@ -11,40 +11,47 @@ public class Fireball : MonoBehaviour
     Vector3 direction;
     public float speed = 2f;
     public float distanceLimit = 0f;
-    public float destroyTime = 1f;
+    public float destroyTime = 8f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        SetDestroyTime();
+    }
+
+    private void SetDestroyTime()
+    {
+        Destroy(this.gameObject, destroyTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Tính toán hướng từ đối tượng đến người chơi
+        // Calculate the direction from the fireball to the player
         direction = player.transform.position - transform.position;
 
-        // Tính toán góc quay từ hướng di chuyển
+        // Calculate the rotation angle from the movement direction
         float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Cập nhật góc quay của đối tượng
-        this.transform.rotation = Quaternion.Euler(0, 0, rot+97);
+        // Update the rotation of the fireball
+        this.transform.rotation = Quaternion.Euler(0, 0, rot + 97);
 
-        // Gọi phương thức Follow để đối tượng di chuyển theo người chơi
+        // Call the Follow method to move the fireball towards the player
         this.Follow();
     }
 
     void Follow()
     {
-        // Tính khoảng cách giữa đối tượng hiện tại và người chơi
+        // Calculate the distance between the fireball and the player
         Vector3 distance = this.player.transform.position - transform.position;
 
-        // Xác định điểm đích mà đối tượng sẽ di chuyển đến
+        // Determine the target point the fireball will move towards
         Vector3 targetPoint = this.player.transform.position - distance.normalized * distanceLimit;
 
-        // Di chuyển đối tượng đến điểm đích với tốc độ nhất định
+        // Move the fireball towards the target point at a certain speed
         gameObject.transform.position =
             Vector3.MoveTowards(gameObject.transform.position, targetPoint, this.speed * Time.deltaTime);
     }
@@ -56,5 +63,4 @@ public class Fireball : MonoBehaviour
             GameObject.Destroy(gameObject);
         }
     }
-
 }

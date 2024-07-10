@@ -90,7 +90,7 @@ public class EnemyAttack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitbox.transform.position, hitboxRadius, playerLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
+            //Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
             if (enemy.TryGetComponent(out IDamageable damageable))
             {
                 damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));

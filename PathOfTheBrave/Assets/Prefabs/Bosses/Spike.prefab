@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2208670265993857176}
   - component: {fileID: 4549067444861331571}
   - component: {fileID: 2189200912177401149}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612586766202976702}
   - component: {fileID: 2519627461324820579}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,13 +225,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1653618779948850489}
   - component: {fileID: 7665028018265967971}
-  m_Layer: 0
-  m_Name: LightBeam
+  m_Layer: 20
+  m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1653618779948850489
 Transform:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5613093341479451053}
   - component: {fileID: 4038512909478131674}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 2733872353410320296}
   - component: {fileID: 8622714481024990292}
   - component: {fileID: 657306669693832098}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 5236908068342338332}
   - component: {fileID: 3061975680991443139}
   - component: {fileID: 652034548679764793}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1872918973011780747}
   - component: {fileID: 8517764608683473535}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7496476874375073702}
   - component: {fileID: 7172671802228670796}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -803,7 +803,7 @@ GameObject:
   - component: {fileID: 832629043164883312}
   - component: {fileID: 5935293035270419125}
   - component: {fileID: 6227390949199798022}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -933,7 +933,7 @@ GameObject:
   - component: {fileID: 5610806692221655736}
   - component: {fileID: 5488853079770130665}
   - component: {fileID: 6758411700275472121}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1062,7 +1062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6602199329854674137}
   - component: {fileID: 3209416312500488893}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1147,7 +1147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7404152611936044915}
   - component: {fileID: 7362991218829942195}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1232,7 +1232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7106859307100516575}
   - component: {fileID: 6866168913501820990}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1318,7 +1318,7 @@ GameObject:
   - component: {fileID: 751505778542942929}
   - component: {fileID: 4728642618737388204}
   - component: {fileID: 7098184334605532568}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,7 +1448,7 @@ GameObject:
   - component: {fileID: 7737700259692609744}
   - component: {fileID: 5892620795978026059}
   - component: {fileID: 6482540711721331712}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,7 +1577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1566621614237453038}
   - component: {fileID: 2190134606297500304}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1663,7 +1663,7 @@ GameObject:
   - component: {fileID: 925704902448771321}
   - component: {fileID: 7733857565537570995}
   - component: {fileID: 2547396154204412900}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 9204321055747248689}
   - component: {fileID: 1839119247135427456}
   - component: {fileID: 882693503046519228}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1922,7 +1922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3813057502706501919}
   - component: {fileID: 8355309420034798976}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: LightBeam1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

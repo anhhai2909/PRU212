@@ -2,38 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnMeteor : Skill
+public class SpawnMeteor : MonoBehaviour
 {
     public GameObject meteorPrefab;
     public float spawnHeight = 10f; // Specific Y position for spawning meteors
     public float fallDelay = 0.3f; // Delay before meteor starts falling
     public float fallSpeed = 5f; // Speed at which the meteor falls
     public Vector2 fallDirection = new Vector2(-1f, -1f); // Direction of the meteor fall
-
+    public Transform player;
     private Animator animator;
+    protected Necromancer necromancer;
+    private void Awake()
+    {
+        necromancer = GetComponent<Necromancer>();
+    }
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>(); // Initialize animator here
-        SpawnMeteors(10);
+        //SpawnMeteors(10);
     }
 
     void Update()
     {
+       
         // Any continuous behavior or checks can be added here if needed
     }
     private void SpawnMeteors(int numberOfMeteors)
     {
         for (int i = 0; i < numberOfMeteors; i++)
         {
-            Spawn();
+            MeteorSpawn();
         }
     }
 
-    private void Spawn()
+    private void MeteorSpawn()
     {
         // Spawn meteor at a random X position and specific Y position
-        Vector2 spawnPosition = new Vector2(Random.Range(-8f, 8f), spawnHeight);
+        Vector2 spawnPosition = new Vector2(player.position.x + Random.Range(-20,20), spawnHeight);
         GameObject meteor = Instantiate(meteorPrefab, spawnPosition, Quaternion.identity);
 
         // Add delay before the meteor starts falling
@@ -53,21 +60,8 @@ public class SpawnMeteor : Skill
         }
     }
 
-    public override void Activate()
+    public void AnimationMeteorEnd()
     {
-        if (animator != null)
-        {
-            animator.SetBool("isCastingMeteor", false);
-        }
-        Spawn();
-    }
-
-    public override void ActivateAnimation()
-    {
-        base.ActivateAnimation();
-        if (animator != null)
-        {
-            animator.SetBool("isCastingMeteor", true);
-        }
+        necromancer.spawnMeteorState.isCastTimeOver = true;
     }
 }

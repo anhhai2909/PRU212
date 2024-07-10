@@ -2,34 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnSkeleton : Skill
+public class SpawnSkeleton : MonoBehaviour
 {
     public GameObject player;
     public GameObject skeletonPrefab;
     public float spawnRadius = 10.0f;
 
     private Animator animator;
-
-    private void Start()
+    protected Necromancer necromancer;
+    private void Awake()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
+        necromancer = GetComponent<Necromancer>();
+    }
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
         //skeletonPrefab = GameObject.FindGameObjectWithTag("SpawnSkeleton");
         animator = GetComponent<Animator>(); // Initialize animator here
     }
-
-    public override void Activate()
-    {
-        if (animator != null)
-        {
-            animator.SetBool("isSpawning", false);
-        }
-
-        if (skeletonPrefab != null)
-        {
-            
-        }
-    }
-    public void Spawn()
+     void SpawnSkeletons()
     {
         Vector2 randomPosition = GetRandomPositionAroundPlayer();
         Instantiate(skeletonPrefab, randomPosition, Quaternion.identity);
@@ -44,14 +35,10 @@ public class SpawnSkeleton : Skill
 
         return randomPosition;
     }
-
-    public override void ActivateAnimation()
+    public void AnimationSkeletonEnd()
     {
-        base.ActivateAnimation();
-        if (animator != null)
-        {
-            animator.SetBool("isSpawning", true);
-        }
+        necromancer.spawnSkeletonState.isCastTimeOver = true;
     }
+
 }
 

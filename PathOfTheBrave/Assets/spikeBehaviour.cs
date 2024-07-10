@@ -9,23 +9,31 @@ public class spikeBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //CheckAndTriggerSpike(animator);
-        int currentHealth = animator.GetComponent<NecromancerController>().currentHealth;
-        if (currentHealth < 200)
-        {
-            Animator spikeAnimator = spike.GetComponent<Animator>();
-            if (spikeAnimator != null)
-            {
-                spikeAnimator.SetTrigger("spikeActive");
-                Debug.Log("Spike");
-            }
-        }
+        //spike.SetActive(true);
+        ////CheckAndTriggerSpike(animator);
+        //int currentHealth = animator.GetComponent<NecromancerController>().currentHealth;
+        //if (currentHealth < 200)
+        //{
+        //    Animator spikeAnimator = spike.GetComponent<Animator>();
+
+        //    spikeAnimator.gameObject.SetActive(true);
+        //    if (spikeAnimator != null)
+        //    {
+        //        spikeAnimator.SetBool("isActive",true);
+        //        Debug.Log("Spike");
+        //    }
+        //}
+        //else
+        //{
+        //    spike.SetActive(false);
+        //}
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //CheckAndTriggerSpike(animator);
+        //spike.SetActive(true);
     }
 
     private void CheckAndTriggerSpike(Animator animator)

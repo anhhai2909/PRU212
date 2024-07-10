@@ -107,7 +107,7 @@ MonoBehaviour:
   force: 5
   speed: 5
   distanceLimit: 0
-  destroyTime: 4
+  destroyTime: 6
 --- !u!50 &8542390823377641462
 Rigidbody2D:
   serializedVersion: 4
