@@ -19,4 +19,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   closeRangeActionDistance: 1
-  maxHealth: 1000
+  maxHealth: 300

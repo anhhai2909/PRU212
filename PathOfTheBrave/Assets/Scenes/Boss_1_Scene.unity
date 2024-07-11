@@ -44838,10 +44838,6 @@ PrefabInstance:
       propertyPath: <weaponData>k__BackingField.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 2ca6a60fa0f30594899cf6a0e9a2f3ca, type: 2}
-    - target: {fileID: 7879661785824705063, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
