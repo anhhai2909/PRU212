@@ -21,20 +21,23 @@ namespace CoreSystem
 
         public void Damage(DamageData data)
         {
-            print($"Damage Amount Before Modifiers: {data.Amount}");
-
-            // We must apply the modifiers before we do anything else with data. If there are no modifiers currently active, data will remain the same
-            data = Modifiers.ApplyAllModifiers(data);
-
-            print($"Damage Amount After Modifiers: {data.Amount}");
-
-            if (data.Amount <= 0f)
+            if (!core.isDashing)
             {
-                return;
-            }
+                print($"Damage Amount Before Modifiers: {data.Amount}");
 
-            stats.Health.Decrease(data.Amount);
-            particleManager.StartWithRandomRotation(damageParticles);
+                // We must apply the modifiers before we do anything else with data. If there are no modifiers currently active, data will remain the same
+                data = Modifiers.ApplyAllModifiers(data);
+
+                print($"Damage Amount After Modifiers: {data.Amount}");
+
+                if (data.Amount <= 0f)
+                {
+                    return;
+                }
+
+                stats.Health.Decrease(data.Amount);
+                particleManager.StartWithRandomRotation(damageParticles);
+            }
         }
 
         protected override void Awake()

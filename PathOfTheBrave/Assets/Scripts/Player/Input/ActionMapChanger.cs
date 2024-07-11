@@ -24,11 +24,11 @@ public class ActionMapChanger : MonoBehaviour
 
     private void OnEnable()
     {
-        gameManager.OnGameStateChanged += HandleGameStateChanged;
+        //gameManager.OnGameStateChanged += HandleGameStateChanged;
     }
 
     private void OnDisable()
     {
-        gameManager.OnGameStateChanged -= HandleGameStateChanged;
+        //gameManager.OnGameStateChanged -= HandleGameStateChanged;
     }
 }

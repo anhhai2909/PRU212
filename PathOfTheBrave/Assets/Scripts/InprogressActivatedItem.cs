@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -34,9 +35,12 @@ public class InprogressActivatedItem : MonoBehaviour
 
     public List<GameItem> inProgressItem;
 
+    public AudioClip useItemSound;
 
+    private SoundEffectScript sounds;
     void Start()
     {
+        sounds = gameObject.GetComponent<SoundEffectScript>();
         keyINP = new Dictionary<string, int>();
         inProgressItem = new List<GameItem>();
         activeSlot = 1;
@@ -55,7 +59,7 @@ public class InprogressActivatedItem : MonoBehaviour
         activatedItems = LoadDataScript.activatedItems;
     }
 
-    private void LoadAllItem()
+    public void LoadAllItem()
     {
         TextAsset jsonData = Resources.Load<TextAsset>("JSON\\Item");
         items = JsonConvert.DeserializeObject<List<GameItem>>(jsonData.text);
@@ -74,6 +78,7 @@ public class InprogressActivatedItem : MonoBehaviour
                     b += (item.Key + ":" + item.Value + " ");
                 }
             }
+            Debug.Log("Diff");
             LoadToGame(MinItem());
             oldActivatedItems = activatedItems;
         }
@@ -89,13 +94,16 @@ public class InprogressActivatedItem : MonoBehaviour
             {
                 if (item.Key == activeItem.Id)
                 {
+                    
                     SetTimerBar(activeItem);
-                    /*
+                    
                     if (item.Value - 1 > 0)
                     {
                         playerItems[item.Key] = item.Value - 1;
                         LoadDataScript.SavePlayerItemData(coin, playerItems);
                         LoadDataScript.SaveActivatedItems(activatedItems);
+                        Debug.Log("Min");
+
                         LoadToGame(activeSlot);
                     }
                     else
@@ -106,7 +114,7 @@ public class InprogressActivatedItem : MonoBehaviour
                         LoadDataScript.SaveActivatedItems(activatedItems);
                         LoadToGame(MinItem());
                     }
-                    */
+                    
 
                     break;
                 }
@@ -121,8 +129,9 @@ public class InprogressActivatedItem : MonoBehaviour
 
         if (inProgressItem.Contains(item))
         {
-            Debug.Log("1sa");
-            for(int i = 0; i < inProgressItem.Count; i++)
+            sounds.gameObject.GetComponent<AudioSource>().clip = useItemSound;
+            sounds.Play();
+            for (int i = 0; i < inProgressItem.Count; i++)
             {
                 if(item.Id == inProgressItem[i].Id)
                 {
@@ -151,7 +160,9 @@ public class InprogressActivatedItem : MonoBehaviour
             }
             else
             {
-                
+                sounds.gameObject.GetComponent<AudioSource>().clip = useItemSound;
+                sounds.Play();
+
                 GameObject itemINP;
                 int index = 0;
                 while(inprogressObject.Contains("ActivatedInprogress" + (index != 0 ? (index) : (""))) && index <= 3)
@@ -244,9 +255,11 @@ public class InprogressActivatedItem : MonoBehaviour
                 if (min > item.Key)
                 {
                     min = item.Key;
+                    
                 }
             }
         }
+        activeSlot = min;
         return min;
     }
 
@@ -267,6 +280,7 @@ public class InprogressActivatedItem : MonoBehaviour
         }
         else
         {
+            Debug.Log(index);
             foreach (var item in items)
             {
                 if (item.Id == activatedItems[index])
