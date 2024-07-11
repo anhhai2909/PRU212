@@ -25,7 +25,7 @@ MonoBehaviour:
   hitParticle: {fileID: 6240072112886026631, guid: d3ad3f1375e0d114ca19695641fceb61, type: 3}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 6144

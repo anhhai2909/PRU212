@@ -10,11 +10,13 @@ public class IdleState : State {
 	private Movement movement;
 	private CollisionSenses collisionSenses;
 
-	protected D_IdleState stateData;
+
+    protected D_IdleState stateData;
 
 	protected bool flipAfterIdle;
 	protected bool isIdleTimeOver;
 	protected bool isPlayerInMinAgroRange;
+	protected bool isLowHealth;
 
 	protected float idleTime;
 
@@ -25,9 +27,9 @@ public class IdleState : State {
 	public override void DoChecks() {
 		base.DoChecks();
 		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
-	}
+    }
 
-	public override void Enter() {
+    public override void Enter() {
 		base.Enter();
 
 		Movement?.SetVelocityX(0f);

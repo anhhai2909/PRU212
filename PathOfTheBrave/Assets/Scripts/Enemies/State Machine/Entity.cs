@@ -27,7 +27,8 @@ public class Entity : MonoBehaviour {
 	private Transform groundCheck;
 
 	private float currentHealth;
-	private float currentStunResistance;
+	//private float currentStunResistance;
+	private float armor;
 	private float lastDamageTime;
 
 	private Vector2 velocityWorkspace;
@@ -47,7 +48,8 @@ public class Entity : MonoBehaviour {
 		parryReceiver.OnParried += HandleParry;
 
 		currentHealth = entityData.maxHealth;
-		currentStunResistance = entityData.stunResistance;
+		//currentStunResistance = entityData.stunResistance;
+		armor = entityData.armor;
 
 		anim = GetComponent<Animator>();
 		atsm = GetComponent<AnimationToStatemachine>();
@@ -61,9 +63,9 @@ public class Entity : MonoBehaviour {
 
 		anim.SetFloat("yVelocity", Movement.RB.velocity.y);
 
-		if (Time.time >= lastDamageTime + entityData.stunRecoveryTime) {
-			ResetStunResistance();
-		}
+		//if (Time.time >= lastDamageTime + entityData.stunRecoveryTime) {
+		//	ResetStunResistance();
+		//}
 	}
 
 	protected virtual void HandleParry()
@@ -92,10 +94,10 @@ public class Entity : MonoBehaviour {
 		Movement.RB.velocity = velocityWorkspace;
 	}
 
-	public virtual void ResetStunResistance() {
-		isStunned = false;
-		currentStunResistance = entityData.stunResistance;
-	}
+	//public virtual void ResetStunResistance() {
+	//	isStunned = false;
+	//	currentStunResistance = entityData.stunResistance;
+	//}
 
 	public virtual void OnDrawGizmos() {
 		if (Core != null) {

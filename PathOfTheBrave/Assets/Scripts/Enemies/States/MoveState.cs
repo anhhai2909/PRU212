@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using CoreSystem;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveState : State {
@@ -16,7 +17,7 @@ public class MoveState : State {
 	//protected bool isDetectingLedge;
 	protected bool isPlayerInMinAgroRange;
 
-	public MoveState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(etity, stateMachine, animBoolName) {
+	public MoveState(Entity entity, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(entity, stateMachine, animBoolName) {
 		this.stateData = stateData;
 	}
 
