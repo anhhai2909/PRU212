@@ -38,9 +38,9 @@ public class FogScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(deathZone.transform.position.y - player.transform.position.y >= 0.5)
+        if(deathZone.transform.position.y - player.transform.position.y >= 0.3)
         {
-            player.GetComponent<DeathHandle>().Death();
+            Debug.Log("Death");
         }
         if(Time.realtimeSinceStartup - time >= 0)
         {

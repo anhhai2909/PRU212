@@ -20,7 +20,7 @@ MonoBehaviour:
     x: 643
     y: -243
     width: 736
-    height: 2122
+    height: 2094
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.6841508746147156,"g":0.9773584604263306,"b":0.8261381983757019,"a":0.0}'
+      m_SerializableObject: '{"r":1.0,"g":1.0,"b":1.0,"a":0.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -146,7 +146,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.5587539672851563,"g":0.9773584604263306,"b":0.9075909852981567,"a":0.0}'
+      m_SerializableObject: '{"r":0.7411764860153198,"g":1.0,"b":0.95686274766922,"a":0.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -3507,7 +3507,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.6841508746147156,"g":0.9773584604263306,"b":0.8261381983757019,"a":0.0}'
+      m_SerializableObject: '{"r":1.0,"g":1.0,"b":1.0,"a":0.0}'
     m_Space: 2147483647
   m_Property:
     name: o
@@ -3692,9 +3692,8 @@ MonoBehaviour:
     - outputSlot: {fileID: 8926484042661614701}
       inputSlot: {fileID: 8926484042661614689}
     position: {x: 744.7484, y: 1798.9663}
-    expandedSlots:
-    - {fileID: 8926484042661614701}
-    expanded: 1
+    expandedSlots: []
+    expanded: 0
 --- !u!114 &8926484042661614701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3724,7 +3723,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.5587539672851563,"g":0.9773584604263306,"b":0.9075909852981567,"a":0.0}'
+      m_SerializableObject: '{"r":0.7411764860153198,"g":1.0,"b":0.95686274766922,"a":0.0}'
     m_Space: 2147483647
   m_Property:
     name: o

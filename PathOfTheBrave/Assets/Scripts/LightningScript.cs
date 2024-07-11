@@ -21,6 +21,7 @@ public class LightningScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(effect.aliveParticleCount);
         if(effect.aliveParticleCount < 0)
         {
             effect.Play();

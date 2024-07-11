@@ -14,12 +14,11 @@ TagManager:
   - GroundEnemy
   - Slime
   - MovingPlatform
+  - Spike
   - Item
   - Inventory
   - GroundRangeAttackStuffRespawnPosition
   - Thorn
-  - TrapDeath
-  - TrapNotDeath
   layers:
   - Default
   - TransparentFX
