@@ -6978,6 +6978,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+--- !u!1 &112600736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 10858533942769676, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+  m_PrefabInstance: {fileID: 1155485669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &141265125
 GameObject:
   m_ObjectHideFlags: 0
@@ -44098,7 +44103,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2073795389
-  m_SortingLayer: 6
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -44838,10 +44843,6 @@ PrefabInstance:
       propertyPath: <weaponData>k__BackingField.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 2ca6a60fa0f30594899cf6a0e9a2f3ca, type: 2}
-    - target: {fileID: 7879661785824705063, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45357,7 +45358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa513865b4916db4fadb496cf19cf186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 1878537881}
+  slider: {fileID: 0}
 --- !u!1001 &1933995573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45733,9 +45734,17 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8851398823676157539, guid: 3ec137fc80f7189478bb02c733f4526e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 112600736}
+    - target: {fileID: 8851398823676157539, guid: 3ec137fc80f7189478bb02c733f4526e, type: 3}
       propertyPath: skeletonPrefab
       value: 
       objectReference: {fileID: 8273563080497093330, guid: 3303e2cd78f3a244390d629d7464d251, type: 3}
+    - target: {fileID: 9209580212702059632, guid: 3ec137fc80f7189478bb02c733f4526e, type: 3}
+      propertyPath: fireball
+      value: 
+      objectReference: {fileID: 2515427725552223979, guid: ee00e2fa38bf3864caa2a4a4c5e9d212, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

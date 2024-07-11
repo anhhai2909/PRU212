@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundRangeAttack : MonoBehaviour
@@ -68,7 +70,7 @@ public class GroundRangeAttack : MonoBehaviour
                     }
                 }
             }
-        }
+        }      
     }
 
     void StopMovement()
@@ -86,8 +88,6 @@ public class GroundRangeAttack : MonoBehaviour
     }
     void Attack()
     {
-
-        GameObject fireBall = Instantiate(weapon, weaponPosition.transform.position, Quaternion.identity);
-        fireBall.GetComponent<GroundRangeAttackStuff>().enemy = gameObject;
+        Instantiate(weapon, weaponPosition.transform.position, Quaternion.identity);
     }
 }

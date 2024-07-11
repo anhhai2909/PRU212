@@ -17,9 +17,7 @@ MonoBehaviour:
   <Description>k__BackingField: Bum bum chiu chiu
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: 7010ad7849df6124c82723a8093c8108, type: 2}
   <NumberOfAttacks>k__BackingField: 1
-  <AttackCooldown>k__BackingField: 1
   <ComponentData>k__BackingField:
-  - rid: 6865490406709919747
   - rid: 6757590011093975040
   - rid: 6757590011093975042
   - rid: 6757590011093975043
@@ -61,7 +59,7 @@ MonoBehaviour:
         - name: Attack 1
           <ChargeTime>k__BackingField: 0.8
           <InitialChargeAmount>k__BackingField: 1
-          <NumberOfCharges>k__BackingField: 3
+          <NumberOfCharges>k__BackingField: 5
           <ChargeIncreaseIndicatorParticlePrefab>k__BackingField: {fileID: 6762676686280720063, guid: 19758c9f67bb0264e8437296ed15d9ee, type: 3}
           <FullyChargedIndicatorParticlePrefab>k__BackingField: {fileID: 6762676686280720063, guid: 19758c9f67bb0264e8437296ed15d9ee, type: 3}
           <ParticlesOffset>k__BackingField: {x: 0, y: -1.2}
@@ -72,32 +70,7 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <chargeProjectile>k__BackingField:
-          - <Offset>k__BackingField: {x: 0.6, y: -1.03}
-            <Direction>k__BackingField: {x: 1, y: 0}
-            <ProjectilePrefab>k__BackingField: {fileID: 5902604084682687586, guid: 9eba73646799f9b4ba8750b307dea9ec, type: 3}
-            <DamageData>k__BackingField:
-              <Amount>k__BackingField: 40
-            <KnockBackData>k__BackingField:
-              Strength: 0
-              Angle: {x: 0, y: 0}
-            <PoiseDamageData>k__BackingField:
-              <Amount>k__BackingField: 0
-            <SpriteDataPackage>k__BackingField:
-              <Sprite>k__BackingField: {fileID: 1866865045, guid: 13b2c61bd29d73a4c90641bc1f5cb09b, type: 3}
-          - <Offset>k__BackingField: {x: 0.6, y: -1.03}
-            <Direction>k__BackingField: {x: 1, y: 0}
-            <ProjectilePrefab>k__BackingField: {fileID: 5382304216897867029, guid: 746eef1173af2614aada27f9824e73e6, type: 3}
-            <DamageData>k__BackingField:
-              <Amount>k__BackingField: 60
-            <KnockBackData>k__BackingField:
-              Strength: 5
-              Angle: {x: 1, y: 0}
-            <PoiseDamageData>k__BackingField:
-              <Amount>k__BackingField: 0
-            <SpriteDataPackage>k__BackingField:
-              <Sprite>k__BackingField: {fileID: 219128705, guid: 77361dc31d3d06a4298cf409adaab11f, type: 3}
-          <AngleVariation>k__BackingField: 0
+          <AngleVariation>k__BackingField: 10
     - rid: 6757590077311549440
       type: {class: MovementData, ns: Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -107,12 +80,3 @@ MonoBehaviour:
         - name: Attack 1
           <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: -2
-    - rid: 6865490406709919747
-      type: {class: CostAttackData, ns: Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: CostAttackData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <CostMana>k__BackingField: 20
-          <CostHealth>k__BackingField: 0
