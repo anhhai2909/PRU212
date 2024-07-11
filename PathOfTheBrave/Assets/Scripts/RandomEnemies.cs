@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class RandomEnemies : MonoBehaviour
 {
+
+    private int totalEnemiesPerMap;
+
+    private List<GameObject> listEnemies;
+
     // Start is called before the first frame update
     void Start()
     {
