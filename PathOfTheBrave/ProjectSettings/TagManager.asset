@@ -18,6 +18,8 @@ TagManager:
   - Item
   - Inventory
   - GroundRangeAttackStuffRespawnPosition
+  - FireBallPos
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -46,7 +48,6 @@ TagManager:
   - NotInteractable
   - 
   - Trap
-  - 
   - 
   - 
   - 

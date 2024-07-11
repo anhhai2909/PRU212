@@ -50,7 +50,7 @@ namespace ProjectileSystem.Components
                 if (!hit.collider.transform.gameObject.TryGetComponent(out IDamageable damageable))
                     continue;
                 
-                damageable.Damage(new DamageData(amount + projectile.GetAddDamage(), projectile.gameObject));
+                damageable.Damage(new DamageData(amount, projectile.gameObject));
 
                 OnDamage?.Invoke(damageable);
                 OnRaycastHit?.Invoke(hit);
@@ -74,7 +74,7 @@ namespace ProjectileSystem.Components
             if (dataPackage is not DamageDataPackage package)
                 return;
 
-            amount = package.Amount;
+            amount = package.Amount + package.AddAmount;
         }
 
         #region Plumbing
