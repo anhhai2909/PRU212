@@ -1,8 +1,8 @@
-﻿using ObjectPoolSystem;
+﻿using System;
+using ObjectPoolSystem;
 using ProjectileSystem;
-using System;
-using UnityEngine;
 using Weapons.Components;
+using UnityEngine;
 
 namespace Weapons
 {
@@ -20,7 +20,6 @@ namespace Weapons
         // These values is set from some external source. E.G: ChargeToProjectileSpawner weapon component
         public float AngleVariation;
         public int ChargeAmount;
-        public ProjectileSpawnInfo[] SpawnInfo;
 
         // A working variable that holds the current direction we want to spawn the next projectile in the loop in
         private Vector2 currentDirection;
@@ -37,8 +36,6 @@ namespace Weapons
             if (ChargeAmount == 1)
             {
                 currentDirection = projectileSpawnInfo.Direction;
-                SpawnProjectile(projectileSpawnInfo, currentDirection, spawnerPos, facingDirection, objectPools,
-                OnSpawnProjectile);
             }
             else
             {
@@ -52,39 +49,20 @@ namespace Weapons
 
                 // Rotate the vector to set our first spawn direction
                 currentDirection = initialRotationQuaternion * projectileSpawnInfo.Direction;
-
-                if (ChargeAmount >= SpawnInfo.Length+2)
-                {
-                    SpawnProjectile(projectileSpawnInfo, currentDirection, spawnerPos, facingDirection, objectPools,
-                OnSpawnProjectile);
-                }
-                else
-                {
-                    SpawnProjectile(SpawnInfo[ChargeAmount-2], currentDirection, spawnerPos, facingDirection, objectPools,
-                                   OnSpawnProjectile);
-                }
-
             }
 
             // The quaternion that we will use to rotate the spawn direction by our angle variation for every projectile we spawn
             var rotationQuaternion = Quaternion.Euler(0f, 0f, AngleVariation);
 
-            //for (var i = 0; i < ChargeAmount; i++)
-            //{
-            //    // Projectile spawn methods. See ProjectileSpawnerStrategy class for more details
-            //    SpawnProjectile(projectileSpawnInfo, currentDirection, spawnerPos, facingDirection, objectPools,
-            //        OnSpawnProjectile);
+            for (var i = 0; i < ChargeAmount; i++)
+            {
+                // Projectile spawn methods. See ProjectileSpawnerStrategy class for more details
+                SpawnProjectile(projectileSpawnInfo, currentDirection, spawnerPos, facingDirection, objectPools,
+                    OnSpawnProjectile);
 
-            //    // Rotate the spawn direction for next projectile.
-            //    currentDirection = rotationQuaternion * currentDirection;
-            //}
-
-            // Projectile spawn methods. See ProjectileSpawnerStrategy class for more details
-            //SpawnProjectile(SpawnInfo, currentDirection, spawnerPos, facingDirection, objectPools,
-            //    OnSpawnProjectile);
-
-            //// Rotate the spawn direction for next projectile.
-            //currentDirection = rotationQuaternion * currentDirection;
+                // Rotate the spawn direction for next projectile.
+                currentDirection = rotationQuaternion * currentDirection;
+            }
         }
     }
 }
