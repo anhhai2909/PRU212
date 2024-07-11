@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 8697321030246686668}
   - component: {fileID: 8697321030246686661}
   - component: {fileID: 6523438252441406680}
+  - component: {fileID: -3838780415114667938}
   m_Layer: 20
   m_Name: FlyingEye
   m_TagString: FlyEnemy
@@ -112,7 +113,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647669975
-  m_SortingLayer: 10
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: -4795363162621231457, guid: 6d7cd4f7505dc674c891ca8946cfd98b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -324,6 +325,22 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.8
+  isHitTimer: 0
+  isHit: 0
+--- !u!114 &-3838780415114667938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401117001677550489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdcf774b81a8945932f2c667443c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
 --- !u!1 &5570234645804231386
 GameObject:
   m_ObjectHideFlags: 0

@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3154389067192857773}
   - component: {fileID: 3154389067192857771}
   - component: {fileID: 3154389067192857770}
+  - component: {fileID: 4074894691821660661}
   m_Layer: 20
   m_Name: Mushroom
   m_TagString: GroundEnemy
@@ -144,7 +145,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647669975
-  m_SortingLayer: 10
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: f8b30c2afe165d645b54d500a9c30862, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,6 +279,9 @@ MonoBehaviour:
   detectRange: 8
   chaseSpeed: 6
   damage: 10
+  maxKnockBackTime: 0.2
+  isFacingRight: 1
+  canMove: 0
 --- !u!114 &3154389067192857771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +308,8 @@ MonoBehaviour:
   hitbox: {fileID: 3154389067444951353}
   hitboxRadius: 0.43
   attackDelay: 0.6
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
 --- !u!114 &3154389067192857770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +331,22 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.8
+  isHitTimer: 0
+  isHit: 0
+--- !u!114 &4074894691821660661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3154389067192857762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cdcf774b81a8945932f2c667443c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingRight: 1
 --- !u!1 &3154389067444951353
 GameObject:
   m_ObjectHideFlags: 0
