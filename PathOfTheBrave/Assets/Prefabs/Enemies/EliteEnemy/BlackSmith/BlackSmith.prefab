@@ -433,9 +433,6 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 4
   disapearTimer: 0
-  isHitCooldown: 0.8
-  isHitTimer: 0
-  isHit: 0
 --- !u!1 &7702401350898540146
 GameObject:
   m_ObjectHideFlags: 0

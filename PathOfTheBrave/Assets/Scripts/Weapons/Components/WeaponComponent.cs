@@ -1,4 +1,5 @@
-﻿using CoreSystem;
+﻿using System;
+using CoreSystem;
 using UnityEngine;
 
 namespace Weapons.Components
@@ -6,6 +7,7 @@ namespace Weapons.Components
     public abstract class WeaponComponent : MonoBehaviour
     {
         protected Weapon weapon;
+
         protected AnimationEventHandler AnimationEventHandler => weapon.EventHandler;
         protected Core Core => weapon.Core;
         protected float attackStartTime => weapon.AttackStartTime;
@@ -14,8 +16,9 @@ namespace Weapons.Components
 
         public virtual void Init()
         {
+            
         }
-
+        
         protected virtual void Awake()
         {
             weapon = GetComponent<Weapon>();
@@ -37,14 +40,6 @@ namespace Weapons.Components
             isAttackActive = false;
         }
 
-        protected virtual void ChangeStats()
-        {
-        }
-        protected virtual bool CheckCanAttack()
-        {
-            return true;
-        }
-
         protected virtual void OnDestroy()
         {
             weapon.OnEnter -= HandleEnter;
@@ -60,17 +55,14 @@ namespace Weapons.Components
         protected override void HandleEnter()
         {
             base.HandleEnter();
-            Debug.Log(data + ": " + weapon.CurrentAttackCounter);
+
             currentAttackData = data.GetAttackData(weapon.CurrentAttackCounter);
         }
 
         public override void Init()
         {
             base.Init();
-            if(data is CostAttackData)
-            {
-                currentAttackData = data.GetAttackData(weapon.CurrentAttackCounter);
-            }
+
             data = weapon.Data.GetData<T1>();
         }
     }

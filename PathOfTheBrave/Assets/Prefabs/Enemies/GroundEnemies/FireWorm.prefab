@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 886699419678482192}
   - component: {fileID: 886699419678482182}
   - component: {fileID: 886699419678482183}
-  - component: {fileID: -244258759404834755}
   m_Layer: 20
   m_Name: FireWorm
   m_TagString: GroundEnemy
@@ -159,7 +158,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1336675, y: 0.02183259}
+  m_Offset: {x: 0.1336675, y: 0.021832585}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,7 +169,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3645594, y: 0.4608744}
+  m_Size: {x: 0.36455935, y: 0.46087444}
   m_EdgeRadius: 0
 --- !u!50 &886699419678482197
 Rigidbody2D:
@@ -295,19 +294,6 @@ MonoBehaviour:
   weaponPosition: {fileID: 886699419963126403}
   canMove: 1
   attackDelay: 0.8
---- !u!114 &-244258759404834755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886699419678482200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89cdcf774b81a8945932f2c667443c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 1
 --- !u!1 &886699419963126403
 GameObject:
   m_ObjectHideFlags: 0
