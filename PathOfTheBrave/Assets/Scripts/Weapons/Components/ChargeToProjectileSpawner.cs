@@ -1,4 +1,6 @@
-﻿namespace Weapons.Components
+﻿using UnityEngine;
+
+namespace Weapons.Components
 {
     /*
      * This weapon component is responsible for increasing the number of projectiles that are spawned based on the attack charge.
@@ -35,8 +37,8 @@
         {
             if (newInput || hasReadCharge)
                 return;
+
             // Set the current information in the strategy
-            chargeProjectileSpawnerStrategy.SpawnInfo = currentAttackData.chargeProjectile;
             chargeProjectileSpawnerStrategy.AngleVariation = currentAttackData.AngleVariation;
             chargeProjectileSpawnerStrategy.ChargeAmount = charge.TakeFinalChargeReading();
 

@@ -1,6 +1,6 @@
 ﻿using System;
-using UnityEngine;
 using Weapons;
+using UnityEngine;
 
 namespace CoreSystem
 {
@@ -33,11 +33,6 @@ namespace CoreSystem
                 data = null;
                 return false;
             }
-            if (weaponData[index] is null)
-            {
-                data = null;
-                return false;
-            }
 
             data = weaponData[index];
             return true;
@@ -56,21 +51,6 @@ namespace CoreSystem
 
             index = -1;
             return false;
-        }
-
-        public void AddEmptyPosition()
-        {
-            // Create a new array with one additional slot
-            WeaponDataSO[] newWeaponData = new WeaponDataSO[weaponData.Length + 1];
-
-            // Copy existing elements to the new array
-            for (int i = 0; i < weaponData.Length; i++)
-            {
-                newWeaponData[i] = weaponData[i];
-            }
-
-            // Set the new array as the weaponData array
-            weaponData = newWeaponData;
         }
 
         public WeaponSwapChoice[] GetWeaponSwapChoices()

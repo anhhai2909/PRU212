@@ -1,6 +1,3 @@
-using Combat.Damage;
-using Combat.KnockBack;
-using CoreSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,10 +5,8 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Utilities;
-using static UnityEngine.EventSystems.EventTrigger;
 
-public class EnemyMovement : MonoBehaviour, IKnockBackable
+public class EnemyMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public GameObject groundCheck;
@@ -28,33 +23,25 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
     public float detectRange = 16f;
     public float chaseSpeed = 6f;
     public int damage = 10;
-    public float maxKnockBackTime = 0.2f;
 
     private bool isFacingWall;
     private bool isGrounded;
-    public bool isFacingRight = true;
+    private bool isFacingRight = true;
     private bool isChasing;
     private bool isFalling;
-
-    private bool isKnockBackActive;
-    private float knockBackStartTime;
-    public bool canMove;
-
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        canMove = true;
     }
     void Update()
     {
-        CheckKnockBack();
-        if (gameObject.GetComponent<EnemyAttack>().canAttack && !isKnockBackActive)
+        if (gameObject.GetComponent<EnemyAttack>().canAttack)
         {
             checkFalling();
             if (!isFalling)
             {
-                if (gameObject.GetComponent<EnemyHealthSystem>().canMove && canMove)
+                if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
                 {
                     DetectPlayer();
                     if (isChasing != true)
@@ -81,20 +68,6 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
             }
         }
     }
-
-    private void CheckKnockBack()
-    {
-        if (isKnockBackActive
-            &&  Time.time >= knockBackStartTime + maxKnockBackTime
-           )
-        {
-            isKnockBackActive = false;
-            canMove = true;
-            gameObject.GetComponent<EnemyAttack>().canAttack = true;
-            rb.velocity = new Vector2(0, rb.velocity.y);
-        }
-    }
-
     void checkFalling()
     {
         if(Physics2D.OverlapCircle(fallingCheck.transform.position, groundCheckRadius, groundLayer))
@@ -173,30 +146,11 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
         Gizmos.DrawWireSphere(wallCheck.transform.position, groundCheckRadius);
         Gizmos.DrawWireSphere(fallingCheck.transform.position, groundCheckRadius);
     }
-
-    public void KnockBack(KnockBackData data)
-    {
-        data.Angle.Normalize();
-
-        Vector2 workspace = new Vector2(data.Angle.x * data.Strength * data.Direction, data.Angle.y * data.Strength);
-        rb.AddForce(workspace, ForceMode2D.Impulse);
-
-        canMove = false;
-        gameObject.GetComponent<EnemyAttack>().canAttack = false;
-        isKnockBackActive = true;
-        knockBackStartTime = Time.time;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            EnemyAttack attack = gameObject.GetComponent<EnemyAttack>();
-            if (collision.gameObject.TryGetComponentInChildren<IKnockBackable>(out IKnockBackable knockBackable))
-            {
-                knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(attack.knockbackAngle,
-                    attack.knockbackStrength, gameObject.GetComponent<EnemyMovement>().isFacingRight ? 1 : -1, gameObject));
-            }
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        gameObject.GetComponent<EnemyHealthSystem>().GetDamage(10);
+    //    }
+    //}
 }

@@ -27,23 +27,30 @@ public class MovingPlatformScript : MonoBehaviour
 
     public MovingPlatformScript firstPlatform;
 
-
+    public bool isOneSide;
 
     public PlayerScript playerScript;
 
     private float distanceTurn;
 
+    private bool isBreak;
+
     void Start()
     {
+        isBreak = false;
         distanceTurn = 0.1f;
         isMoving = false;
         speed = 1.35f;
+        if (isOneSide)
+        {
+            speed = 0.75f;
+        }
         playerTransform = GameObject.Find("Player").transform;
     }
 
     Vector2 currentMovementTarget()
     {
-        if(direction == 1)
+        if (direction == 1)
         {
             return startPoint.position;
         }
@@ -56,42 +63,51 @@ public class MovingPlatformScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 target = currentMovementTarget();
-
-        if(isFirstPlatform)
+        if (!isBreak)
         {
-            if(isMoving)
+            Vector2 target = currentMovementTarget();
+
+            if (isFirstPlatform)
             {
-                platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime );
+                if (isMoving)
+                {
+                    platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
 
+                }
             }
-        }
-        else
-        {
-            if(firstPlatform.isMoving)
+            else
             {
-                platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime );
+                if (firstPlatform.isMoving)
+                {
+                    platform.position = Vector2.Lerp(platform.position, target, speed * Time.deltaTime);
 
+                }
             }
+
+            //if(isPlayerOn ) 
+            //playerTransform.position = Vector2.Lerp(playerTransform.position, target, speed * Time.deltaTime);
+
+            float distance = (target - (Vector2)platform.position).magnitude;
+            if (distance <= distanceTurn)
+            {
+                Debug.Log("1a");
+                if (isOneSide)
+                {
+                    isBreak = true;
+                }
+                direction *= -1;
+            }
+
+
         }
-
-        //if(isPlayerOn ) 
-        //playerTransform.position = Vector2.Lerp(playerTransform.position, target, speed * Time.deltaTime);
-
-        float distance = (target - (Vector2)platform.position).magnitude;
-        if(distance <= distanceTurn)
-        {
-            direction *= -1;
-        }
-
 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if(isFirstPlatform && !isMoving)
+            if (isFirstPlatform && !isMoving)
             {
                 isMoving = true;
             }
@@ -107,7 +123,7 @@ public class MovingPlatformScript : MonoBehaviour
         {
             isPlayerOn = false;
             collision.gameObject.transform.parent = null;
-           // collision.gameObject.GetComponent<Animator>().applyRootMotion = true;
+            // collision.gameObject.GetComponent<Animator>().applyRootMotion = true;
 
         }
     }

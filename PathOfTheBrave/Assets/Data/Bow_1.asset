@@ -18,11 +18,9 @@ MonoBehaviour:
     arrows
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: 8fd860ad5064f5b469c3d3d306a7ee52, type: 2}
   <NumberOfAttacks>k__BackingField: 4
-  <AttackCooldown>k__BackingField: 0.6
   <ComponentData>k__BackingField:
   - rid: 6757589890646671360
   - rid: 6757589890646671361
-  - rid: 6865490453244936193
   references:
     version: 2
     RefIds:
@@ -106,21 +104,3 @@ MonoBehaviour:
               <Amount>k__BackingField: 0
             <SpriteDataPackage>k__BackingField:
               <Sprite>k__BackingField: {fileID: 21300000, guid: 171423b3775516045b849867ebfb90aa, type: 3}
-    - rid: 6865490453244936193
-      type: {class: CostAttackData, ns: Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: CostAttackData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <CostMana>k__BackingField: 10
-          <CostHealth>k__BackingField: 0
-        - name: Attack 2
-          <CostMana>k__BackingField: 10
-          <CostHealth>k__BackingField: 0
-        - name: Attack 3
-          <CostMana>k__BackingField: 10
-          <CostHealth>k__BackingField: 0
-        - name: Attack 4
-          <CostMana>k__BackingField: 10
-          <CostHealth>k__BackingField: 0

@@ -134,7 +134,7 @@ MonoBehaviour:
     height: 0.54
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1050112
+    m_Bits: 1536
 --- !u!114 &1775009464070235437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
       m_Calls: []
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1049600
+    m_Bits: 1024
   <SetInactiveAfterDamage>k__BackingField: 0
   <Cooldown>k__BackingField: 3
 --- !u!114 &7473774155926503612
@@ -199,7 +199,7 @@ MonoBehaviour:
       m_Calls: []
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1049600
+    m_Bits: 512
 --- !u!114 &3548454430631855132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
       m_Calls: []
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 1049600
+    m_Bits: 512
 --- !u!114 &7709550137505407433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,10 +373,6 @@ PrefabInstance:
     - target: {fileID: 2268897439260401120, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
       propertyPath: m_Name
       value: FireballParticleTrail
-      objectReference: {fileID: 0}
-    - target: {fileID: 2268897439260401121, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2268897439260401123, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
       propertyPath: m_RootOrder

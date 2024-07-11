@@ -57,11 +57,7 @@ public class SlimeScript : MonoBehaviour
                     anim.SetTrigger("Explore");
                     isExplore = true;
                 }
-            }
-            if(Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) <= 0.3)
-            {
-                anim.SetTrigger("Explore");
-                isExplore = true;
+
             }
         }
         if (isExplore)
