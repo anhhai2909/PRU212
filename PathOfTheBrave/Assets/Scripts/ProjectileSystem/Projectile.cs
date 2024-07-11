@@ -13,6 +13,11 @@ namespace ProjectileSystem
         public event Action OnInit;
         public event Action OnReset;
 
+        private float AddDamage = 0;
+        public float GetAddDamage() => AddDamage;
+        public void SetAddDamage(float Amount) => AddDamage = Amount;
+        public void AddAddDamage(float Amount) => AddDamage += Amount;
+
         public event Action<ProjectileDataPackage> OnReceiveDataPackage;
 
         public Rigidbody2D Rigidbody2D { get; private set; }

@@ -59,7 +59,6 @@ public class ArcherMovement : MonoBehaviour
                 }
             }      
         }
-        gameObject.GetComponent<IsFacingRight>().facingRight = isFacingRight;
     }
     void checkFalling()
     {

@@ -35,33 +35,28 @@ public class GroundRangeEnemyMovement : MonoBehaviour
         {
             if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
             {
-                if(gameObject.GetComponent<GroundRangeAttack>().canAttack)
+                DetectPlayer();
+                if (isChasing != true)
                 {
-                    DetectPlayer();
-                    if (isChasing != true)
+                    Walk();
+                }
+                else
+                {
+                    if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f > gameObject.GetComponent<GroundRangeAttack>().attackRange - 0.1f)
                     {
-                        Walk();
+                        if (gameObject.GetComponent<GroundRangeAttack>().canMove)
+                        {
+                            ChasePlayer();
+                        }
                     }
                     else
                     {
-                        if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f > gameObject.GetComponent<GroundRangeAttack>().attackRange - 0.1f)
-                        {
-                            if (gameObject.GetComponent<GroundRangeAttack>().canMove)
-                            {
-                                ChasePlayer();
-                            }
-                        }
-                        else
-                        {
-                            rb.velocity = new Vector2(0, rb.velocity.y);
-                            anim.SetBool("IsWalking", false);
-                        }
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                        anim.SetBool("IsWalking", false);
                     }
-                }          
+                }
             }
-            gameObject.GetComponent<IsFacingRight>().facingRight = isFacingRight;
         }
-        
     }
     void checkFalling()
     {
@@ -108,10 +103,9 @@ public class GroundRangeEnemyMovement : MonoBehaviour
     }
     void Flip()
     {
-        
         isFacingRight = !isFacingRight;
         transform.Rotate(new Vector3(0, 180, 0));
-        moveSpeed = -moveSpeed;       
+        moveSpeed = -moveSpeed;
     }
     void DetectPlayer()
     {
