@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1412964153144342718}
   - component: {fileID: 8416905608780294039}
   - component: {fileID: 823513530337493742}
-  m_Layer: 20
+  m_Layer: 19
   m_Name: ArcharArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

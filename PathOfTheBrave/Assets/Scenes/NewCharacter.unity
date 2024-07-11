@@ -211,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.797018
+      value: 30.79702
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -341,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.634693
+      value: 30.63469
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46480,7 +46480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.713102
+      value: 30.7131
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46518,6 +46518,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponPickup (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7002959372488733404, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5257006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002959372488733404, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5257006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7002959372488733404, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5257006
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46541,7 +46553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.750639
+      value: 30.75064
       objectReference: {fileID: 0}
     - target: {fileID: 7002959371737094116, guid: cd990fc2a1da1654a9d18134c9cc57b6, type: 3}
       propertyPath: m_LocalPosition.z

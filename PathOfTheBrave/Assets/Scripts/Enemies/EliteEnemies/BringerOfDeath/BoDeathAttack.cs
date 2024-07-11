@@ -106,7 +106,7 @@ public class BoDeathAttack : MonoBehaviour
     {
         anim.SetTrigger("CastSpell");
         attackCount = 0;
-        Instantiate(spell, new Vector2(player.transform.position.x, player.transform.position.y + 1f), Quaternion.identity);
+        Instantiate(spell, new Vector2(player.transform.position.x, gameObject.transform.position.y + 1f), Quaternion.identity);
     }
     void AttackAnim()
     {
