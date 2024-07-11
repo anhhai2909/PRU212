@@ -20,10 +20,15 @@ public class GroundRangeAttackStuff : MonoBehaviour
         stuffprefab = this.gameObject;
         RespawnPosition = GameObject.FindGameObjectWithTag("GRAttackStuffResPosition");
         player = GameObject.FindGameObjectWithTag("Player");
-        if (player.transform.position.x < RespawnPosition.transform.position.x)
+        if (enemy.GetComponent<IsFacingRight>().facingRight==false)
         {
             Flip();
         }
+
+        //if (player.transform.position.x < gameObject.transform.position.x)
+        //{
+        //    Flip();
+        //}
         rb.velocity = new Vector2(speed, 0);
     }
     void Update()
@@ -39,7 +44,7 @@ public class GroundRangeAttackStuff : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 180, 0));
         speed = -speed;
-    }
+    } 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

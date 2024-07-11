@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 8273563080497093341}
   - component: {fileID: 8273563080497093339}
   - component: {fileID: 8273563080497093338}
+  - component: {fileID: 949735132776569983}
   m_Layer: 20
   m_Name: Skeleton
   m_TagString: GroundEnemy
@@ -125,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 8273563080497093330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 56.48, y: 33.88, z: 0}
+  m_LocalPosition: {x: 52.10384, y: 30.56403, z: 0}
   m_LocalScale: {x: 4.498768, y: 4.498768, z: 4.85972}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -309,6 +310,9 @@ MonoBehaviour:
   detectRange: 8
   chaseSpeed: 6
   damage: 10
+  maxKnockBackTime: 0.2
+  isFacingRight: 1
+  canMove: 0
 --- !u!114 &8273563080497093339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,8 +337,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   hitbox: {fileID: 8273563080749332297}
-  hitboxRadius: 1.45
+  hitboxRadius: 1.2
   attackDelay: 0.6
+  knockbackAngle: {x: 1, y: 1}
+  knockbackStrength: 8
 --- !u!114 &8273563080497093338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +362,51 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+--- !u!61 &949735132776569983
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8273563080497093330}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.04256587, y: 0.003482096}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1420889, y: 0.4290488}
+  m_EdgeRadius: 0
 --- !u!1 &8273563080515809167
 GameObject:
   m_ObjectHideFlags: 0

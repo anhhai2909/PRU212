@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public PlayerStunState PlayerStunState { get; private set; }
 
     [SerializeField]
-    private PlayerData playerData;
+    public PlayerData playerData;
     #endregion
 
     #region Components
