@@ -108,20 +108,14 @@ public class PlayerScript : MonoBehaviour
                     }
                 case 3:
                     {
-                        x = -13f;
-                        y = 0.3f;
+                        x = -8.7f;
+                        y = -2.394825f;
                         break;
                     }
                 case 4:
                     {
-                        x = -10f;
-                        y = -3f;
-                        break;
-                    }
-                case 5:
-                    {
-                        x = -3.902224f;
-                        y = -1.111056f;
+                        x = -6.661118f;
+                        y = 2.613495f;
                         break;
                     }
             }

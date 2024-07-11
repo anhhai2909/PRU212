@@ -8,14 +8,18 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
     public Animator anim;
     public bool canMove = true;
     public bool canAttack = true;
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100;
+    private float currentHealth;
     public GameObject coinSpawnPosition;
     public GameObject coin;
     public GameObject potion;
     private bool isDeath = false;
     public float disapearCooldown = 2f;
     public float disapearTimer = Mathf.Infinity;
+
+    public float isHitCooldown = 0.8f;
+    public float isHitTimer = 0;
+    public bool isHit = false;
     private bool onGround = false;
     void Start()
     {
@@ -35,6 +39,18 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                     potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
                     coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
                     gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (isHit)
+                {
+                    isHitTimer += Time.deltaTime;
+                    if(isHitTimer >= disapearCooldown)
+                    {
+                        isHitTimer = 0;
+                        isHit = false;
+                    }
                 }
             }
         }
@@ -58,6 +74,17 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                     coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
                     potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
                     gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (isHit)
+                {
+                    isHitTimer += Time.deltaTime;
+                    if (isHitTimer >= disapearCooldown)
+                    {
+                        isHit = false;
+                    }
                 }
             }
         }
@@ -89,7 +116,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
             canAttack = false;           
         }
     }
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
         if (gameObject.CompareTag("Slime") == true)
         {
@@ -124,6 +151,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                     }
                 }
             }
+            isHit = true;
         }
         
     }
@@ -153,6 +181,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
 
     public void Damage(DamageData data)
     {
-        throw new System.NotImplementedException();
+        //Debug.Log("Enemy take damage " + data.Amount);
+        GetDamage(data.Amount);
     }
 }
