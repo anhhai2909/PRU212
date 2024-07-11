@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca363a58c61549a4eb7b5e86ba17f342, type: 3}
-  m_Name: E2_IdleStateData
+  m_Script: {fileID: 11500000, guid: 540db7a8f94095640b9b07b625fc8a15, type: 3}
+  m_Name: B1_BaseData
   m_EditorClassIdentifier: 
-  minIdleTime: 1
-  maxIdleTime: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  closeRangeActionDistance: 1
+  maxHealth: 300
