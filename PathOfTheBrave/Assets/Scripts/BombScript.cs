@@ -18,13 +18,16 @@ public class BombScript : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Death");
         if(collision.gameObject.CompareTag("Player"))
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
             transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("Player").GetComponent<DeathHandle>().Death();
         }
     }
 

@@ -85,7 +85,7 @@ public class TilemapCoordinate : MonoBehaviour
             if (positionIndex != -1)
             {
                 Vector3 position = tilemap.GetCellCenterWorld(listPos[positionIndex]);
-                position = new Vector3(position.x - 0.27f, position.y + 0.6f);
+                position = new Vector3(position.x - 0.27f, position.y + 7f);
                 if (!listTimer.Contains(positionIndex))
                 {
                     GameObject bar = Instantiate(this.timerBar.transform.Find("Bar").gameObject);
@@ -136,7 +136,6 @@ public class TilemapCoordinate : MonoBehaviour
         {
             if (listPos[i].x == filteredVectors[randomIndex].x && listPos[i].y == filteredVectors[randomIndex].y)
             {
-                Debug.Log("Random: " + i + " " + listPos[i] + " " + this.leftBoundary + " " + this.rightBoundary);
                 return i;
             }
         }
