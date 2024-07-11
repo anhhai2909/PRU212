@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "a0022466-8bdd-45f7-87d2-dc248026c7c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -160,7 +169,7 @@
                 },
                 {
                     "name": "",
-                    "id": "ea510d8e-e4c6-4c89-a0ab-cc3edf6d656d",
+                    "id": "57a86bc0-8a72-427a-bd7d-c7f4964aab52",
                     "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
@@ -204,7 +213,7 @@
                 },
                 {
                     "name": "",
-                    "id": "3cb29164-70c9-4605-ae83-62a885ccf945",
+                    "id": "36dcd489-2d61-4cc4-87da-f398b7840324",
                     "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
@@ -248,7 +257,7 @@
                 },
                 {
                     "name": "",
-                    "id": "b022e23b-1341-4dc9-a105-c405bd3e68a6",
+                    "id": "2bb171e7-95f3-46d2-ad20-f2682dff32c0",
                     "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
@@ -270,7 +279,7 @@
                 },
                 {
                     "name": "",
-                    "id": "4a2ac628-ee7f-4cc3-90d1-3d900ed0e81c",
+                    "id": "1eac1598-00ed-4dd3-8ad5-5d9ae46b893f",
                     "path": "<Keyboard>/u",
                     "interactions": "",
                     "processors": "",
@@ -278,8 +287,25 @@
                     "action": "SecondaryAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c28fd820-0da4-4790-9ef4-564337139040",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "84c5b244-2bd0-4c2b-b257-4542f9e290fd",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": [

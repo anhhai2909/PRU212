@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using CoreSystem;
 
 public class PlayerTouchingWallState : PlayerState
 {
@@ -89,9 +87,9 @@ public class PlayerTouchingWallState : PlayerState
             stateMachine.ChangeState(player.LedgeClimbState);
         }
     }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
     }
-
 }

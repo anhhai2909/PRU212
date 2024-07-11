@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CoreSystem;
 using TMPro;
 using UnityEngine;
 
@@ -12,12 +13,11 @@ public class PlayerState
     protected PlayerData playerData;
 
     protected bool isAnimationFinished;
-
     protected bool isExitingState;
 
     protected float startTime;
 
-    public string animBoolName;
+    private string animBoolName;
 
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
     {
@@ -31,9 +31,9 @@ public class PlayerState
     public virtual void Enter()
     {
         DoChecks();
-        //Debug.Log(animBoolName);
         player.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
+        //Debug.Log(animBoolName);
         isAnimationFinished = false;
         isExitingState = false;
     }

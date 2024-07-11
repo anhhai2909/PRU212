@@ -1,84 +1,30 @@
-﻿using UnityEngine;
+﻿using CoreSystem.StatsSystem;
+using UnityEngine;
 
-public class Stats : CoreComponent
+namespace CoreSystem
 {
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float disapearCooldown = 2f;
-    private float disapearTimer = 0;
-    private float currentHealth;
-    private Animator anim;
-    private Transform root;
-
-    public GameObject coinSpawnPosition;
-    public GameObject coin;
-    public GameObject potion;
-
-    protected override void Awake()
+    public class Stats : CoreComponent
     {
-        base.Awake();
-        root = gameObject.transform.parent.parent;
-        anim = root.GetComponent<Animator>();
-        currentHealth = maxHealth;
-    }
+        [field: SerializeField] public Stat Health { get; private set; }
+        [field: SerializeField] public Stat Mana { get; private set; }
+        [field: SerializeField] public Stat Poise { get; private set; }
 
-    private void Update()
-    {
-        if (!isAlive())
+        [SerializeField] private float poiseRecoveryRate;
+
+        protected override void Awake()
         {
-            disapearTimer += Time.deltaTime;
-            if (disapearTimer >= disapearCooldown)
-            {
-                Disapear();
-            }
+            base.Awake();
+            Health.Init();
+            Mana.Init();
+            Poise.Init();
         }
-    }
 
-    public void DecreaseHealth(float amount)
-    {
-        anim.SetTrigger("damage");
-        currentHealth -= amount;
-
-        if (currentHealth <= 0)
+        private void Update()
         {
-            currentHealth = 0;
-            Debug.Log("Health is zero!!");
-            if (anim == null) Debug.Log("Can not find animator");
-            anim.SetBool("dead", true);
-            root.gameObject.layer = LayerMask.NameToLayer("Dead");
-        }
-    }
+            if (Poise.CurrentValue.Equals(Poise.MaxValue))
+                return;
 
-    public void IncreaseHealth(float amount)
-    {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-    }
-
-    public bool isAlive()
-    {
-        return currentHealth > 0;
-    }
-
-    public void Deactive()
-    {
-        root.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        if (root.GetComponent<BoxCollider2D>() != null)
-        {
-            root.GetComponent<BoxCollider2D>().enabled = false;
-        }
-        if (root.GetComponent<CircleCollider2D>() != null)
-        {
-            root.GetComponent<BoxCollider2D>().enabled = false;
-        }
-        root.GetComponent<Rigidbody2D>().isKinematic = true;
-    }
-
-    public void Disapear()
-    {
-        root.gameObject.SetActive(false);
-        if (root.tag == "Enemy")
-        {
-            potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
-            coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
+            Poise.Increase(poiseRecoveryRate * Time.deltaTime);
         }
     }
 }

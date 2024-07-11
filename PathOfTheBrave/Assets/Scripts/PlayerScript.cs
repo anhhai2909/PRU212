@@ -1,24 +1,33 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.DataPersistence.Data;
+using Cinemachine;
+using QuantumTek.EncryptedSave;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float hp = 10;
+    public float hp ;
 
-    public float coin = 10;
+    public float coin;
 
     public float xSpawn = 0;
 
     public float ySpawn = 0;
 
-    public float moveSpeed;
 
     public float xDirection;
 
     public static PlayerScript instance;
+
+    public PlayerAfterImagePool afterImagePool;
+
+    [SerializeField] Animator transitionAnim;
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -26,44 +35,50 @@ public class PlayerScript : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        SpawnPlayer(scene.buildIndex);
-
+        GameObject playerCamera = GameObject.Find("Player Camera");
+        if (playerCamera != null && playerCamera.GetComponent<CinemachineVirtualCamera>() != null)
+            playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
+        if (scene.buildIndex != 0)
+            SpawnPlayer(scene.buildIndex);
     }
 
     private void Awake()
     {
+        hp = 10;
+        coin = 2000;
         DontDestroyOnLoad(this);
-
         if (instance == null)
         {
+            this.name = "Player";
             instance = this;
         }
         else
         {
             Destroy(gameObject);
-            SpawnPlayer(SceneManager.GetActiveScene().buildIndex);
-
+       
         }
 
 
     }
+
     void Start()
     {
-        moveSpeed = 10;
-
-
-
     }
 
-    // Update is called once per frame
+    void LoadLevel(int sceneIndex)
+    {
+        float timer = 0;
+        timer = Time.deltaTime;
+        transitionAnim.SetTrigger("End");
+        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+        transitionAnim.SetTrigger("Start");
+    }
+
+    // Update is calledL once per frame
     void Update()
     {
-        xDirection = Input.GetAxisRaw("Horizontal");
-        float moveStep = moveSpeed * xDirection * Time.deltaTime;
-        if ((transform.position.x < -8 && xDirection < 0) )
-            return;
-        float y = transform.position.y;
-        transform.position = transform.position + new Vector3(moveStep, 0, 0);
+
+       
     }
 
 
@@ -80,14 +95,15 @@ public class PlayerScript : MonoBehaviour
 
                 case 1:
                     {
-                        x = -6.51f;
-                        y = 1.58f;
+                        x = -7.025761f;
+                        y = 0.8889478f;
+                        
                         break;
                     }
                 case 2:
                     {
-                        x = -10.78072f;
-                        y = -0.3826588f;
+                        x = -6.91f;
+                        y = -0.1f;
                         break;
                     }
                 case 3:
@@ -105,23 +121,53 @@ public class PlayerScript : MonoBehaviour
             }
             this.gameObject.transform.position = new Vector3(x, y, 0);
             DataPersistenceManager instance = new DataPersistenceManager(hp, x, y, coin);
-            instance.SaveGame(sceneIndex);
+            instance.SaveGame(sceneIndex, GetAllScenes());
         }
     }
+
+    List<SceneInfor> GetAllScenes()
+    {
+        List<SceneInfor> scenes = new List<SceneInfor>();
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            bool isCompleted = false;
+            if(i <= SceneManager.GetActiveScene().buildIndex - 1)
+            {
+                isCompleted = true;
+            }
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            SceneInfor scene = new SceneInfor(i, path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1), isCompleted);
+            scenes.Add(scene);
+        }
+        return scenes;
+    }
+
 
 
     public void LoadScene(int sceneIndex)
     {
         hp++;
-        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+        LoadLevel(sceneIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Portal"))
         {
-                LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
- 
+            if(collision.gameObject.GetComponent<PortalScript>().isEnabled)
+            {
+                if (SceneManager.sceneCountInBuildSettings <= SceneManager.GetActiveScene().buildIndex + 1)
+                {
+                    LoadLevel(0);
+                }
+                else
+                {
+                    LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+
+                }
+            }
+            
+
         }
 
     }

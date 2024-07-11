@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CoreSystem;
 using UnityEngine;
 
 public class PlayerDetectedState : State {
@@ -15,7 +16,7 @@ public class PlayerDetectedState : State {
 	protected bool isPlayerInMaxAgroRange;
 	protected bool performLongRangeAction;
 	protected bool performCloseRangeAction;
-	protected bool isDetectingLedge;
+	//protected bool isDetectingLedge;
 
 	public PlayerDetectedState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, D_PlayerDetected stateData) : base(etity, stateMachine, animBoolName) {
 		this.stateData = stateData;

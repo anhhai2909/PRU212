@@ -1,3 +1,4 @@
+using Assets.Scripts.DataPersistence.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,12 +20,28 @@ public class GameData
 
     public float _coin { get; set; }
 
+    public int _healthLevel { get; set; }
+
+    public int _manaLevel { get; set; }
+
+    public int _sdLevel { get; set; }
+
+    public int _bdLevel { get; set; }
+
+    public int _mdLevel { get; set; }
+
+    public Dictionary<int, int> _items { get; set; }
+
+    public Dictionary<int, int> _activatedItems { get; set; }
+
+    public List<SceneInfor> _scenesInfor { get; set; }
+
 
     public GameData()
     {
     }
 
-    public GameData(string gamerIp, float hp, int sceneIndex, string sceneName, float xPosition, float yPosition, float coin)
+    public GameData(string gamerIp, float hp, int sceneIndex, string sceneName, float xPosition, float yPosition, float coin, List<SceneInfor> sceneInfor)
     {
         _gamerIp = gamerIp;
         _hp = hp;
@@ -33,10 +50,17 @@ public class GameData
         _xPosition = xPosition;
         _yPosition = yPosition;
         _coin = coin;
+        _scenesInfor = sceneInfor;
     }
 
     public override string ToString()
     {
-        return this._gamerIp;
+        string sceneStatus = "";
+        for(int i = 0; i < this._scenesInfor.Count; i++)
+        {
+            sceneStatus += (this._scenesInfor[i].sceneName + "," +this._scenesInfor[i].isCompleted);
+            sceneStatus += " ";
+        }
+        return this._gamerIp + " " + this._hp + " " + this._sceneIndex + " " + this._sceneName + " " + this._xPosition + " " + this._yPosition + " " + this._coin + " " + sceneStatus;
     }
 }

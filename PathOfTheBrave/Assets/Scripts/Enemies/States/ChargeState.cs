@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using CoreSystem;
 using UnityEngine;
 
 public class ChargeState : State {
@@ -13,7 +14,7 @@ public class ChargeState : State {
 	protected D_ChargeState stateData;
 
 	protected bool isPlayerInMinAgroRange;
-	protected bool isDetectingLedge;
+	//protected bool isDetectingLedge;
 	protected bool isDetectingWall;
 	protected bool isChargeTimeOver;
 	protected bool performCloseRangeAction;

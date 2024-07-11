@@ -22,6 +22,7 @@ public class PlayerAfterImagePool : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             var instanceToAdd = Instantiate(afterImagePrefab);
+            instanceToAdd.GetComponent<Renderer>().sortingLayerName = "Player";
             instanceToAdd.transform.SetParent(transform);
             AddToPool(instanceToAdd);
         }
@@ -35,6 +36,8 @@ public class PlayerAfterImagePool : MonoBehaviour
 
     public GameObject GetFromPool()
     {
+        //Debug.Log(availableObjects.Count);
+
         if(availableObjects.Count == 0)
         {
             GrowPool();

@@ -1,10 +1,15 @@
+using Assets.Scripts.DataPersistence.Data;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Security.Cryptography;
+using System.Text;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -21,6 +26,9 @@ public class DataPersistenceManager
 
     public float coin;
 
+    private readonly byte[] key = Encoding.UTF8.GetBytes("12345678901234567890123456789012"); 
+    private readonly byte[] iv = Encoding.UTF8.GetBytes("1234567890123456");
+
     public DataPersistenceManager(float hp, float x, float y, float coin)
     {
         this.hp = hp;
@@ -32,8 +40,6 @@ public class DataPersistenceManager
     public DataPersistenceManager()
     {
     }
-
-    private string connectionString = "Server=localhost;port=3306;database=PRU212_Project;uid=root;pwd=haibang20042003;encrypt=false";
 
     public static DataPersistenceManager instance { get; private set; }
 
@@ -61,14 +67,7 @@ public class DataPersistenceManager
         return output;
     }
 
-    private void Awake()
-    {
-        if(instance != null)
-        {
-            Debug.Log("There are more than 1 data persistence manager in the scene");
-        }
-        instance = this;
-    }
+  
 
     public void NewGame()
     {
@@ -77,133 +76,117 @@ public class DataPersistenceManager
     
     public GameData LoadGame()
     {
-        MySqlConnection conn = new MySqlConnection(connectionString);
-        GameData gameData = new GameData();
-        try
-        {
-            conn.Open();
-            string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-            string query = "SELECT * FROM GameData WHERE gamer_ip = @gamer_ip";
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
-
-            using (MySqlDataReader rdr = cmd.ExecuteReader())
-            {
-                while (rdr.Read())
-                {
-                    gameData._hp = rdr.GetFloat(1);
-                    gameData._sceneIndex = rdr.GetInt32(2);
-                    gameData._sceneName = rdr.GetString(3);
-                    gameData._xPosition = rdr.GetFloat(4);
-                    gameData._yPosition = rdr.GetFloat(5);
-                    gameData._coin = rdr.GetFloat(6);
-                }
-            }
-            
-
-        }
-        catch (Exception ex)
-        {
-            Debug.Log(ex.Message);
-        }
+        GameData gameData = ReadFromFile();
         return gameData;
     }
-
-    public bool IsLoadGame()
+    public void SaveToFile(GameData gameData)
     {
-        MySqlConnection conn = new MySqlConnection(connectionString);
+        
         try
         {
-            conn.Open();
-            string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-            string query = "SELECT * FROM GameData WHERE gamer_ip = @gamer_ip";
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
-   
-
-            object result = cmd.ExecuteScalar();
-            if (result != null)
-            {
-          
-                return true;
-                
-            }
-
-        }
-        catch (Exception ex)
+            string filePath = Application.persistentDataPath + "/gameData.txt";
+            string json = JsonConvert.SerializeObject(gameData);
+            EncryptToFile(filePath, json);
+        } catch(Exception e)
         {
-            Debug.Log(ex.Message);
+            Debug.Log(e.Message);
         }
-        return false;
     }
 
-    public void SaveGame(int sceneIndex)
+    public void EncryptToFile(string filePath, string plainText)
     {
-        string path = SceneUtility.GetScenePathByBuildIndex(sceneIndex);
-        string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
-
-        if (!IsLoadGame())
+        using (Aes aesAlg = Aes.Create())
         {
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                conn.Open();
-                string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-                string query = "INSERT INTO GameData (gamer_ip, hp, scene_index, scene_name, x_position, y_position, coin) VALUES (@gamer_ip, @hp, @sceneIndex, @sceneName, @xPosition, @yPosition, @coin)";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
-                cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("@sceneIndex", sceneIndex);
-                cmd.Parameters.AddWithValue("@sceneName", sceneName);
-                cmd.Parameters.AddWithValue("@xPosition", x);
-                cmd.Parameters.AddWithValue("@yPosition", y);
-                cmd.Parameters.AddWithValue("@coin", coin);
+            aesAlg.Key = key;
+            aesAlg.IV = iv;
 
-                object result = cmd.ExecuteScalar();
-                if (result != null)
+            ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                using (CryptoStream cryptoStream = new CryptoStream(fileStream, encryptor, CryptoStreamMode.Write))
                 {
-                    int r = Convert.ToInt32(result);
+                    using (StreamWriter streamWriter = new StreamWriter(cryptoStream))
+                    {
+                        streamWriter.Write(plainText);
+                    }
                 }
-
             }
-            catch (Exception ex)
-            {
-                Debug.Log(ex.ToString());
-            }
-
-            conn.Close();
         }
-        else
+    }
+
+    public string DecryptFromFile(string filePath)
+    {
+        using (Aes aesAlg = Aes.Create())
         {
-            MySqlConnection conn = new MySqlConnection(connectionString);
-            try
-            {
-                conn.Open();
-                string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
-                string query = "UPDATE GameData SET hp = @hp, scene_index = @sceneIndex, scene_name = @sceneName, x_position = @xPosition, y_position = @yPosition, coin = @coin WHERE gamer_ip = @gamer_ip";
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@hp", hp);
-                cmd.Parameters.AddWithValue("@sceneIndex", sceneIndex);
-                cmd.Parameters.AddWithValue("@sceneName", sceneName);
-                cmd.Parameters.AddWithValue("@xPosition", x);
-                cmd.Parameters.AddWithValue("@yPosition", y);
-                cmd.Parameters.AddWithValue("@coin", coin);
-                cmd.Parameters.AddWithValue("@gamer_ip", gamerIp);
+            aesAlg.Key = key;
+            aesAlg.IV = iv;
 
-                object result = cmd.ExecuteScalar();
-                if (result != null)
+            ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
+            {
+                using (CryptoStream cryptoStream = new CryptoStream(fileStream, decryptor, CryptoStreamMode.Read))
                 {
-                    int r = Convert.ToInt32(result);
+                    using (StreamReader streamReader = new StreamReader(cryptoStream))
+                    {
+                        return streamReader.ReadToEnd();
+                    }
                 }
-
             }
-            catch (Exception ex)
-            {
-                Debug.Log(ex.Message);
-            }
-
-            conn.Close();
         }
+    }
+
+    public GameData ReadFromFile()
+    {
+        try
+        {
+            string filePath = Application.persistentDataPath + "/gameData.txt";
+            if (File.Exists(filePath))
+            {
+                string readText = DecryptFromFile(filePath);
+                GameData gameData = JsonConvert.DeserializeObject<GameData>(readText);
+                return gameData;
+            }
+        } catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        return null;
+    }
+
+    public void SaveGame(int sceneIndex, List<SceneInfor> scenes)
+    {
+        try
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(sceneIndex);
+            string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+            string gamerIp = GetLocalIPv4(NetworkInterfaceType.Ethernet);
+            if (ReadFromFile() == null)
+            {
+                gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin, scenes);
+            }
+            else
+            {
+                gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin, scenes);
+                GameData oldData = LoadGame();
+                gameData._healthLevel = oldData._healthLevel;
+                gameData._manaLevel = oldData._manaLevel;
+                gameData._sdLevel = oldData._sdLevel;
+                gameData._bdLevel = oldData._bdLevel;
+                gameData._mdLevel = oldData._mdLevel;
+                gameData._items = oldData._items;
+                gameData._activatedItems = oldData._activatedItems;
+            }
+            
+            
+            SaveToFile(gameData);
+            ReadFromFile();
+        } catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+        
         
     }
 }
