@@ -119,9 +119,8 @@ public class ArcherAttack : MonoBehaviour
     }
     void Attack()
     {
-        Debug.Log(weapon);
-        Debug.Log(weaponPosition.position);
-        Instantiate(weapon, weaponPosition.position, Quaternion.identity);
+       GameObject arrow = Instantiate(weapon, weaponPosition.position, Quaternion.identity);
+        arrow.GetComponent<GroundRangeAttackStuff>().enemy = gameObject;
     }
     private void OnDrawGizmosSelected()
     {
