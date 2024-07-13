@@ -267,12 +267,15 @@ MonoBehaviour:
   anim: {fileID: 3515168750048848086}
   canMove: 1
   canAttack: 1
-  maxHealth: 0
+  maxHealth: 1
   coinSpawnPosition: {fileID: 0}
   coin: {fileID: 0}
   potion: {fileID: 0}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.8
+  isHitTimer: 0
+  isHit: 0
 --- !u!1 &3515168750297521783
 GameObject:
   m_ObjectHideFlags: 0

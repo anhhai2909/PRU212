@@ -2,7 +2,7 @@ using Combat.KnockBack;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BoDeathMovement : MonoBehaviour
+public class BoDeathMovement : MonoBehaviour, IKnockBackable
 {
     public Rigidbody2D rb;
     public GameObject groundCheck;
@@ -81,7 +81,7 @@ public class BoDeathMovement : MonoBehaviour
         {
             isKnockBackActive = false;
             canMove = true;
-            gameObject.GetComponent<EnemyAttack>().canAttack = true;
+            gameObject.GetComponent<BoDeathAttack>().canAttack = true;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
@@ -172,7 +172,7 @@ public class BoDeathMovement : MonoBehaviour
         rb.AddForce(workspace, ForceMode2D.Impulse);
 
         canMove = false;
-        gameObject.GetComponent<EnemyAttack>().canAttack = false;
+        gameObject.GetComponent<BoDeathAttack>().canAttack = false;
         isKnockBackActive = true;
         knockBackStartTime = Time.time;
     }

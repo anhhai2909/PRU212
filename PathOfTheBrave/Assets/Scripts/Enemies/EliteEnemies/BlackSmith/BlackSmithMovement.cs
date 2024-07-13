@@ -168,7 +168,7 @@ public class BlackSmithMovement : MonoBehaviour, IKnockBackable
         {
             isKnockBackActive = false;
             canMove = true;
-            gameObject.GetComponent<EnemyAttack>().canAttack = true;
+            gameObject.GetComponent<BlackSmithAttack>().canAttack = true;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
@@ -181,7 +181,7 @@ public class BlackSmithMovement : MonoBehaviour, IKnockBackable
         rb.AddForce(workspace, ForceMode2D.Impulse);
 
         canMove = false;
-        gameObject.GetComponent<EnemyAttack>().canAttack = false;
+        gameObject.GetComponent<BlackSmithAttack>().canAttack = false;
         isKnockBackActive = true;
         knockBackStartTime = Time.time;
     }

@@ -2,6 +2,7 @@ using Combat.Damage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class SlimeScript : MonoBehaviour
 {
@@ -93,7 +94,7 @@ public class SlimeScript : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
-            if (enemy.TryGetComponent(out IDamageable damageable))
+            if (enemy.TryGetComponentInChildren(out IDamageable damageable))
             {
                 //damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
                 damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));

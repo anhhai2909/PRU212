@@ -26,6 +26,11 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
     }
 
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     void Update()
     {
         if (gameObject.CompareTag("GroundEnemy") == true)
