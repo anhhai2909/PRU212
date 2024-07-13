@@ -414,6 +414,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireballParticleTrail
       objectReference: {fileID: 0}
+    - target: {fileID: 2268897439260401121, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268897439260401121, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1711295435
+      objectReference: {fileID: 0}
     - target: {fileID: 2268897439260401123, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

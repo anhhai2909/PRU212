@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ApplyContinuously>k__BackingField: 1
   <Speed>k__BackingField: 15
+  <MaxTimeExist>k__BackingField: 0
 --- !u!114 &1775009464070235439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,8 +328,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 205616101
-  m_SortingLayer: 0
+  m_SortingLayerID: 1711295435
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 1691212920, guid: cbcf3bd84a6c0724dbbb289ce667cbc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -352,6 +353,14 @@ PrefabInstance:
     - target: {fileID: 2268897439260401120, guid: ae53de6c87441f34995e3ccb9d23b136, type: 3}
       propertyPath: m_Name
       value: MagicMissleParticleTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268897439260401121, guid: ae53de6c87441f34995e3ccb9d23b136, type: 3}
+      propertyPath: m_SortingLayer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268897439260401121, guid: ae53de6c87441f34995e3ccb9d23b136, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1711295435
       objectReference: {fileID: 0}
     - target: {fileID: 2268897439260401123, guid: ae53de6c87441f34995e3ccb9d23b136, type: 3}
       propertyPath: m_RootOrder
