@@ -32,15 +32,15 @@ public class B2_IdleState : BossIdleState
         base.LogicUpdate();
         switch (skills[currentSkillIndex])
         {
-            //case 0:
-            //    stateMachine.ChangeState(king.);
-            //    break;
-            //case 1:
-            //    stateMachine.ChangeState(king.spawnSkeletonState);
-            //    break;
-            //case 2:
-            //    stateMachine.ChangeState(king.spawnMeteorState);
-            //    break;
+            case 0:
+                stateMachine.ChangeState(king.bulletState);
+                break;
+            case 1:
+                stateMachine.ChangeState(king.swordState);
+                break;
+            case 2:
+                stateMachine.ChangeState(king.spikeState);
+                break;
         }
         getNextSkill();
     }
