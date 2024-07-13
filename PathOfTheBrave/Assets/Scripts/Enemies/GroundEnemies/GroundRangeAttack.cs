@@ -31,52 +31,61 @@ public class GroundRangeAttack : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         if (!gameObject.GetComponent<GroundRangeEnemyMovement>().canMove) return;
         if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
-        {           
-            if (player != null && player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
+        {
+            if (!gameObject.GetComponent<EnemyHealthSystem>().isHit)
             {
-                float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+                if (player != null && player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
+                {
+                    float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
 
-                if (distanceToPlayer <= attackRange && canAttack)
-                {
-                    StopMovement();
-                    AttackAnim();
-                }
-                else if (distanceToPlayer <= attackRange)
-                {
-                    StopMovement();
-                }
-
-                if (!canAttack)
-                {
-                    if (startDelayTimer)
+                    if (distanceToPlayer <= attackRange && canAttack)
                     {
-                        attackDelayTimer += Time.deltaTime;
-                        if (attackDelayTimer > attackDelay)
+                        StopMovement();
+                        AttackAnim();
+                    }
+                    else if (distanceToPlayer <= attackRange)
+                    {
+                        StopMovement();
+                    }
+
+                    if (!canAttack)
+                    {
+                        if (startDelayTimer)
                         {
-                            Attack();
-                            attackDelayTimer = 0;
-                            startDelayTimer = false;
+                            attackDelayTimer += Time.deltaTime;
+                            if (attackDelayTimer > attackDelay)
+                            {
+                                Attack();
+                                attackDelayTimer = 0;
+                                startDelayTimer = false;
+                            }
+                        }
+
+                        attackTimer += Time.deltaTime;
+                        if (attackTimer >= (attackCoolDown + attackDelay))
+                        {
+                            attackTimer = 0;
+                            canAttack = true;
+                        }
+                        if (attackTimer >= (1.5f + attackDelay))
+                        {
+                            canMove = true;
                         }
                     }
-
-                    attackTimer += Time.deltaTime;
-                    if (attackTimer >= (attackCoolDown + attackDelay))
-                    {
-                        attackTimer = 0;
-                        canAttack = true;
-                    }
-                    if (attackTimer >= (1.5f + attackDelay))
-                    {
-                        canMove = true;
-                    }
+                }
+                if (player is null)
+                {
+                    attackTimer = 0;
+                    attackDelayTimer = 0;
+                    canAttack = true;
+                    canMove = true;
                 }
             }
-            if(player is null)
+            else
             {
-                attackTimer = 0;
                 attackDelayTimer = 0;
-                canAttack = true;
-                canMove = true;
+                attackTimer = 0;
+                startDelayTimer = false;
             }
         }
     }

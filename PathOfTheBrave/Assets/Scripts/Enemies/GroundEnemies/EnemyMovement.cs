@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
     private bool isGrounded;
     public bool isFacingRight = true;
     private bool isChasing;
-    private bool isFalling;
+    private bool isFalling =true;
 
     private bool isKnockBackActive;
     private float knockBackStartTime;
