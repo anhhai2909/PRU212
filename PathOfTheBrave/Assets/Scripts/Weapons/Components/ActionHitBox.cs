@@ -25,7 +25,6 @@ namespace Weapons.Components
 
             if (detected.Length == 0)
                 return;
-
             OnDetectedCollider2D?.Invoke(detected);
         }
 

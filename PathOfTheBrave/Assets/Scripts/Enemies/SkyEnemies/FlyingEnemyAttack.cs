@@ -30,19 +30,23 @@ public class FlyingEnemyAttack : MonoBehaviour
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
-            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
             if (player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
             {
-                if (distanceToPlayer <= attackRange && canAttack)
+                if(player != null)
                 {
-                    StopMovement();
-                    AttackAnim();
-                }
-                else if (distanceToPlayer <= attackRange)
-                {
-                    StopMovement();
+                    float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+                    if (distanceToPlayer <= attackRange && canAttack)
+                    {
+                        StopMovement();
+                        AttackAnim();
+                    }
+                    else if (distanceToPlayer <= attackRange)
+                    {
+                        StopMovement();
+                    }
                 }
 
                 if (!canAttack)

@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 6027083559651229113}
   - component: {fileID: 7217564418350838335}
   - component: {fileID: 7697557862214999837}
-  m_Layer: 20
+  m_Layer: 19
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf971e93f72226647a9496b359165dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
 --- !u!1 &7704309168986871617
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,8 +209,8 @@ Transform:
   m_GameObject: {fileID: 7704309169470658344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.07, y: 29.57, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3.2407}
+  m_LocalPosition: {x: 58.92576, y: 29.819422, z: 0}
+  m_LocalScale: {x: 3.646164, y: 3.646164, z: 3.938708}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7704309169522467444}
@@ -375,7 +378,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7cba19927b5ea459a20a225c850cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  meleeDamage: 20
+  rangeDamage: 20
+  knockbackAngle: {x: 1, y: 1}
+  knockbackStrength: 8
+  hitbox: {fileID: 0}
   verticalGap: 1.5
   rb: {fileID: 7704309169470658341}
   player: {fileID: 0}
@@ -441,6 +448,9 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.3
+  isHitTimer: 0
+  isHit: 0
 --- !u!114 &7142422071050773631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +520,7 @@ Transform:
   m_GameObject: {fileID: 7704309169756322483}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.206, y: 0.162, z: 0}
+  m_LocalPosition: {x: 0.117, y: 0.136, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

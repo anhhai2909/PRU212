@@ -2,6 +2,7 @@
 using Weapons;
 using UnityEngine;
 using FSM;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -21,8 +22,9 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public PlayerAttackState PrimaryAttackState { get; private set; }
     public PlayerAttackState SecondaryAttackState { get; private set; }
-
     public PlayerStunState PlayerStunState { get; private set; }
+    public PlayerHurtState PlayerHurtState { get; private set; }
+    public PlayerDieState PlayerDieState { get; private set; }
 
     [SerializeField]
     public PlayerData playerData;
@@ -42,6 +44,10 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Variables         
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    private Color damageColor = Color.red;
+    private bool isDamaged = false;
 
     private Vector2 workspace;
 
@@ -54,6 +60,11 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Core = GetComponentInChildren<Core>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
 
         primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
         secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
@@ -80,6 +91,8 @@ public class Player : MonoBehaviour
         PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", primaryWeapon, CombatInputs.primary);
         SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", secondaryWeapon, CombatInputs.secondary);
         PlayerStunState = new PlayerStunState(this, StateMachine, playerData, "stun");
+        PlayerHurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
+        PlayerDieState = new PlayerDieState(this, StateMachine, playerData, "die");
     }
 
     private void Start()
@@ -94,6 +107,8 @@ public class Player : MonoBehaviour
         MovementCollider = GetComponent<BoxCollider2D>();
 
         Stats.Poise.OnCurrentValueZero += HandlePoiseCurrentValueZero;
+        Stats.Health.OnDecreaseValue += HandleGetDamage;
+        Stats.Health.OnCurrentValueZero += HandleDeath;
 
         StateMachine.Initialize(IdleState);
     }
@@ -103,10 +118,32 @@ public class Player : MonoBehaviour
         StateMachine.ChangeState(PlayerStunState);
     }
 
+    private void HandleGetDamage()
+    {
+        //StateMachine.ChangeState(PlayerHurtState);
+        StartCoroutine(ChangeColorTemporarily(playerData.hurtTime));
+    }
+
+    private void HandleDeath()
+    {
+        StateMachine.ChangeState(PlayerDieState);
+    }
+
+    private IEnumerator ChangeColorTemporarily(float colorChangeDuration)
+    {
+        isDamaged = true;
+        yield return new WaitForSeconds(colorChangeDuration);
+        isDamaged = false;
+    }
+
     private void Update()
     {
         Core.LogicUpdate();
         StateMachine.CurrentState.LogicUpdate();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = isDamaged ? damageColor : originalColor;
+        }
     }
 
     private void FixedUpdate()
@@ -117,6 +154,8 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         Stats.Poise.OnCurrentValueZero -= HandlePoiseCurrentValueZero;
+        Stats.Health.OnDecreaseValue -= HandleGetDamage;
+        Stats.Health.OnCurrentValueZero -= HandleDeath;
     }
 
     #endregion

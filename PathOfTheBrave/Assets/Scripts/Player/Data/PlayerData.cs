@@ -52,4 +52,7 @@ public class PlayerData : ScriptableObject
     
     [Header("Stun State")] 
     public float stunTime = 2f;
+
+    [Header("Hurt State")]
+    public float hurtTime = 0.5f;
 }

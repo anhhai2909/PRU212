@@ -7,7 +7,8 @@ namespace CoreSystem.StatsSystem
     public class Stat
     {
         public event Action OnCurrentValueZero;
-        
+        public event Action OnDecreaseValue;
+        public event Action OnIncreaseValue;
         [field: SerializeField] public float MaxValue { get; private set; }
 
         public float CurrentValue
@@ -15,15 +16,24 @@ namespace CoreSystem.StatsSystem
             get => currentValue;
             set
             {
+                float oldValue = currentValue;
                 currentValue = Mathf.Clamp(value, 0f, MaxValue);
 
                 if (currentValue <= 0f)
                 {
                     OnCurrentValueZero?.Invoke();
                 }
+                else if (currentValue < oldValue)
+                {
+                    OnDecreaseValue?.Invoke();
+                }
+                if (currentValue <= 0f)
+                {
+                    OnIncreaseValue?.Invoke();
+                }
             }
         }
-        
+
         private float currentValue;
 
         public void Init() => CurrentValue = MaxValue;
@@ -32,7 +42,8 @@ namespace CoreSystem.StatsSystem
 
         public void Decrease(float amount) => CurrentValue -= amount;
 
-        public void Update(float amount) {
+        public void Update(float amount)
+        {
             MaxValue += amount;
             currentValue = MaxValue;
         }

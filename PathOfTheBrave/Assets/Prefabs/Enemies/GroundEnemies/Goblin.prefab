@@ -369,8 +369,8 @@ MonoBehaviour:
   hitbox: {fileID: 7194607329516264123}
   hitboxRadius: 1.08
   attackDelay: 0.4
-  knockbackAngle: {x: 0, y: 0}
-  knockbackStrength: 0
+  knockbackAngle: {x: 1, y: 1}
+  knockbackStrength: 5
 --- !u!114 &7194607329800910626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +392,9 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.8
+  isHitTimer: 0
+  isHit: 0
 --- !u!114 &7194607329800910625
 MonoBehaviour:
   m_ObjectHideFlags: 0

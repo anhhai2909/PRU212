@@ -42,11 +42,11 @@ GameObject:
   - component: {fileID: 5352596656259890106}
   - component: {fileID: 2496020483026170342}
   - component: {fileID: 803041457370860849}
-  - component: {fileID: 8567988594528234852}
   - component: {fileID: 8697321030246686669}
-  - component: {fileID: 1630369369030833992}
   - component: {fileID: 8697321030246686668}
   - component: {fileID: 8697321030246686661}
+  - component: {fileID: 8567988594528234852}
+  - component: {fileID: 1630369369030833992}
   - component: {fileID: 6523438252441406680}
   m_Layer: 20
   m_Name: FlyingEye
@@ -152,29 +152,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8567988594528234852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401117001677550489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c9c00f66472474ba820f7166bdf182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 803041457370860849}
-  anim: {fileID: 8697321030246686669}
-  player: {fileID: 0}
-  wallCheck: {fileID: 2298241028088342502}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  detectRange: 10
-  chaseSpeed: 6
-  damage: 10
-  wallCheckRadius: 0.1
 --- !u!95 &8697321030246686669
 Animator:
   serializedVersion: 5
@@ -196,33 +173,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1630369369030833992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2401117001677550489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e54e61c6d1fc945810f1da392e9620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  attackRange: 8
-  attackCoolDown: 2
-  canAttack: 1
-  verticalGap: 1
-  rb: {fileID: 803041457370860849}
-  player: {fileID: 0}
-  anim: {fileID: 8697321030246686669}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  fireball: {fileID: 2515427725552223979, guid: 3680b4b77d9a7154885a9e67994a632a, type: 3}
-  fireballPosition: {fileID: 2561151992988807598}
-  canMove: 1
-  attackDelay: 0.6
 --- !u!70 &8697321030246686668
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -303,6 +253,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.04939968, y: 0.1148602}
   m_EdgeRadius: 0
+--- !u!114 &8567988594528234852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401117001677550489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c9c00f66472474ba820f7166bdf182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 803041457370860849}
+  anim: {fileID: 8697321030246686669}
+  player: {fileID: 0}
+  wallCheck: {fileID: 2298241028088342502}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  detectRange: 10
+  chaseSpeed: 6
+  damage: 10
+  wallCheckRadius: 0.1
+--- !u!114 &1630369369030833992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401117001677550489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e54e61c6d1fc945810f1da392e9620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  attackRange: 8
+  attackCoolDown: 2
+  canAttack: 1
+  verticalGap: 1
+  rb: {fileID: 803041457370860849}
+  player: {fileID: 0}
+  anim: {fileID: 8697321030246686669}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  fireball: {fileID: 2515427725552223979, guid: 3680b4b77d9a7154885a9e67994a632a, type: 3}
+  fireballPosition: {fileID: 2561151992988807598}
+  canMove: 1
+  attackDelay: 0.6
 --- !u!114 &6523438252441406680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +324,9 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.8
+  isHitTimer: 0
+  isHit: 0
 --- !u!1 &5570234645804231386
 GameObject:
   m_ObjectHideFlags: 0

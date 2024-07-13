@@ -46663,11 +46663,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3983928901484506054, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.05
+      value: 49.1
       objectReference: {fileID: 0}
     - target: {fileID: 3983928901484506054, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.9
+      value: 31.1
       objectReference: {fileID: 0}
     - target: {fileID: 3983928901484506054, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46723,11 +46723,11 @@ PrefabInstance:
       objectReference: {fileID: 102272188}
     - target: {fileID: 7650559223214393405, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.05
+      value: 49.1
       objectReference: {fileID: 0}
     - target: {fileID: 7650559223214393405, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.9
+      value: 31.1
       objectReference: {fileID: 0}
     - target: {fileID: 7650559223214393405, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46807,13 +46807,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1567511190171647746, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      propertyPath: groundCheckRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025563109687022332, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      propertyPath: deathParticles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025563109687022332, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      propertyPath: deathParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 5096148057906189823, guid: 9dcfb899bb62b774c9520216fcab0f31, type: 3}
+    - target: {fileID: 2025563109687022332, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      propertyPath: deathParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1962614393226834858, guid: c4ae0b16879f4aa438dd6c5cbe4db11c, type: 3}
     - target: {fileID: 3327065612783239577, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.05
+      value: 49.1
       objectReference: {fileID: 0}
     - target: {fileID: 3327065612783239577, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.9
+      value: 31.1
       objectReference: {fileID: 0}
     - target: {fileID: 3327065612783239577, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46855,8 +46871,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8928403947593327385, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      propertyPath: <Health>k__BackingField.<MaxValue>k__BackingField
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9078109800233906154, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9078109800233906154, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}

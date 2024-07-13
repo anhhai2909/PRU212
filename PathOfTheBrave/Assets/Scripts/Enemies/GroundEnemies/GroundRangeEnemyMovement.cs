@@ -1,8 +1,10 @@
+using Combat.KnockBack;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class GroundRangeEnemyMovement : MonoBehaviour
+public class GroundRangeEnemyMovement : MonoBehaviour, IKnockBackable
 {
     public Rigidbody2D rb;
     public GameObject groundCheck;
@@ -17,6 +19,7 @@ public class GroundRangeEnemyMovement : MonoBehaviour
     public float detectRange = 16f;
     public float chaseSpeed = 6f;
     public int damage = 10;
+    public float maxKnockBackTime = 0.2f;
 
     private bool isFacingWall;
     private bool isGrounded;
@@ -24,16 +27,23 @@ public class GroundRangeEnemyMovement : MonoBehaviour
     private bool isChasing;
     private bool isFalling;
 
+    private bool isKnockBackActive;
+    private float knockBackStartTime;
+    public bool canMove;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        canMove = true;
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        CheckKnockBack();
         checkFalling();
         if (!isFalling)
         {
-            if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
+            if (gameObject.GetComponent<EnemyHealthSystem>().canMove && canMove)
             {
                 if(gameObject.GetComponent<GroundRangeAttack>().canAttack)
                 {
@@ -44,7 +54,7 @@ public class GroundRangeEnemyMovement : MonoBehaviour
                     }
                     else
                     {
-                        if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f > gameObject.GetComponent<GroundRangeAttack>().attackRange - 0.1f)
+                        if (player != null && Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f > gameObject.GetComponent<GroundRangeAttack>().attackRange - 0.1f)
                         {
                             if (gameObject.GetComponent<GroundRangeAttack>().canMove)
                             {
@@ -115,24 +125,30 @@ public class GroundRangeEnemyMovement : MonoBehaviour
     }
     void DetectPlayer()
     {
-        float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
-
-        if (range <= detectRange)
+        if (player != null)
         {
+            float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
 
-            if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
-                (player.transform.position.x < transform.position.x && isFacingRight))
+            if (range <= detectRange)
             {
-                Flip();
-            }
 
-            isChasing = true;
+                if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
+                    (player.transform.position.x < transform.position.x && isFacingRight))
+                {
+                    Flip();
+                }
+
+                isChasing = true;
+            }
+            else
+            {
+                isChasing = false;
+            }
         }
         else
         {
             isChasing = false;
         }
-
     }
 
     private void OnDrawGizmosSelected()
@@ -141,5 +157,31 @@ public class GroundRangeEnemyMovement : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
         Gizmos.DrawWireSphere(wallCheck.transform.position, groundCheckRadius);
         Gizmos.DrawWireSphere(fallingCheck.transform.position, groundCheckRadius);
+    }
+
+    public void KnockBack(KnockBackData data)
+    {
+        data.Angle.Normalize();
+
+        Vector2 workspace = new Vector2(data.Angle.x * data.Strength * data.Direction, data.Angle.y * data.Strength);
+        rb.AddForce(workspace, ForceMode2D.Impulse);
+
+        canMove = false;
+        gameObject.GetComponent<GroundRangeAttack>().canAttack = false;
+        isKnockBackActive = true;
+        knockBackStartTime = Time.time;
+    }
+
+    private void CheckKnockBack()
+    {
+        if (isKnockBackActive
+            && Time.time >= knockBackStartTime + maxKnockBackTime
+           )
+        {
+            isKnockBackActive = false;
+            canMove = true;
+            gameObject.GetComponent<GroundRangeAttack>().canAttack = true;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
     }
 }

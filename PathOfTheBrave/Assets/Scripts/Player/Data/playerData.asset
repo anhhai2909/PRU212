@@ -38,3 +38,4 @@ MonoBehaviour:
   crouchColliderHeight: 0.8
   standColliderHeight: 1.6
   stunTime: 2
+  hurtTime: 5

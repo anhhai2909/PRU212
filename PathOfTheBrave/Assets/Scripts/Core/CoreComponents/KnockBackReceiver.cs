@@ -10,9 +10,7 @@ namespace CoreSystem
     {
         public Modifiers<Modifier<KnockBackData>, KnockBackData> Modifiers { get; } = new();
 
-        [SerializeField] private float maxKnockBackTime = 0.2f;
-        [SerializeField] private float invulnerabilityDuration = 2.0f;
-        private bool isInvulnerable = false;
+        [SerializeField] private float maxKnockBackTime = 0.3f;
 
         private bool isKnockBackActive;
         private float knockBackStartTime;
@@ -24,23 +22,15 @@ namespace CoreSystem
         {
             CheckKnockBack();
         }
-        private IEnumerator InvulnerabilityCoroutine()
-        {
-            isInvulnerable = true;
-            yield return new WaitForSeconds(invulnerabilityDuration);
-            isInvulnerable = false;
-        }
 
         public void KnockBack(KnockBackData data)
         {
-            if (isInvulnerable) return;
             data = Modifiers.ApplyAllModifiers(data);
             
             movement.SetVelocity(data.Strength, data.Angle, data.Direction);
             movement.CanSetVelocity = false;
             isKnockBackActive = true;
             knockBackStartTime = Time.time;
-            StartCoroutine(InvulnerabilityCoroutine());
         }
 
         private void CheckKnockBack()

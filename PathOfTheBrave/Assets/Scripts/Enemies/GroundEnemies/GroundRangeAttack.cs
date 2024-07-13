@@ -28,11 +28,14 @@ public class GroundRangeAttack : MonoBehaviour
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (!gameObject.GetComponent<GroundRangeEnemyMovement>().canMove) return;
         if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
-        {
-            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
-            if (player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
+        {           
+            if (player != null && player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
             {
+                float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+
                 if (distanceToPlayer <= attackRange && canAttack)
                 {
                     StopMovement();
@@ -68,6 +71,13 @@ public class GroundRangeAttack : MonoBehaviour
                     }
                 }
             }
+            if(player is null)
+            {
+                attackTimer = 0;
+                attackDelayTimer = 0;
+                canAttack = true;
+                canMove = true;
+            }
         }
     }
 
@@ -86,8 +96,8 @@ public class GroundRangeAttack : MonoBehaviour
     }
     void Attack()
     {
-
         GameObject fireBall = Instantiate(weapon, weaponPosition.transform.position, Quaternion.identity);
         fireBall.GetComponent<GroundRangeAttackStuff>().enemy = gameObject;
+        fireBall.GetComponent<GroundRangeAttackStuff>().damage = damage;
     }
 }

@@ -94,8 +94,8 @@ Transform:
   m_GameObject: {fileID: 3183631865353288032}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.6666, y: 30.804, z: 0}
-  m_LocalScale: {x: 2.296129, y: 2.579038, z: 3.823054}
+  m_LocalPosition: {x: 59.5141, y: 31.4844, z: 0}
+  m_LocalScale: {x: 2.706, y: 3.03941, z: 4.505489}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3183631865164696636}
@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  spellDamage: 30
   attackRange: 3
   attackCoolDown: 2
   canAttack: 1
@@ -280,6 +281,8 @@ MonoBehaviour:
   spellCooldown: 3
   castSpellTime: 2
   isCastingSpell: 0
+  knockbackAngle: {x: 1, y: 1}
+  knockbackStrength: 8
 --- !u!114 &3183631865353288050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +311,9 @@ MonoBehaviour:
   detectRange: 8
   chaseSpeed: 6
   damage: 10
+  maxKnockBackTime: 0.2
+  isFacingRight: 1
+  canMove: 0
 --- !u!114 &6646398897412434643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +335,9 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 1.7
   disapearTimer: 0
+  isHitCooldown: 0.3
+  isHitTimer: 0
+  isHit: 0
 --- !u!1 &3183631865604363515
 GameObject:
   m_ObjectHideFlags: 0

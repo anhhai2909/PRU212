@@ -235,7 +235,7 @@ MonoBehaviour:
   anim: {fileID: 886699419678482198}
   canMove: 1
   canAttack: 1
-  maxHealth: 100
+  maxHealth: 1000
   coinSpawnPosition: {fileID: 7370160253404192584}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
@@ -270,7 +270,9 @@ MonoBehaviour:
   detectRange: 16
   chaseSpeed: 6
   damage: 10
+  maxKnockBackTime: 0.2
   isFacingRight: 1
+  canMove: 0
 --- !u!114 &886699419678482183
 MonoBehaviour:
   m_ObjectHideFlags: 0

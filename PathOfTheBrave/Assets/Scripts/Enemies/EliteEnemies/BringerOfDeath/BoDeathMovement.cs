@@ -1,3 +1,5 @@
+using Combat.KnockBack;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoDeathMovement : MonoBehaviour
@@ -17,25 +19,31 @@ public class BoDeathMovement : MonoBehaviour
     public float detectRange = 16f;
     public float chaseSpeed = 6f;
     public int damage = 10;
+    public float maxKnockBackTime = 0.2f;
 
     private bool isFacingWall;
     private bool isGrounded;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     private bool isChasing;
     private bool isFalling;
 
+    private bool isKnockBackActive;
+    private float knockBackStartTime;
+    public bool canMove;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        canMove = true;
     }
     void Update()
     {
+        CheckKnockBack();
         if (gameObject.GetComponent<BoDeathAttack>().canAttack)
         {
             checkFalling();
             if (!isFalling)
             {
-                if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
+                if (gameObject.GetComponent<EnemyHealthSystem>().canMove && canMove)
                 {
                     DetectPlayer();
                     if (!gameObject.GetComponent<BoDeathAttack>().isCastingSpell)
@@ -62,6 +70,19 @@ public class BoDeathMovement : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void CheckKnockBack()
+    {
+        if (isKnockBackActive
+            && Time.time >= knockBackStartTime + maxKnockBackTime
+           )
+        {
+            isKnockBackActive = false;
+            canMove = true;
+            gameObject.GetComponent<EnemyAttack>().canAttack = true;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
     void checkFalling()
@@ -141,5 +162,18 @@ public class BoDeathMovement : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
         Gizmos.DrawWireSphere(wallCheck.transform.position, groundCheckRadius);
         Gizmos.DrawWireSphere(fallingCheck.transform.position, groundCheckRadius);
+    }
+
+    public void KnockBack(KnockBackData data)
+    {
+        data.Angle.Normalize();
+
+        Vector2 workspace = new Vector2(data.Angle.x * data.Strength * data.Direction, data.Angle.y * data.Strength);
+        rb.AddForce(workspace, ForceMode2D.Impulse);
+
+        canMove = false;
+        gameObject.GetComponent<EnemyAttack>().canAttack = false;
+        isKnockBackActive = true;
+        knockBackStartTime = Time.time;
     }
 }

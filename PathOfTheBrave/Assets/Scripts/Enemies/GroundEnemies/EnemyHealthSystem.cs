@@ -17,7 +17,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
     public float disapearCooldown = 2f;
     public float disapearTimer = Mathf.Infinity;
 
-    public float isHitCooldown = 0.8f;
+    public float isHitCooldown = 0.3f;
     public float isHitTimer = 0;
     public bool isHit = false;
     private bool onGround = false;

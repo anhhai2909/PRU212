@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8303897020921084548}
   - component: {fileID: 8303897020921084551}
   - component: {fileID: 1933424603217230815}
-  m_Layer: 20
+  m_Layer: 19
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,6 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf971e93f72226647a9496b359165dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
 --- !u!1 &8303897022012046800
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 48.57, y: 31.95, z: -0.7458107}
-  m_LocalScale: {x: 4.488173, y: 4.1302657, z: 2.5133972}
+  m_LocalScale: {x: 4.488173, y: 4.130266, z: 2.513397}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8303897020921084548}
@@ -201,3 +204,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disapearTime: 3.3
+  damage: 30

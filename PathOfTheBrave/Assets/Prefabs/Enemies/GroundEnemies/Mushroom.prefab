@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  attackRange: 2
+  attackRange: 1.08
   attackCoolDown: 2
   canAttack: 1
   canMove: 1
@@ -307,8 +307,8 @@ MonoBehaviour:
   hitbox: {fileID: 3154389067444951353}
   hitboxRadius: 0.43
   attackDelay: 0.6
-  knockbackAngle: {x: 0, y: 0}
-  knockbackStrength: 0
+  knockbackAngle: {x: 1, y: 1}
+  knockbackStrength: 5
 --- !u!114 &3154389067192857770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +330,9 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.8
+  isHitTimer: 0
+  isHit: 0
 --- !u!1 &3154389067444951353
 GameObject:
   m_ObjectHideFlags: 0

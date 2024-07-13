@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectileSystem.Components;
+using UnityEngine;
 
 namespace CoreSystem
 {
@@ -71,5 +72,15 @@ namespace CoreSystem
 		public bool WallBack {
 			get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);
 		}
-	}
+
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(GroundCheck.position, groundCheckRadius);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(WallCheck.position, WallCheck.position +  Vector3.right * Movement.FacingDirection * wallCheckDistance);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(ledgeCheckHorizontal.position, ledgeCheckHorizontal.position + Vector3.right * Movement.FacingDirection * wallCheckDistance);
+        }
+    }
 }
