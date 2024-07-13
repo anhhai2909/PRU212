@@ -59,6 +59,7 @@ public class TimerBar : MonoBehaviour
                 gameItemINP.GetComponent<Image>().color = new Color(255, 255, 255, 0);
                 gameItemINP.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(255, 255, 255, 0);
                 bar.transform.localScale = new Vector3(1.802f, bar.transform.localScale.y, bar.transform.localScale.z);
+                
             }
         }
         else

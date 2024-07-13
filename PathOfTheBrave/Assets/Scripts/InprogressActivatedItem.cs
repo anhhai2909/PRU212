@@ -96,7 +96,7 @@ public class InprogressActivatedItem : MonoBehaviour
                 {
                     
                     SetTimerBar(activeItem);
-                    
+                    Debug.Log(activeItem.Id);
                     if (item.Value - 1 > 0)
                     {
                         playerItems[item.Key] = item.Value - 1;

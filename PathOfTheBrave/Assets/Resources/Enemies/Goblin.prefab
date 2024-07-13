@@ -171,7 +171,6 @@ GameObject:
   - component: {fileID: 7194607329800910627}
   - component: {fileID: 7194607329800910626}
   - component: {fileID: 7194607329800910625}
-  - component: {fileID: 6853074811143259029}
   m_Layer: 20
   m_Name: Goblin
   m_TagString: GroundEnemy
@@ -189,7 +188,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 51.96, y: 34.27, z: 0}
-  m_LocalScale: {x: 3.4031832, y: 3.4031832, z: 3.6762319}
+  m_LocalScale: {x: 3.403183, y: 3.403183, z: 3.676232}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7194607329546519164}
@@ -238,7 +237,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647669975
-  m_SortingLayer: 12
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 4723107735738678597, guid: c1cdd26cc09ad224884556bc4d8296ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -283,7 +282,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009588376, y: -0.088873506}
+  m_Offset: {x: -0.009588376, y: -0.08887351}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -393,9 +392,6 @@ MonoBehaviour:
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
-  isHitCooldown: 0.8
-  isHitTimer: 0
-  isHit: 0
 --- !u!114 &7194607329800910625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,16 +423,3 @@ MonoBehaviour:
   maxKnockBackTime: 0.2
   isFacingRight: 1
   canMove: 0
---- !u!114 &6853074811143259029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7194607329800910624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89cdcf774b81a8945932f2c667443c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 1

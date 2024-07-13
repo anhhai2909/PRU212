@@ -123,6 +123,7 @@ public class MovingPlatformScript : MonoBehaviour
         {
             isPlayerOn = false;
             collision.gameObject.transform.parent = null;
+            DontDestroyOnLoad(collision.gameObject);
             // collision.gameObject.GetComponent<Animator>().applyRootMotion = true;
 
         }

@@ -11,6 +11,7 @@ public class PortalScript : MonoBehaviour
     public ParticleSystem portal;
     public static PortalScript portalScript;
     public bool isEnabled;
+    public bool isPortalBoss;
 
     public bool isBossDead;
     
@@ -26,7 +27,11 @@ public class PortalScript : MonoBehaviour
 
     void Start()
     {
-        isBossDead = true;
+        isBossDead = false;
+        if(!isPortalBoss)
+        {
+            isBossDead = true;
+        }
         isEnabled = false;
         GameObject ball = GameObject.Find("Player");
         player = ball;

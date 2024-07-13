@@ -63,6 +63,16 @@ public class UpdateSystem : CoreComponent
         stats.Health.Update(health);
     }
 
+    public float currentHealth()
+    {
+        return stats.Health.CurrentValue;
+    }
+
+    public float maxHealth()
+    {
+        return stats.Health.MaxValue;
+    }
+
     public void updateSpeed(float speed)
     {
         if(!(playerData is null))

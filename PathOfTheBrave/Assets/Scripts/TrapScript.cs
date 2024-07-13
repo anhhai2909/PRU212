@@ -67,7 +67,7 @@ public class TrapScript : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Death");
+                player.GetComponent<DeathHandle>().Death();
             }
         }
         else
@@ -85,11 +85,11 @@ public class TrapScript : MonoBehaviour
 
                     if (point.y >= trapTop && point.x > trapLeft && point.x < trapRight)
                     {
-                        Debug.Log("Death");
+                        player.GetComponent<DeathHandle>().Death();
                     }
                     else
                     {
-                        Debug.Log("Death");
+                        player.GetComponent<DeathHandle>().Death();
                     }
                 }
             }

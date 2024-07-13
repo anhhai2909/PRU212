@@ -6,13 +6,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float hp ;
+    public float hp;
 
     public float coin;
 
@@ -33,14 +35,19 @@ public class PlayerScript : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+  
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log(gameObject);
         GameObject playerCamera = GameObject.Find("Player Camera");
         if (playerCamera != null && playerCamera.GetComponent<CinemachineVirtualCamera>() != null)
             playerCamera.GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
         if (scene.buildIndex != 0)
             SpawnPlayer(scene.buildIndex);
     }
+
+    
 
     private void Awake()
     {
@@ -102,8 +109,8 @@ public class PlayerScript : MonoBehaviour
                     }
                 case 2:
                     {
-                        x = -6.91f;
-                        y = -0.1f;
+                        x = -13f;
+                        y = 0.3f;
                         break;
                     }
                 case 3:

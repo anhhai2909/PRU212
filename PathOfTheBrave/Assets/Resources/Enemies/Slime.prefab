@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 3515168750048848084}
   - component: {fileID: 3515168750048848085}
   - component: {fileID: 1360934568859061626}
-  - component: {fileID: 6198003076514027194}
   m_Layer: 20
   m_Name: Slime
   m_TagString: Slime
@@ -64,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 54.27, y: 34.13, z: 0}
-  m_LocalScale: {x: 3.4720974, y: 3.4720974, z: 3.6169364}
+  m_LocalScale: {x: 3.472097, y: 3.472097, z: 3.616936}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3515168750297521782}
@@ -112,7 +111,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647669975
-  m_SortingLayer: 12
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 2021557631, guid: 79eba2a7a594adf4494c74520f58d5be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -274,22 +273,6 @@ MonoBehaviour:
   potion: {fileID: 0}
   disapearCooldown: 2
   disapearTimer: 0
-  isHitCooldown: 0.8
-  isHitTimer: 0
-  isHit: 0
---- !u!114 &6198003076514027194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3515168750048848682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89cdcf774b81a8945932f2c667443c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 1
 --- !u!1 &3515168750297521783
 GameObject:
   m_ObjectHideFlags: 0
