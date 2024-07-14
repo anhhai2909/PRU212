@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8837408472932573906}
   - component: {fileID: 8645772274143606374}
   - component: {fileID: 330321323472750523}
+  - component: {fileID: 4682089289106851495}
   m_Layer: 20
   m_Name: King
   m_TagString: Boss
@@ -233,6 +234,7 @@ MonoBehaviour:
   isFacingRight: 1
   bossData: {fileID: 11400000, guid: f56135905e4e0d94b8011048c965b6e2, type: 2}
   portal: {fileID: 0}
+  playerScript: {fileID: 0}
   playerCheck: {fileID: 0}
   currentHealth: 0
   healthBar: {fileID: 0}
@@ -270,3 +272,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clone1: {fileID: 9049170259106814593, guid: 59dfcaecb475f6c458bdea076537d3f0, type: 3}
   clone2: {fileID: 2799769539213967752, guid: 220fba0a59e7ffe478a730110e691655, type: 3}
+--- !u!114 &4682089289106851495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910902723029253178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a486d4587686f4eb948fea2c9abd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Boss: {fileID: 910902723029253178}
