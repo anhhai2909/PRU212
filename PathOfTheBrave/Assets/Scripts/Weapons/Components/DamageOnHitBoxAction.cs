@@ -1,4 +1,5 @@
 ﻿using Combat.Damage;
+using CoreSystem;
 using UnityEngine;
 using static Utilities.CombatDamageUtilities; //(2)
 
@@ -7,21 +8,22 @@ namespace Weapons.Components
     public class DamageOnHitBoxAction : WeaponComponent<DamageOnHitBoxActionData, AttackDamage>
     {
         private ActionHitBox hitBox;
-        
+
         private void HandleDetectCollider2D(Collider2D[] colliders)
         {
             // Notice that this is equal to (1), the logic has just been offloaded to a static helper class. Notice the using statement (2) is static, allowing as to call the Damage function directly instead of saying
             // Utilities.CombatUtilities.Damage(...);
-            TryDamage(colliders, new DamageData(currentAttackData.Amount, Core.Root), out _); 
-            
+            TryDamage(colliders, new DamageData(currentAttackData.Amount + weapon.GetAddDamage(), Core.Root), out _);
+
             //(1)
-            // foreach (var item in colliders)
-            // {
-            //     if (item.TryGetComponent(out IDamageable damageable))
-            //     {
-            //         damageable.Damage(new Combat.Damage.DamageData(currentAttackData.Amount, Core.Root));
-            //     }
-            // }
+            //foreach (var item in colliders)
+            //{
+            //    if (item.TryGetComponent(out IDamageable damageable))
+            //    {
+            //        damageable.Damage(new Combat.Damage.DamageData(currentAttackData.Amount + weapon.GetAddDamage(), Core.Root));
+            //        //Core.GetCoreComponent<DamageReceiver>().Damage(new Combat.Damage.DamageData(currentAttackData.Amount, item.gameObject));
+            //    }
+            //}
         }
 
         protected override void Start()

@@ -20,6 +20,20 @@ public class GameData
 
     public float _coin { get; set; }
 
+    public int _healthLevel { get; set; }
+
+    public int _manaLevel { get; set; }
+
+    public int _sdLevel { get; set; }
+
+    public int _bdLevel { get; set; }
+
+    public int _mdLevel { get; set; }
+
+    public Dictionary<int, int> _items { get; set; }
+
+    public Dictionary<int, int> _activatedItems { get; set; }
+
     public List<SceneInfor> _scenesInfor { get; set; }
 
 

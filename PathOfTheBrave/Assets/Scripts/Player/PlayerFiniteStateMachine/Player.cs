@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public PlayerStunState PlayerStunState { get; private set; }
 
     [SerializeField]
-    private PlayerData playerData;
+    public PlayerData playerData;
     #endregion
 
     #region Components
@@ -87,14 +87,14 @@ public class Player : MonoBehaviour
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
 
-        //InputHandler.OnInteractInputChanged += InteractableDetector.TryInteract;
-        
+        InputHandler.OnInteractInputChanged += InteractableDetector.TryInteract;
+
         RB = GetComponent<Rigidbody2D>();
         //DashDirectionIndicator = transform.Find("DashDirectionIndicator");
         MovementCollider = GetComponent<BoxCollider2D>();
 
-        //Stats.Poise.OnCurrentValueZero += HandlePoiseCurrentValueZero;
-        
+        Stats.Poise.OnCurrentValueZero += HandlePoiseCurrentValueZero;
+
         StateMachine.Initialize(IdleState);
     }
 
@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        //Stats.Poise.OnCurrentValueZero -= HandlePoiseCurrentValueZero;
+        Stats.Poise.OnCurrentValueZero -= HandlePoiseCurrentValueZero;
     }
 
     #endregion

@@ -6,6 +6,22 @@ TagManager:
   tags:
   - Enemy
   - Portal
+  - ParticleContainer
+  - Ground
+  - FireballRespawnPosition
+  - GRAttackStuffResPosition
+  - FlyEnemy
+  - GroundEnemy
+  - Slime
+  - MovingPlatform
+  - Item
+  - Inventory
+  - GroundRangeAttackStuffRespawnPosition
+  - Thorn
+  - TrapDeath
+  - TrapNotDeath
+  - Boss
+  - FireBallPos
   layers:
   - Default
   - TransparentFX
@@ -24,17 +40,17 @@ TagManager:
   - 
   - 
   - Interactable
+  - WorldItem
+  - Coin
+  - Fireball
+  - Enemy
+  - HealthPotion
+  - BoDSpell
   - 
+  - NotInteractable
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Trap
+  - Fog
   - 
   - 
   - 
@@ -55,23 +71,32 @@ TagManager:
   - name: Background
     uniqueID: 2739343719
     locked: 0
+  - name: BackgroundLayer5
+    uniqueID: 3059417751
+    locked: 0
+  - name: Lightning
+    uniqueID: 650920753
+    locked: 0
   - name: House
     uniqueID: 661252463
     locked: 0
   - name: Decorations
     uniqueID: 2221171907
     locked: 0
-  - name: HigherDecorations
-    uniqueID: 2970568953
-    locked: 0
   - name: Platform
     uniqueID: 2153748749
+    locked: 0
+  - name: HigherDecorations
+    uniqueID: 2970568953
     locked: 0
   - name: Player
     uniqueID: 273729393
     locked: 0
   - name: Enemy
     uniqueID: 2647297321
+    locked: 0
+  - name: ActiveProjectile
+    uniqueID: 1711295435
     locked: 0
   - name: ForegroundDecorations
     uniqueID: 4050010293

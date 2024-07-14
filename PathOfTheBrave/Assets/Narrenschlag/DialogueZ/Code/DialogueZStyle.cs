@@ -337,7 +337,7 @@ namespace narrenschlag.dialoguez
         {
             foreach (string arg in args)
             {
-                int i;
+                //int i;
                 Event e;
                 // if (int.TryParse(arg, out i))
                 if (DialogueZ.TryGetEvent(arg, out e))

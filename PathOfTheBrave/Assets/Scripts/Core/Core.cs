@@ -15,9 +15,16 @@ namespace CoreSystem
         
         private readonly List<CoreComponent> CoreComponents = new List<CoreComponent>();
 
+        public bool isDashing { get; private set; }
+
         private void Awake()
         {
+            isDashing = false;
             Root = Root ? Root : transform.parent.gameObject;
+        }
+        public void setDash(bool isDash)
+        {
+            isDashing = isDash;
         }
 
         public void LogicUpdate()

@@ -31,5 +31,22 @@ namespace CoreSystem.StatsSystem
         public void Increase(float amount) => CurrentValue += amount;
 
         public void Decrease(float amount) => CurrentValue -= amount;
+
+        public void UpdateMax(float amount) {
+            MaxValue += amount;
+            currentValue = MaxValue;
+        }
+
+
+        public void Update(float amount)
+        {
+            if(currentValue + amount >= MaxValue) { 
+                currentValue = MaxValue;
+            }
+            else
+            {
+                currentValue += amount;
+            }
+        }
     }
 }

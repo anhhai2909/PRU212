@@ -26,10 +26,10 @@ namespace CoreSystem
 		//	get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, core.transform.parent.name);
 		//	private set => ledgeCheckVertical = value;
 		//}
-		public Transform CeilingCheck {
-			get => GenericNotImplementedError<Transform>.TryGet(ceilingCheck, core.transform.parent.name);
-			private set => ceilingCheck = value;
-		}
+		//public Transform CeilingCheck {
+		//	get => GenericNotImplementedError<Transform>.TryGet(ceilingCheck, core.transform.parent.name);
+		//	private set => ceilingCheck = value;
+		//}
 		public float GroundCheckRadius { get => groundCheckRadius; set => groundCheckRadius = value; }
 		public float WallCheckDistance { get => wallCheckDistance; set => wallCheckDistance = value; }
 		public LayerMask WhatIsGround { get => whatIsGround; set => whatIsGround = value; }
@@ -39,7 +39,7 @@ namespace CoreSystem
 		[SerializeField] private Transform wallCheck;
 		[SerializeField] private Transform ledgeCheckHorizontal;
 		//[SerializeField] private Transform ledgeCheckVertical;
-		[SerializeField] private Transform ceilingCheck;
+		//[SerializeField] private Transform ceilingCheck;
 
 		[SerializeField] private float groundCheckRadius;
 		[SerializeField] private float wallCheckDistance;
@@ -48,9 +48,9 @@ namespace CoreSystem
 
 		#endregion
 
-		public bool Ceiling {
-			get => Physics2D.OverlapCircle(CeilingCheck.position, groundCheckRadius, whatIsGround);
-		}
+		//public bool Ceiling {
+		//	get => Physics2D.OverlapCircle(CeilingCheck.position, groundCheckRadius, whatIsGround);
+		//}
 
 		public bool Ground {
 			get => Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, whatIsGround);

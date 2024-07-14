@@ -1,21 +1,21 @@
-﻿using System;
-using CoreSystem.StatsSystem;
+﻿using CoreSystem.StatsSystem;
 using UnityEngine;
 
 namespace CoreSystem
 {
     public class Stats : CoreComponent
     {
-       [field: SerializeField] public Stat Health { get; private set; }
-       [field: SerializeField] public Stat Poise { get; private set; }
+        [field: SerializeField] public Stat Health { get; private set; }
+        [field: SerializeField] public Stat Mana { get; private set; }
+        [field: SerializeField] public Stat Poise { get; private set; }
 
-       [SerializeField] private float poiseRecoveryRate;
-        
+        [SerializeField] private float poiseRecoveryRate;
+
         protected override void Awake()
         {
             base.Awake();
-            
             Health.Init();
+            Mana.Init();
             Poise.Init();
         }
 
@@ -23,7 +23,7 @@ namespace CoreSystem
         {
             if (Poise.CurrentValue.Equals(Poise.MaxValue))
                 return;
-            
+
             Poise.Increase(poiseRecoveryRate * Time.deltaTime);
         }
     }

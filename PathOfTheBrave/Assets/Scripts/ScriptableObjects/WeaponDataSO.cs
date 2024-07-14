@@ -14,8 +14,13 @@ namespace Weapons
         [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public RuntimeAnimatorController AnimatorController { get; private set; }
         [field: SerializeField] public int NumberOfAttacks { get; private set; }
-
+        [field: SerializeField] public float AttackCooldown { get; private set; }
         [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
+
+        private float AddDamage = 0;
+        public float GetAddDamage() => AddDamage;
+        public void SetAddDamage(float Amount) => AddDamage = Amount;
+        public void AddAddDamage(float Amount) => AddDamage += Amount;
 
         public T GetData<T>()
         {

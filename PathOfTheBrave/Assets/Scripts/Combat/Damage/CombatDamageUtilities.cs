@@ -14,8 +14,13 @@ namespace Utilities
     {
         public static bool TryDamage(GameObject gameObject, DamageData damageData, out IDamageable damageable)
         {
+            Debug.Log("23");
             // TryGetComponentInChildren is a custom GameObject extension method.
             if (gameObject.TryGetComponentInChildren(out damageable))
+            {
+                damageable.Damage(damageData);
+                return true;
+            }else if (gameObject.TryGetComponent(out damageable))
             {
                 damageable.Damage(damageData);
                 return true;
@@ -26,6 +31,7 @@ namespace Utilities
 
         public static bool TryDamage(Collider2D[] colliders, DamageData damageData, out List<IDamageable> damageables)
         {
+            Debug.Log("24");
             var hasDamaged = false;
             damageables = new List<IDamageable>();
             

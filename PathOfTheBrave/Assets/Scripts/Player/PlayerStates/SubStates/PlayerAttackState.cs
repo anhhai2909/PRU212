@@ -61,7 +61,7 @@ public class PlayerAttackState : PlayerAbilityState
         if (!canInterrupt)
             return;
 
-        if (xInput != 0 || attackInputs[0] || attackInputs[1])
+        if (xInput != 0 || attackInputs[0] || attackInputs[1] || !weapon.CanAttack)
         {
             isAbilityDone = true;
         }

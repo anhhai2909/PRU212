@@ -38,18 +38,21 @@ public class MainMenuScript : MonoBehaviour
 
     public GameObject player;
 
+    private bool isNew;
+
     [System.Obsolete]
     private void Awake()
     {
         DataPersistenceManager data = new DataPersistenceManager();
         if (data.ReadFromFile() == null)
         {
-            Debug.Log(data.ReadFromFile());
+            isNew = true;
             loadText.overrideColorTags = true;
             loadText.color = Color.gray;
         }
         else
         {
+            isNew = false;
             loadBtn.onClick.AddListener(LoadClick);
 
         }
@@ -58,10 +61,12 @@ public class MainMenuScript : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        List<GameObject> objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Ball").ToList();
-        if(objects.Count > 1 )
+
+        List<GameObject> objects = Resources.FindObjectsOfTypeAll<GameObject>().Where(obj => obj.name == "Player").ToList();
+
+        for (int i = 0; i < objects.Count; i++)
         {
-            for (int i = 0; i < objects.Count; i++)
+            if (objects[i] != null)
             {
                 if (!objects[i].active)
                 {
@@ -70,11 +75,10 @@ public class MainMenuScript : MonoBehaviour
                 {
                     this.player = objects[i];
                     this.playerScript = objects[i].GetComponent<PlayerScript>();
+                    break;
                 }
             }
         }
-
-
 
         //0C0C0C
 
@@ -92,6 +96,8 @@ public class MainMenuScript : MonoBehaviour
         {
             player.active = true;
             playerScript.gameObject.SetActive(true);
+            DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
+            dataPersistenceManager.SaveToFile(null);
             canvas.active = false;
             playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -112,7 +118,7 @@ public class MainMenuScript : MonoBehaviour
             canvas.active = false;
             DataPersistenceManager data = new DataPersistenceManager();
             GameData gameData = data.LoadGame();
-            if(gameData == null)
+            if (gameData == null)
             {
                 playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -123,8 +129,8 @@ public class MainMenuScript : MonoBehaviour
                 playerScript.coin = gameData._coin;
                 playerScript.LoadScene(gameData._sceneIndex);
             }
-            
-            
+
+
         }
         else
         {
@@ -195,7 +201,22 @@ public class MainMenuScript : MonoBehaviour
     {
         if (dir == -1)
         {
-            option++;
+            if (isNew)
+            {
+                if (option == 1)
+                {
+                    option = 3;
+                }
+                else
+                {
+                    option++;
+
+                }
+            }
+            else
+            {
+                option++;
+            }
             if (option > 3)
             {
                 option = 1;
@@ -203,7 +224,22 @@ public class MainMenuScript : MonoBehaviour
         }
         else
         {
-            option--;
+            if (isNew)
+            {
+                if (option == 3)
+                {
+                    option = 1;
+                }
+                else
+                {
+                    option--;
+
+                }
+            }
+            else
+            {
+                option--;
+            }
             if (option < 1)
             {
                 option = 3;
@@ -224,7 +260,7 @@ public class MainMenuScript : MonoBehaviour
                     newText.fontStyle = FontStyles.Bold;
 
                     loadBtn.image.enabled = false;
-                    loadText.color = Color.white;
+                    loadText.color = !isNew ? Color.white : Color.gray;
                     loadText.fontStyle = FontStyles.Normal;
 
                     settingBtn.image.enabled = false;
@@ -239,7 +275,7 @@ public class MainMenuScript : MonoBehaviour
                     newText.fontStyle = FontStyles.Normal;
 
                     loadBtn.image.enabled = true;
-                    loadText.color = Color.black;
+                    loadText.color = !isNew ? Color.black : Color.gray;
                     loadText.fontStyle = FontStyles.Bold;
 
                     settingBtn.image.enabled = false;
@@ -254,7 +290,7 @@ public class MainMenuScript : MonoBehaviour
                     newText.fontStyle = FontStyles.Normal;
 
                     loadBtn.image.enabled = false;
-                    loadText.color = Color.white;
+                    loadText.color = !isNew ? Color.white : Color.gray;
                     loadText.fontStyle = FontStyles.Normal;
 
                     settingBtn.image.enabled = true;

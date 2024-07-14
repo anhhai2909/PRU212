@@ -2,6 +2,7 @@
 using System.Collections;
 using ProjectileSystem.DataPackages;
 using UnityEngine;
+using Weapons;
 
 namespace ProjectileSystem.Components
 {
@@ -11,7 +12,6 @@ namespace ProjectileSystem.Components
     public class ProjectileComponent : MonoBehaviour
     {
         protected Projectile projectile;
-
         protected Rigidbody2D rb => projectile.Rigidbody2D;
         
         public bool Active { get; private set; }
@@ -53,7 +53,6 @@ namespace ProjectileSystem.Components
         protected virtual void Awake()
         {
             projectile = GetComponent<Projectile>();
-
             projectile.OnInit += Init;
             projectile.OnReset += ResetProjectile;
             projectile.OnReceiveDataPackage += HandleReceiveDataPackage;

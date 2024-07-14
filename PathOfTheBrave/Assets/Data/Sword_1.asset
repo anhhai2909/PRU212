@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a5a6cd738645369231540dd8f9631f, type: 3}
   m_Name: Sword_1
   m_EditorClassIdentifier: 
-  <Icon>k__BackingField: {fileID: 1876003589, guid: 20356bbb7900e1e458e615b5b281ecbd, type: 3}
+  <Icon>k__BackingField: {fileID: -961974939, guid: 0464bf6ae3eba8949b5329d15a4ec017, type: 3}
   <Name>k__BackingField: Bardent's Sword
   <Description>k__BackingField: It looks sick af
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: db94853973589ff42a43ca1c08b22bdc, type: 2}
   <NumberOfAttacks>k__BackingField: 3
+  <AttackCooldown>k__BackingField: 0
   <ComponentData>k__BackingField:
   - rid: 6757589857112162305
   - rid: 6757589857112162306
@@ -74,7 +75,7 @@ MonoBehaviour:
             height: 1.31
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
-          m_Bits: 0
+          m_Bits: 1049600
     - rid: 6757589857112162307
       type: {class: DamageOnHitBoxActionData, ns: Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -94,14 +95,14 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 5
+          <Angle>k__BackingField: {x: 1, y: 0.5}
+          <Strength>k__BackingField: 4
         - name: Attack 2
-          <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 5
+          <Angle>k__BackingField: {x: 1, y: 0.2}
+          <Strength>k__BackingField: 3
         - name: Attack 3
           <Angle>k__BackingField: {x: 1, y: 0}
-          <Strength>k__BackingField: 10
+          <Strength>k__BackingField: 5
     - rid: 6757589857112162309
       type: {class: PoiseDamageData, ns: Weapons.Components, asm: Assembly-CSharp}
       data:

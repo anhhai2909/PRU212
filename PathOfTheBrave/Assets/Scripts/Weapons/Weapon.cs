@@ -1,5 +1,5 @@
-using System;
 using CoreSystem;
+using System;
 using UnityEngine;
 using Utilities;
 
@@ -14,9 +14,14 @@ namespace Weapons
         public event Action OnUseInput;
 
         [SerializeField] private float attackCounterResetCooldown;
+        protected float delayAttackCooldown = 0;
+        public float GetAddDamage() => Data.GetAddDamage();
+        public void SetAddDamage(float Amount) => Data.SetAddDamage(Amount);
+        public void AddAddDamage(float Amount) => Data.AddAddDamage(Amount);
 
         public bool CanEnterAttack { get; private set; }
-        
+        public bool CanAttack { get; private set; } = true;
+
         public WeaponDataSO Data { get; private set; }
 
         public int CurrentAttackCounter
@@ -32,6 +37,8 @@ namespace Weapons
             {
                 if (currentInput != value)
                 {
+                    if (!CanEnterAttack) { Debug.Log("Attack in Cooldown"); return; }
+                    if (!CanAttack) { Debug.Log("Not enough resource to perform attack"); return; }
                     currentInput = value;
                     OnCurrentInputChange?.Invoke(currentInput);
                 }
@@ -63,6 +70,7 @@ namespace Weapons
         private int currentAttackCounter;
 
         private TimeNotifier attackCounterResetTimeNotifier;
+        private TimeNotifier delayAttackTimeNotifier;
 
         private bool currentInput;
 
@@ -72,17 +80,24 @@ namespace Weapons
         public void Enter()
         {
             //Debug.Break();
-            print($"{transform.name} enter");
+            //print($"{transform.name} enter");
+            if (CanAttack)
+            {
+                AttackStartTime = Time.time;
 
-            AttackStartTime = Time.time;
+                attackCounterResetTimeNotifier.Disable();
+                delayAttackTimeNotifier.Disable();
 
-            attackCounterResetTimeNotifier.Disable();
+                Anim.SetBool("active", true);
+                Anim.SetInteger("counter", currentAttackCounter);
 
-            Anim.SetBool("active", true);
-            Anim.SetInteger("counter", currentAttackCounter);
-
-            OnEnter?.Invoke();
+                OnEnter?.Invoke();
+            }
+            else
+                Exit();
         }
+
+        public void SetCanAttack(bool b) => CanAttack = b;
 
         public void SetCore(Core core)
         {
@@ -92,10 +107,12 @@ namespace Weapons
         public void SetData(WeaponDataSO data)
         {
             Data = data;
-            
-            if(Data is null)
+
+            if (Data is null)
                 return;
-            
+
+            delayAttackCooldown = data.AttackCooldown;
+            EnableAttack();
             ResetAttackCounter();
         }
 
@@ -107,7 +124,8 @@ namespace Weapons
 
             CurrentAttackCounter++;
             attackCounterResetTimeNotifier.Init(attackCounterResetCooldown);
-
+            delayAttackTimeNotifier.Init(delayAttackCooldown);
+            DisableAttack();
             OnExit?.Invoke();
         }
 
@@ -116,6 +134,7 @@ namespace Weapons
             GetDependencies();
 
             attackCounterResetTimeNotifier = new TimeNotifier();
+            delayAttackTimeNotifier = new TimeNotifier();
         }
 
         private void GetDependencies()
@@ -136,24 +155,36 @@ namespace Weapons
         private void Update()
         {
             attackCounterResetTimeNotifier.Tick();
+            delayAttackTimeNotifier.Tick();
         }
 
         private void ResetAttackCounter()
         {
-            print("Reset Attack Counter");
+            //print("Reset Attack Counter");
             CurrentAttackCounter = 0;
+        }
+
+        private void EnableAttack()
+        {
+            CanEnterAttack = true;
+        }
+        private void DisableAttack()
+        {
+            CanEnterAttack = false;
         }
 
         private void OnEnable()
         {
             EventHandler.OnUseInput += HandleUseInput;
             attackCounterResetTimeNotifier.OnNotify += ResetAttackCounter;
+            delayAttackTimeNotifier.OnNotify += EnableAttack;
         }
 
         private void OnDisable()
         {
             EventHandler.OnUseInput -= HandleUseInput;
             attackCounterResetTimeNotifier.OnNotify -= ResetAttackCounter;
+            delayAttackTimeNotifier.OnNotify -= EnableAttack;
         }
 
         /// <summary>

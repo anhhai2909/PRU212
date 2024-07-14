@@ -10,8 +10,14 @@ public class SoundEffectScript : MonoBehaviour
 
     public void Start()
     {
+        src = gameObject.GetComponent<AudioSource>();
         src.clip = clip;
+    }
+
+    public void Play()
+    {
         src.Play();
+
     }
 
     public void Pause()
