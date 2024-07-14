@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GolemController : MonoBehaviour
 {
@@ -8,542 +6,375 @@ public class GolemController : MonoBehaviour
     {
         Idle,
         Glowing,
-        LookingForPlayer,
-        PlayerDetected,
         Moving,
-        Knockback,
-        Dead,
         Immune,
         ArmorBuff,
         RangeAttack,
         LaserCast,
-        MeleeAttack
+        MeleeAttack,
+        Dead
     }
 
     private State currentState;
 
     [SerializeField] private float maxHealth, currentHealth;
     [SerializeField] private float meleeAttackRange, rangeAttackRange, laserCastRange;
-    [SerializeField] private float immuneDuration, armorBuffDuration, movementSpeed, knockbackDuration;
+    [SerializeField] private float immuneDuration, armorBuffDuration, glowingDuration, movementSpeed;
     [SerializeField] private float groundCheckDistance, wallCheckDistance;
-    [SerializeField]
-    private float
-       touchDamage,
-       lastTouchDamageTime,
-       touchDamageCoolDown,
-       touchDamageWidth,
-       touchDamageHeight;
+    [SerializeField] private float touchDamage, lastTouchDamageTime, touchDamageCoolDown, touchDamageWidth, touchDamageHeight;
 
     [SerializeField] private int damage, armor;
-
     [SerializeField] private Vector2 knockbackSpeed;
-
     private bool isImmune, isDead, groundDetected, wallDetected;
-
     private GameObject golem;
     private Rigidbody2D golemRb;
     private Animator golemAnim;
-
     private Transform player;
     [SerializeField] private Transform groundCheck, wallCheck, touchDamageCheck;
-
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
-
     private float[] attackDetails = new float[2];
-
-    private Vector2
-        movement,
-        touchDamageBotLeft,
-        touchDamageTopRight;
-
-    private int facingDirection, damageDirection;
-
+    private Vector2 movement, touchDamageBotLeft, touchDamageTopRight;
+    private int facingDirection = 1, damageDirection;
     private float knockbackStartTime;
-
-    [SerializeField]
-    private GameObject hitParticle, deathChunkParticle, deathBloodParticle;
     public GameObject arm;
     public Transform armPos;
+    private bool isFacingRight = true;
+
+    private bool isDetected = false;
+    [SerializeField] private float detectionRadius = 20f;
 
     private void Start()
     {
-        InitializeVariables();
-        StartCoroutine(StateMachine());
-    }
-
-    private void InitializeVariables()
-    {
-        golem = GameObject.FindGameObjectWithTag("Enemy");
-        golemRb = golem.GetComponent<Rigidbody2D>();
-        golemAnim = golem.GetComponent<Animator>();
+        golem = this.gameObject;
+        golemRb = GetComponent<Rigidbody2D>();
+        golemAnim = GetComponent<Animator>();
         currentHealth = maxHealth;
-        facingDirection = 1;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player").transform;
+        SwitchState(State.Idle);
     }
 
     private void Update()
     {
-        switch (currentState)
+        if (!isDead)
         {
-            case State.Idle:
-                UpdateIdleState();
-                break;
-            case State.Glowing:
-                UpdateGlowingState();
-                break;
-            case State.LookingForPlayer:
-                UpdateLookingForPlayerState();
-                break;
-            case State.PlayerDetected:
-                UpdatePlayerDetectedState();
-                break;
-            case State.Moving:
-                UpdateMovingState();
-                break;
-            case State.Knockback:
-                UpdateKnockbackState();
-                break;
-            case State.Dead:
-                UpdateDeadState();
-                break;
-            case State.Immune:
-                UpdateImmuneState();
-                break;
-            case State.ArmorBuff:
-                UpdateArmorBuffState();
-                break;
-            case State.RangeAttack:
-                UpdateRangeAttackState();
-                break;
-            case State.LaserCast:
-                UpdateLaserCastState();
-                break;
-            case State.MeleeAttack:
-                UpdateMeleeAttackState();
-                break;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SwitchState(State.RangeAttack);
-        }
-    }
+            DetectPlayer();
 
-    private IEnumerator StateMachine()
-    {
-        while (!isDead)
-        {
+            if (isDetected)
+            {
+                if (Vector2.Distance(player.position, transform.position) <= meleeAttackRange)
+                {
+                    SwitchState(State.MeleeAttack);
+                }
+                else if (Vector2.Distance(player.position, transform.position) <= rangeAttackRange)
+                {
+                    SwitchState(State.RangeAttack);
+                }
+                else
+                {
+                    SwitchState(State.Moving);
+                }
+            }
+
             switch (currentState)
             {
                 case State.Idle:
-                    UpdateIdleState();
-                    break;
-                case State.Glowing:
-                    UpdateGlowingState();
-                    break;
-                case State.LookingForPlayer:
-                    UpdateLookingForPlayerState();
-                    break;
-                case State.PlayerDetected:
-                    UpdatePlayerDetectedState();
+                    UpdateIdle();
                     break;
                 case State.Moving:
-                    UpdateMovingState();
+                    UpdateMoving();
                     break;
-                case State.Knockback:
-                    UpdateKnockbackState();
-                    break;
-                case State.Dead:
-                    UpdateDeadState();
+                case State.Glowing:
+                    UpdateGlowing();
                     break;
                 case State.Immune:
-                    UpdateImmuneState();
+                    UpdateImmune();
                     break;
                 case State.ArmorBuff:
-                    UpdateArmorBuffState();
+                    UpdateArmorBuff();
                     break;
                 case State.RangeAttack:
-                    UpdateRangeAttackState();
-                    break;
-                case State.LaserCast:
-                    UpdateLaserCastState();
+                    UpdateRangeAttack();
                     break;
                 case State.MeleeAttack:
-                    UpdateMeleeAttackState();
+                    UpdateMeleeAttack();
+                    break;
+                case State.LaserCast:
+                    UpdateLaserCast();
+                    break;
+                case State.Dead:
+                    UpdateDead();
                     break;
             }
-            yield return null;
         }
     }
 
-    private void EnterState(State state)
+    private void SwitchState(State state)
     {
-        ExitCurrentState();
+        switch (currentState)
+        {
+            case State.Idle:
+                ExitIdle();
+                break;
+            case State.Moving:
+                ExitMoving();
+                break;
+            case State.Glowing:
+                ExitGlowing();
+                break;
+            case State.Immune:
+                ExitImmune();
+                break;
+            case State.ArmorBuff:
+                ExitArmorBuff();
+                break;
+            case State.RangeAttack:
+                ExitRangeAttack();
+                break;
+            case State.MeleeAttack:
+                ExitMeleeAttack();
+                break;
+            case State.LaserCast:
+                ExitLaserCast();
+                break;
+            case State.Dead:
+                ExitDead();
+                break;
+        }
+
+        switch (state)
+        {
+            case State.Idle:
+                EnterIdle();
+                break;
+            case State.Moving:
+                EnterMoving();
+                break;
+            case State.Glowing:
+                EnterGlowing();
+                break;
+            case State.Immune:
+                EnterImmune();
+                break;
+            case State.ArmorBuff:
+                EnterArmorBuff();
+                break;
+            case State.RangeAttack:
+                EnterRangeAttack();
+                break;
+            case State.MeleeAttack:
+                EnterMeleeAttack();
+                break;
+            case State.LaserCast:
+                EnterLaserCast();
+                break;
+            case State.Dead:
+                EnterDead();
+                break;
+        }
 
         currentState = state;
-
-        switch (currentState)
-        {
-            case State.Idle:
-                EnterIdleState();
-                break;
-            case State.Glowing:
-                EnterGlowingState();
-                break;
-            case State.LookingForPlayer:
-                EnterLookingForPlayerState();
-                break;
-            case State.PlayerDetected:
-                EnterPlayerDetectedState();
-                break;
-            case State.Moving:
-                EnterMovingState();
-                break;
-            case State.Knockback:
-                EnterKnockbackState();
-                break;
-            case State.Dead:
-                EnterDeadState();
-                break;
-            case State.Immune:
-                EnterImmuneState();
-                break;
-            case State.ArmorBuff:
-                EnterArmorBuffState();
-                break;
-            case State.RangeAttack:
-                EnterRangeAttackState();
-                break;
-            case State.LaserCast:
-                EnterLaserCastState();
-                break;
-            case State.MeleeAttack:
-                EnterMeleeAttackState();
-                break;
-        }
     }
 
-    private void ExitCurrentState()
+    private void EnterIdle()
     {
-        switch (currentState)
-        {
-            case State.Idle:
-                ExitIdleState();
-                break;
-            case State.Glowing:
-                ExitGlowingState();
-                break;
-            case State.LookingForPlayer:
-                ExitLookingForPlayerState();
-                break;
-            case State.PlayerDetected:
-                ExitPlayerDetectedState();
-                break;
-            case State.Moving:
-                ExitMovingState();
-                break;
-            case State.Knockback:
-                ExitKnockbackState();
-                break;
-            case State.Dead:
-                ExitDeadState();
-                break;
-            case State.Immune:
-                ExitImmuneState();
-                break;
-            case State.ArmorBuff:
-                ExitArmorBuffState();
-                break;
-            case State.RangeAttack:
-                ExitRangeAttackState();
-                break;
-            case State.LaserCast:
-                ExitLaserCastState();
-                break;
-            case State.MeleeAttack:
-                ExitMeleeAttackState();
-                break;
-        }
+        golemAnim.SetBool("idle", true);
     }
 
-    private void EnterIdleState()
+    private void UpdateIdle()
     {
-        if (currentHealth > maxHealth / 2)
+        if (isDetected)
         {
-            golemAnim.SetBool("glowing", false);
-            golemAnim.SetBool("idle", true);
-        }
-        else
-        {
-            golemAnim.SetBool("idle", false);
-            golemAnim.SetBool("glowing", true);
+            SwitchState(State.Moving);
         }
     }
 
-    private void UpdateIdleState()
-    {
-        Debug.Log("Current Health: " + currentHealth);
-        Debug.Log("Current State: " + currentState);
-        if (currentHealth <= maxHealth / 2)
-        {
-            EnterState(State.Glowing);
-        }
-        // Implement idle state logic here
-    }
-
-    private void ExitIdleState()
+    private void ExitIdle()
     {
         golemAnim.SetBool("idle", false);
-        golemAnim.SetBool("glowing", false);
     }
 
-    private void EnterGlowingState()
+    private void EnterGlowing()
     {
-        Debug.Log("Entering Glowing State");
-        golemAnim.SetBool("idle", false);
+        damage += 20;
+        Invoke("EndGlowing", glowingDuration);
         golemAnim.SetBool("glowing", true);
-
     }
 
-    private void UpdateGlowingState()
+    private void UpdateGlowing()
     {
-        // Implement glowing state update logic here
-        SwitchState(State.LookingForPlayer);
+        // Glowing state logic here
     }
 
-    private void ExitGlowingState()
+    private void ExitGlowing()
     {
+        damage -= 20; // Reset damage
         golemAnim.SetBool("glowing", false);
     }
 
-    private void EnterLookingForPlayerState()
+    private void EndGlowing()
     {
-        // Implement looking for player state entry logic here
+        SwitchState(State.Idle);
     }
 
-    private void UpdateLookingForPlayerState()
+    private void EnterMoving()
     {
-        // Implement looking for player state update logic here
-        if (Vector2.Distance(transform.position, player.position) < rangeAttackRange)
-        {
-            SwitchState(State.PlayerDetected);
-        }
+        golemAnim.SetBool("moving", true);
     }
 
-    private void ExitLookingForPlayerState()
+    private void UpdateMoving()
     {
-        // Implement looking for player state exit logic here
-    }
-
-    private void EnterPlayerDetectedState()
-    {
-        // Implement player detected state entry logic here
-    }
-
-    private void UpdatePlayerDetectedState()
-    {
-        // Implement player detected state update logic here
-        float playerDistance = Vector2.Distance(transform.position, player.position);
-
-        if (playerDistance < meleeAttackRange)
+        if (isDetected)
         {
-            SwitchState(State.MeleeAttack);
-        }
-        else if (playerDistance < laserCastRange)
-        {
-            SwitchState(State.LaserCast);
-        }
-        else if (playerDistance < rangeAttackRange)
-        {
-            SwitchState(State.RangeAttack);
-        }
-        else
-        {
-            SwitchState(State.Moving);
-        }
-    }
-
-    private void ExitPlayerDetectedState()
-    {
-        // Implement player detected state exit logic here
-        golemAnim.SetBool("MeleeAttack", false);
-        golemAnim.SetBool("LaserCast", false);
-        golemAnim.SetBool("RangeAttack", false);
-    }
-
-    private void EnterMovingState()
-    {
-        // Implement moving state entry logic here
-    }
-
-    private void UpdateMovingState()
-    {
-        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
-        wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
-
-        CheckTouchDamage();
-
-        if (!groundDetected || wallDetected)
-        {
-            Flip();
-        }
-        else
-        {
-            movement.Set(movementSpeed * facingDirection, golemRb.velocity.y);
+            Vector2 direction = player.position - transform.position;
+            direction.Normalize();
+            movement = new Vector2(direction.x * movementSpeed, golemRb.velocity.y);
             golemRb.velocity = movement;
-        }
 
-        if (Vector2.Distance(transform.position, player.position) < meleeAttackRange)
+            groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+            wallDetected = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, whatIsGround);
+
+            if ((wallDetected || !groundDetected) && Mathf.Abs(player.position.x - transform.position.x) > 1f)
+            {
+                Flip();
+            }
+            else if ((facingDirection == 1 && player.position.x < transform.position.x) ||
+                     (facingDirection == -1 && player.position.x > transform.position.x))
+            {
+                Flip();
+            }
+        }
+        else
         {
-            SwitchState(State.PlayerDetected);
+            golemRb.velocity = new Vector2(0, golemRb.velocity.y);
+            SwitchState(State.Idle);
         }
     }
 
-    private void ExitMovingState()
+    private void ExitMoving()
     {
-        // Implement moving state exit logic here
-        movement.Set(0, golemRb.velocity.y);
-        golemRb.velocity = movement;
+        golemAnim.SetBool("moving", false);
     }
 
-    private void EnterKnockbackState()
-    {
-        knockbackStartTime = Time.time;
-        movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
-        golemRb.velocity = movement;
-        golemAnim.SetBool("Knockback", true);
-    }
-
-    private void UpdateKnockbackState()
-    {
-        // Implement knockback state update logic here
-        if (Time.time >= knockbackStartTime + knockbackDuration)
-        {
-            SwitchState(State.Moving);
-        }
-    }
-
-    private void ExitKnockbackState()
-    {
-        // Implement knockback state exit logic here
-        golemAnim.SetBool("Knockback", false);
-        movement.Set(0, golemRb.velocity.y);
-        golemRb.velocity = movement;
-    }
-
-    private void EnterDeadState()
-    {
-        // Implement dead state entry logic here
-        Instantiate(deathChunkParticle, golem.transform.position, deathChunkParticle.transform.rotation);
-        Instantiate(deathBloodParticle, golem.transform.position, deathBloodParticle.transform.rotation);
-        isDead = true;
-        Destroy(gameObject);
-    }
-
-    private void UpdateDeadState()
-    {
-        // Implement dead state update logic here
-    }
-
-    private void ExitDeadState()
-    {
-        // Implement dead state exit logic here
-    }
-
-    private void EnterImmuneState()
+    private void EnterImmune()
     {
         isImmune = true;
-        // Implement immune state entry logic here
+        Invoke("EndImmunity", immuneDuration);
+        golemAnim.SetBool("immune", true);
     }
 
-    private void UpdateImmuneState()
+    private void UpdateImmune()
     {
-        // Implement immune state update logic here
-        if (Time.time >= knockbackStartTime + immuneDuration)
-        {
-            SwitchState(State.Moving);
-        }
+        // Logic for updating the Immune state
     }
 
-    private void ExitImmuneState()
+    private void ExitImmune()
     {
         isImmune = false;
-        // Implement immune state exit logic here
+        golemAnim.SetBool("immune", false);
     }
 
-    private void EnterArmorBuffState()
+    private void EndImmunity()
     {
-        armor += 10;
-        // Implement armor buff state entry logic here
+        SwitchState(State.Idle);
     }
 
-    private void UpdateArmorBuffState()
+    private void EnterArmorBuff()
     {
-        // Implement armor buff state update logic here
-        if (Time.time >= knockbackStartTime + armorBuffDuration)
+        if (armor < 200)
         {
-            armor -= 10;
-            SwitchState(State.Moving);
+            armor += 50;
+            Invoke("EndArmorBuff", armorBuffDuration);
         }
+        golemAnim.SetBool("armorBuff", true);
     }
 
-    private void ExitArmorBuffState()
+    private void UpdateArmorBuff()
     {
-        // Implement armor buff state exit logic here
-        armor -= 10;
+        // Logic for updating the ArmorBuff state
     }
 
-    private void EnterRangeAttackState()
+    private void ExitArmorBuff()
     {
-        golemAnim.SetBool("RangeAttack", true);
-        // Implement range attack state entry logic here
+        golemAnim.SetBool("armorBuff", false);
     }
 
-    private void UpdateRangeAttackState()
+    private void EndArmorBuff()
     {
-        // Implement range attack state update logic here
-        ShootProjectile();
-        SwitchState(State.Moving);
+        armor -= 50;
+        SwitchState(State.Idle);
     }
 
-    private void ExitRangeAttackState()
+    private void EnterRangeAttack()
     {
-        golemAnim.SetBool("RangeAttack", false);
+        golemAnim.SetTrigger("rangeAttack");
     }
 
-    private void EnterLaserCastState()
+    private void UpdateRangeAttack()
     {
-        golemAnim.SetBool("LaserCast", true);
-        // Implement laser cast state entry logic here
+        // Logic for updating the RangeAttack state
+        SwitchState(State.Idle);
     }
 
-    private void UpdateLaserCastState()
+    private void ExitRangeAttack()
     {
-        // Implement laser cast state update logic here
-        // Your laser cast logic
-        SwitchState(State.Moving);
+        // Logic for exiting the RangeAttack state
     }
 
-    private void ExitLaserCastState()
+    private void EnterLaserCast()
     {
-        golemAnim.SetBool("LaserCast", false);
+        golemAnim.SetTrigger("laserCast");
     }
 
-    private void EnterMeleeAttackState()
+    private void UpdateLaserCast()
     {
-        golemAnim.SetBool("MeleeAttack", true);
-        // Implement melee attack state entry logic here
+        // Logic for updating the LaserCast state
+        SwitchState(State.Idle);
     }
 
-    private void UpdateMeleeAttackState()
+    private void ExitLaserCast()
     {
-        // Implement melee attack state update logic here
-        // Your melee attack logic
-        SwitchState(State.Moving);
+        // Logic for exiting the LaserCast state
     }
 
-    private void ExitMeleeAttackState()
+    private void EnterMeleeAttack()
     {
-        golemAnim.SetBool("MeleeAttack", false);
+        golemAnim.SetTrigger("meleeAttack");
+    }
+
+    private void UpdateMeleeAttack()
+    {
+        if (Vector2.Distance(player.position, transform.position) <= meleeAttackRange)
+        {
+            player.SendMessage("Damage", new float[] { damage, transform.position.x });
+        }
+        SwitchState(State.Idle);
+    }
+
+    private void ExitMeleeAttack()
+    {
+        // Logic for exiting the MeleeAttack state
+    }
+
+    private void EnterDead()
+    {
+        isDead = true;
+        golemAnim.SetBool("dead", true);
+        Invoke("HandleDeath", 1.5f);
+    }
+
+    private void UpdateDead()
+    {
+        // Logic for updating the Dead state
+    }
+
+    private void ExitDead()
+    {
+        // Logic for exiting the Dead state
+    }
+
+    private void HandleDeath()
+    {
+        Destroy(gameObject);
     }
 
     private void CheckTouchDamage()
@@ -559,32 +390,69 @@ public class GolemController : MonoBehaviour
             {
                 lastTouchDamageTime = Time.time;
                 attackDetails[0] = touchDamage;
-                attackDetails[1] = golem.transform.position.x;
+                attackDetails[1] = transform.position.x;
                 hit.SendMessage("Damage", attackDetails);
             }
         }
     }
 
+    private void Damage(float[] attackDetails)
+    {
+        if (!isImmune)
+        {
+            currentHealth -= attackDetails[0] - armor;
+            if (attackDetails[1] > transform.position.x)
+            {
+                damageDirection = -1;
+            }
+            else
+            {
+                damageDirection = 1;
+            }
+            if (currentHealth > 0.0f)
+            {
+                golemAnim.SetTrigger("damaged");
+                Knockback();
+            }
+            else if (currentHealth <= 0.0f)
+            {
+                SwitchState(State.Dead);
+            }
+        }
+    }
+
+    private void Knockback()
+    {
+        knockbackStartTime = Time.time;
+        movement.Set(knockbackSpeed.x * damageDirection, knockbackSpeed.y);
+        golemRb.velocity = movement;
+    }
+
+    void DetectPlayer()
+    {
+        float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
+
+        if (range <= detectionRadius)
+        {
+
+            if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
+                (player.transform.position.x < transform.position.x && isFacingRight))
+            {
+                Flip();
+            }
+
+            isDetected = true;
+        }
+        else
+        {
+            isDetected = false;
+        }
+
+    }
+
     private void Flip()
     {
         facingDirection *= -1;
-        golem.transform.Rotate(0.0f, 180.0f, 0.0f);
-    }
-
-    private void SwitchState(State state)
-    {
-        ExitCurrentState();
-        EnterState(state);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
-        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
-    }
-
-    private void ShootProjectile()
-    {
-        Instantiate(arm, armPos.position, Quaternion.identity);
+        transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 }
