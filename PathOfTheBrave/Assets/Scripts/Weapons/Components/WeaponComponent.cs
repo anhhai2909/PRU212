@@ -60,7 +60,7 @@ namespace Weapons.Components
         protected override void HandleEnter()
         {
             base.HandleEnter();
-            Debug.Log(data + ": " + weapon.CurrentAttackCounter);
+            //Debug.Log(data + ": " + weapon.CurrentAttackCounter);
             currentAttackData = data.GetAttackData(weapon.CurrentAttackCounter);
         }
 
