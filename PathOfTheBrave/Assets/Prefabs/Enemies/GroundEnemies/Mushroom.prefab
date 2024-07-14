@@ -978,7 +978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ca17ffe2ac3d347a74f9a2e287a584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootValue: {fileID: 0}
+  rootValue: {fileID: 3154389067192857762}
   ValueSlider: {fileID: 7987843225206350145}
   EaseSlider: {fileID: 1940279212166466011}
 --- !u!114 &7676706750995715798

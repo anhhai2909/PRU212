@@ -256,7 +256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea00651afe4ca91448fe546a9b321625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &4174465834328671461
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +848,7 @@ MonoBehaviour:
   anim: {fileID: 8273563080497093340}
   canMove: 1
   canAttack: 1
-  maxHealth: 1000
+  maxHealth: 200
   coinSpawnPosition: {fileID: 1790101783318092418}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
