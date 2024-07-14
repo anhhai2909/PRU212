@@ -2,6 +2,7 @@
 using Weapons;
 using UnityEngine;
 using FSM;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -12,17 +13,18 @@ public class Player : MonoBehaviour
     public PlayerMoveState MoveState { get; private set; }
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
-    public PlayerLandState LandState { get; private set; }
     public PlayerWallSlideState WallSlideState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallClimbState WallClimbState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-    public PlayerAttackState PrimaryAttackState { get; private set; }
-    public PlayerAttackState SecondaryAttackState { get; private set; }
+    public PlayerAttackState BasicAttackState { get; private set; }
 
+    //public PlayerAttackState SecondaryAttackState { get; private set; }
     public PlayerStunState PlayerStunState { get; private set; }
+    public PlayerHurtState PlayerHurtState { get; private set; }
+    public PlayerDieState PlayerDieState { get; private set; }
 
     [SerializeField]
     public PlayerData playerData;
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
     public Core Core { get; private set; }
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
+    public WeaponInventory inventory { get; private set; }
     public Rigidbody2D RB { get; private set; }
     //public Transform DashDirectionIndicator { get; private set; }
     public BoxCollider2D MovementCollider { get; private set; }
@@ -42,11 +45,15 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Variables         
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    private Color damageColor = Color.red;
+    private bool isDamaged = false;
 
     private Vector2 workspace;
 
-    private Weapon primaryWeapon;
-    private Weapon secondaryWeapon;
+    private Weapon currentWeapon;
+    //private Weapon secondaryWeapon;
     
     #endregion
 
@@ -54,12 +61,17 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Core = GetComponentInChildren<Core>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
 
-        primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
-        secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
+        currentWeapon = transform.Find("CurrentWeapon").GetComponent<Weapon>();
+        //secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
         
-        primaryWeapon.SetCore(Core);
-        secondaryWeapon.SetCore(Core);
+        currentWeapon.SetCore(Core);
+        //secondaryWeapon.SetCore(Core);
 
         Stats = Core.GetCoreComponent<Stats>();
         InteractableDetector = Core.GetCoreComponent<InteractableDetector>();
@@ -70,22 +82,24 @@ public class Player : MonoBehaviour
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
         JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
-        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
         WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
         WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
         WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
-        PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", primaryWeapon, CombatInputs.primary);
-        SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", secondaryWeapon, CombatInputs.secondary);
+        BasicAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", currentWeapon, CombatInputs.basicAttack);
+        //SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", secondaryWeapon, CombatInputs.skill1);
         PlayerStunState = new PlayerStunState(this, StateMachine, playerData, "stun");
+        PlayerHurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
+        PlayerDieState = new PlayerDieState(this, StateMachine, playerData, "die");
     }
 
     private void Start()
     {
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
+        inventory = Core.GetCoreComponent<WeaponInventory>();
 
         InputHandler.OnInteractInputChanged += InteractableDetector.TryInteract;
 
@@ -94,6 +108,8 @@ public class Player : MonoBehaviour
         MovementCollider = GetComponent<BoxCollider2D>();
 
         Stats.Poise.OnCurrentValueZero += HandlePoiseCurrentValueZero;
+        Stats.Health.OnDecreaseValue += HandleGetDamage;
+        Stats.Health.OnCurrentValueZero += HandleDeath;
 
         StateMachine.Initialize(IdleState);
     }
@@ -103,10 +119,42 @@ public class Player : MonoBehaviour
         StateMachine.ChangeState(PlayerStunState);
     }
 
+    private void HandleGetDamage()
+    {
+        //StateMachine.ChangeState(PlayerHurtState);
+        StartCoroutine(ChangeColorTemporarily(playerData.hurtTime));
+    }
+
+    private void HandleDeath()
+    {
+        StateMachine.ChangeState(PlayerDieState);
+    }
+
+    private IEnumerator ChangeColorTemporarily(float colorChangeDuration)
+    {
+        isDamaged = true;
+        yield return new WaitForSeconds(colorChangeDuration);
+        isDamaged = false;
+    }
+
     private void Update()
     {
         Core.LogicUpdate();
         StateMachine.CurrentState.LogicUpdate();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = isDamaged ? damageColor : originalColor;
+        }
+        if (InputHandler.NextWeaponInput)
+        {
+            inventory.ChangeWeapon(true);
+            InputHandler.UseNextWeaponInput();
+        }
+        if (InputHandler.PreviousWeaponInput)
+        {
+            inventory.ChangeWeapon(false);
+            InputHandler.UsePreviousWeaponInput();
+        }
     }
 
     private void FixedUpdate()
@@ -117,6 +165,8 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         Stats.Poise.OnCurrentValueZero -= HandlePoiseCurrentValueZero;
+        Stats.Health.OnDecreaseValue -= HandleGetDamage;
+        Stats.Health.OnCurrentValueZero -= HandleDeath;
     }
 
     #endregion

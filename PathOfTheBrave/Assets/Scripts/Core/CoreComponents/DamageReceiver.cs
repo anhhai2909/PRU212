@@ -7,10 +7,9 @@ namespace CoreSystem
 {
     public class DamageReceiver : CoreComponent, IDamageable
     {
-
         [SerializeField] private GameObject damageParticles;
         [SerializeField] private GameObject posParticles;
-        [SerializeField] private float invulnerabilityDuration = 2.0f;
+        [SerializeField] private float invulnerabilityDuration = 1.0f;
         private bool isInvulnerable = false;
         /*
          * Modifiers allows us to perform some custom logic on our DamageData before we apply it here. An example where this is being used is by the Block weapon component.
@@ -22,10 +21,10 @@ namespace CoreSystem
         private Stats stats;
         private ParticleManager particleManager;
 
+
         public void Damage(DamageData data)
         {
-            if (isInvulnerable) return;
-            if (!core.isDashing)
+            if (!core.isDashing && !isInvulnerable)
             {
                 //print($"Damage Amount Before Modifiers: {data.Amount}");
 
@@ -40,12 +39,11 @@ namespace CoreSystem
                 }
 
                 stats.Health.Decrease(data.Amount - data.Amount * LoadDataScript.reduceDamage);
-                StartCoroutine(InvulnerabilityCoroutine());
                 particleManager.StartWithRandomRotation(damageParticles, posParticles);
+                StartCoroutine(InvulnerabilityCoroutine());
                 //Instantiate(damageParticles, posParticles.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
             }
         }
-
         private IEnumerator InvulnerabilityCoroutine()
         {
             isInvulnerable = true;

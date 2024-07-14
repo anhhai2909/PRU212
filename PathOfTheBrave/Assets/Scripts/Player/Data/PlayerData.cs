@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("Move State")]
-    public float movementVelocity = 10.5f;
+    public float movementVelocity = 10f;
 
     [Header("Jump State")]
     public float jumpVelocity = 15f;
@@ -52,4 +52,7 @@ public class PlayerData : ScriptableObject
     
     [Header("Stun State")] 
     public float stunTime = 2f;
+
+    [Header("Hurt State")]
+    public float hurtTime = 0.5f;
 }

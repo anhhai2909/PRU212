@@ -1,8 +1,10 @@
+using Combat.KnockBack;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BlackSmithMovement : MonoBehaviour
+public class BlackSmithMovement : MonoBehaviour, IKnockBackable
 {
     public Rigidbody2D rb;
     public GameObject groundCheck;
@@ -18,7 +20,9 @@ public class BlackSmithMovement : MonoBehaviour
     public float groundCheckRadius = 0.1f;
     public float detectRange = 16f;
     public float chaseSpeed = 6f;
+    public float spinSpeed = 15f;
     public int damage = 10;
+    public float maxKnockBackTime = 0.2f;
 
     private bool isFacingWall;
     private bool isGrounded;
@@ -26,16 +30,25 @@ public class BlackSmithMovement : MonoBehaviour
     private bool isChasing;
     private bool isFalling;
 
+    private bool isKnockBackActive;
+    private float knockBackStartTime;
+    public bool canMove;
+    private bool canFlip;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        canMove = true;
+        canFlip = true;
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        CheckKnockBack();
         checkFalling();
         if (!isFalling)
         {
-            if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
+            if (gameObject.GetComponent<EnemyHealthSystem>().canMove && canMove)
             {
                 DetectPlayer();
                 if (isChasing != true)
@@ -44,7 +57,7 @@ public class BlackSmithMovement : MonoBehaviour
                 }
                 else
                 {
-                    if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) > gameObject.GetComponent<BlackSmithAttack>().attackRange - 0.2f)
+                    if (player != null && Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) > gameObject.GetComponent<BlackSmithAttack>().attackRange - 0.2f)
                     {
                         if (gameObject.GetComponent<BlackSmithAttack>().canMove)
                         {
@@ -106,28 +119,34 @@ public class BlackSmithMovement : MonoBehaviour
     }
     void Flip()
     {
-        isFacingRight = !isFacingRight;
-        transform.Rotate(new Vector3(0, 180, 0));
-        moveSpeed = -moveSpeed;
+        if (canFlip)
+        {
+            isFacingRight = !isFacingRight;
+            transform.Rotate(new Vector3(0, 180, 0));
+            moveSpeed = -moveSpeed;
+        }
     }
     void DetectPlayer()
     {
-        float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
-
-        if (range <= detectRange)
+        if(player != null)
         {
+            float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
 
-            if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
-                (player.transform.position.x < transform.position.x && isFacingRight))
+            if (range <= detectRange)
             {
-                Flip();
-            }
 
-            isChasing = true;
-        }
-        else
-        {
-            isChasing = false;
+                if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
+                    (player.transform.position.x < transform.position.x && isFacingRight))
+                {
+                    Flip();
+                }
+
+                isChasing = true;
+            }
+            else
+            {
+                isChasing = false;
+            }
         }
 
     }
@@ -139,5 +158,45 @@ public class BlackSmithMovement : MonoBehaviour
         Gizmos.DrawWireSphere(wallCheck.transform.position, groundCheckRadius);
         //Gizmos.DrawWireSphere(hitbox.transform.position, hitboxRadius);
         Gizmos.DrawWireSphere(fallingCheck.transform.position, groundCheckRadius);
+    }
+
+    private void CheckKnockBack()
+    {
+        if (isKnockBackActive
+            && Time.time >= knockBackStartTime + maxKnockBackTime
+           )
+        {
+            isKnockBackActive = false;
+            canMove = true;
+            gameObject.GetComponent<BlackSmithAttack>().canAttack = true;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+    }
+
+    public void KnockBack(KnockBackData data)
+    {
+        data.Angle.Normalize();
+
+        Vector2 workspace = new Vector2(data.Angle.x * data.Strength * data.Direction, data.Angle.y * data.Strength);
+        rb.AddForce(workspace, ForceMode2D.Impulse);
+
+        canMove = false;
+        gameObject.GetComponent<BlackSmithAttack>().canAttack = false;
+        isKnockBackActive = true;
+        knockBackStartTime = Time.time;
+    }
+
+    public void StartMove()
+    {
+        rb.velocity = new Vector2(spinSpeed*(isFacingRight?1:-1), rb.velocity.y);
+        canMove= false;
+        canFlip = false;
+    }
+
+    public void StopMove()
+    {
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        canMove = true;
+        canFlip = true;
     }
 }

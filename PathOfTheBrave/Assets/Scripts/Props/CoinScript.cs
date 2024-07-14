@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class CoinScript : MonoBehaviour
 {
-    public int value;
+    public int value = 10;
 
     public GameObject coinPrefab;
     public float pushForce = 10f;
 
     public float disapearCooldown = 20;
     public float disapearTimer = 0;
-    public float spawnPercent = 30f;
-
-    public float lowValuecoinPercent = 60f;
-    public float highValuecoinPercent = 10f;
     void Start()
     {
 
@@ -31,27 +27,39 @@ public class CoinScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    public void Spawn(Transform transformPosition)
+
+    public void Spawn(Transform transformPosition, int dropPercent, int luckPercent, int minAvr, int maxAvr, int minIfLuck, int maxIfLuck)
     {
-        float randomNumber = Random.Range(0f, 100f);
-        if (randomNumber < spawnPercent)
+        float randomNumber = Random.Range(0f, 10000f);
+        int value = 1;
+        if (randomNumber < dropPercent * 100)
         {
-            GameObject c = Instantiate(coinPrefab, transformPosition.position, Quaternion.identity);
-            c.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1f), 1f) * pushForce, ForceMode2D.Impulse);
-            float randomNumber2 = Random.Range(0f, 100f);
-            if (randomNumber2 <= 100f && randomNumber2 >= lowValuecoinPercent)
+            float randomNumber2 = Random.Range(0f, 10000f);
+            if (randomNumber2 < luckPercent * 100)
             {
-                c.GetComponent<CoinScript>().value = 1;
-            }
-            else if (randomNumber2 > highValuecoinPercent && randomNumber2 < lowValuecoinPercent)
-            {
-                c.GetComponent<CoinScript>().value = 5;
+                value = Random.Range(minIfLuck, maxIfLuck);
             }
             else
             {
-                c.GetComponent<CoinScript>().value = 10;
+                value = Random.Range(minAvr, maxAvr);
             }
-            Debug.Log(c.GetComponent<CoinScript>().value);
+        }
+        for (int i = 0; i < value; i++)
+        {
+            GameObject c = Instantiate(coinPrefab, transformPosition.position, Quaternion.identity);
+            c.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1f), 1f) * pushForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log(value);
+            Debug.Log(collision.gameObject.GetComponent<PlayerScript>());
+            collision.gameObject.GetComponent<PlayerScript>().coin += value;
+            LoadDataScript.SaveCoin(collision.gameObject.GetComponent<PlayerScript>().coin);
+            Destroy(gameObject);
         }
     }
 }

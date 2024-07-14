@@ -31,6 +31,7 @@ public class ArcherMovement : MonoBehaviour
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         checkFalling();
         if (!isFalling)
         {
@@ -43,7 +44,7 @@ public class ArcherMovement : MonoBehaviour
                 }
                 else
                 {
-                    if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.1f > gameObject.GetComponent<ArcherAttack>().attackRange)
+                    if (player != null && Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.1f > gameObject.GetComponent<ArcherAttack>().attackRange)
                     {
                         if (gameObject.GetComponent<ArcherAttack>().canMove)
                         {
@@ -112,24 +113,30 @@ public class ArcherMovement : MonoBehaviour
     }
     void DetectPlayer()
     {
-        float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
-
-        if (range <= detectRange)
+        if(player != null)
         {
+            float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
 
-            if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
-                (player.transform.position.x < transform.position.x && isFacingRight))
+            if (range <= detectRange)
             {
-                Flip();
-            }
 
-            isChasing = true;
+                if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
+                    (player.transform.position.x < transform.position.x && isFacingRight))
+                {
+                    Flip();
+                }
+
+                isChasing = true;
+            }
+            else
+            {
+                isChasing = false;
+            }
         }
         else
         {
             isChasing = false;
         }
-
     }
 
     private void OnDrawGizmosSelected()

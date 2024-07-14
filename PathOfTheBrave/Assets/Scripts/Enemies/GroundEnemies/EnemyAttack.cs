@@ -35,6 +35,7 @@ public class EnemyAttack : MonoBehaviour
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (!gameObject.GetComponent<EnemyMovement>().canMove)
         {
             return;
@@ -43,17 +44,20 @@ public class EnemyAttack : MonoBehaviour
         {
             if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
             {
-                float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
-
-                if (distanceToPlayer < attackRange && canAttack)
+                if(player != null)
                 {
-                    StopMovement();
-                    AttackAnim();
+                    float distanceToPlayerX = Mathf.Abs(player.transform.position.x - gameObject.transform.position.x);
+                    float distanceToPlayerY = Mathf.Abs(player.transform.position.y - gameObject.transform.position.y);
 
-                }
-                else if (distanceToPlayer < attackRange)
-                {
-                    StopMovement();
+                    if (distanceToPlayerX < attackRange && canAttack && distanceToPlayerY < gameObject.transform.localScale.y)
+                    {
+                        StopMovement();
+                        AttackAnim();
+                    }
+                    else if (distanceToPlayerX < attackRange)
+                    {
+                        StopMovement();
+                    }
                 }
 
                 if (!canAttack)
@@ -69,6 +73,11 @@ public class EnemyAttack : MonoBehaviour
                         canMove = true;
                     }
                 }
+                else
+                {
+                    canMove = true;
+                }
+
                 if (startDelayTimer)
                 {
                     attackDelayTimer += Time.deltaTime;

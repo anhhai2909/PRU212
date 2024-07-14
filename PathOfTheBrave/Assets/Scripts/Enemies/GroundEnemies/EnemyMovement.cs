@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
     private bool isGrounded;
     public bool isFacingRight = true;
     private bool isChasing;
-    private bool isFalling;
+    private bool isFalling =true;
 
     private bool isKnockBackActive;
     private float knockBackStartTime;
@@ -48,6 +48,7 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         CheckKnockBack();
         if (gameObject.GetComponent<EnemyAttack>().canAttack && !isKnockBackActive)
         {
@@ -63,7 +64,7 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
                     }
                     else
                     {
-                        if (Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f > gameObject.GetComponent<EnemyAttack>().attackRange - 0.1f)
+                        if (player != null && Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x) + 0.2f > gameObject.GetComponent<EnemyAttack>().attackRange - 0.1f)
                         {
                             if (gameObject.GetComponent<EnemyAttack>().canMove)
                             {
@@ -146,24 +147,30 @@ public class EnemyMovement : MonoBehaviour, IKnockBackable
     }
     void DetectPlayer()
     {
-        float range = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
-        
-        if (range <= detectRange)
+        if(player != null)
         {
-            
-            if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
-                (player.transform.position.x < transform.position.x && isFacingRight))
-            {
-                Flip();
-            }
+            float rangeX = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
+            float rangeY = Mathf.Abs(player.transform.position.y - this.gameObject.transform.position.y);
 
-            isChasing = true;
+            if (rangeX <= detectRange && rangeY < gameObject.transform.localScale.y)
+            {
+                if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
+                    (player.transform.position.x < transform.position.x && isFacingRight))
+                {
+                    Flip();
+                }
+
+                isChasing = true;
+            }
+            else
+            {
+                isChasing = false;
+            }
         }
         else
         {
             isChasing = false;
         }
-
     }
 
     private void OnDrawGizmosSelected()

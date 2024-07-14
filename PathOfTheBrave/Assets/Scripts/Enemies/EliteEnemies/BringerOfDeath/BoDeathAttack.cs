@@ -1,10 +1,13 @@
+using Combat.Damage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class BoDeathAttack : MonoBehaviour
 {
     public int damage = 20;
+    public float spellDamage = 30;
     public float attackRange;
     public float attackCoolDown = 2f;
 
@@ -30,12 +33,17 @@ public class BoDeathAttack : MonoBehaviour
     private float castSpellTimer;
     public bool isCastingSpell = false;
 
+    public Vector2 knockbackAngle;
+    public float knockbackStrength;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        spell.GetComponentInChildren<WeaponScript>().damage = spellDamage;
     }
     void Update()
     {
+        if (!gameObject.GetComponent<BoDeathMovement>().canMove) return;
         if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
             float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
@@ -121,7 +129,17 @@ public class BoDeathAttack : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(hitbox.transform.position, hitboxRadius, playerLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("hit");
+            //Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
+            if (enemy.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+            }
+
+            if (enemy.TryGetComponentInChildren(out IKnockBackable knockBackable))
+            {
+                knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(knockbackAngle,
+                    knockbackStrength, gameObject.GetComponent<BoDeathMovement>().isFacingRight ? 1 : -1, gameObject));
+            }
         }
     }
 

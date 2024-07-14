@@ -1,8 +1,16 @@
+using Combat.Damage;
+using ProjectileSystem.Components;
 using UnityEngine;
+using Utilities;
 
 public class ArcherAttack : MonoBehaviour
 {
-    public int damage = 20;
+    [Header("Attack Setup")]
+    public int meleeDamage = 20;
+    public int rangeDamage = 20;
+    public Vector2 knockbackAngle;
+    public float knockbackStrength;
+    public GameObject hitbox;
 
     public float verticalGap;
 
@@ -37,27 +45,34 @@ public class ArcherAttack : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        gameObject.GetComponentInChildren<WeaponScript>().damage = meleeDamage;
+        gameObject.GetComponentInChildren<WeaponScript>().knockbackAngle = knockbackAngle;
+        gameObject.GetComponentInChildren<WeaponScript>().knockbackStrength = knockbackStrength;
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
-            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
             if (player.transform.position.y <= this.gameObject.transform.position.y + verticalGap)
             {
-                if (distanceToPlayer <= attackRange && canRangeAttack && distanceToPlayer >= meleeAttackRange)
+                if(player != null)
                 {
-                    StopMovement();
-                    RangeAttackAnim();
-                }
-                else if (distanceToPlayer <= attackRange && distanceToPlayer > meleeAttackRange)
-                {
-                    StopMovement();
-                }
-                else if (distanceToPlayer <= meleeAttackRange && canMeleeAttack)
-                {
-                    StopMovement();
-                    MeleeAttackAnim();
+                    float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+                    if (distanceToPlayer <= attackRange && canRangeAttack && distanceToPlayer >= meleeAttackRange)
+                    {
+                        StopMovement();
+                        RangeAttackAnim();
+                    }
+                    else if (distanceToPlayer <= attackRange && distanceToPlayer > meleeAttackRange)
+                    {
+                        StopMovement();
+                    }
+                    else if (distanceToPlayer <= meleeAttackRange && canMeleeAttack)
+                    {
+                        StopMovement();
+                        MeleeAttackAnim();
+                    }
                 }
 
                 if (!canRangeAttack)
@@ -67,7 +82,7 @@ public class ArcherAttack : MonoBehaviour
                         rangeAttackDelayTimer += Time.deltaTime;
                         if (rangeAttackDelayTimer > rangeAttackDelay)
                         {
-                            Attack();
+                            //AttackRange();
                             rangeAttackDelayTimer = 0;
                             startRangeAttackDelayTimer = false;
                         }
@@ -117,11 +132,18 @@ public class ArcherAttack : MonoBehaviour
         canMeleeAttack = false;
         canMove = false;
     }
-    void Attack()
+    void AttackRange()
     {
-       GameObject arrow = Instantiate(weapon, weaponPosition.position, Quaternion.identity);
+        GameObject arrow = Instantiate(weapon, weaponPosition.position, Quaternion.identity);
         arrow.GetComponent<GroundRangeAttackStuff>().enemy = gameObject;
+        arrow.GetComponent<GroundRangeAttackStuff>().damage = rangeDamage;
     }
+
+    void AttackMelee()
+    {
+        
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(gameObject.transform.position, attackRange);

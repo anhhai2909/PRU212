@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BlackSmithAttack : MonoBehaviour
@@ -8,6 +6,8 @@ public class BlackSmithAttack : MonoBehaviour
     public int damage = 20;
     public float attackRange;
     public float attackCoolDown = 2f;
+    public Vector2 knockbackAngle;
+    public float knockbackStrength;
 
     private float attackTimer = Mathf.Infinity;
     public bool canAttack = true;
@@ -26,32 +26,45 @@ public class BlackSmithAttack : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        WeaponScript[] weaponScripts = gameObject.GetComponentsInChildren<WeaponScript>(true);
+
+        foreach (WeaponScript weaponScript in weaponScripts)
+        {
+            weaponScript.damage = damage;
+            weaponScript.knockbackAngle = knockbackAngle;
+            weaponScript.knockbackStrength = knockbackStrength;
+        }
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (!gameObject.GetComponent<BlackSmithMovement>().canMove) return;
         if (gameObject.GetComponent<EnemyHealthSystem>().canAttack)
         {
-            float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
-
-            if (distanceToPlayer <= attackRange && canAttack)
+            if(player != null)
             {
-                if (attackCount >= countLightAttack)
+                float distanceToPlayer = Vector2.Distance(player.transform.position, gameObject.transform.position);
+
+                if (distanceToPlayer <= attackRange && canAttack)
+                {
+                    if (attackCount >= countLightAttack)
+                    {
+                        StopMovement();
+                        HeavyAttackAnim();
+                        attackCount = 0;
+                    }
+                    else
+                    {
+                        StopMovement();
+                        LightAttackAnim();
+                        attackCount++;
+                    }
+
+                }
+                else if (distanceToPlayer <= attackRange)
                 {
                     StopMovement();
-                    HeavyAttackAnim();
-                    attackCount = 0;
                 }
-                else
-                {
-                    StopMovement();
-                    LightAttackAnim();
-                    attackCount++;
-                }
-
-            }
-            else if (distanceToPlayer <= attackRange)
-            {
-                StopMovement();
             }
 
             if (!canAttack)
@@ -67,7 +80,7 @@ public class BlackSmithAttack : MonoBehaviour
                     canMove = true;
                 }
             }
-        } 
+        }
     }
 
     void StopMovement()

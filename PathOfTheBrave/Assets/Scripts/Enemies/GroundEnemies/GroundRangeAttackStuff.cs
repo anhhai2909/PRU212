@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Combat.Damage;
 using UnityEngine;
+using Utilities;
 
 public class GroundRangeAttackStuff : MonoBehaviour
 {
@@ -14,13 +12,14 @@ public class GroundRangeAttackStuff : MonoBehaviour
     public Animator anim;
     private GameObject stuffprefab;
     public float destroyTimer = 0;
+    public float damage;
 
     private void Start()
     {
         stuffprefab = this.gameObject;
         RespawnPosition = GameObject.FindGameObjectWithTag("GRAttackStuffResPosition");
         player = GameObject.FindGameObjectWithTag("Player");
-        if (enemy.GetComponent<IsFacingRight>().facingRight==false)
+        if (enemy.GetComponent<IsFacingRight>().facingRight == false)
         {
             Flip();
         }
@@ -44,13 +43,17 @@ public class GroundRangeAttackStuff : MonoBehaviour
     {
         transform.Rotate(new Vector3(0, 180, 0));
         speed = -speed;
-    } 
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            
-            Debug.Log("Hit");
+            //Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
+            if (collision.gameObject.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+                //Core.GetCoreComponent<DamageReceiver>().Damage(new Combat.Damage.DamageData(currentAttackData.Amount, item.gameObject));
+            }
         }
         Destroy(gameObject);
         anim.SetTrigger("Explore");
@@ -59,8 +62,12 @@ public class GroundRangeAttackStuff : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
-            Debug.Log("Hit");
+            //Debug.Log(enemy.gameObject.name + " take " + damage + " damage");
+            if (collision.gameObject.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+                //Core.GetCoreComponent<DamageReceiver>().Damage(new Combat.Damage.DamageData(currentAttackData.Amount, item.gameObject));
+            }
         }
         Destroy(gameObject);
         anim.SetTrigger("Explore");

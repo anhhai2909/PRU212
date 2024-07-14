@@ -50,7 +50,7 @@ public class FogScript : MonoBehaviour
                 pos = new Vector3(pos.x, pos.y + 1, pos.z);
                 fogEffect.SetVector3("FogPos", pos);
             }
-            time += 2f;
+            time += 10f;
             StartCoroutine(MoveOverTime());
 
         }

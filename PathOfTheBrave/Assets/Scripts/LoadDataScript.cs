@@ -29,7 +29,7 @@ public class LoadDataScript : MonoBehaviour
     {
         DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
         GameData gameData = dataPersistenceManager.LoadGame();
-        if(gameData != null)
+        if (gameData != null)
         {
             playerHealthLevel = gameData._healthLevel;
             playerManaLevel = gameData._manaLevel;
@@ -46,7 +46,8 @@ public class LoadDataScript : MonoBehaviour
         DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
         GameData gameData = dataPersistenceManager.LoadGame();
         string[] s = new string[weapons.Length];
-        for(int i = 0; i < weapons.Length; i++) {
+        for (int i = 0; i < weapons.Length; i++)
+        {
             if (weapons[i] != null)
             {
                 s[i] = weapons[i].Name;
@@ -60,7 +61,10 @@ public class LoadDataScript : MonoBehaviour
     {
         DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
         GameData gameData = dataPersistenceManager.LoadGame();
-        return gameData._weaponDatas;
+        if (gameData != null)
+            return gameData._weaponDatas;
+        else
+            return null;
     }
 
     public static void SavePlayerItemData(
@@ -107,11 +111,11 @@ public class LoadDataScript : MonoBehaviour
         return gameData._coin;
     }
 
-    public static void SaveCoin()
+    public static void SaveCoin(float coin)
     {
         DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
         GameData gameData = dataPersistenceManager.LoadGame();
-        gameData._coin = 2000;
+        gameData._coin = coin;
         dataPersistenceManager.SaveToFile(gameData);
     }
 

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlyingEnemyMovement : MonoBehaviour
@@ -25,10 +22,13 @@ public class FlyingEnemyMovement : MonoBehaviour
     }
     void Update()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        CheckWall();
         if (gameObject.GetComponent<EnemyHealthSystem>().canMove)
         {
             DetectPlayer();
-            if ((Mathf.Abs((player.transform.position.x - this.gameObject.transform.position.x)) > this.gameObject.GetComponent<FlyingEnemyAttack>().attackRange - 1) && isChasing)
+            
+            if (player != null && (Mathf.Abs((player.transform.position.x - this.gameObject.transform.position.x)) > this.gameObject.GetComponent<FlyingEnemyAttack>().attackRange - 1) && isChasing)
             {
                 if (gameObject.GetComponent<FlyingEnemyAttack>().canMove == true)
                 {
@@ -37,16 +37,20 @@ public class FlyingEnemyMovement : MonoBehaviour
             }
             else
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.velocity = new Vector2(5 * (isFacingRight ? 1 : -1), rb.velocity.y);
                 anim.SetBool("IsChasing", false);
             }
-        }      
+
+            if (isFacingWall)
+            {
+                Flip();
+            }
+        }
     }
     void ChasePlayer()
     {
-        isFacingWall = Physics2D.OverlapCircle(wallCheck.transform.position, wallCheckRadius, wallLayer);
         anim.SetBool("IsChasing", true);
-        rb.velocity = new Vector2(chaseSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(chaseSpeed * (isFacingRight ? 1 : -1), rb.velocity.y);
 
         if (isFacingWall)
         {
@@ -58,28 +62,36 @@ public class FlyingEnemyMovement : MonoBehaviour
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(new Vector3(0, 180, 0));
-        chaseSpeed = -chaseSpeed;
     }
     void DetectPlayer()
     {
-        float distance = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
-
-        if (distance <= detectRange)
+        if(player != null)
         {
+            float distanceX = Mathf.Abs(player.transform.position.x - this.gameObject.transform.position.x);
+            float distanceY = Mathf.Abs(player.transform.position.y - this.gameObject.transform.position.y);
 
-            if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
-                (player.transform.position.x < transform.position.x && isFacingRight))
+            if (distanceX <= detectRange && distanceY <= gameObject.transform.localScale.y*2 + player.transform.localScale.y)
             {
-                Flip();
+
+                if ((player.transform.position.x > transform.position.x && !isFacingRight) ||
+                    (player.transform.position.x < transform.position.x && isFacingRight))
+                {
+                    Flip();
+                }
+
+                isChasing = true;
+            }
+            else
+            {
+                isChasing = false;
             }
 
-            isChasing = true;
         }
-        else
-        {
-            isChasing = false;
-        }
+    }
 
+    public void CheckWall()
+    {
+        isFacingWall = Physics2D.OverlapCircle(wallCheck.transform.position, wallCheckRadius, wallLayer);
     }
 
     private void OnDrawGizmosSelected()

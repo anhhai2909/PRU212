@@ -1,16 +1,13 @@
+using Combat.Damage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class BoDSpell : MonoBehaviour
 {
     public float disapearTime;
     private float disapearTimer;
-    
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -24,7 +21,7 @@ public class BoDSpell : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hitssss");
+            
         }
     }
 }

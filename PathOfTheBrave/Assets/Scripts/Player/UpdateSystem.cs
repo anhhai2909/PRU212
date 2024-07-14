@@ -30,16 +30,16 @@ public class UpdateSystem : CoreComponent
             Debug.LogError("Player object not found in the scene!");
             return;
         }
-        loadWeaponInventory();
+     //   loadWeaponInventory();
         //loadDamage();
-        updatePlayerInformationBasedOnLevel();
+       // updatePlayerInformationBasedOnLevel();
         loadDamage();
         playerData.movementVelocity = 10.5f;
     }
 
     private void Update()
     {
-       updatePlayerInformationBasedOnLevel();
+   //    updatePlayerInformationBasedOnLevel();
       // Debug.Log(stats.Health.CurrentValue + " " + stats.Health.MaxValue);
       //  Debug.Log(stats.Mana.CurrentValue + " " + stats.Health.MaxValue);
     }
@@ -51,9 +51,8 @@ public class UpdateSystem : CoreComponent
 
     public void setDefaultWeaponInventory()
     {
-        WeaponDataSO[] weapons = new WeaponDataSO[2];
-        weapons[0] = null;
-        weapons[1] = null;
+        WeaponDataSO[] weapons = new WeaponDataSO[1];
+        weapons[0] = WeaponDataLoader.GetWeaponDataByName("Arm Attack");
         weaponInventory.SetWeaponInventory(weapons);
     }
 
@@ -219,9 +218,8 @@ public class UpdateSystem : CoreComponent
     {
         if (LoadDataScript.LoadPlayerWeaponInventory() == null)
         {
-            WeaponDataSO[] weapons = new WeaponDataSO[2];
-            weapons[0] = null;
-            weapons[1] = null;
+            WeaponDataSO[] weapons = new WeaponDataSO[1];
+            weapons[0] = WeaponDataLoader.GetWeaponDataByName("Arm Attack");
             weaponInventory.SetWeaponInventory(weapons);
         }
         else

@@ -7,7 +7,9 @@ namespace CoreSystem.StatsSystem
     public class Stat
     {
         public event Action OnCurrentValueZero;
-        
+
+        public event Action OnDecreaseValue;
+
         [field: SerializeField] public float MaxValue { get; private set; }
 
         public float CurrentValue
@@ -31,6 +33,8 @@ namespace CoreSystem.StatsSystem
         public void Increase(float amount) => CurrentValue += amount;
 
         public void Decrease(float amount) => CurrentValue -= amount;
+
+        public void IncreaseByPercent(float amount) => CurrentValue += (MaxValue * amount / 100);
 
         public void UpdateMax(float amount) {
             MaxValue += amount;

@@ -19,6 +19,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             Instantiate(skeleton,gameObject.transform.position,Quaternion.identity);
@@ -30,6 +31,7 @@ public class PlayerHealthSystem : MonoBehaviour
             coin.GetComponent<CoinScript>().Spawn(propSpawnPosition.transform);
             potion.GetComponent<HealthPotionScript>().Spawn(propSpawnPosition.transform);
         }
+        */
     }
 
     public void TakeDamage(int ATK)

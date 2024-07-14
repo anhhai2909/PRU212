@@ -1,25 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
+using Combat.Damage;
 using UnityEngine;
+using Utilities;
 
 public class WeaponScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float damage;
+    public Vector2 knockbackAngle;
+    public float knockbackStrength;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit");
+            //Debug.Log("Hit melee");
+            if (collision.gameObject.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+            }
+
+            if (collision.gameObject.TryGetComponentInChildren(out IKnockBackable knockBackable))
+            {
+                if (gameObject.GetComponentInParent<BlackSmithMovement>())
+                {
+                    knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(knockbackAngle,
+                                        knockbackStrength, gameObject.GetComponentInParent<BlackSmithMovement>().isFacingRight ? 1 : -1, gameObject));
+                }
+                if (gameObject.GetComponentInParent<ArcherMovement>())
+                {
+                    knockBackable.KnockBack(new Combat.KnockBack.KnockBackData(knockbackAngle,
+                                        knockbackStrength, gameObject.GetComponentInParent<ArcherMovement>().isFacingRight ? 1 : -1, gameObject));
+                }
+            }
         }
     }
 }
