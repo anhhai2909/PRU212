@@ -20,7 +20,6 @@ public class B2_IdleState : BossIdleState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter Idle King");
         getNextSkill();
     }
 
@@ -32,38 +31,36 @@ public class B2_IdleState : BossIdleState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        switch (skills[currentSkillIndex])
+        if(isIdleTimeOver)
         {
-            case 0:
-                if (GameObject.FindGameObjectWithTag("Enemy") == null)
-                {
-                    Debug.Log("Spawner is null");
-                    stateMachine.ChangeState(king.bulletState);
-                }
-                else
-                {
-                    if (Random.Range(0, 2) == 0)
+            switch (skills[currentSkillIndex])
+            {
+                case 0:
+                    if (GameObject.FindGameObjectWithTag("Enemy") == null)
                     {
-                        //stateMachine.ChangeState(king.spikeState);
-                        Debug.Log("Else 1");
-                        stateMachine.ChangeState(king.swordState);
+                        stateMachine.ChangeState(king.bulletState);
                     }
                     else
                     {
-                        Debug.Log("Else 2");
-                        stateMachine.ChangeState(king.swordState);
+                        if (Random.Range(0, 2) == 0)
+                        {
+                            stateMachine.ChangeState(king.spikeState);
+                        }
+                        else
+                        {
+                            stateMachine.ChangeState(king.swordState);
+                        }
                     }
-                }
-                break;
-            case 1:
-                stateMachine.ChangeState(king.swordState);
-                break;
-            case 2:
-                stateMachine.ChangeState(king.swordState);
-                //stateMachine.ChangeState(king.spikeState);
-                break;
+                    break;
+                case 1:
+                    stateMachine.ChangeState(king.swordState);
+                    break;
+                case 2:
+                    stateMachine.ChangeState(king.spikeState);
+                    break;
+            }
+            getNextSkill();
         }
-        getNextSkill();
     }
 
     public override void PhysicsUpdate()
@@ -73,6 +70,6 @@ public class B2_IdleState : BossIdleState
 
     public void getNextSkill()
     {
-        currentSkillIndex = (currentSkillIndex + 1) % skills.Length; // Increment and wrap around
+        currentSkillIndex = (currentSkillIndex + 1) % skills.Length;
     }
 }

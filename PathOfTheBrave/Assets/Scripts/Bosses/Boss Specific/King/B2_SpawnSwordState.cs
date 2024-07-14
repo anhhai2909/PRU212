@@ -19,6 +19,7 @@ public class B2_SpawnSwordState : BossState
     public override void Enter()
     {
         base.Enter();
+        isCastTimeOver = false;
     }
 
     public override void Exit()

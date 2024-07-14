@@ -4,63 +4,62 @@ using UnityEngine;
 
 public class SpawnerBehaviour : MonoBehaviour
 {
-    [Header("Projectile Settings")]
-    public int numberOfProjectiles;             // Initial number of projectiles to shoot.
-    public float projectileSpeed;               // Speed of the projectile.
-    public GameObject ProjectilePrefab;         // Prefab to spawn.
+    enum SpawnerType { Straight, Spin }
 
-    [Header("Private Variables")]
-    private Vector3 startPoint;                 // Starting position of the bullet.
-    private const float radius = 1F;            // Help us find the move direction.
-    private float spawnInterval = 0.5f;           // Time interval between spawns in seconds.
-    private float timer;
-    private bool toggle = true;                 // Toggle to alternate the number of projectiles
 
+    [Header("Bullet Attributes")]
+    public GameObject bullet;
+    public float bulletLife = 1f;
+    public float speed = 1f;
+
+
+    [Header("Spawner Attributes")]
+    [SerializeField] private SpawnerType spawnerType;
+    [SerializeField] private float firingRate = 1f;
+
+
+    private GameObject spawnedBullet;
+    private float timer = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        timer = spawnInterval; // Initialize the timer with the interval
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime; // Decrease timer by the time passed since the last frame
-
-        if (timer <= 0)
+        timer += Time.deltaTime;
+        if (spawnerType == SpawnerType.Spin) transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + 1f);
+        if (timer >= firingRate)
         {
-            startPoint = transform.position;
-            numberOfProjectiles = toggle ? 5 : 8; // Alternate between 4 and 6 projectiles
-            SpawnProjectile(numberOfProjectiles);
-            toggle = !toggle; // Toggle the boolean
-            timer = spawnInterval; // Reset the timer
+            Fire();
+            timer = 0;
         }
     }
 
-    // Spawns x number of projectiles.
-    private void SpawnProjectile(int _numberOfProjectiles)
+    private void Fire()
     {
-        float angleStep = 180f / (_numberOfProjectiles - 1); // Adjust the step to spread projectiles evenly
-        float angle = 270f; // Start from 180 degrees to cover the lower half of the circle.
-
-        for (int i = 0; i < _numberOfProjectiles; i++)
+        //if (bullet)
+        //{
+        //    spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+        //    spawnedBullet.GetComponent<Bullet>().speed = speed;
+        //    spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
+        //    spawnedBullet.transform.rotation = transform.rotation;
+        //}
+        if (bullet)
         {
-            // Direction calculations.
-            float projectileDirXPosition = startPoint.x + Mathf.Sin((angle * Mathf.PI) / 180) * radius;
-            float projectileDirYPosition = startPoint.y + Mathf.Cos((angle * Mathf.PI) / 180) * radius;
-
-            // Create vectors.
-            Vector3 projectileVector = new Vector3(projectileDirXPosition, projectileDirYPosition, 0);
-            Vector3 projectileMoveDirection = (projectileVector - startPoint).normalized * projectileSpeed;
-
-            // Create game objects.
-            GameObject tmpObj = Instantiate(ProjectilePrefab, startPoint, Quaternion.identity);
-            tmpObj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
-
-            // Destroy the gameobject after 10 seconds.
-            Destroy(tmpObj, 3F);
-
-            angle -= angleStep; // Move to the next angle
+            for (int i = 0; i < 8; i++)
+            {
+                float angle = i * 45f;
+                spawnedBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+                spawnedBullet.GetComponent<Bullet>().speed = speed;
+                spawnedBullet.GetComponent<Bullet>().bulletLife = bulletLife;
+                Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle)) * transform.rotation;
+                spawnedBullet.transform.rotation = rotation;
+            }
         }
     }
+
 }

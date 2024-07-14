@@ -35,8 +35,8 @@ public class UpdateSystem : CoreComponent
 
     private void Update()
     {
-       Debug.Log(stats.Health.CurrentValue + " " + stats.Health.MaxValue);
-        Debug.Log(stats.Mana.CurrentValue + " " + stats.Health.MaxValue);
+       //Debug.Log(stats.Health.CurrentValue + " " + stats.Health.MaxValue);
+       // Debug.Log(stats.Mana.CurrentValue + " " + stats.Health.MaxValue);
     }
 
     public void updateReducePercentDamage(float percent)

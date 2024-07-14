@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B2_StuntState : BossState
+public class B2_StuntState : BossStuntState
 {
     private King king;
-    protected D_BossStuntState stateData;
-    protected bool isStuntTimeOver;
-    public B2_StuntState(Boss boss, BossFiniteStateMachine stateMachine, string animBoolName,D_BossStuntState stateData, King king) : base(boss, stateMachine, animBoolName)
+
+    public B2_StuntState(Boss boss, BossFiniteStateMachine stateMachine, string animBoolName, D_BossStuntState stateData,King king) : base(boss, stateMachine, animBoolName, stateData)
     {
         this.king = king;
-        this.stateData = stateData;
     }
 
     public override void DoChecks()
@@ -21,7 +19,6 @@ public class B2_StuntState : BossState
     public override void Enter()
     {
         base.Enter();
-        isStuntTimeOver = false;
     }
 
     public override void Exit()
@@ -32,10 +29,6 @@ public class B2_StuntState : BossState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (Time.time >= startTime + stateData.stuntTime)
-        {
-            isStuntTimeOver = true;
-        }
         if(isStuntTimeOver)
         {
             stateMachine.ChangeState(king.idleState);

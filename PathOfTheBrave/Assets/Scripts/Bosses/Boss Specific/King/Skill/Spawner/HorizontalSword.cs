@@ -1,6 +1,9 @@
+using Combat.Damage;
+using ProjectileSystem.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class HorizontalSword : MonoBehaviour
 {
@@ -8,7 +11,8 @@ public class HorizontalSword : MonoBehaviour
     public float endXPosition = -30f;
     public float speed = 5f; 
     private Transform playerTransform;
-    private bool movingRight = false; 
+    private bool movingRight = false;
+    public int damage = 20;
 
     void Start()
     {
@@ -38,6 +42,17 @@ public class HorizontalSword : MonoBehaviour
             if (transform.position.x <= endXPosition)
             {
                 Destroy(gameObject);
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("Spike Hitted");
+            if (collision.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
             }
         }
     }

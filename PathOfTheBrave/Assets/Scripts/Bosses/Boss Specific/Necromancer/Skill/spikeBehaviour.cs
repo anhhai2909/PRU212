@@ -8,6 +8,11 @@ using Utilities;
 public class SpikeBehaviour : MonoBehaviour
 {
     public int damage = 20;
+    public float destroyTime = 3f;
+    private void Start()
+    {
+        SetDestroyTime();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -18,5 +23,15 @@ public class SpikeBehaviour : MonoBehaviour
                 damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
             }
         }
+    }
+
+    public void destroySpike()
+    {
+        Destroy(gameObject);
+    }
+
+    private void SetDestroyTime()
+    {
+        Destroy(this.gameObject, destroyTime);
     }
 }

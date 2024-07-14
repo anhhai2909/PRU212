@@ -17,5 +17,6 @@ public class BossFiniteStateMachine
         currentState.Exit();
         currentState = newState;
         currentState.Enter();
+        Debug.Log(newState.animBoolName);
     }
 }
