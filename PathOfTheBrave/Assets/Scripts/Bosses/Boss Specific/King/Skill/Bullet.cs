@@ -4,7 +4,7 @@ using Combat.Damage;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Utilities;
 
 public class Bullet : MonoBehaviour
 {
@@ -42,16 +42,16 @@ public class Bullet : MonoBehaviour
         return new Vector2(x + spawnPoint.x, y + spawnPoint.y);
     }
     //TODO:Add damage to FireBall
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Player"))
-    //    {
-    //        GameObject.Destroy(gameObject);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            GameObject.Destroy(gameObject);
 
-    //        if (collision.TryGetComponentInChildren(out IDamageable damageable))
-    //        {
-    //            damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
-    //        }
-    //    }
-    //}
+            if (collision.gameObject.TryGetComponentInChildren(out IDamageable damageable))
+            {
+                damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
+            }
+        }
+    }
 }

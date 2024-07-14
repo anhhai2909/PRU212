@@ -8,9 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: d78e41198bf6d8f47a6822cf95a6a5fb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InsideCastle.unity
     guid: c89629189aaa7b54ebf691b6b483bcba
+  - enabled: 1
+    path: Assets/Scenes/TutorialOutsideScene.unity
+    guid: 69317c9fc9b376f42ae3c5b26d2cd578
+  - enabled: 1
+    path: Assets/Scenes/Boss_1_Scene.unity
+    guid: 08b7808b216de85429fca7ddb638fa14
   - enabled: 1
     path: Assets/Scenes/Scene2.unity
     guid: f025300ca28a3a647804af66be97ea04
@@ -23,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene5.unity
     guid: d268e590386e6c940b03d0bdf6997421
+  - enabled: 1
+    path: Assets/Scenes/Boss_3_Scene.unity
+    guid: ea3074a6c17601649bc6cb65b0ce7b19
   - enabled: 1
     path: Assets/Scenes/Jungle.unity
     guid: 2cda990e2423bbf4892e6590ba056729

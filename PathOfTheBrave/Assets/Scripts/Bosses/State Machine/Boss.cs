@@ -22,6 +22,8 @@ public class Boss : MonoBehaviour, IDamageable
 
     public PortalScript portal;
 
+    public PlayerScript playerScript;
+
     private ParticleSystem damageParticleInstance;
 
     [SerializeField]
@@ -30,9 +32,6 @@ public class Boss : MonoBehaviour, IDamageable
     public float currentHealth;
     private void Awake()
     {
-        portal.isEnabled = false;
-        portal.isBossDead = false;
-
         Debug.Log("Portal closed");
     }
 
@@ -43,6 +42,7 @@ public class Boss : MonoBehaviour, IDamageable
         stateMachine = new BossFiniteStateMachine();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = bossData.maxHealth;
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
     public virtual void Update()
     {
@@ -50,8 +50,12 @@ public class Boss : MonoBehaviour, IDamageable
         
         if (currentHealth <= 0)
         {
+            
             animator.SetBool("dead", true);
-            portal.isEnabled = true;
+            //Add 1000 coin after kill boss
+            playerScript.coin += 1000;
+            LoadDataScript.SaveCoin(playerScript.coin);
+            //Open portal after kill boss
             portal.isBossDead = true;
         }
     }

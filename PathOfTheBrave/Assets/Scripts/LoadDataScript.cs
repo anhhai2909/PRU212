@@ -86,11 +86,11 @@ public class LoadDataScript : MonoBehaviour
         return gameData._coin;
     }
 
-    public static void SaveCoin()
+    public static void SaveCoin(float coin)
     {
         DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
         GameData gameData = dataPersistenceManager.LoadGame();
-        gameData._coin = 2000;
+        gameData._coin = coin;
         dataPersistenceManager.SaveToFile(gameData);
     }
 

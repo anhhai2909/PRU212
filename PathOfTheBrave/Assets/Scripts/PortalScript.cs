@@ -19,7 +19,6 @@ public class PortalScript : MonoBehaviour
     [Obsolete]
     private void Awake()
     {
-  
         portal.loop = true;
         portal.playOnAwake = false;
         portal.enableEmission = false;

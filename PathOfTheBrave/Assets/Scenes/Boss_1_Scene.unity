@@ -188,6 +188,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 410636210569624939, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 1552445721}
+    - target: {fileID: 3007293862996885757, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007293862996885757, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3007293862996885757, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3983928901484506054, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.36
@@ -282,15 +298,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7650559223214393405, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.91
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 7650559223214393405, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7650559223214393405, guid: 385acfac5a36e5f46a97563929da1021, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.045247
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43869,11 +43885,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3327065612783239577, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.36
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 3327065612783239577, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.68
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3327065612783239577, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43928,6 +43944,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 545152340, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
+      propertyPath: isPortalBoss
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2575379310079027296, guid: e9759c11bf65f9c4ab1df77896094925, type: 3}
       propertyPath: m_Name
       value: Portal

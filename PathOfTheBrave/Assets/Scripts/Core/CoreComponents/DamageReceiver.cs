@@ -10,7 +10,7 @@ namespace CoreSystem
 
         [SerializeField] private GameObject damageParticles;
         [SerializeField] private GameObject posParticles;
-        [SerializeField] private float invulnerabilityDuration = 2.0f;
+        [SerializeField] private float invulnerabilityDuration = 1.0f;
         private bool isInvulnerable = false;
         /*
          * Modifiers allows us to perform some custom logic on our DamageData before we apply it here. An example where this is being used is by the Block weapon component.

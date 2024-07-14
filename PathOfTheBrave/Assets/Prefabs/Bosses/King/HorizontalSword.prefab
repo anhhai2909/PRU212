@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8608609385498655888}
   - component: {fileID: 4686272495793080520}
   - component: {fileID: 4662606092469045811}
-  - component: {fileID: 1972160338016003723}
   - component: {fileID: 2514822039206648854}
+  - component: {fileID: 7542256677526595498}
   m_Layer: 19
   m_Name: HorizontalSword
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 444350981
-  m_SortingLayer: 13
+  m_SortingLayer: 15
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9e4c0c54bd1fd0e469f17c199d9123f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,7 +96,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8093006484976605995}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -112,9 +112,25 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &1972160338016003723
+--- !u!114 &2514822039206648854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8093006484976605995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222ae5dcf76e9754e9412f341c7cabf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startXPosition: 25
+  endXPosition: -30
+  speed: 106.7
+  damage: 20
+--- !u!60 &7542256677526595498
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +159,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -158,28 +174,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.24939555, y: -0.15746242}
-      - {x: -0.40320483, y: 0.5016234}
+    - - {x: 0.27144188, y: -0.15372874}
+      - {x: -0.359375, y: 0.5}
       - {x: -0.5, y: 0.5}
-      - {x: -0.5032467, y: 0.40158147}
-      - {x: 0.20230739, y: -0.29059097}
-      - {x: 0.41829216, y: -0.50820744}
+      - {x: -0.5, y: 0.359375}
+      - {x: 0.1883541, y: -0.28927064}
+      - {x: 0.42175385, y: -0.5122678}
       - {x: 0.5, y: -0.5}
-      - {x: 0.5000001, y: -0.41719866}
-      - {x: 0.4119337, y: -0.32101172}
+      - {x: 0.5085387, y: -0.42533487}
+      - {x: 0.42227212, y: -0.31672943}
+      - {x: 0.37029436, y: -0.2572074}
   m_UseDelaunayMesh: 0
---- !u!114 &2514822039206648854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8093006484976605995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222ae5dcf76e9754e9412f341c7cabf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startXPosition: 25
-  endXPosition: -30
-  speed: 106.7

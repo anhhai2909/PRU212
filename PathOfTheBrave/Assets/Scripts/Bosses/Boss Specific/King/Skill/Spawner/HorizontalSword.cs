@@ -22,7 +22,7 @@ public class HorizontalSword : MonoBehaviour
         {
             playerTransform = player.transform;
             
-            transform.position = new Vector3(startXPosition, playerTransform.position.y, transform.position.z);
+            transform.position = new Vector3(startXPosition, playerTransform.position.y-1, transform.position.z);
             
             transform.rotation = Quaternion.Euler(0, 0, 45);
         }
@@ -47,9 +47,10 @@ public class HorizontalSword : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Trigger sword");
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Spike Hitted");
+            Debug.Log("Sword Hitted");
             if (collision.TryGetComponentInChildren(out IDamageable damageable))
             {
                 damageable.Damage(new Combat.Damage.DamageData(damage, gameObject));
