@@ -34,11 +34,13 @@ namespace CoreSystem.StatsSystem
             }
         }
 
-        private float currentValue;
+        public float currentValue;
 
         public void Init() => CurrentValue = MaxValue;
 
         public void Increase(float amount) => CurrentValue += amount;
+
+        public void IncreaseByPercent(float amount) => CurrentValue += (MaxValue * amount / 100);
 
         public void Decrease(float amount) => CurrentValue -= amount;
 

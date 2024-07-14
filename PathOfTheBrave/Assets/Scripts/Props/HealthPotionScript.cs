@@ -1,3 +1,5 @@
+using CoreSystem;
+using CoreSystem.StatsSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +39,15 @@ public class HealthPotionScript : MonoBehaviour
         {
             GameObject p = Instantiate(potionPrefab, transformPosition.position, Quaternion.identity);
             p.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1f), 1f) * pushForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponentInChildren<Stats>().Health.IncreaseByPercent(30);
+            Destroy(gameObject);
         }
     }
 }
