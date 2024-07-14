@@ -204,7 +204,7 @@ MonoBehaviour:
   damage: 10
   exploreTime: 4
   exploreTimer: 0
-  disapearTime: 1
+  disapearTime: 0.7
   disapearTimer: 0
   isExplore: 0
 --- !u!61 &3515168750048848085
