@@ -2038,6 +2038,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 10858533942769676, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1867657545}
+    - targetCorrespondingSourceObject: {fileID: 10858533942769676, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1867657554}
   m_SourcePrefab: {fileID: 100100000, guid: 7878dba22ad5bf948a777667a680c5bc, type: 3}
 --- !u!1 &1847007007
 GameObject:
@@ -2137,6 +2140,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionAnim: {fileID: 1185019626}
+--- !u!114 &1867657554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867657535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672e3ec0815f29745a22692b956657ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  folderPath: Enemies
 --- !u!1 &1887621064
 GameObject:
   m_ObjectHideFlags: 0
