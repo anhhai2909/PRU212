@@ -11,6 +11,14 @@ public class PlayerHealthSystem : MonoBehaviour
     public GameObject coin;
     public GameObject potion;
 
+    [Header("Coin Drop Manage")]
+    public int dropPercent = 50;
+    public int luckPercent = 50;
+    public int minAvg = 3;
+    public int maxAvg = 5;
+    public int minIfLuck = 10;
+    public int maxIfLuck = 15;
+
     public GameObject propSpawnPosition;
     void Start()
     {
@@ -26,8 +34,7 @@ public class PlayerHealthSystem : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            
-            coin.GetComponent<CoinScript>().Spawn(propSpawnPosition.transform);
+            coin.GetComponent<CoinScript>().Spawn(propSpawnPosition.transform, dropPercent, luckPercent, minAvg, maxAvg, minIfLuck, maxIfLuck);
             potion.GetComponent<HealthPotionScript>().Spawn(propSpawnPosition.transform);
         }
     }

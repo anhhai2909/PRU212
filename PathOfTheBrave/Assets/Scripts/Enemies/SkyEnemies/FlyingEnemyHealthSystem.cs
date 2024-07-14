@@ -15,6 +15,14 @@ public class FlyingEnemyHealthSystem : MonoBehaviour
     public GameObject coin;
     public GameObject potion;
     private bool onGround = false;
+
+    [Header("Coin Drop Manage")]
+    public int dropPercent = 50;
+    public int luckPercent = 50;
+    public int minAvg = 3;
+    public int maxAvg = 5;
+    public int minIfLuck = 10;
+    public int maxIfLuck = 15;
     void Start()
     {
         currentHealth = maxHealth;    
@@ -37,7 +45,7 @@ public class FlyingEnemyHealthSystem : MonoBehaviour
             disapearTimer += Time.deltaTime;
             if (disapearTimer >= disapearCooldown)
             {
-                coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
+                coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform, dropPercent, luckPercent, minAvg, maxAvg, minIfLuck, maxIfLuck);
                 potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
                 gameObject.SetActive(false);               
             }

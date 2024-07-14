@@ -55,10 +55,7 @@ public class PlayerScript : MonoBehaviour
         else
         {
             Destroy(gameObject);
-       
         }
-
-
     }
 
     void Start()
@@ -77,10 +74,12 @@ public class PlayerScript : MonoBehaviour
     // Update is calledL once per frame
     void Update()
     {
-
-       
     }
 
+    public void AddCoint(int a)
+    {
+        coin += a;
+    }
 
 
     void SpawnPlayer(int sceneIndex)

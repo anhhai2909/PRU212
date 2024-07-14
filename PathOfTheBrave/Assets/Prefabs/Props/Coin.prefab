@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4969080199750674732}
   - component: {fileID: 4969080199750674723}
   - component: {fileID: 4969080199750674722}
+  - component: {fileID: -5170888911691325481}
   - component: {fileID: 4969080199750674721}
   - component: {fileID: 4969080199750674720}
   - component: {fileID: 4969080199750674733}
@@ -117,6 +118,41 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00404658, y: -0.47131076}
+  m_Size: {x: 2.0365422, y: 2.9048374}
+  m_Direction: 0
+--- !u!70 &-5170888911691325481
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969080199750674727}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -183,11 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09c960b04e4409e48988c7c3c536d5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 0
+  value: 10
   coinPrefab: {fileID: 4969080199750674727}
   pushForce: 5
   disapearCooldown: 15
   disapearTimer: 0
-  spawnPercent: 30
-  lowValuecoinPercent: 60
-  highValuecoinPercent: 10

@@ -71,8 +71,6 @@ namespace Weapons
             }
 
             anim.runtimeAnimatorController = data.AnimatorController;
-            Debug.Log(imageWeapon);
-            Debug.Log(data.Icon);
             imageWeapon.SetImage(data.Icon);
             weapon.SetCanEnterAttack(true);
         }

@@ -111,7 +111,7 @@ public class PlayerInAirState : PlayerState
         //}
         else if (isGrounded && Movement?.CurrentVelocity.y < 0.01f)
         {
-            stateMachine.ChangeState(player.LandState);
+            stateMachine.ChangeState(player.IdleState);
         }
         else if (isTouchingWall && !isTouchingLedge && !isGrounded)
         {

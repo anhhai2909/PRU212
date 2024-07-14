@@ -18,6 +18,14 @@ public class ArcherHealthSystem : MonoBehaviour
     private bool isDeath = false;
     public float disapearCooldown = 2f;
     public float disapearTimer = Mathf.Infinity;
+
+    [Header("Coin Drop Manage")]
+    public int dropPercent = 50;
+    public int luckPercent = 50;
+    public int minAvg = 3;
+    public int maxAvg = 5;
+    public int minIfLuck = 10;
+    public int maxIfLuck = 15;
     void Start()
     {
         currentHealth = maxHealth;
@@ -32,7 +40,7 @@ public class ArcherHealthSystem : MonoBehaviour
             if (disapearTimer >= disapearCooldown)
             {
                 potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
-                coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
+                coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform, dropPercent, luckPercent, minAvg, maxAvg, minIfLuck, maxIfLuck);
                 gameObject.SetActive(false);
             }
         }

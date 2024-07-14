@@ -276,6 +276,12 @@ MonoBehaviour:
   isHitCooldown: 0.8
   isHitTimer: 0
   isHit: 0
+  dropPercent: 70
+  luckPercent: 10
+  minAvg: 3
+  maxAvg: 5
+  minIfLuck: 10
+  maxIfLuck: 15
 --- !u!1 &3515168750297521783
 GameObject:
   m_ObjectHideFlags: 0

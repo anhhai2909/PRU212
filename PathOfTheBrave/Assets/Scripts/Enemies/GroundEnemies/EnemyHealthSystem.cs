@@ -21,6 +21,15 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
     public float isHitTimer = 0;
     public bool isHit = false;
     private bool onGround = false;
+
+    [Header("Coin Drop Manage")]
+    public int dropPercent = 50;
+    public int luckPercent = 50;
+    public int minAvg = 3;
+    public int maxAvg = 5;
+    public int minIfLuck = 10;
+    public int maxIfLuck = 15;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -42,7 +51,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                 if (disapearTimer >= disapearCooldown)
                 {
                     potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
-                    coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
+                    coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform, dropPercent, luckPercent, minAvg, maxAvg, minIfLuck, maxIfLuck);
                     gameObject.SetActive(false);
                 }
             }
@@ -76,7 +85,7 @@ public class EnemyHealthSystem : MonoBehaviour, IDamageable
                 disapearTimer += Time.deltaTime;
                 if (disapearTimer >= disapearCooldown)
                 {
-                    coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform);
+                    coin.GetComponent<CoinScript>().Spawn(coinSpawnPosition.transform, dropPercent, luckPercent, minAvg, maxAvg, minIfLuck, maxIfLuck);
                     potion.GetComponent<HealthPotionScript>().Spawn(coinSpawnPosition.transform);
                     gameObject.SetActive(false);
                 }
