@@ -240,7 +240,7 @@ public class UpdateSystem : CoreComponent
                 {
                     if (GetAllWeapons()[i].GetAddDamage() != 0)
                         updateWeapon(i, -GetAllWeapons()[i].GetAddDamage());
-                    Debug.Log(GetAllWeapons()[i].Name + " " + GetAllWeapons()[i].GetAddDamage());
+                    //Debug.Log(GetAllWeapons()[i].Name + " " + GetAllWeapons()[i].GetAddDamage());
 
                 }
             }

@@ -1,16 +1,16 @@
-﻿using System;
+﻿using CoreSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CoreSystem;
-using Weapons.Components;
 using UnityEngine;
+using Weapons.Components;
 
 namespace Weapons
 {
     public class WeaponGenerator : MonoBehaviour
     {
         public event Action OnWeaponGenerating;
-        
+
         [SerializeField] private Weapon weapon;
         [SerializeField] private CombatInputs combatInput;
         public WeaponUI imageWeapon;
@@ -28,7 +28,7 @@ namespace Weapons
         private void GenerateWeapon(WeaponDataSO data)
         {
             OnWeaponGenerating?.Invoke();
-            
+
             weapon.SetData(data);
 
             if (data is null)
@@ -36,7 +36,7 @@ namespace Weapons
                 weapon.SetCanEnterAttack(false);
                 return;
             }
-            
+
             componentAlreadyOnWeapon.Clear();
             componentsAddedToWeapon.Clear();
             componentDependencies.Clear();
@@ -47,7 +47,7 @@ namespace Weapons
 
             foreach (var dependency in componentDependencies)
             {
-                if(componentsAddedToWeapon.FirstOrDefault(component => component.GetType() == dependency))
+                if (componentsAddedToWeapon.FirstOrDefault(component => component.GetType() == dependency))
                     continue;
 
                 var weaponComponent =
@@ -57,42 +57,44 @@ namespace Weapons
                 {
                     weaponComponent = gameObject.AddComponent(dependency) as WeaponComponent;
                 }
-                
+
                 weaponComponent.Init();
-                
+
                 componentsAddedToWeapon.Add(weaponComponent);
             }
 
             var componentsToRemove = componentAlreadyOnWeapon.Except(componentsAddedToWeapon);
-            
+
             foreach (var weaponComponent in componentsToRemove)
             {
                 Destroy(weaponComponent);
             }
 
             anim.runtimeAnimatorController = data.AnimatorController;
-            imageWeapon.SetImage(data.Icon);
+            if (imageWeapon != null)
+                imageWeapon.SetImage(data.Icon);
             weapon.SetCanEnterAttack(true);
         }
-        
+
         private void HandleWeaponDataChanged(int inputIndex, WeaponDataSO data)
         {
             if (inputIndex != (int)combatInput)
                 return;
-            
+
             GenerateWeapon(data);
         }
-        
+
         #region Plumbing
 
         private void Start()
         {
-            imageWeapon = GameObject.Find("ImageWeapon").GetComponent<WeaponUI>();
+            if (GameObject.Find("ImageWeapon"))
+                imageWeapon = GameObject.Find("ImageWeapon").GetComponent<WeaponUI>();
 
             weaponInventory = weapon.Core.GetCoreComponent<WeaponInventory>();
 
             weaponInventory.OnWeaponDataChanged += HandleWeaponDataChanged;
-            
+
             anim = GetComponentInChildren<Animator>();
 
             if (weaponInventory.TryGetWeapon((int)combatInput, out var data))
@@ -101,9 +103,16 @@ namespace Weapons
             }
         }
 
+        private void Update()
+        {
+            if (imageWeapon == null && GameObject.Find("ImageWeapon"))
+                imageWeapon = GameObject.Find("ImageWeapon").GetComponent<WeaponUI>();
+        }
+
         private void OnDestroy()
         {
-            weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
+            if (weaponInventory)
+                weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
         }
 
         #endregion

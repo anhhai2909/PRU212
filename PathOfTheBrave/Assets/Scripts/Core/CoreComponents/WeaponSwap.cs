@@ -1,7 +1,6 @@
 ﻿using Interaction;
 using Interaction.Interactables;
 using System;
-using System.Reflection;
 using UnityEngine;
 using Weapons;
 
@@ -41,7 +40,7 @@ namespace CoreSystem
             else
             {
                 weaponInventory.AddEmptyPosition();
-                weaponInventory.TrySetWeapon(newWeaponData, weaponInventory.weaponData.Length-1, out _);
+                weaponInventory.TrySetWeapon(newWeaponData, weaponInventory.weaponData.Length - 1, out _);
                 interactable.Interact();
                 newWeaponData = null;
                 return;
@@ -61,7 +60,7 @@ namespace CoreSystem
                 return;
             }
             weaponInventory.TryChangeIndexWeapon(next);
-            if(weaponInventory.TryGetWeapon(weaponInventory.currentIndex, out var data))
+            if (weaponInventory.TryGetWeapon(weaponInventory.currentIndex, out var data))
             {
                 weaponInventory.TryChangeWeapon(data);
                 imageWeapon.SetImage(data.Icon);
@@ -110,7 +109,14 @@ namespace CoreSystem
 
             interactableDetector = core.GetCoreComponent<InteractableDetector>();
             weaponInventory = core.GetCoreComponent<WeaponInventory>();
-            imageWeapon = GameObject.Find("ImageWeapon").GetComponent<WeaponUI>();
+            if (GameObject.Find("ImageWeapon"))
+                imageWeapon = GameObject.Find("ImageWeapon").GetComponent<WeaponUI>();
+        }
+
+        private void Update()
+        {
+            if (imageWeapon == null && GameObject.Find("ImageWeapon"))
+                imageWeapon = GameObject.Find("ImageWeapon").GetComponent<WeaponUI>();
         }
 
         private void OnEnable()
