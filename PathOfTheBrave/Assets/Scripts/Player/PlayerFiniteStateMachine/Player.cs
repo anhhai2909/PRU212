@@ -20,8 +20,9 @@ public class Player : MonoBehaviour
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-    public PlayerAttackState PrimaryAttackState { get; private set; }
-    public PlayerAttackState SecondaryAttackState { get; private set; }
+    public PlayerAttackState BasicAttackState { get; private set; }
+
+    //public PlayerAttackState SecondaryAttackState { get; private set; }
     public PlayerStunState PlayerStunState { get; private set; }
     public PlayerHurtState PlayerHurtState { get; private set; }
     public PlayerDieState PlayerDieState { get; private set; }
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     public Core Core { get; private set; }
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
+    public WeaponInventory inventory { get; private set; }
     public Rigidbody2D RB { get; private set; }
     //public Transform DashDirectionIndicator { get; private set; }
     public BoxCollider2D MovementCollider { get; private set; }
@@ -51,8 +53,8 @@ public class Player : MonoBehaviour
 
     private Vector2 workspace;
 
-    private Weapon primaryWeapon;
-    private Weapon secondaryWeapon;
+    private Weapon currentWeapon;
+    //private Weapon secondaryWeapon;
     
     #endregion
 
@@ -66,11 +68,11 @@ public class Player : MonoBehaviour
             originalColor = spriteRenderer.color;
         }
 
-        primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
-        secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
+        currentWeapon = transform.Find("CurrentWeapon").GetComponent<Weapon>();
+        //secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
         
-        primaryWeapon.SetCore(Core);
-        secondaryWeapon.SetCore(Core);
+        currentWeapon.SetCore(Core);
+        //secondaryWeapon.SetCore(Core);
 
         Stats = Core.GetCoreComponent<Stats>();
         InteractableDetector = Core.GetCoreComponent<InteractableDetector>();
@@ -88,8 +90,8 @@ public class Player : MonoBehaviour
         WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
-        PrimaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", primaryWeapon, CombatInputs.primary);
-        SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", secondaryWeapon, CombatInputs.secondary);
+        BasicAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", currentWeapon, CombatInputs.basicAttack);
+        //SecondaryAttackState = new PlayerAttackState(this, StateMachine, playerData, "attack", secondaryWeapon, CombatInputs.skill1);
         PlayerStunState = new PlayerStunState(this, StateMachine, playerData, "stun");
         PlayerHurtState = new PlayerHurtState(this, StateMachine, playerData, "hurt");
         PlayerDieState = new PlayerDieState(this, StateMachine, playerData, "die");
@@ -99,6 +101,7 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
+        inventory = Core.GetCoreComponent<WeaponInventory>();
 
         InputHandler.OnInteractInputChanged += InteractableDetector.TryInteract;
 
@@ -143,6 +146,16 @@ public class Player : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.color = isDamaged ? damageColor : originalColor;
+        }
+        if (InputHandler.NextWeaponInput)
+        {
+            inventory.ChangeWeapon(true);
+            InputHandler.UseNextWeaponInput();
+        }
+        if (InputHandler.PreviousWeaponInput)
+        {
+            inventory.ChangeWeapon(false);
+            InputHandler.UsePreviousWeaponInput();
         }
     }
 

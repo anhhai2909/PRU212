@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using UnityEngine;
 using Weapons;
 
@@ -7,8 +8,16 @@ namespace CoreSystem
     public class WeaponInventory : CoreComponent
     {
         public event Action<int, WeaponDataSO> OnWeaponDataChanged;
+        public event Action<bool> OnWeaponChanged;
+        public int currentIndex { get; private set; }
 
         [field: SerializeField] public WeaponDataSO[] weaponData { get; private set; }
+
+        private void Start()
+        {
+            RemoveEmptyPositions();
+            currentIndex = 0;
+        }
 
         public bool TrySetWeapon(WeaponDataSO newData, int index, out WeaponDataSO oldData)
         {
@@ -24,6 +33,11 @@ namespace CoreSystem
             OnWeaponDataChanged?.Invoke(index, newData);
 
             return true;
+        }
+
+        public void TryChangeWeapon(WeaponDataSO newData)
+        {
+            OnWeaponDataChanged?.Invoke(0, newData);
         }
 
         public bool TryGetWeapon(int index, out WeaponDataSO data)
@@ -58,6 +72,19 @@ namespace CoreSystem
             return false;
         }
 
+        public void TryChangeIndexWeapon(bool next)
+        {
+            if (weaponData.Length == 0) return;
+            if (next)
+            {
+                currentIndex = (currentIndex + 1) % weaponData.Length;
+            }
+            else
+            {
+                currentIndex = (currentIndex + weaponData.Length - 1) % weaponData.Length;
+            }
+        }
+
         public void AddEmptyPosition()
         {
             // Create a new array with one additional slot
@@ -73,6 +100,36 @@ namespace CoreSystem
             weaponData = newWeaponData;
         }
 
+        public void RemoveEmptyPositions()
+        {
+            if (weaponData == null || weaponData.Length == 0)
+            {
+                return;
+            }
+
+            int nonNullCount = 0;
+            foreach (var item in weaponData)
+            {
+                if (item != null)
+                {
+                    nonNullCount++;
+                }
+            }
+
+            WeaponDataSO[] newWeaponData = new WeaponDataSO[nonNullCount];
+            int newIndex = 0;
+            for (int i = 0; i < weaponData.Length; i++)
+            {
+                if (weaponData[i] != null)
+                {
+                    newWeaponData[newIndex] = weaponData[i];
+                    newIndex++;
+                }
+            }
+
+            weaponData = newWeaponData;
+        }
+
         public WeaponSwapChoice[] GetWeaponSwapChoices()
         {
             var choices = new WeaponSwapChoice[weaponData.Length];
@@ -85,6 +142,11 @@ namespace CoreSystem
             }
 
             return choices;
+        }
+
+        public void ChangeWeapon(bool c)
+        {
+            OnWeaponChanged.Invoke(c);
         }
     }
 }

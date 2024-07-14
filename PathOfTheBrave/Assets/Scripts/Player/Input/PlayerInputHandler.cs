@@ -21,6 +21,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool GrabInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool DashInputStop { get; private set; }
+    public bool NextWeaponInput { get; private set; }
+    public bool PreviousWeaponInput { get; private set; }
 
     public bool[] AttackInputs { get; private set; }
 
@@ -60,29 +62,29 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void OnPrimaryAttackInput(InputAction.CallbackContext context)
+    public void OnBasicAttackInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            AttackInputs[(int)CombatInputs.primary] = true;
+            AttackInputs[(int)CombatInputs.basicAttack] = true;
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.primary] = false;
+            AttackInputs[(int)CombatInputs.basicAttack] = false;
         }
     }
 
-    public void OnSecondaryAttackInput(InputAction.CallbackContext context)
+    public void OnSkill1AttackInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            AttackInputs[(int)CombatInputs.secondary] = true;
+            AttackInputs[(int)CombatInputs.skill1] = true;
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.secondary] = false;
+            AttackInputs[(int)CombatInputs.skill1] = false;
         }
     }
 
@@ -148,10 +150,35 @@ public class PlayerInputHandler : MonoBehaviour
 
         DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
     }
+    public void OnNextWeaponInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            NextWeaponInput = true;
+        }
+
+        if (context.canceled)
+        {
+            NextWeaponInput = false;
+        }
+    }
+    public void OnPreviousWeaponInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PreviousWeaponInput = true;
+        }
+
+        if (context.canceled)
+        {
+            PreviousWeaponInput = false;
+        }
+    }
 
     public void UseJumpInput() => JumpInput = false;
-
     public void UseDashInput() => DashInput = false;
+    public void UseNextWeaponInput() => NextWeaponInput = false;
+    public void UsePreviousWeaponInput() => PreviousWeaponInput = false;
 
     /// <summary>
     /// Used to set the specific attack input back to false. Usually passed through the player attack state from an animation event.
@@ -177,6 +204,6 @@ public class PlayerInputHandler : MonoBehaviour
 
 public enum CombatInputs
 {
-    primary,
-    secondary
+    basicAttack,
+    skill1
 }

@@ -125,6 +125,7 @@ namespace Weapons
             CurrentAttackCounter++;
             attackCounterResetTimeNotifier.Init(attackCounterResetCooldown);
             delayAttackTimeNotifier.Init(delayAttackCooldown);
+            GameObject.Find("ImageWeapon").GetComponent<CooldownController>().setStartCooldown(true);
             DisableAttack();
             OnExit?.Invoke();
         }

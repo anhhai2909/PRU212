@@ -13,6 +13,7 @@ namespace Weapons
         
         [SerializeField] private Weapon weapon;
         [SerializeField] private CombatInputs combatInput;
+        public WeaponUI imageWeapon;
 
         private List<WeaponComponent> componentAlreadyOnWeapon = new List<WeaponComponent>();
 
@@ -70,7 +71,8 @@ namespace Weapons
             }
 
             anim.runtimeAnimatorController = data.AnimatorController;
-            
+
+            imageWeapon.SetImage(data.Icon);
             weapon.SetCanEnterAttack(true);
         }
         
@@ -86,6 +88,8 @@ namespace Weapons
 
         private void Start()
         {
+            imageWeapon = GameObject.Find("ImageWeapon").GetComponent<WeaponUI>();
+
             weaponInventory = weapon.Core.GetCoreComponent<WeaponInventory>();
 
             weaponInventory.OnWeaponDataChanged += HandleWeaponDataChanged;
@@ -100,7 +104,7 @@ namespace Weapons
 
         private void OnDestroy()
         {
-            //weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
+            weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
         }
 
         #endregion
