@@ -3,7 +3,7 @@ guid: dd5a94841aee0bb46a7e704bee992f86
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -111,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1534,76 +1540,75 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Character_sheet_47: 2062941979
-      Character_sheet_10: -520223112
-      Character_sheet_58: 435709830
       Character_sheet_0: 481686027
-      Character_sheet_19: -1297311846
-      Character_sheet_28: 285470459
-      Character_sheet_62: 1643466875
-      Character_sheet_3: 467372325
-      Character_sheet_15: -547606367
-      Character_sheet_5: 1357358208
-      Character_sheet_40: -1711941182
-      Character_sheet_2: 122506921
-      Character_sheet_14: 1326852088
-      Character_sheet_44: 322230464
-      Character_sheet_45: -1515803074
-      Character_sheet_33: -14903042
-      Character_sheet_51: 571112830
-      Character_sheet_48: -572010540
-      Character_sheet_57: 720998662
-      Character_sheet_32: -882174159
-      Character_sheet_39: -1269597520
-      Character_sheet_50: 86059865
-      Character_sheet_52: -801472320
-      Character_sheet_60: -1709354810
-      Character_sheet_65: -1072901701
-      Character_sheet_66: 1339306805
-      Character_sheet_59: -344816769
-      Character_sheet_24: -1065802986
       Character_sheet_1: -522338082
-      Character_sheet_8: -1116278496
-      Character_sheet_20: -1493695231
-      Character_sheet_12: 1836468114
-      Character_sheet_7: -2071018714
-      Character_sheet_18: -2015620806
-      Character_sheet_30: -2052916719
-      Character_sheet_9: -942670533
-      Character_sheet_56: 1256916881
+      Character_sheet_10: -520223112
       Character_sheet_11: 149920656
-      Character_sheet_31: -1287706735
-      Character_sheet_55: 1359646709
-      Character_sheet_42: -451595504
-      Character_sheet_4: 665490900
-      Character_sheet_17: 1340659570
-      Character_sheet_37: -25075423
-      Character_sheet_38: -2010288489
-      Character_sheet_54: 674429631
-      Character_sheet_21: -1997842148
-      Character_sheet_36: -446109902
-      Character_sheet_25: -1705488707
-      Character_sheet_61: -901133124
-      Character_sheet_64: -1246796165
-      Character_sheet_6: -878453828
-      Character_sheet_16: -490779930
-      Character_sheet_35: -1182778709
-      Character_sheet_46: -1189093807
+      Character_sheet_12: 1836468114
       Character_sheet_13: 860232805
-      Character_sheet_41: 3807434
+      Character_sheet_14: 1326852088
+      Character_sheet_15: -547606367
+      Character_sheet_16: -490779930
+      Character_sheet_17: 1340659570
+      Character_sheet_18: -2015620806
+      Character_sheet_19: -1297311846
+      Character_sheet_2: 122506921
+      Character_sheet_20: -1493695231
+      Character_sheet_21: -1997842148
+      Character_sheet_22: -1434148878
       Character_sheet_23: 494564758
+      Character_sheet_24: -1065802986
+      Character_sheet_25: -1705488707
       Character_sheet_26: 722122688
       Character_sheet_27: 1248390179
-      Character_sheet_63: 183118985
-      Character_sheet_43: -307374668
-      Character_sheet_49: -1973612542
-      Character_sheet_53: 775971325
-      Character_sheet_34: 1316651406
+      Character_sheet_28: 285470459
       Character_sheet_29: 1456608713
-      Character_sheet_22: -1434148878
-  spritePackingTag: 
+      Character_sheet_3: 467372325
+      Character_sheet_30: -2052916719
+      Character_sheet_31: -1287706735
+      Character_sheet_32: -882174159
+      Character_sheet_33: -14903042
+      Character_sheet_34: 1316651406
+      Character_sheet_35: -1182778709
+      Character_sheet_36: -446109902
+      Character_sheet_37: -25075423
+      Character_sheet_38: -2010288489
+      Character_sheet_39: -1269597520
+      Character_sheet_4: 665490900
+      Character_sheet_40: -1711941182
+      Character_sheet_41: 3807434
+      Character_sheet_42: -451595504
+      Character_sheet_43: -307374668
+      Character_sheet_44: 322230464
+      Character_sheet_45: -1515803074
+      Character_sheet_46: -1189093807
+      Character_sheet_47: 2062941979
+      Character_sheet_48: -572010540
+      Character_sheet_49: -1973612542
+      Character_sheet_5: 1357358208
+      Character_sheet_50: 86059865
+      Character_sheet_51: 571112830
+      Character_sheet_52: -801472320
+      Character_sheet_53: 775971325
+      Character_sheet_54: 674429631
+      Character_sheet_55: 1359646709
+      Character_sheet_56: 1256916881
+      Character_sheet_57: 720998662
+      Character_sheet_58: 435709830
+      Character_sheet_59: -344816769
+      Character_sheet_6: -878453828
+      Character_sheet_60: -1709354810
+      Character_sheet_61: -901133124
+      Character_sheet_62: 1643466875
+      Character_sheet_63: 183118985
+      Character_sheet_64: -1246796165
+      Character_sheet_65: -1072901701
+      Character_sheet_66: 1339306805
+      Character_sheet_7: -2071018714
+      Character_sheet_8: -1116278496
+      Character_sheet_9: -942670533
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -54,4 +54,9 @@ public class CoinScript : MonoBehaviour
             Debug.Log(c.GetComponent<CoinScript>().value);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
 }
