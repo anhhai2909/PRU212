@@ -42,6 +42,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     void ChangeActivatedItem(GameObject newObject, GameObject oldObject, GameObject oldParent)
     {
+        Debug.Log("GO1: " + gameObject);
+        Debug.Log("GO2: " + newObject);
+        Debug.Log("GO3: " + oldObject);
         activatedItems = GameObject.Find("InventoryItems").GetComponent<InventoryScript>().activatedItems;
         if (activatedItems == null)
         {
@@ -50,7 +53,6 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         int id = Convert.ToInt32(newObject.name);
         if (gameObject.name.Contains("Item") && !gameObject.name.Contains("Activated"))
         {
-            Debug.Log(oldObject);
             if (oldObject.name.Contains("Item"))
             { 
                 foreach (var item in activatedItems)

@@ -18,6 +18,8 @@ public class LoadDataScript : MonoBehaviour
 
     public static int playerMdLevel;
 
+    public static float reduceDamage = 0;
+
     public static Dictionary<int, int> items;
 
     public static Dictionary<int, int> activatedItems;
@@ -36,10 +38,7 @@ public class LoadDataScript : MonoBehaviour
             items = gameData._items;
             activatedItems = gameData._activatedItems;
         }
-        
-        
-      
-
+        Debug.Log(playerHealthLevel + " " + playerManaLevel + " " + playerSdLevel + " " + playerBdLevel + " " + playerMdLevel);
     }
 
 

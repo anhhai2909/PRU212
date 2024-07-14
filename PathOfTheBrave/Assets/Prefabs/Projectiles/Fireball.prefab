@@ -374,10 +374,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireballParticleTrail
       objectReference: {fileID: 0}
-    - target: {fileID: 2268897439260401121, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2268897439260401123, guid: 8c90134815b3fa040bac551052f3bda6, type: 3}
       propertyPath: m_RootOrder
       value: 1

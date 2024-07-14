@@ -28,6 +28,7 @@ public class InventoryScript : MonoBehaviour
 
     void OnEnable()
     {
+        LoadAllItem();
         LoadDataScript.LoadPlayerData();
         playerItems = LoadDataScript.items;
         activatedItems = LoadDataScript.activatedItems;
@@ -39,23 +40,31 @@ public class InventoryScript : MonoBehaviour
                 a += item.Key + ":" + item.Value + " ";
             }
         }
-        Debug.Log(a);
-        LoadAllItem();
+        LoadDataScript.LoadPlayerData();
+        playerItems = LoadDataScript.items;
+        activatedItems = LoadDataScript.activatedItems;
         LoadPlayerItem();
         LoadPlayerItem2();
+        //        Debug.Log(a);
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
+        LoadAllItem();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         CheckForActivatedItem();
     }
+
+
+
 
     private void LoadAllItem()
     {
@@ -65,14 +74,17 @@ public class InventoryScript : MonoBehaviour
 
     private void LoadPlayerItem()
     {
+       
         int index = 1;
         if (playerItems != null)
         {
             foreach (var item in playerItems)
             {
-                GameObject playerItem = GameObject.Find("Item" + index + "Image");
+                
+                GameObject playerItem = GameObject.Find("Item" + item.Key + "Image");
                 if (playerItem != null)
                 {
+                
                     playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
 
@@ -104,10 +116,109 @@ public class InventoryScript : MonoBehaviour
                                 if (activatedItem.Value == item.Key)
                                 {
                                     GameObject activatedSlot = GameObject.Find("ActivatedItem" + activatedItem.Key);
+                                    Transform g = activatedSlot.transform.GetChild(0);
+                                    Transform p = playerItem.transform.parent;
                                     playerItem.transform.parent = activatedSlot.transform;
+                                    g.transform.parent = p.transform;
                                 }
                             }
                            
+                        }
+                    }
+                }
+                else
+                {
+                    
+                    playerItem = GameObject.Find(item.Key.ToString());
+                    if (playerItem != null)
+                    {
+                        if (activatedItems.ContainsValue(item.Key))
+                        {
+                            playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+
+                            playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
+                            playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+                            playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
+                            playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
+                        }
+                        else
+                        {
+                            Debug.Log(item.Key);
+                            Debug.Log(playerItem.transform.parent.name);
+                            if(!playerItem.transform.parent.name.Contains("Activated"))
+                            {
+                                playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+
+                                playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
+                                playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+                                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
+                                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
+                            }
+                            else
+                            {
+                                int cnt = 1;
+                                while (cnt < 5)
+                                {
+                                    playerItem = GameObject.Find("Item" + cnt + "ImageK");
+                                    if (playerItem != null)
+                                    {
+                                        Debug.Log("K: " + item.Key);
+                                        playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+
+                                        playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
+                                        playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+                                        playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
+                                        playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
+                                        playerItem.name = item.Key.ToString();
+
+                                        playerItem.AddComponent<ChangeCursorScript>();
+                                        playerItem.GetComponent<ChangeCursorScript>().cursorTexture = cursor;
+
+                                        playerItem.AddComponent<DraggableItem>();
+                                        playerItem.GetComponent<DraggableItem>().image = playerItem.GetComponent<Image>();
+                                        playerItem.GetComponent<DraggableItem>().childImage = playerItem.transform.Find("ItemImage").GetComponent<Image>();
+
+
+                                        playerItem.AddComponent<Button>();
+                                        playerItem.GetComponent<Button>().onClick.AddListener(() => DisplayDescription(item.Key - 1));
+                                        playerItem.GetComponent<Button>().onClick.AddListener(() => DisplayDescription(item.Key - 1));
+                                        break;
+
+                                    }
+                                    cnt++;
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        int cnt = 1;
+                        while (cnt < 5)
+                        {
+                            playerItem = GameObject.Find("Item" + cnt + "ImageK");
+                            if (playerItem != null)
+                            {
+                                Debug.Log("K: " + item.Key);
+                                playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+
+                                playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
+                                playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+                                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
+                                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
+                                playerItem.name = item.Key.ToString();
+                                break;
+
+                            }
+                            cnt++;
                         }
                     }
                 }
@@ -119,21 +230,24 @@ public class InventoryScript : MonoBehaviour
 
     private void LoadPlayerItem2()
     {
-        foreach (var item in playerItems)
+        if (playerItems != null)
         {
-            GameObject playerItem = GameObject.Find(item.Key.ToString());
-            if (playerItem != null)
+            foreach (var item in playerItems)
             {
-                playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                GameObject playerItem = GameObject.Find(item.Key.ToString());
+                if (playerItem != null)
+                {
+                    playerItem.GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
 
-                playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
-                playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                    playerItem.transform.Find("ItemImage").GetComponent<Image>().sprite = Resources.Load<Sprite>(items[item.Key - 1].SpriteName);
+                    playerItem.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 255);
 
-                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
-                playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
+                    playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().text = item.Value.ToString();
+                    playerItem.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 255);
 
 
+                }
             }
         }
     }
@@ -148,7 +262,16 @@ public class InventoryScript : MonoBehaviour
                 {
                     GameObject activatedSlot = GameObject.Find("ActivatedItem" + i);
                     if (activatedSlot.transform.childCount > 0)
-                        Destroy(activatedSlot.transform.GetChild(0).gameObject);
+                    {
+                        if (!activatedSlot.transform.GetChild(0).gameObject.name.Contains("ImageK"))
+                        {
+                            activatedSlot.transform.GetChild(0).gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 0);
+
+                            activatedSlot.transform.GetChild(0).gameObject.transform.Find("ItemImage").GetComponent<Image>().color = new Color(255, 255, 255, 0);
+
+                            activatedSlot.transform.GetChild(0).gameObject.transform.Find("ItemAmount").GetComponent<TMP_Text>().color = new Color(255, 255, 255, 0);
+                        }
+                    }
                 }
             }
         }

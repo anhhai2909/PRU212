@@ -7,6 +7,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Weapons;
 using static UnityEditor.Progress;
 
 public class InprogressActivatedItem : MonoBehaviour
@@ -38,8 +39,19 @@ public class InprogressActivatedItem : MonoBehaviour
     public AudioClip useItemSound;
 
     private SoundEffectScript sounds;
+
+    private UpdateSystem updateSystem;
+
+    Coroutine coroutineSpeed;
+
+    Coroutine coroutineDamage;
+
+    Coroutine coroutineDefense;
+
+
     void Start()
     {
+        updateSystem = GameObject.Find("UpdateSystem").GetComponent<UpdateSystem>();
         sounds = gameObject.GetComponent<SoundEffectScript>();
         keyINP = new Dictionary<string, int>();
         inProgressItem = new List<GameItem>();
@@ -78,7 +90,6 @@ public class InprogressActivatedItem : MonoBehaviour
                     b += (item.Key + ":" + item.Value + " ");
                 }
             }
-            Debug.Log("Diff");
             LoadToGame(MinItem());
             oldActivatedItems = activatedItems;
         }
@@ -94,16 +105,19 @@ public class InprogressActivatedItem : MonoBehaviour
             {
                 if (item.Key == activeItem.Id)
                 {
-                    
-                    SetTimerBar(activeItem);
-                    Debug.Log(activeItem.Id);
+                    if (activeItem.Id != 1 && activeItem.Id != 2)
+                        SetTimerBar(activeItem);
+                    else
+                    {
+                        sounds.gameObject.GetComponent<AudioSource>().clip = useItemSound;
+                        sounds.Play();
+                    }
+                    ActivateItem(activeItem.Id);
                     if (item.Value - 1 > 0)
                     {
                         playerItems[item.Key] = item.Value - 1;
                         LoadDataScript.SavePlayerItemData(coin, playerItems);
                         LoadDataScript.SaveActivatedItems(activatedItems);
-                        Debug.Log("Min");
-
                         LoadToGame(activeSlot);
                     }
                     else
@@ -114,13 +128,72 @@ public class InprogressActivatedItem : MonoBehaviour
                         LoadDataScript.SaveActivatedItems(activatedItems);
                         LoadToGame(MinItem());
                     }
-                    
+
 
                     break;
                 }
             }
             StartCoroutine(DelayCoroutine());
         }
+    }
+
+    void ActivateItem(int itemId)
+    {
+        switch (itemId)
+        {
+            case 1:
+                {
+                    updateSystem.updateHealth(updateSystem.getMaxHealth() * 0.3f);
+                    break;
+                }
+            case 2:
+                {
+                    updateSystem.updateHealth(updateSystem.getMaxMana() - updateSystem.getCurrentMana());
+                    break;
+                }
+            case 3:
+                {
+                    coroutineDamage = StartCoroutine(IncreaseWeaponDamage());
+                    break;
+                }
+            case 4:
+                {
+                    coroutineSpeed = StartCoroutine(IncreaseSpeed());
+                    break;
+                }
+            case 6:
+                {
+                    coroutineDefense = StartCoroutine(IncreaseReduceDamage());
+                    break;
+                }
+        }
+    }
+
+    IEnumerator IncreaseSpeed()
+    {
+        updateSystem.updateSpeed(4.5f);
+        yield return new WaitForSeconds(10);
+        updateSystem.updateSpeed(-4.5f);
+    }
+    IEnumerator IncreaseWeaponDamage()
+    {
+        WeaponDataSO[] weapons = updateSystem.GetAllWeapons();
+        for(int i = 0; i < weapons.Length; i++) {
+            updateSystem.updateWeapon(i, 20);
+        }
+        yield return new WaitForSeconds(10);
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            updateSystem.updateWeapon(i, -20);
+        }
+    }
+
+    IEnumerator IncreaseReduceDamage()
+    {
+
+        updateSystem.updateReducePercentDamage(0.5f);
+        yield return new WaitForSeconds(10);
+        updateSystem.updateReducePercentDamage(0);
     }
 
     void SetTimerBar(GameItem item)
@@ -133,7 +206,7 @@ public class InprogressActivatedItem : MonoBehaviour
             sounds.Play();
             for (int i = 0; i < inProgressItem.Count; i++)
             {
-                if(item.Id == inProgressItem[i].Id)
+                if (item.Id == inProgressItem[i].Id)
                 {
                     GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().CancelLeanTween(keyINP[inprogressObject[i]]);
                     GameObject.Find(inprogressObject[i]).GetComponent<TimerBar>().bar = GameObject.Find(inprogressObject[i]).transform.GetChild(0).GetChild(0).gameObject;
@@ -151,6 +224,33 @@ public class InprogressActivatedItem : MonoBehaviour
                     break;
                 }
             }
+
+            switch(item.Id)
+            {
+                case 3:
+                    {
+                        StopCoroutine(IncreaseWeaponDamage());
+                        WeaponDataSO[] weapons = updateSystem.GetAllWeapons();
+                        for (int i = 0; i < weapons.Length; i++)
+                        {
+                            updateSystem.updateWeapon(i, -20);
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        StopCoroutine(coroutineSpeed);
+                        updateSystem.updateSpeed(-4.5f);
+                        break;
+                    }
+                case 6:
+                    {
+                        StopCoroutine(IncreaseReduceDamage());
+                        updateSystem.updateReducePercentDamage(0);
+                        break;
+                    }
+            }
+
         }
         else
         {
@@ -165,18 +265,18 @@ public class InprogressActivatedItem : MonoBehaviour
 
                 GameObject itemINP;
                 int index = 0;
-                while(inprogressObject.Contains("ActivatedInprogress" + (index != 0 ? (index) : (""))) && index <= 3)
+                while (inprogressObject.Contains("ActivatedInprogress" + (index != 0 ? (index) : (""))) && index <= 3)
                 {
                     index++;
                 }
-                
+
                 inprogressObject.Add("ActivatedInprogress" + (index != 0 ? (index) : ("")));
                 itemINP = GameObject.Find("ActivatedInprogress" + (index != 0 ? (index) : ("")));
                 itemINP.GetComponent<Image>().sprite = Resources.Load<Sprite>(item.SpriteName);
                 itemINP.GetComponent<Image>().color = new Color(255, 255, 255, 255);
                 itemINP.transform.GetChild(0).GetChild(0).GetComponent<Image>().color = Color.green;
-                
-                if(itemINP.GetComponent<TimerBar>() == null)
+
+                if (itemINP.GetComponent<TimerBar>() == null)
                     itemINP.AddComponent<TimerBar>();
                 itemINP.GetComponent<TimerBar>().bar = itemINP.transform.GetChild(0).GetChild(0).gameObject;
                 itemINP.GetComponent<TimerBar>().time = 10;
@@ -255,7 +355,7 @@ public class InprogressActivatedItem : MonoBehaviour
                 if (min > item.Key)
                 {
                     min = item.Key;
-                    
+
                 }
             }
         }
@@ -280,7 +380,6 @@ public class InprogressActivatedItem : MonoBehaviour
         }
         else
         {
-            Debug.Log(index);
             foreach (var item in items)
             {
                 if (item.Id == activatedItems[index])

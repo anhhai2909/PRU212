@@ -7,6 +7,7 @@ namespace CoreSystem
 {
     public class DamageReceiver : CoreComponent, IDamageable
     {
+
         [SerializeField] private GameObject damageParticles;
         [SerializeField] private GameObject posParticles;
         [SerializeField] private float invulnerabilityDuration = 2.0f;
@@ -20,7 +21,6 @@ namespace CoreSystem
 
         private Stats stats;
         private ParticleManager particleManager;
-
 
         public void Damage(DamageData data)
         {
@@ -39,7 +39,7 @@ namespace CoreSystem
                     return;
                 }
 
-                stats.Health.Decrease(data.Amount);
+                stats.Health.Decrease(data.Amount - data.Amount * LoadDataScript.reduceDamage);
                 StartCoroutine(InvulnerabilityCoroutine());
                 particleManager.StartWithRandomRotation(damageParticles, posParticles);
                 //Instantiate(damageParticles, posParticles.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
