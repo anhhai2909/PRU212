@@ -24,13 +24,13 @@ public class BossIdleState : BossState
     public override void Exit()
     {
         base.Exit();
-            boss.FacingToPlayer();
+        boss.FacingToPlayer();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(Time.time >= startTime + idleTime)
+        if (Time.time >= startTime + idleTime)
         {
             isIdleTimeOver = true;
         }

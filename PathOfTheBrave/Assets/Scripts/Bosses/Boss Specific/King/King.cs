@@ -38,4 +38,20 @@ public class King : Boss
         base.Update();
         healthBar.setHealth(currentHealth);
     }
+
+    public override void FacingToPlayer()
+    {
+        facingDirection *= -1;
+        Vector2 target = new Vector2(player.position.x, rb.position.y);
+
+        // Adjust the facing logic to flip the sprite correctly
+        if ((target.x < rb.position.x && isFacingRight) || (target.x > rb.position.x && !isFacingRight))
+        {
+            isFacingRight = !isFacingRight;
+
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
 }

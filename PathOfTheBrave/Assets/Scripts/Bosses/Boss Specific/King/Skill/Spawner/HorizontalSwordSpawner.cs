@@ -12,6 +12,11 @@ public class HorizontalSwordSpawner : MonoBehaviour
     public float endXPosition = -30f; 
 
     private bool isSpawning = false;
+    protected King king;
+    private void Awake()
+    {
+        king = GetComponent<King>();
+    }
 
     void Update()
     {
@@ -34,5 +39,9 @@ public class HorizontalSwordSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
         isSpawning = false;
+    }
+    public void AnimationSwordSpawnEnd()
+    {
+        king.swordState.isCastTimeOver = true;
     }
 }

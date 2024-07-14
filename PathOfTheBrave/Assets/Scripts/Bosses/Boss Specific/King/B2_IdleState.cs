@@ -20,6 +20,8 @@ public class B2_IdleState : BossIdleState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Enter Idle King");
+        getNextSkill();
     }
 
     public override void Exit()
@@ -33,13 +35,32 @@ public class B2_IdleState : BossIdleState
         switch (skills[currentSkillIndex])
         {
             case 0:
-                stateMachine.ChangeState(king.bulletState);
+                if (GameObject.FindGameObjectWithTag("Enemy") == null)
+                {
+                    Debug.Log("Spawner is null");
+                    stateMachine.ChangeState(king.bulletState);
+                }
+                else
+                {
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        //stateMachine.ChangeState(king.spikeState);
+                        Debug.Log("Else 1");
+                        stateMachine.ChangeState(king.swordState);
+                    }
+                    else
+                    {
+                        Debug.Log("Else 2");
+                        stateMachine.ChangeState(king.swordState);
+                    }
+                }
                 break;
             case 1:
                 stateMachine.ChangeState(king.swordState);
                 break;
             case 2:
-                stateMachine.ChangeState(king.spikeState);
+                stateMachine.ChangeState(king.swordState);
+                //stateMachine.ChangeState(king.spikeState);
                 break;
         }
         getNextSkill();

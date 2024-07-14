@@ -14,7 +14,7 @@ namespace CoreSystem
         {
             base.Awake();
 
-            particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform;
+            particleContainer = GameObject.FindGameObjectWithTag("ParticleContainer").transform; 
         }
 
         private void Start()

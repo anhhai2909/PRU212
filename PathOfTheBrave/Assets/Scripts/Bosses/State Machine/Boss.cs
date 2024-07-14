@@ -6,7 +6,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour, IDamageable
 {
     public BossFiniteStateMachine stateMachine;
-    public int facingDirection { get; private set; }
+    public int facingDirection { get;  set; }
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
 
@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour, IDamageable
 
     public Transform player;
 
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
     public D_Boss bossData;
 
@@ -68,7 +68,7 @@ public class Boss : MonoBehaviour, IDamageable
 
     public virtual void FacingToPlayer()
     {
-        facingDirection *= -1;
+        
         Vector2 target = new Vector2(player.position.x, rb.position.y);
 
         // Adjust the facing logic to flip the sprite correctly
