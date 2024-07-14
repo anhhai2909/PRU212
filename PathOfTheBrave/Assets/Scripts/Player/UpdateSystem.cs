@@ -30,8 +30,8 @@ public class UpdateSystem : CoreComponent
             Debug.LogError("Player object not found in the scene!");
             return;
         }
-     //   loadWeaponInventory();
-        //loadDamage();
+        loadWeaponInventory();
+        loadDamage();
        // updatePlayerInformationBasedOnLevel();
         loadDamage();
         playerData.movementVelocity = 10.5f;
@@ -39,7 +39,7 @@ public class UpdateSystem : CoreComponent
 
     private void Update()
     {
-   //    updatePlayerInformationBasedOnLevel();
+       updatePlayerInformationBasedOnLevel();
       // Debug.Log(stats.Health.CurrentValue + " " + stats.Health.MaxValue);
       //  Debug.Log(stats.Mana.CurrentValue + " " + stats.Health.MaxValue);
     }

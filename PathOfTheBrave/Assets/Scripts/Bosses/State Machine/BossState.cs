@@ -7,7 +7,7 @@ public class BossState
     protected BossFiniteStateMachine stateMachine;
     protected Boss boss;
     protected float startTime;
-    protected string animBoolName;
+    public string animBoolName;
 
     public BossState(Boss boss, BossFiniteStateMachine stateMachine, string animBoolName)
     {

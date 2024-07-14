@@ -11,6 +11,8 @@ public class King : Boss
     public B2_SpawnSwordState swordState {  get; private set; }
     public B2_StuntState stuntState {  get; private set; }
     public B2_SpawnBulletState bulletState {  get; private set; }
+    public B2_SpawnCloneState cloneState {  get; private set; }
+    public B2_WaitState waitState { get; private set; }
 
     public BossHealthBar healthBar;
 
@@ -20,6 +22,10 @@ public class King : Boss
     private D_BossMoveState moveStateData;
     [SerializeField]
     private D_BossStuntState stuntStateData;
+    [SerializeField]
+    private D_BossCloneState cloneStateData;
+    [SerializeField]
+    private D_BossWaitState waitStateData;
 
     public override void Start()
     {
@@ -31,11 +37,29 @@ public class King : Boss
         spikeState = new B2_SpawnSpikeState(this, stateMachine, "spike", this);
         swordState = new B2_SpawnSwordState(this, stateMachine, "sword", this);
         bulletState = new B2_SpawnBulletState(this, stateMachine, "bullet", this);
+        cloneState = new B2_SpawnCloneState(this, stateMachine,"clone",cloneStateData,this);
+        waitState = new B2_WaitState(this, stateMachine,"wait",waitStateData,this); 
         stateMachine.Initialize(idleState);
     }
     public override void Update()
     {
         base.Update();
         healthBar.setHealth(currentHealth);
+    }
+
+    public override void FacingToPlayer()
+    {
+        facingDirection *= -1;
+        Vector2 target = new Vector2(player.position.x, rb.position.y);
+
+        // Adjust the facing logic to flip the sprite correctly
+        if ((target.x < rb.position.x && isFacingRight) || (target.x > rb.position.x && !isFacingRight))
+        {
+            isFacingRight = !isFacingRight;
+
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
     }
 }

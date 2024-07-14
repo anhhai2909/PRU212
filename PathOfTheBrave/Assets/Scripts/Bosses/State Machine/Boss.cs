@@ -6,7 +6,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour, IDamageable
 {
     public BossFiniteStateMachine stateMachine;
-    public int facingDirection { get; private set; }
+    public int facingDirection { get;  set; }
     public Rigidbody2D rb { get; private set; }
     public Animator animator { get; private set; }
 
@@ -16,11 +16,13 @@ public class Boss : MonoBehaviour, IDamageable
 
     public Transform player;
 
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
     public D_Boss bossData;
 
     public PortalScript portal;
+
+    public PlayerScript playerScript;
 
     private ParticleSystem damageParticleInstance;
 
@@ -30,9 +32,6 @@ public class Boss : MonoBehaviour, IDamageable
     public float currentHealth;
     private void Awake()
     {
-        portal.isEnabled = false;
-        portal.isBossDead = false;
-
         Debug.Log("Portal closed");
     }
 
@@ -43,6 +42,7 @@ public class Boss : MonoBehaviour, IDamageable
         stateMachine = new BossFiniteStateMachine();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         currentHealth = bossData.maxHealth;
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
     public virtual void Update()
     {
@@ -50,8 +50,12 @@ public class Boss : MonoBehaviour, IDamageable
         
         if (currentHealth <= 0)
         {
+            
             animator.SetBool("dead", true);
-            portal.isEnabled = true;
+            //Add 1000 coin after kill boss
+            playerScript.coin += 1000;
+            LoadDataScript.SaveCoin(playerScript.coin);
+            //Open portal after kill boss
             portal.isBossDead = true;
         }
     }
@@ -68,7 +72,7 @@ public class Boss : MonoBehaviour, IDamageable
 
     public virtual void FacingToPlayer()
     {
-        facingDirection *= -1;
+        
         Vector2 target = new Vector2(player.position.x, rb.position.y);
 
         // Adjust the facing logic to flip the sprite correctly

@@ -17,6 +17,7 @@ MonoBehaviour:
   <Description>k__BackingField: Pool Hero
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: 6ee806da7ee3f9e4ea244f35a7bfbd89, type: 2}
   <NumberOfAttacks>k__BackingField: 5
+  <AttackCooldown>k__BackingField: 0
   <ComponentData>k__BackingField:
   - rid: 6757589986470789120
   - rid: 6757589986470789126
@@ -54,15 +55,15 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 10
+          <Amount>k__BackingField: 200
         - name: Attack 2
-          <Amount>k__BackingField: 10
+          <Amount>k__BackingField: 200
         - name: Attack 3
-          <Amount>k__BackingField: 10
+          <Amount>k__BackingField: 200
         - name: Attack 5
-          <Amount>k__BackingField: 10
+          <Amount>k__BackingField: 200
         - name: Attack 6
-          <Amount>k__BackingField: 10
+          <Amount>k__BackingField: 200
     - rid: 6757589986470789123
       type: {class: KnockBackData, ns: Weapons.Components, asm: Assembly-CSharp}
       data:

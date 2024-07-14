@@ -38,4 +38,10 @@ public class Necromancer : Boss
         healthBar.setHealth(currentHealth);
     }
 
+    public override void FacingToPlayer()
+    {
+        facingDirection *= -1;
+        base.FacingToPlayer();
+    }
+
 }

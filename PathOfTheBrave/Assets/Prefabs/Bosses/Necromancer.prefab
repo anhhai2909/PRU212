@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 2018746711553106288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.02, y: -2.75, z: -0.66}
+  m_LocalPosition: {x: 1.86, y: 2.97, z: -0.66}
   m_LocalScale: {x: -9, y: 9, z: 9}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -215,12 +215,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3d51c93a02b0f46898401f9a3c0f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageParticles: {fileID: 7350475219789346562, guid: 7718da35160615c4aa3931bf602ebf0d, type: 3}
   player: {fileID: 0}
   bossData: {fileID: 11400000, guid: beb12132776d85741a1f5839b49e690c, type: 2}
+  portal: {fileID: 0}
   playerCheck: {fileID: 0}
   currentHealth: 0
   healthBar: {fileID: 0}
-  portal: {fileID: 0}
   idleStateData: {fileID: 11400000, guid: 4b529fcbd4adc9a4e84f785467eb3dca, type: 2}
   moveStateData: {fileID: 11400000, guid: 1a8322a10be9e6449b7e09bcf670a011, type: 2}
 --- !u!114 &9209580212702059632
@@ -235,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28cbf810c6dac14da52928690a72f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballPrefab: {fileID: 2515427725552223979, guid: ee00e2fa38bf3864caa2a4a4c5e9d212, type: 3}
+  fireballPrefab: {fileID: 2515427725552223979, guid: a342d53288db4fe4c9ed1e2b7fc4c577, type: 3}
   fireballPos: {fileID: 8189407459145234056}
 --- !u!114 &7816544684282343374
 MonoBehaviour:
@@ -250,9 +251,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meteorPrefab: {fileID: 4244283179249365528, guid: 1a2c0dee85d6af14eb36373e1d2e628f, type: 3}
-  spawnHeight: 10
-  fallDelay: 0.3
-  fallSpeed: 5
+  spawnHeight: 16
+  fallDelay: 1
+  fallSpeed: 11
   fallDirection: {x: -1, y: -1}
   player: {fileID: 0}
 --- !u!114 &8851398823676157539
@@ -268,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  skeletonPrefab: {fileID: 8273563080497093330, guid: d9b302ef923ca0c439fc7be1c4f2bb9a, type: 3}
+  skeletonPrefab: {fileID: 8273563080497093330, guid: 3303e2cd78f3a244390d629d7464d251, type: 3}
   spawnRadius: 10
 --- !u!114 &4622202907928327852
 MonoBehaviour:

@@ -34,7 +34,7 @@ public class B1_IdleState : BossIdleState
     {
         base.LogicUpdate();
         CheckHealthThresholds();
-        if (isIdleTimeOver && (necromancer.currentHealth >= 600 || necromancer.currentHealth <= 400))
+        if (isIdleTimeOver && necromancer.currentHealth >= 500)
         {
             switch (skills[currentSkillIndex])
             {
