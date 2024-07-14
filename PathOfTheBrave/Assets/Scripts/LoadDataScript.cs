@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons;
 
 public class LoadDataScript : MonoBehaviour
 {
@@ -38,9 +39,29 @@ public class LoadDataScript : MonoBehaviour
             items = gameData._items;
             activatedItems = gameData._activatedItems;
         }
-        Debug.Log(playerHealthLevel + " " + playerManaLevel + " " + playerSdLevel + " " + playerBdLevel + " " + playerMdLevel);
     }
 
+    public static void SavePlayerWeaponInventory(WeaponDataSO[] weapons)
+    {
+        DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
+        GameData gameData = dataPersistenceManager.LoadGame();
+        string[] s = new string[weapons.Length];
+        for(int i = 0; i < weapons.Length; i++) {
+            if (weapons[i] != null)
+            {
+                s[i] = weapons[i].Name;
+            }
+        }
+        gameData._weaponDatas = s;
+        dataPersistenceManager.SaveToFile(gameData);
+    }
+
+    public static string[] LoadPlayerWeaponInventory()
+    {
+        DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
+        GameData gameData = dataPersistenceManager.LoadGame();
+        return gameData._weaponDatas;
+    }
 
     public static void SavePlayerItemData(
         float coin,

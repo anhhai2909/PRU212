@@ -128,7 +128,7 @@ MonoBehaviour:
   <Rigidbody2D>k__BackingField: {fileID: 5814087343190203649}
   weaponIcon: {fileID: 7002959372488733395}
   bobber: {fileID: 182172274595342521}
-  weaponData: {fileID: 11400000, guid: 4a936cdbbada63143b9a868912282179, type: 2}
+  weaponData: {fileID: 11400000, guid: 34a22b2e4f061dd4e833ca5b0b73ddc6, type: 2}
 --- !u!50 &5814087343190203649
 Rigidbody2D:
   serializedVersion: 4
@@ -273,7 +273,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 273729393
-  m_SortingLayer: 9
+  m_SortingLayer: 11
   m_SortingOrder: -1
   m_Sprite: {fileID: 2142274599, guid: 0464bf6ae3eba8949b5329d15a4ec017, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -20,10 +20,21 @@ namespace CoreSystem
 
             oldData = weaponData[index];
             weaponData[index] = newData;
-
+            if (weaponData[index].GetAddDamage() != 0)
+            {
+                weaponData[index].AddAddDamage(-weaponData[index].GetAddDamage());
+            }
             OnWeaponDataChanged?.Invoke(index, newData);
 
+        
+
+            LoadDataScript.SavePlayerWeaponInventory(weaponData);
             return true;
+        }
+
+        public void SetWeaponInventory(WeaponDataSO[] _weaponData)
+        {
+            weaponData = _weaponData;
         }
 
         public bool TryGetWeapon(int index, out WeaponDataSO data)
@@ -49,17 +60,18 @@ namespace CoreSystem
             {
                 if (weaponData[i] is not null)
                     continue;
-
+                Debug.Log("Hhi");
                 index = i;
                 return true;
             }
-
+            Debug.Log("Hha");
             index = -1;
             return false;
         }
 
         public void AddEmptyPosition()
         {
+            Debug.Log("4");
             // Create a new array with one additional slot
             WeaponDataSO[] newWeaponData = new WeaponDataSO[weaponData.Length + 1];
 
@@ -75,6 +87,7 @@ namespace CoreSystem
 
         public WeaponSwapChoice[] GetWeaponSwapChoices()
         {
+            Debug.Log("5");
             var choices = new WeaponSwapChoice[weaponData.Length];
 
             for (var i = 0; i < weaponData.Length; i++)

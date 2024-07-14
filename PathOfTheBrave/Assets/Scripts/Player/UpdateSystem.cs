@@ -2,6 +2,7 @@ using CoreSystem;
 using ProjectileSystem.Components;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using Weapons;
@@ -29,14 +30,18 @@ public class UpdateSystem : CoreComponent
             Debug.LogError("Player object not found in the scene!");
             return;
         }
+        loadWeaponInventory();
+        //loadDamage();
         updatePlayerInformationBasedOnLevel();
+        loadDamage();
         playerData.movementVelocity = 10.5f;
     }
 
     private void Update()
     {
-       Debug.Log(stats.Health.CurrentValue + " " + stats.Health.MaxValue);
-        Debug.Log(stats.Mana.CurrentValue + " " + stats.Health.MaxValue);
+       updatePlayerInformationBasedOnLevel();
+      // Debug.Log(stats.Health.CurrentValue + " " + stats.Health.MaxValue);
+      //  Debug.Log(stats.Mana.CurrentValue + " " + stats.Health.MaxValue);
     }
 
     public void updateReducePercentDamage(float percent)
@@ -44,13 +49,21 @@ public class UpdateSystem : CoreComponent
         LoadDataScript.reduceDamage = percent;
     }
 
+    public void setDefaultWeaponInventory()
+    {
+        WeaponDataSO[] weapons = new WeaponDataSO[2];
+        weapons[0] = null;
+        weapons[1] = null;
+        weaponInventory.SetWeaponInventory(weapons);
+    }
+
     public void updateWeapon(int index, float damage)
     {
         if (weaponInventory.TryGetWeapon(index, out var data))
         {
-            Debug.Log("Update weapon \"" + data.Name + "\": +" + damage + " damage");
+           // Debug.Log("Update weapon \"" + data.Name + "\": +" + damage + " damage");
             data.AddAddDamage(damage);
-            Debug.Log("Update weapon \"" + data.Name + "\": +" + damage + " damage");
+           // Debug.Log("Update weapon \"" + data.Name + "\": +" + damage + " damage");
         }
     }
 
@@ -125,128 +138,211 @@ public class UpdateSystem : CoreComponent
         return playerData.movementVelocity;
     }
 
+    public void loadDamage()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].Name == "Bardent's Sword")
+                    {
+                        updateWeapon(i, 10 * LoadDataScript.playerSdLevel);
+                    }
+                    else if (GetAllWeapons()[i].Name == "Wooden Bow")
+                    {
+                        updateWeapon(i, 10 * LoadDataScript.playerBdLevel);
+                    }
+                    else if (GetAllWeapons()[i].Name == "Magic")
+                    {
+                        updateWeapon(i, 10 * LoadDataScript.playerMdLevel);
+                    }
+                }
+            }
+        }
+    }
+
+    public void updateSwordDamage()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].Name == "Bardent's Sword")
+                    {
+                        updateWeapon(i, 10 );
+                    }
+
+                }
+            }
+        }
+    }
+
+    public void updateBowDamage()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].Name == "Wooden Bow")
+                    {
+                        updateWeapon(i, 10);
+                    }
+                }
+            }
+        }
+    }
+
+    public void updateMagicDamage()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].Name == "Magic")
+                    {
+                        updateWeapon(i, 10);
+                    }
+                }
+            }
+        }
+    }
+
+    public void loadWeaponInventory()
+    {
+        if (LoadDataScript.LoadPlayerWeaponInventory() == null)
+        {
+            WeaponDataSO[] weapons = new WeaponDataSO[2];
+            weapons[0] = null;
+            weapons[1] = null;
+            weaponInventory.SetWeaponInventory(weapons);
+        }
+        else
+        {
+            string[] weaponsName = LoadDataScript.LoadPlayerWeaponInventory();
+            WeaponDataSO[] weapons = new WeaponDataSO[weaponsName.Length];
+            for (int i = 0; i < weaponsName.Length; i++)
+            {
+                weapons[i] = WeaponDataLoader.GetWeaponDataByName(weaponsName[i]);
+            }
+            weaponInventory.SetWeaponInventory(weapons);
+        }
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].GetAddDamage() != 0)
+                        updateWeapon(i, -GetAllWeapons()[i].GetAddDamage());
+                    Debug.Log(GetAllWeapons()[i].Name + " " + GetAllWeapons()[i].GetAddDamage());
+
+                }
+            }
+        }
+    }
+
+    public bool checkForSword()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].Name == "Bardent's Sword")
+                    {
+                        return true;
+                    }
+
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool checkForBow()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].Name == "Wooden Bow")
+                    {
+                        return true;
+                    }
+
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool checkForMagic()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].Name == "Magic")
+                    {
+                        return true;
+                    }
+
+                }
+            }
+        }
+        return false;
+    }
+
+    public void setDefaultWeaponStat()
+    {
+        if (GetAllWeapons() != null)
+        {
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
+                {
+                    if (GetAllWeapons()[i].GetAddDamage() != 0)
+                        updateWeapon(i, -GetAllWeapons()[i].GetAddDamage());
+
+                }
+            }
+        }
+    }
+
     public void updatePlayerInformationBasedOnLevel()
     {
         LoadDataScript.LoadPlayerData();
-        switch(LoadDataScript.playerHealthLevel)
+        updateMaxHealth(100 * LoadDataScript.playerHealthLevel);
+        updateMaxMana(100 * LoadDataScript.playerManaLevel);
+      //  Debug.Log("Health: " + stats.Health.CurrentValue + " " + stats.Health.MaxValue);
+      //  Debug.Log("Mana: " + stats.Mana.CurrentValue + " " + stats.Mana.MaxValue);
+        if (GetAllWeapons() != null)
         {
-            case 1:
+            for (int i = 0; i < GetAllWeapons().Length; i++)
+            {
+                if (GetAllWeapons()[i] != null)
                 {
-                    updateMaxHealth(100);
-                    break;
+                    
+                   // Debug.Log(GetAllWeapons()[i].Name + " " + GetAllWeapons()[i].GetAddDamage());
+                    
                 }
-            case 2:
-                {
-                    updateMaxHealth(100);
-                    break;
-                }
-            case 3:
-                {
-                    updateMaxHealth(100);
-                    break;
-                }
-            case 4:
-                {
-                    updateMaxHealth(100);
-                    break;
-                }
+            }
         }
 
-        switch (LoadDataScript.playerManaLevel)
-        {
-            case 1:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 2:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 3:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 4:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-        }
 
-        switch (LoadDataScript.playerBdLevel)
-        {
-            case 1:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 2:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 3:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 4:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-        }
-
-        switch (LoadDataScript.playerSdLevel)
-        {
-            case 1:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 2:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 3:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 4:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-        }
-
-        switch (LoadDataScript.playerMdLevel)
-        {
-            case 1:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 2:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 3:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-            case 4:
-                {
-                    updateMaxMana(10);
-                    break;
-                }
-        }
     }
 
 }

@@ -26,14 +26,17 @@ public class RandomEnemies : MonoBehaviour
 
     void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
-        isLoaded = true;
+        if (scene.buildIndex != 0)
+        {
+            tilemap = GameObject.Find("SpawnEnemy").GetComponent<Tilemap>();
+            isLoaded = true;
+        }
 
 
     }
 
     private void Awake()
     {
-        tilemap = GameObject.Find("SpawnEnemy").GetComponent<Tilemap>();
         listEnemies = new List<GameObject>();
         LoadAllPrefabs();
     }

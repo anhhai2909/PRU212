@@ -1,3 +1,4 @@
+using CoreSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +7,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Weapons;
 
 public class MainMenuScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    private UpdateSystem updateSystem;
 
     public float xDirection;
 
@@ -44,6 +47,7 @@ public class MainMenuScript : MonoBehaviour
     private void Awake()
     {
         DataPersistenceManager data = new DataPersistenceManager();
+        updateSystem = GameObject.Find("UpdateSystem").GetComponent<UpdateSystem>();
         if (data.ReadFromFile() == null)
         {
             isNew = true;
@@ -98,6 +102,7 @@ public class MainMenuScript : MonoBehaviour
             playerScript.gameObject.SetActive(true);
             DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
             dataPersistenceManager.SaveToFile(null);
+            updateSystem.setDefaultWeaponInventory();
             canvas.active = false;
             playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -166,6 +171,9 @@ public class MainMenuScript : MonoBehaviour
                 player.active = true;
                 playerScript.gameObject.SetActive(true);
                 canvas.active = false;
+                DataPersistenceManager dataPersistenceManager = new DataPersistenceManager();
+                dataPersistenceManager.SaveToFile(null);
+                updateSystem.setDefaultWeaponInventory();
                 playerScript.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             else if (option == 2)

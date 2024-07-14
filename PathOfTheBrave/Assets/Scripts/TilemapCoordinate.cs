@@ -57,7 +57,7 @@ public class TilemapCoordinate : MonoBehaviour
         if (Time.realtimeSinceStartup - levelTime >= 0)
         {
             delay = delay / 2;
-            levelTime += 15;
+            levelTime += 30;
         }
         SpawnLightning();
        

@@ -2,6 +2,7 @@ using Assets.Scripts.DataPersistence.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Weapons;
 
 [System.Serializable]
 public class GameData 
@@ -35,6 +36,8 @@ public class GameData
     public Dictionary<int, int> _activatedItems { get; set; }
 
     public List<SceneInfor> _scenesInfor { get; set; }
+
+    public string[] _weaponDatas { get; set; }
 
 
     public GameData()

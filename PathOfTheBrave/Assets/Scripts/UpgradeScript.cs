@@ -68,9 +68,47 @@ public class UpgradeScript : MonoBehaviour
 
     private SoundEffectScript sounds;
 
+    private UpdateSystem updateSystem;
+
+    public GameObject sword;
+
+    public GameObject bow;
+
+    public GameObject magic;
+
+
+    private void OnEnable()
+    {
+        updateSystem = GameObject.Find("UpdateSystem").GetComponent<UpdateSystem>();
+        if(updateSystem.checkForSword())
+        {
+            sword.SetActive(true);
+        }
+        else
+        {
+            sword.SetActive(false);
+        }
+        if (updateSystem.checkForBow())
+        {
+            bow.SetActive(true);
+        }
+        else
+        {
+            bow.SetActive(false);
+        }
+        if (updateSystem.checkForMagic())
+        {
+            magic.SetActive(true);
+        }
+        else
+        {
+            magic.SetActive(false);
+        }
+    }
 
     void Start()
     {
+        updateSystem = GameObject.Find("UpdateSystem").GetComponent<UpdateSystem>();
         sounds = gameObject.GetComponent<SoundEffectScript>();
         LoadCoin();
         LoadDataScript.LoadPlayerData();
@@ -79,7 +117,6 @@ public class UpgradeScript : MonoBehaviour
         levelSD = LoadDataScript.playerSdLevel;
         levelBD = LoadDataScript.playerBdLevel;
         levelMD = LoadDataScript.playerMdLevel;
-
         if (levelHealth == 4)
         {
             btnHealth.gameObject.SetActive(false);
@@ -285,6 +322,7 @@ public class UpgradeScript : MonoBehaviour
     {
         if (coin - Convert.ToInt32(sdCoinText.text) >= 0)
         {
+            updateSystem.updateSwordDamage();
             levelSD++;
             IncreaseSDBasedOnLevel();
             imgSD.sprite = Resources.Load<Sprite>(BarStatus(levelSD));
@@ -310,6 +348,7 @@ public class UpgradeScript : MonoBehaviour
     {
         if (coin - Convert.ToInt32(bdCoinText.text) >= 0)
         {
+            updateSystem.updateBowDamage();
             levelBD++;
             IncreaseBDBasedOnLevel();
             imgBD.sprite = Resources.Load<Sprite>(BarStatus(levelBD));
@@ -335,6 +374,7 @@ public class UpgradeScript : MonoBehaviour
     {
         if (coin - Convert.ToInt32(mdCoinText.text) >= 0)
         {
+            updateSystem.updateMagicDamage();
             levelMD++;
             IncreaseMDBasedOnLevel();
             imgMD.sprite = Resources.Load<Sprite>(BarStatus(levelMD));

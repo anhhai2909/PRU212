@@ -13,6 +13,7 @@ using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using Weapons;
 
 public class DataPersistenceManager
 {
@@ -165,6 +166,7 @@ public class DataPersistenceManager
             if (ReadFromFile() == null)
             {
                 gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin, scenes);
+                gameData._weaponDatas = null;
             }
             else
             {
@@ -177,6 +179,7 @@ public class DataPersistenceManager
                 gameData._mdLevel = oldData._mdLevel;
                 gameData._items = oldData._items;
                 gameData._activatedItems = oldData._activatedItems;
+                gameData._weaponDatas = oldData._weaponDatas;
             }
             
             

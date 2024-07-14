@@ -61,7 +61,8 @@ public class MapGuide : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        LoadGuide();
+        if(scene.buildIndex != 0)
+            LoadGuide();
     }
 
     void PlayGuide()

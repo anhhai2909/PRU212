@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Weapons.Components;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Weapons
 {
