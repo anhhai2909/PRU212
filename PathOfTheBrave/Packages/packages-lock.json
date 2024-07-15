@@ -213,7 +213,7 @@
       }
     },
     "com.unity.render-pipelines.high-definition": {
-      "version": "14.0.9",
+      "version": "14.0.11",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -238,7 +238,7 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "14.0.9",
+      "version": "14.0.11",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -315,7 +315,7 @@
       }
     },
     "com.unity.visualeffectgraph": {
-      "version": "14.0.9",
+      "version": "14.0.11",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
