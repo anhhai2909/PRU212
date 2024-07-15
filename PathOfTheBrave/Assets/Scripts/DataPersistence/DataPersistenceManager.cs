@@ -167,7 +167,7 @@ public class DataPersistenceManager
             {
                 gameData = new GameData(gamerIp, hp, sceneIndex, sceneName, x, y, coin, scenes);
                 gameData._weaponDatas = null;
-                gameData._coin = 200;
+                gameData._coin = 0;
             }
             else
             {

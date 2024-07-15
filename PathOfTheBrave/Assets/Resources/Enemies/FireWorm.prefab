@@ -244,6 +244,12 @@ MonoBehaviour:
   isHitCooldown: 0.8
   isHitTimer: 0
   isHit: 0
+  dropPercent: 70
+  luckPercent: 10
+  minAvg: 3
+  maxAvg: 5
+  minIfLuck: 10
+  maxIfLuck: 15
 --- !u!114 &886699419678482182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +276,9 @@ MonoBehaviour:
   detectRange: 16
   chaseSpeed: 6
   damage: 10
+  maxKnockBackTime: 0.2
   isFacingRight: 1
+  canMove: 0
 --- !u!114 &886699419678482183
 MonoBehaviour:
   m_ObjectHideFlags: 0

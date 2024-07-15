@@ -80,6 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf971e93f72226647a9496b359165dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
 --- !u!1 &7702401350693478135
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf971e93f72226647a9496b359165dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
 --- !u!1 &7702401350713700261
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +307,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647669975
-  m_SortingLayer: 10
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: -461843544, guid: 49fd82abd5db7cb4e8ec34c11d3b90b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -384,8 +390,11 @@ MonoBehaviour:
   groundCheckRadius: 0.3
   detectRange: 7
   chaseSpeed: 7
+  spinSpeed: 15
   damage: 10
+  maxKnockBackTime: 0.2
   isFacingRight: 1
+  canMove: 0
 --- !u!114 &7702401350713700282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +410,8 @@ MonoBehaviour:
   damage: 20
   attackRange: 1.9
   attackCoolDown: 2
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
   canAttack: 1
   canMove: 1
   rb: {fileID: 7702401350713700280}
@@ -427,7 +438,7 @@ MonoBehaviour:
   anim: {fileID: 7702401350713700281}
   canMove: 1
   canAttack: 1
-  maxHealth: 100
+  maxHealth: 300
   coinSpawnPosition: {fileID: 7702401350898540146}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
@@ -436,6 +447,12 @@ MonoBehaviour:
   isHitCooldown: 0.8
   isHitTimer: 0
   isHit: 0
+  dropPercent: 90
+  luckPercent: 30
+  minAvg: 10
+  maxAvg: 15
+  minIfLuck: 30
+  maxIfLuck: 40
 --- !u!1 &7702401350898540146
 GameObject:
   m_ObjectHideFlags: 0

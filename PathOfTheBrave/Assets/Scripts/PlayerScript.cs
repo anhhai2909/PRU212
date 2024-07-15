@@ -52,7 +52,6 @@ public class PlayerScript : MonoBehaviour
     private void Awake()
     {
         hp = 10;
-        coin = 2000;
         DontDestroyOnLoad(this);
         if (instance == null)
         {
@@ -84,7 +83,7 @@ public class PlayerScript : MonoBehaviour
     // Update is calledL once per frame
     void Update()
     {
-
+        Debug.Log(coin);
        
     }
 

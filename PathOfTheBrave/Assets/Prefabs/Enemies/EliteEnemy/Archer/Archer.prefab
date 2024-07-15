@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf971e93f72226647a9496b359165dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
 --- !u!1 &7704309168986871617
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +260,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647669975
-  m_SortingLayer: 10
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: -878986587, guid: 5bba0e2d5cd102345a3a0f9523c01f95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -375,7 +378,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7cba19927b5ea459a20a225c850cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  meleeDamage: 20
+  rangeDamage: 20
+  knockbackAngle: {x: 0, y: 0}
+  knockbackStrength: 0
+  hitbox: {fileID: 0}
   verticalGap: 1.5
   rb: {fileID: 7704309169470658341}
   player: {fileID: 0}
@@ -435,12 +442,21 @@ MonoBehaviour:
   anim: {fileID: 7704309169470658342}
   canMove: 1
   canAttack: 1
-  maxHealth: 100
+  maxHealth: 300
   coinSpawnPosition: {fileID: 66733217229723512}
   coin: {fileID: 4969080199750674727, guid: 496cc612d10fb26438380abdea1ee564, type: 3}
   potion: {fileID: 934934471238362659, guid: 86147d874b8bb92428de657e88ef3a84, type: 3}
   disapearCooldown: 2
   disapearTimer: 0
+  isHitCooldown: 0.3
+  isHitTimer: 0
+  isHit: 0
+  dropPercent: 90
+  luckPercent: 30
+  minAvg: 10
+  maxAvg: 15
+  minIfLuck: 30
+  maxIfLuck: 40
 --- !u!114 &7142422071050773631
 MonoBehaviour:
   m_ObjectHideFlags: 0
